@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Template;
 
-class HomeController extends Controller
+class TemplateController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -17,12 +18,14 @@ class HomeController extends Controller
     }
 
     /**
-     * Show the application dashboard.
+     * List all the templates.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function list()
     {
-        return view('home');
+        $templates = Template::notDeleted()->with('components')->paginate();
+
+        return view('templates.home', compact('templates'));
     }
 }

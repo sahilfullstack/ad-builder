@@ -29,6 +29,11 @@ class Template extends Model
      */
     protected $dates = ['deleted_at'];
 
+    protected $types = [
+        'ad' => 'Ad',
+        'page' => 'Landing Page'
+    ];
+
     /**
      * Limit the search to only not deleted elements.
      *
@@ -38,6 +43,11 @@ class Template extends Model
     public function scopeNotDeleted($query)
     {
         return $query->whereNull('deleted_at')->where(self::SOFT_DELETION_TOKEN, 0);
+    }
+
+    public function getTypeHumanAttribute()
+    {
+        return $this->types[$this->type];
     }
 
     public function components()

@@ -36,7 +36,8 @@
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
-                        &nbsp;
+                        <li><a href="{{ route('login') }}">Templates</a></li>
+                        <li><a href="{{ route('login') }}">Ad Builder</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
