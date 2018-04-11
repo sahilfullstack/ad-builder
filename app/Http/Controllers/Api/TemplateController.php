@@ -10,10 +10,11 @@ use App\Models\Unit;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Exceptions\InvalidInputException;
 
-class UnitController extends Controller
+class TemplateController extends Controller
 {
     public function store(StoreTemplateRequest $request)
     {
+dd($request->all());
         $inputComponents = $request->components;
 
         $template = Template::find($request->template_id);
@@ -31,14 +32,14 @@ class UnitController extends Controller
         {
             $preparedComponents[$component->slug] = $inputComponents[$component->id];
         }
-        $unit = new Unit([
-            'name' => $request->name,
-            'template_id' => $request->template_id,
-            'components' => $preparedComponents
+
+        $template = new Template([
+            'type' => $request->type,
+            'name' => $request->name
         ]);
 
-        $unit->save();
+        $template->save();
 
-        return $unit->fresh();
+        return $template->fresh();
     }
 }
