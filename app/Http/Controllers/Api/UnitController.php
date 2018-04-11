@@ -7,12 +7,12 @@ use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Component;
 use App\Models\Unit;
-use App\Http\Requests\StoreTemplateRequest;
+use App\Http\Requests\StoreUnitRequest;
 use App\Exceptions\InvalidInputException;
 
 class UnitController extends Controller
 {
-    public function store(StoreTemplateRequest $request)
+    public function store(StoreUnitRequest $request)
     {
         $inputComponents = $request->components;
 
