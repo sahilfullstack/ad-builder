@@ -43476,11 +43476,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
     mounted: function mounted() {
-        var _this = this;
-
+        var components = {};
         _.forEach(this.components, function (component) {
-            _this.form.components[component.id] = '';
+            components[component.id] = '';
         });
+
+        Vue.set(this.form, 'components', components);
     },
 
 
@@ -43496,26 +43497,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     watch: {
         selectedTemplate: function selectedTemplate(current, previous) {
-            var _this2 = this;
-
+            var components = {};
             _.forEach(this.components, function (component) {
-                _this2.form.components[component.id] = '';
+                components[component.id] = '';
             });
+
+            Vue.set(this.form, 'components', components);
         }
     },
 
     methods: {
         create: function create() {
-            var _this3 = this;
+            var _this = this;
 
             this.disable.creating = true;
 
             axios.post('/api/units', this.form).then(function (response) {
                 // Fixing the optimism.
-                _this3.disable.creating = false;
+                _this.disable.creating = false;
             }).catch(function (response) {
                 // Fixing the optimism.
-                _this3.disable.creating = false;
+                _this.disable.creating = false;
 
                 console.log(response);
             });
@@ -43530,7 +43532,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     apiPath: '/api/upload'
                 }
             }).then(function (url) {
-                thiz.form.components[componentId] = url;
+                Vue.set(thiz.form.components, componentId, url);
             });
         }
     }
@@ -43670,6 +43672,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
                 self.disable.upload = false;
+                console.log(response.data.data.url);
                 self.uploadedFileUrl = response.data.data.url;
                 self.$emit('resolve', response.data.data.url);
             }).catch(function (error) {
@@ -43687,7 +43690,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var files = event.target.files || event.dataTransfer.files;
 
             if (!files.length) return;
-            console.log(files);
+
             this.form.file = files[0];
         }
     }
@@ -43912,7 +43915,35 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _vm._m(1),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.name,
+              expression: "form.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "name",
+            placeholder: "Example: Most amazing ad ever..."
+          },
+          domProps: { value: _vm.form.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "name", $event.target.value)
+            }
+          }
+        })
+      ]),
       _vm._v(" "),
       _vm._m(2),
       _vm._v(" "),
@@ -43997,20 +44028,9 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "form-group" }, [
-      _c("label", { attrs: { for: "name" } }, [
-        _vm._v("NAME "),
-        _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-      ]),
-      _vm._v(" "),
-      _c("input", {
-        staticClass: "form-control",
-        attrs: {
-          type: "text",
-          id: "name",
-          placeholder: "Example: Most amazing ad ever..."
-        }
-      })
+    return _c("label", { attrs: { for: "name" } }, [
+      _vm._v("NAME "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
   function() {

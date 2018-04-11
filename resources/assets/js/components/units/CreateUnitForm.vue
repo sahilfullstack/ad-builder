@@ -9,7 +9,7 @@
 
         <div class="form-group">
             <label for="name">NAME <span class="text-danger">*</span></label>
-            <input type="text" class="form-control" id="name" placeholder="Example: Most amazing ad ever...">
+            <input type="text" class="form-control" id="name" placeholder="Example: Most amazing ad ever..." v-model="form.name">
         </div>
 
         <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
@@ -53,9 +53,12 @@ export default {
     },
 
     mounted() {
+        let components = {};
         _.forEach(this.components, (component) => {
-            this.form.components[component.id] = ''
+            components[component.id] = ''
         });
+
+        Vue.set(this.form, 'components', components);
     },
 
     computed: {
@@ -70,9 +73,12 @@ export default {
 
     watch: {
         selectedTemplate(current, previous) {
+            let components = {};
             _.forEach(this.components, (component) => {
-                this.form.components[component.id] = ''
+                components[component.id] = ''
             });
+
+            Vue.set(this.form, 'components', components);
         } 
     },
 
@@ -104,7 +110,7 @@ export default {
                     }
                 })
                 .then(function(url) {
-                    thiz.form.components[componentId] = url;
+                    Vue.set(thiz.form.components, componentId, url);
                 });
         },
     }

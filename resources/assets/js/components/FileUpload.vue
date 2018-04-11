@@ -79,7 +79,8 @@
 				axios.post(this.apiPath, this.getPreparedData())
                     .then(function (response) {
 
-                        self.disable.upload = false;
+						self.disable.upload = false;
+						console.log(response.data.data.url);
                         self.uploadedFileUrl = response.data.data.url;
                         self.$emit('resolve', response.data.data.url);
                     })
