@@ -3,7 +3,6 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use API;
 
 class TestCode extends Command
 {
@@ -40,21 +39,20 @@ class TestCode extends Command
     {
 
         $template = {
-            "type" => "ad",
-            "name" => "Baba Template",
-            "component" => {
+            "type" : "ad",
+            "name" : "Baba Template",
+            "component" : {
                 {
-                    "order" => 0,
-                    "name" => "First Component",
-                    "type" => "text"
-                ],
+                    "order" : 0,
+                    "name" : "First Component",
+                    "type" : "text"
+                },
                 {
-                    "order" => 1,
-                    "name" => "Second Component",
-                    "type" => "image"
-                ],
-        ];
-        API::post('user', array('title' => 'Demo'));
+                    "order" : 1,
+                    "name" : "Second Component",
+                    "type" : "image"
+                },
+        };
         dd("jell");
     }
 

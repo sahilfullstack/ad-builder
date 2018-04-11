@@ -27,7 +27,6 @@ class StoreTemplateRequest extends FormRequest
         return [
             'type' => 'required|in:ad,page',
             'name' => 'required',
-            'components.*.order' => 'required|distinct',
             'components.*.name' => 'required|distinct',
             'components.*.type' => 'required|in:image,text',
         ];
