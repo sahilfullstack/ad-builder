@@ -14,6 +14,11 @@ use Illuminate\Http\Request;
 */
 Route::post('/upload', ['as' => 'upload', 'uses' => 'UploadController@upload']);
 
+/**
+ * Units
+ */
+Route::post('/units', ['as' => 'units.store', 'uses' => 'UnitController@store']);
+
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
