@@ -12,19 +12,13 @@
 						<div class="row">
 							<div class="col-xs-12">
 								<div class="form-group">
-									<label for="name" class="control-label h5">Name</label>
-									<input class="form-control" v-model="form.name" placeholder="eg: path/of/filename or filename" name="name" type="text" id="name">
+									<label for="file" class="control-label h5">File</label>
+									<input type="file" @change="onFileChange">
 
-									<span class="text-danger" :class="{'hidden': errors['name'] == undefined}" style="margin-right:10px;">{{errors['name']}}</span>
+									<span class="text-danger" :class="{'hidden': errors['file'] == undefined}" style="margin-right:10px;">{{errors['file']}}</span>
 								</div>
 							</div>
 						</div>
-                        <div class="form-group">
-                            <label for="file" class="control-label h5">File</label>
-                            <input type="file" @change="onFileChange">
-
-                            <span class="text-danger" :class="{'hidden': errors['file'] == undefined}" style="margin-right:10px;">{{errors['file']}}</span>
-                        </div>
 					</form>
 				</div>
 				<div class="modal-footer">
@@ -45,11 +39,8 @@
     	data: function() {
     		return {
     			form: {
-    				name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
     				file: null
     			},
-    			
-    			uploadedFileUrl: '',
     			isLoading: false,
                 errors: [],
                 disable: {
@@ -61,8 +52,7 @@
 		methods: {
 			getPreparedData: function() {
 				const data = new FormData();
-				
-				data.append('name', this.form.name);
+
 				data.append('file', this.form.file);
 
 				return data;
@@ -74,14 +64,11 @@
                 
                 this.errors = [];
                 this.disable.upload = true;
-                this.uploadedFileUrl = '';
 
 				axios.post(this.apiPath, this.getPreparedData())
                     .then(function (response) {
 
 						self.disable.upload = false;
-						console.log(response.data.data.url);
-                        self.uploadedFileUrl = response.data.data.url;
                         self.$emit('resolve', response.data.data.url);
                     })
                     .catch(function (error) {

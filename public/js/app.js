@@ -43624,12 +43624,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -43638,11 +43632,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
                 file: null
             },
-
-            uploadedFileUrl: '',
             isLoading: false,
             errors: [],
             disable: {
@@ -43655,7 +43646,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         getPreparedData: function getPreparedData() {
             var data = new FormData();
 
-            data.append('name', this.form.name);
             data.append('file', this.form.file);
 
             return data;
@@ -43667,13 +43657,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
             this.disable.upload = true;
-            this.uploadedFileUrl = '';
 
             axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
                 self.disable.upload = false;
-                console.log(response.data.data.url);
-                self.uploadedFileUrl = response.data.data.url;
                 self.$emit('resolve', response.data.data.url);
             }).catch(function (error) {
 
@@ -43724,72 +43711,27 @@ var render = function() {
                       "label",
                       {
                         staticClass: "control-label h5",
-                        attrs: { for: "name" }
+                        attrs: { for: "file" }
                       },
-                      [_vm._v("Name")]
+                      [_vm._v("File")]
                     ),
                     _vm._v(" "),
                     _c("input", {
-                      directives: [
-                        {
-                          name: "model",
-                          rawName: "v-model",
-                          value: _vm.form.name,
-                          expression: "form.name"
-                        }
-                      ],
-                      staticClass: "form-control",
-                      attrs: {
-                        placeholder: "eg: path/of/filename or filename",
-                        name: "name",
-                        type: "text",
-                        id: "name"
-                      },
-                      domProps: { value: _vm.form.name },
-                      on: {
-                        input: function($event) {
-                          if ($event.target.composing) {
-                            return
-                          }
-                          _vm.$set(_vm.form, "name", $event.target.value)
-                        }
-                      }
+                      attrs: { type: "file" },
+                      on: { change: _vm.onFileChange }
                     }),
                     _vm._v(" "),
                     _c(
                       "span",
                       {
                         staticClass: "text-danger",
-                        class: { hidden: _vm.errors["name"] == undefined },
+                        class: { hidden: _vm.errors["file"] == undefined },
                         staticStyle: { "margin-right": "10px" }
                       },
-                      [_vm._v(_vm._s(_vm.errors["name"]))]
+                      [_vm._v(_vm._s(_vm.errors["file"]))]
                     )
                   ])
                 ])
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "label",
-                  { staticClass: "control-label h5", attrs: { for: "file" } },
-                  [_vm._v("File")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  attrs: { type: "file" },
-                  on: { change: _vm.onFileChange }
-                }),
-                _vm._v(" "),
-                _c(
-                  "span",
-                  {
-                    staticClass: "text-danger",
-                    class: { hidden: _vm.errors["file"] == undefined },
-                    staticStyle: { "margin-right": "10px" }
-                  },
-                  [_vm._v(_vm._s(_vm.errors["file"]))]
-                )
               ])
             ])
           ]),
