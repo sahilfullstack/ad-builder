@@ -98,7 +98,7 @@ export default {
             Modal.show(FileUpload, {
                 propsData: {
                         prefilled: {
-                            name: 'profiles/' + _.kebabCase(this.profileType) + 's/' + this.form.name
+                            name: 'hello'
                         },
                         apiPath: '/api/upload'
                     }

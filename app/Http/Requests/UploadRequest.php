@@ -25,7 +25,8 @@ class UploadRequest extends FormRequest
     {
         return [
             'name' => 'required',
-            'file' => 'required',
+            'file' => 'required|file|image',
+            // 'file' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,image/jpeg,image/png',
         ];
     }
 }

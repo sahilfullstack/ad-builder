@@ -43525,7 +43525,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
                 propsData: {
                     prefilled: {
-                        name: 'profiles/' + _.kebabCase(this.profileType) + 's/' + this.form.name
+                        name: 'hello'
                     },
                     apiPath: '/api/upload'
                 }
@@ -43631,66 +43631,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-  props: ['modalIdentifier', 'apiPath', 'prefilled'],
+    props: ['modalIdentifier', 'apiPath', 'prefilled'],
 
-  data: function data() {
-    return {
-      form: {
-        name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
-        file: null
-      },
+    data: function data() {
+        return {
+            form: {
+                name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
+                file: null
+            },
 
-      uploadedFileUrl: '',
-      isLoading: false,
-      errors: [],
-      disable: {
-        upload: false
-      }
-    };
-  },
-
-  methods: {
-    getPreparedData: function getPreparedData() {
-      var data = new FormData();
-
-      data.append('name', this.form.name);
-      data.append('file', this.form.file);
-
-      return data;
+            uploadedFileUrl: '',
+            isLoading: false,
+            errors: [],
+            disable: {
+                upload: false
+            }
+        };
     },
-    upload: function upload(event) {
 
-      event.preventDefault();
-      var self = this;
+    methods: {
+        getPreparedData: function getPreparedData() {
+            var data = new FormData();
 
-      this.errors = [];
-      this.disable.upload = true;
-      this.uploadedFileUrl = '';
+            data.append('name', this.form.name);
+            data.append('file', this.form.file);
 
-      axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
+            return data;
+        },
+        upload: function upload(event) {
 
-        self.disable.upload = false;
-        self.uploadedFileUrl = response.data.data.url;
-        self.$emit('resolve', response.data.data.url);
-      }).catch(function (error) {
+            event.preventDefault();
+            var self = this;
 
-        self.disable.upload = false;
+            this.errors = [];
+            this.disable.upload = true;
+            this.uploadedFileUrl = '';
 
-        _.forEach(error.response.data.errors, function (error, index) {
-          var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+            axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
-          self.errors[errorIndex] = error[0];
-        });
-      });
-    },
-    onFileChange: function onFileChange(event) {
-      var files = event.target.files || event.dataTransfer.files;
+                self.disable.upload = false;
+                self.uploadedFileUrl = response.data.data.url;
+                self.$emit('resolve', response.data.data.url);
+            }).catch(function (error) {
 
-      if (!files.length) return;
+                self.disable.upload = false;
 
-      this.form.file = files[0];
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
+            });
+        },
+        onFileChange: function onFileChange(event) {
+            var files = event.target.files || event.dataTransfer.files;
+
+            if (!files.length) return;
+            console.log(files);
+            this.form.file = files[0];
+        }
     }
-  }
 });
 
 /***/ }),

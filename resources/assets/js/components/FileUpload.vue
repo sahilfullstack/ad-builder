@@ -77,30 +77,30 @@
                 this.uploadedFileUrl = '';
 
 				axios.post(this.apiPath, this.getPreparedData())
-				.then(function (response) {
+                    .then(function (response) {
 
-                	self.disable.upload = false;
-					self.uploadedFileUrl = response.data.data.url;
-					self.$emit('resolve', response.data.data.url);
-				})
-				.catch(function (error) {
+                        self.disable.upload = false;
+                        self.uploadedFileUrl = response.data.data.url;
+                        self.$emit('resolve', response.data.data.url);
+                    })
+                    .catch(function (error) {
 
-                	self.disable.upload = false;
+                        self.disable.upload = false;
 
-					_.forEach(error.response.data.errors, function(error, index) {
-                    	var errorIndex = _.startsWith(index, '_')
-                                            ? _.trim(index, '_')
-                                            : index;
-                                            
-                        self.errors[errorIndex] = error[0];
+                        _.forEach(error.response.data.errors, function(error, index) {
+                            var errorIndex = _.startsWith(index, '_')
+                                                ? _.trim(index, '_')
+                                                : index;
+                                                
+                            self.errors[errorIndex] = error[0];
+                        });
                     });
-				});
 			},
 			onFileChange: function(event) {
 				var files = event.target.files || event.dataTransfer.files;
 				
-				if (!files.length) return;
-				
+                if (!files.length) return;
+                
 				this.form.file = files[0];
 			}
 		}
