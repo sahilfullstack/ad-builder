@@ -28,4 +28,9 @@ class TemplateController extends Controller
 
         return view('templates.home', compact('templates'));
     }
+
+    public function create()
+    {
+        return view('templates.create');
+    }
 }

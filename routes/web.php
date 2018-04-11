@@ -18,3 +18,6 @@ Route::get('/', function () {
 Auth::routes();
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
+Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
+
+Route::get('/units/create', 'UnitController@create')->name('units.create');

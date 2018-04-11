@@ -45,6 +45,11 @@ class Template extends Model
         return $query->whereNull('deleted_at')->where(self::SOFT_DELETION_TOKEN, 0);
     }
 
+    public function scopeAd($query)
+    {
+        return $query->notDeleted()->whereType('ad');
+    }
+
     public function getTypeHumanAttribute()
     {
         return $this->types[$this->type];
