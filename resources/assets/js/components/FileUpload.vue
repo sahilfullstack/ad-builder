@@ -63,16 +63,7 @@
 				const data = new FormData();
 				
 				data.append('name', this.form.name);
-				data.append('override', this.form.override);
-				
-				if(this.form.source == 'FILE') {
-					
-					data.append('file', this.form.file);
-
-				} else if(this.form.source == 'URL') {
-					
-					data.append('url', this.form.url.replace(/ /g, '%20'));
-				}
+				data.append('file', this.form.file);
 
 				return data;
 			},			

@@ -43631,74 +43631,66 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-	props: ['modalIdentifier', 'apiPath', 'prefilled'],
+  props: ['modalIdentifier', 'apiPath', 'prefilled'],
 
-	data: function data() {
-		return {
-			form: {
-				name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
-				file: null
-			},
+  data: function data() {
+    return {
+      form: {
+        name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
+        file: null
+      },
 
-			uploadedFileUrl: '',
-			isLoading: false,
-			errors: [],
-			disable: {
-				upload: false
-			}
-		};
-	},
+      uploadedFileUrl: '',
+      isLoading: false,
+      errors: [],
+      disable: {
+        upload: false
+      }
+    };
+  },
 
-	methods: {
-		getPreparedData: function getPreparedData() {
-			var data = new FormData();
+  methods: {
+    getPreparedData: function getPreparedData() {
+      var data = new FormData();
 
-			data.append('name', this.form.name);
-			data.append('override', this.form.override);
+      data.append('name', this.form.name);
+      data.append('file', this.form.file);
 
-			if (this.form.source == 'FILE') {
+      return data;
+    },
+    upload: function upload(event) {
 
-				data.append('file', this.form.file);
-			} else if (this.form.source == 'URL') {
+      event.preventDefault();
+      var self = this;
 
-				data.append('url', this.form.url.replace(/ /g, '%20'));
-			}
+      this.errors = [];
+      this.disable.upload = true;
+      this.uploadedFileUrl = '';
 
-			return data;
-		},
-		upload: function upload(event) {
+      axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
-			event.preventDefault();
-			var self = this;
+        self.disable.upload = false;
+        self.uploadedFileUrl = response.data.data.url;
+        self.$emit('resolve', response.data.data.url);
+      }).catch(function (error) {
 
-			this.errors = [];
-			this.disable.upload = true;
-			this.uploadedFileUrl = '';
+        self.disable.upload = false;
 
-			axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
+        _.forEach(error.response.data.errors, function (error, index) {
+          var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
 
-				self.disable.upload = false;
-				self.uploadedFileUrl = response.data.data.url;
-				self.$emit('resolve', response.data.data.url);
-			}).catch(function (error) {
+          self.errors[errorIndex] = error[0];
+        });
+      });
+    },
+    onFileChange: function onFileChange(event) {
+      var files = event.target.files || event.dataTransfer.files;
 
-				self.disable.upload = false;
+      if (!files.length) return;
 
-				_.forEach(error.response.data.errors, function (error, index) {
-					var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
-
-					self.errors[errorIndex] = error[0];
-				});
-			});
-		},
-		onFileChange: function onFileChange(event) {
-			var files = event.target.files || event.dataTransfer.files;
-
-			if (!files.length) return;
-
-			this.form.file = files[0];
-		}
-	}
+      this.form.file = files[0];
+    }
+  }
 });
 
 /***/ }),
