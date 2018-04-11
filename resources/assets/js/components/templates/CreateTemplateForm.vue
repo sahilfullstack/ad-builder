@@ -19,8 +19,8 @@
             <div class="row" style="margin-bottom: 15px;" v-for="(component, index) in form.components" :key="index">
                 <div class="col-md-5">
                     <select name="type" id="type" class="form-control" v-model="form.components[index]['type']">
-                        <option value="ad">Text</option>
-                        <option value="page">Image</option>
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
                     </select>
                 </div>
                 <div class="col-md-5">
@@ -53,7 +53,7 @@ export default {
                 name: '',
                 components: [
                     {
-                        type: 'ad',
+                        type: 'text',
                         name: ''
                     }
                 ]
@@ -68,7 +68,7 @@ export default {
     methods: {
         addComponentAfterIndex(index) {
             this.form.components.push({
-                type: 'ad',
+                type: 'text',
                 name: ''
             });
         },
