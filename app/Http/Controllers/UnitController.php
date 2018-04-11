@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Template;
+use App\Models\Unit;
 
 class UnitController extends Controller
 {
@@ -15,6 +16,13 @@ class UnitController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function list()
+    {
+        $units = Unit::notDeleted()->with(['template', 'template.components'])->latest()->paginate();
+
+        return view('units.home', compact('units'));
     }
 
     public function create()

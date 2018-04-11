@@ -20,4 +20,5 @@ Auth::routes();
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
 
+Route::get('/units', 'UnitController@list')->name('units.list');
 Route::get('/units/create', 'UnitController@create')->name('units.create');

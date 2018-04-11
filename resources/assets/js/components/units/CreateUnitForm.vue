@@ -35,6 +35,10 @@ export default {
         templates: {
             type: Array,
             required: true
+        },
+        afterCreatePath: {
+            type: String,
+            required: true
         }
     },
 
@@ -90,6 +94,8 @@ export default {
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.creating = false;
+
+                    window.location = this.afterCreatePath;
                 })
                 .catch(response => {
                     // Fixing the optimism.

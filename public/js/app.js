@@ -43459,6 +43459,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         templates: {
             type: Array,
             required: true
+        },
+        afterCreatePath: {
+            type: String,
+            required: true
         }
     },
 
@@ -43515,6 +43519,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.post('/api/units', this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
+
+                window.location = _this.afterCreatePath;
             }).catch(function (response) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
