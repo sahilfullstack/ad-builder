@@ -44110,7 +44110,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 type: 'ad',
                 name: '',
                 components: [{
-                    type: 'ad',
+                    type: 'text',
                     name: ''
                 }]
             },
@@ -44125,7 +44125,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         addComponentAfterIndex: function addComponentAfterIndex(index) {
             this.form.components.push({
-                type: 'ad',
+                type: 'text',
                 name: ''
             });
         },
@@ -44292,9 +44292,11 @@ var render = function() {
                     }
                   },
                   [
-                    _c("option", { attrs: { value: "ad" } }, [_vm._v("Text")]),
+                    _c("option", { attrs: { value: "text" } }, [
+                      _vm._v("Text")
+                    ]),
                     _vm._v(" "),
-                    _c("option", { attrs: { value: "page" } }, [
+                    _c("option", { attrs: { value: "image" } }, [
                       _vm._v("Image")
                     ])
                   ]
