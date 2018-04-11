@@ -1,0 +1,117 @@
+<template>
+	<div class="modal fade" :id="modalIdentifier" role="dialog" tabindex="-1">
+		<div class="modal-dialog" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span></button>
+					<h4 class="modal-title">File Uploader</h4>
+				</div>
+				<div class="modal-body">
+					<form>
+						<div class="row">
+							<div class="col-xs-12">
+								<div class="form-group">
+									<label for="name" class="control-label h5">Name</label>
+									<input class="form-control" v-model="form.name" placeholder="eg: path/of/filename or filename" name="name" type="text" id="name">
+
+									<span class="text-danger" :class="{'hidden': errors['name'] == undefined}" style="margin-right:10px;">{{errors['name']}}</span>
+								</div>
+							</div>
+						</div>
+                        <div class="form-group">
+                            <label for="file" class="control-label h5">File</label>
+                            <input type="file" @change="onFileChange">
+
+                            <span class="text-danger" :class="{'hidden': errors['file'] == undefined}" style="margin-right:10px;">{{errors['file']}}</span>
+                        </div>
+					</form>
+				</div>
+				<div class="modal-footer">
+
+					<span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
+					<button type="button" class="btn btn-primary" v-on:click="upload" :disabled="disable.upload">Upload</button>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
+
+<script>
+    export default {
+
+    	props: ['modalIdentifier', 'apiPath', 'prefilled'],
+
+    	data: function() {
+    		return {
+    			form: {
+    				name: this.prefilled && this.prefilled.name ? this.prefilled.name : '',
+    				file: null
+    			},
+    			
+    			uploadedFileUrl: '',
+    			isLoading: false,
+                errors: [],
+                disable: {
+                    upload: false
+                }
+    		}
+    	},
+
+		methods: {
+			getPreparedData: function() {
+				const data = new FormData();
+				
+				data.append('name', this.form.name);
+				data.append('override', this.form.override);
+				
+				if(this.form.source == 'FILE') {
+					
+					data.append('file', this.form.file);
+
+				} else if(this.form.source == 'URL') {
+					
+					data.append('url', this.form.url.replace(/ /g, '%20'));
+				}
+
+				return data;
+			},			
+			upload: function(event) {
+
+				event.preventDefault();
+                var self = this;
+                
+                this.errors = [];
+                this.disable.upload = true;
+                this.uploadedFileUrl = '';
+
+				axios.post(this.apiPath, this.getPreparedData())
+				.then(function (response) {
+
+                	self.disable.upload = false;
+					self.uploadedFileUrl = response.data.data.url;
+					self.$emit('resolve', response.data.data.url);
+				})
+				.catch(function (error) {
+
+                	self.disable.upload = false;
+
+					_.forEach(error.response.data.errors, function(error, index) {
+                    	var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                                            
+                        self.errors[errorIndex] = error[0];
+                    });
+				});
+			},
+			onFileChange: function(event) {
+				var files = event.target.files || event.dataTransfer.files;
+				
+				if (!files.length) return;
+				
+				this.form.file = files[0];
+			}
+		}
+    }
+</script>

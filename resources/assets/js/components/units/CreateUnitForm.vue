@@ -15,6 +15,7 @@
         <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
         <p v-if="components.length == 0"><em>No components in this template.</em></p>
         <div class="form-group" v-for="component in components" :key="component.id">
+            <a href class="pull-right" v-if="component.type == 'image'" @click.prevent="upload(component.id)">Upload</a>
             <label :for="component.slug">{{ component.name }}</label>
             <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
         </div>
@@ -24,6 +25,7 @@
 </template>
 
 <script>
+import FileUpload from './../FileUpload';
 export default {
     props: {
         type: {
@@ -89,7 +91,22 @@ export default {
 
                     console.log(response);
                 });
-        }
+        },
+
+        upload(componentId) {
+            let thiz = this;
+            Modal.show(FileUpload, {
+                propsData: {
+                        prefilled: {
+                            name: 'profiles/' + _.kebabCase(this.profileType) + 's/' + this.form.name
+                        },
+                        apiPath: '/api/upload'
+                    }
+                })
+                .then(function(url) {
+                    thiz.form.components[componentId] = url;
+                });
+        },
     }
 }
 </script>
