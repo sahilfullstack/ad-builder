@@ -17,6 +17,7 @@ window.Vue = require('vue');
 
 Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('create-unit-form', require('./components/units/CreateUnitForm.vue'));
+Vue.component('create-template-form', require('./components/templates/CreateTemplateForm.vue'));
 
 const app = new Vue({
     el: '#app'
