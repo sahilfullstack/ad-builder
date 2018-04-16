@@ -20,9 +20,18 @@ class UnitController extends Controller
 
     public function list()
     {
-        $units = Unit::notDeleted()->with(['template', 'template.components'])->latest()->paginate();
+        $type = request()->input('type');
 
-        return view('units.home', compact('units'));
+        // If no or invalid type was passed, we would move to creating an ad.
+        if (is_null($type) || !in_array($type, ['ad', 'page'])) {
+            return redirect(route('units.list', ['type' => 'ad']));
+        }
+
+        $units = Unit::notDeleted()->with(['template', 'template.components'])->whereHas('template', function($query) use ($type) {
+            $query->where('type', $type);
+        })->latest()->paginate();
+
+        return view('units.home', compact('units', 'type'));
     }
 
     public function create()
@@ -35,7 +44,7 @@ class UnitController extends Controller
             return redirect(route('units.create', ['type' => 'ad']));
         }
 
-        $templates = Template::ad()->with('components')->get();
+        $templates = Template::whereType($type)->with('components')->get();
 
         return view('units.create', compact('type', 'templates'));
     }
