@@ -76,6 +76,15 @@ class UnitController extends Controller
                 {
                     throw InvalidInputException('Bad components sent.');
                 }
+                
+                // components must not be empty
+                $validator = \Validator::make($request->all(), [
+                    'components.*' => 'required'
+                ]);
+
+                if ($validator->fails()) {
+                    throw InvalidInputException($validator->errors()->first());
+                }
         
                 $preparedComponents = $this->preparedComponents($inputComponents, $components);
              
