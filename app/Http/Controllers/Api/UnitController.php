@@ -47,7 +47,7 @@ class UnitController extends Controller
             throw InvalidInputException('Components are invalid.');
         }
 
-        $unitFound->published_at = Carbon::now()
+        $unitFound->published_at = Carbon::now();
         $unitFound->save();
 
         return $unitFound->fresh();
