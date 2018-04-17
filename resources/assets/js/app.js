@@ -20,6 +20,7 @@ Vue.component('create-template-form', require('./components/templates/CreateTemp
 Vue.component('create-unit-form', require('./components/units/CreateUnitForm.vue'));
 Vue.component('edit-unit-template-form', require('./components/units/EditUnitTemplateForm.vue'));
 Vue.component('edit-unit-components-form', require('./components/units/EditUnitComponentsForm.vue'));
+Vue.component('edit-unit-basic-form', require('./components/units/EditUnitBasicForm.vue'));
 
 const app = new Vue({
     el: '#app'

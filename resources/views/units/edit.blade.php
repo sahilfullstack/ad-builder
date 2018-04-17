@@ -43,7 +43,10 @@
                             :components="{{ $data['components']->toJson() }}">
                         </edit-unit-components-form>
                     @elseif($section == 'basic')
-                        
+                        <edit-unit-basic-form
+                            redirect-to="{{ route('units.list') }}"
+                            :unit="{{ $unit->toJson() }}">
+                        </edit-unit-basic-form>
                     @endif
                 </div>
             </div>
