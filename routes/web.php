@@ -22,3 +22,4 @@ Route::get('/templates/create', 'TemplateController@create')->name('templates.cr
 
 Route::get('/units', 'UnitController@list')->name('units.list');
 Route::get('/units/create', 'UnitController@create')->name('units.create');
+Route::get('/units/{unit}/edit', 'UnitController@edit')->name('units.edit');

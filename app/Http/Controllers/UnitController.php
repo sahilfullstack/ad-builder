@@ -48,4 +48,35 @@ class UnitController extends Controller
 
         return view('units.create', compact('type', 'templates'));
     }
+
+    public function edit(Unit $unit)
+    {
+        $section = request()->input('section');
+
+        // If no or invalid type was passed, we would move to creating an ad.
+        if (is_null($section) || !in_array($section, ['template', 'components', 'basic'])) {
+            return redirect(route('units.edit', ['unit' => $unit, 'section' => 'template']));
+        }
+
+        $data = $this->{"dataToEdit$section"}($unit);
+
+        return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
+    }
+
+    private function dataToEditTemplate(Unit $unit)
+    {
+        $templates = Template::whereType('ad')->with('components')->get();
+        
+        return ['templates' => $templates];
+    }
+
+    private function dataToEditComponents(Unit $unit)
+    {
+        return ['components' => $unit->template->components];
+    }
+
+    private function dataToEditBasic(Unit $unit)
+    {
+        return [];
+    }
 }

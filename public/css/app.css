@@ -8350,3 +8350,9 @@ button.close {
   }
 }
 
+.unit-wizard-sidebar.affix {
+  top: 20px;
+  width: 212px;
+  z-index: 9999 !important;
+}
+
