@@ -20,11 +20,7 @@
             </ul>
         </div>
         <div class="col-md-9">
-            <div class="panel panel-default" style="height: 250px;">
-                <div class="panel-body text-center">
-                    <p style="padding: 90px;">Preview will appear here (COMING SOON).</p>
-                </div>
-            </div>
+            <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive">
 
             <hr>
 
