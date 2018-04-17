@@ -27,6 +27,13 @@ class RolesAndPermissionsSeeder extends Seeder
         {
             try
             {
+                $roleFound = Role::where([
+                    'slug' => $slug,
+                    'deleted_at_millis' => 0
+                    ])->first();
+
+                if(! is_null($roleFound)) continue;
+
                 Role::create([
                     'name' => $role['name'],
                     'slug' => $slug,
@@ -48,6 +55,13 @@ class RolesAndPermissionsSeeder extends Seeder
         {
             try
             {
+                $permissionFound = Permission::where([
+                    'slug' => $slug,
+                    'deleted_at_millis' => 0
+                    ])->first();
+
+                if(! is_null($permissionFound)) continue;
+
                 Permission::create([
                     'name' => $permission['name'],
                     'slug' => $slug
@@ -74,7 +88,7 @@ class RolesAndPermissionsSeeder extends Seeder
             {
                 try
                 {
-                    Role::notDeleted()->whereSlug($slug)->first()->permissions()->attach($permission);
+                    Role::notDeleted()->whereSlug($slug)->first()->permissions()->syncWithoutDetaching($permission);
                 }
                 catch(PDOException $e)
                 {
