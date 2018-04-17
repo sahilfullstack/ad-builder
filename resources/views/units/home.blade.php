@@ -4,7 +4,10 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h1>Units <a href="{{ route('units.create', compact('type')) }}" class="btn btn-link btn">Add New</a></h1>
+            <h1>
+                Units 
+                <create-unit-button></create-unit-button>
+            </h1>
             <hr>
 
             @foreach($units as $unit)
