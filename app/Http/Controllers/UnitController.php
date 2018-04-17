@@ -27,7 +27,9 @@ class UnitController extends Controller
             return redirect(route('units.list', ['type' => 'ad']));
         }
 
-        $units = Unit::notDeleted()->with(['template', 'template.components'])->whereHas('template', function($query) use ($type) {
+        $units = Unit::notDeleted()->with(['template', 'template.components'])
+        ->where('user_id', auth()->user()->id)
+        ->whereHas('template', function($query) use ($type) {
             $query->where('type', $type);
         })->latest()->paginate();
 
