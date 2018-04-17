@@ -4,10 +4,8 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\Template;
-use App\Models\Component;
-use App\Models\Unit;
-use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest};
+use App\Models\{Template, Component, Unit};
+use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest};
 use App\Exceptions\InvalidInputException;
 
 class UnitController extends Controller
@@ -23,6 +21,36 @@ class UnitController extends Controller
         $unit->save();
 
         return $unit->fresh();
+    }    
+
+    public function publish($unitId, PublishUnitRequest $request)
+    {
+        $unitFound = Unit::find($unitId);
+        
+        // Validating that the selected template has the selected components.
+        if(is_null($unitFound->name))
+        {
+            throw InvalidInputException('Name is empty.');
+        }        
+
+        if(is_null($unitFound->template_id))
+        {
+            throw InvalidInputException('Template is empty.');
+        }
+
+        $template = Template::find($unitFound->template_id);
+        $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
+
+        // Validating that the selected template has the selected components.
+        if($components->count() != count($unitFound->components))
+        {
+            throw InvalidInputException('Components are invalid.');
+        }
+
+        $unitFound->published_at = Carbon::now()
+        $unitFound->save();
+
+        return $unitFound->fresh();
     }
 
     public function update($unitId, UpdateUnitRequest $request)
