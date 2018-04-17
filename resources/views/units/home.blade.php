@@ -31,7 +31,7 @@
                                     @if(isset($unit->components[$component->slug]))
                                         <p>{{ $unit->components[$component->slug] }}</p>
                                     @else
-                                        <p>Not defined yet.</p>
+                                        <p><em>Not defined yet.</em></p>
                                     @endif
                                 </li>
                             @endforeach
