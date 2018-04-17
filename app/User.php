@@ -34,7 +34,7 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class);
     }
 
-        public function hasRole($roles)
+    public function hasRole($roles)
     {
         if(is_string($roles)) $roles = [$roles];
 
