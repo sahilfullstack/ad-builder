@@ -18,6 +18,7 @@ Route::post('/upload', ['as' => 'upload', 'uses' => 'UploadController@upload']);
  * Units
  */
 Route::post('/units', ['as' => 'units.store', 'uses' => 'UnitController@store']);
+Route::put('/units/{unitId}', ['as' => 'units.update', 'uses' => 'UnitController@update']);
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
 
 Route::get('/user', function (Request $request) {
