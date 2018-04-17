@@ -4,7 +4,12 @@
 <div class="container">
     <div class="row">
         <div class="col-md-8">
-            <h1>Templates <a href="{{ route('templates.create') }}" class="btn btn-link btn">Add New</a></h1>
+             <h1>
+                Templates 
+                @if(Auth::user()->role->slug == 'admin')
+                   <a href="{{ route('templates.create') }}" class="btn btn-link btn">Add New</a>
+                @endif 
+             </h1>
             <hr>
 
             @foreach($templates as $template)
