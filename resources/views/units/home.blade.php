@@ -28,7 +28,11 @@
                             @foreach($unit->template->components as $component)
                                 <li class="list-group-item">
                                     <h5><strong>{{ $component->name }}</strong></h5>
-                                    <p>{{ $unit->components[$component->slug] }}</p>
+                                    @if(isset($unit->components[$component->slug]))
+                                        <p>{{ $unit->components[$component->slug] }}</p>
+                                    @else
+                                        <p>Not defined yet.</p>
+                                    @endif
                                 </li>
                             @endforeach
                         </ul>
