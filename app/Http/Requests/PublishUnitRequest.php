@@ -5,7 +5,7 @@ namespace App\Http\Requests;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 
-class StoreUnitRequest extends FormRequest
+class PublishUnitRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -25,7 +25,6 @@ class StoreUnitRequest extends FormRequest
     public function rules()
     {
         return [
-        
         ];
     }
 }
