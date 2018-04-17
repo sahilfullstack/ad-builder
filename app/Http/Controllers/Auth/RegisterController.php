@@ -67,7 +67,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role_id'  => Role::findBySlug('guest')->id
+            'role_id'  => Role::findBySlug('advertiser')->id
         ]);
     }
 }

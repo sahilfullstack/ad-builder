@@ -49,7 +49,12 @@ class ChangePermissionOfUserCommand extends Command
             exit();
         }
 
-        $this->info("User is having role of a :". $userFound->role()->first()->name);
+        if(! is_null($userFound->role))
+        {
+            $this->info("User is having role of a :". $userFound->role->name);
+        } else {
+            $this->info("User doesn't have any role yet.");
+        }
 
         $this->info("Select id to Change the role");
 
