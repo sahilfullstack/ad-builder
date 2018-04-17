@@ -4,6 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
+use App\Models\Template;
 
 class StoreTemplateRequest extends FormRequest
 {
@@ -14,7 +15,7 @@ class StoreTemplateRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->user()->can('create', Template::class);
     }
 
     /**

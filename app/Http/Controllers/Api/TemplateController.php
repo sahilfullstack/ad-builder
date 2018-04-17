@@ -17,9 +17,10 @@ class TemplateController extends Controller
         $inputComponents = $request->components;
 
         $template = new Template([
-            'type' => $request->type,
-            'name' => $request->name,
-            'slug' => str_slug($request->name)
+            'type'    => $request->type,
+            'name'    => $request->name,
+            'slug'    => str_slug($request->name),
+            'user_id' => auth()->user()->id
         ]);
 
         $template->save();

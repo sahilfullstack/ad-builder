@@ -128,7 +128,8 @@ return [
             'name' => 'Administrator',
             'priority' => 100,
             'permissions' => [
-                
+                // Temlates
+                'template.manage',
             ]
         ],
     ],
@@ -139,9 +140,9 @@ return [
     |--------------------------------------------------------------------------
      */
     'permissions' => [
-        // 'ability' => [
-        //     'name' => 'Able to do something.',
-        // ],
+        'template.manage' => [
+            'name' => 'Create/update/delete a template.',
+        ],
     ],
 
 ];

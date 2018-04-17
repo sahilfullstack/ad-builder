@@ -19,7 +19,7 @@ class Template extends Model
      * @var array
      */
     protected $fillable = [
-        'type', 'name', 'slug'
+        'type', 'name', 'slug', 'user_id'
     ];
 
     /**
