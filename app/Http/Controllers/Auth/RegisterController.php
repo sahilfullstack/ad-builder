@@ -63,11 +63,20 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        if(User::count() == 0)
+        {
+            $role = Role::findBySlug('admin');
+        }
+        else
+        {
+            $role = Role::findBySlug('advertiser');
+        }
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => bcrypt($data['password']),
-            'role_id'  => Role::findBySlug('advertiser')->id
+            'role_id'  => $role->id
         ]);
     }
 }
