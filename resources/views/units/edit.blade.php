@@ -20,7 +20,7 @@
             </ul>
         </div>
         <div class="col-md-9">
-            <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive">
+            <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive" style="padding: 30px;">
 
             <hr>
 
