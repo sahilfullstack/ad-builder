@@ -44535,7 +44535,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
-            axios.put('/api/units/'.this.unit.id, this.form).then(function (response) {
+            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
@@ -44734,6 +44734,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
+                template_id: this.unit.template_id,
                 components: {}
             },
             errors: [],
@@ -44760,7 +44761,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
-            axios.put('/api/units/'.this.unit.id, this.form).then(function (response) {
+            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this2.disable.saving = false;
 
@@ -44997,7 +44998,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
-            axios.put('/api/units/'.this.unit.id, this.form).then(function (response) {
+            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 

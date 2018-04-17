@@ -40,7 +40,7 @@ export default {
         update() {
             this.disable.saving = true;
 
-            axios.put('/api/units/' . this.unit.id, this.form)
+            axios.put('/api/units/' + this.unit.id, this.form)
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.saving = false;

@@ -33,6 +33,7 @@ export default {
     data() {
         return {
             form: {
+                template_id: this.unit.template_id,
                 components: {}
             },
             errors: [],
@@ -57,7 +58,7 @@ export default {
         update() {
             this.disable.saving = true;
 
-            axios.put('/api/units/' . this.unit.id, this.form)
+            axios.put('/api/units/' + this.unit.id, this.form)
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.saving = false;
