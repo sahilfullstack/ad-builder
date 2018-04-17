@@ -78,6 +78,5 @@ class UnitController extends Controller
         }
 
         return $preparedComponents;
-
     }
 }
