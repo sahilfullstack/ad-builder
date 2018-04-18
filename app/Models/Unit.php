@@ -42,6 +42,49 @@ class Unit extends Model
         'page' => 'Landing Page'
     ];
 
+    public static $sections = [
+        'ad' => [
+            [
+                'name' => 'Choose Template',
+                'slug' => 'template',
+                'order' => 1
+            ],
+            [
+                'name' => 'Customize Ad',
+                'slug' => 'components',
+                'order' => 2
+            ],
+            [
+                'name' => 'Ad Name',
+                'slug' => 'basic',
+                'order' => 3
+            ],
+        ],
+        'page' => [
+            [
+                'name' => 'Choose Ad',
+                'slug' => 'ad',
+                'order' => 1
+            ],
+            [
+                'name' => 'Choose Template',
+                'slug' => 'template',
+                'order' => 2
+            ],
+            [
+                'name' => 'Customize Landing Page',
+                'slug' => 'components',
+                'order' => 3
+            ],
+            [
+                'name' => 'Landing Page Name',
+                'slug' => 'basic',
+                'order' => 4
+            ],
+        ]
+
+    ];
+
     /**
      * Limit the search to only not deleted elements.
      *
@@ -72,5 +115,14 @@ class Unit extends Model
         if(! is_null($this->published_at)) return 'Published (awaiting approval)';
 
         return 'Draft';
+    }
+
+    public function nextSectionEditRoute($currentSectionSlug)
+    {
+        $nextSection = unit_next_section($this->type, $currentSectionSlug);
+
+        if(is_null($nextSection)) return route('units.list', ['type', $this->type]);
+
+        return route('units.edit', ['unit' => $this, 'section' => $nextSection['slug']]);
     }
 }
