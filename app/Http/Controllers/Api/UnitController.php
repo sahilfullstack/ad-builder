@@ -157,8 +157,8 @@ class UnitController extends Controller
             $unitFound->rejected_at = Carbon::now();
         }
 
-        $unit->save();
+        $unitFound->save();
 
-        return $unit->fresh();
+        return $unitFound->fresh();
     }
 }

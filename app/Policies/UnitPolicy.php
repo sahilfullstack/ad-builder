@@ -43,4 +43,16 @@ class UnitPolicy
     {
         return($user->id === $unit->user_id);
     }
+
+    /**
+     * Determine whether the user can approve unit.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function approve(User $user, Unit $unit)
+    {
+        dd($user->can('unit.approve'));
+        return $user->can('unit.approve');
+    }
 }
