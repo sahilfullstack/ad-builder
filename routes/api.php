@@ -21,6 +21,8 @@ Route::post('/units', ['as' => 'units.store', 'uses' => 'UnitController@store'])
 Route::put('/units/{unitId}', ['as' => 'units.update', 'uses' => 'UnitController@update']);
 Route::put('/units/{unitId}/publish', ['as' => 'units.update', 'uses' => 'UnitController@publish']);
 
+Route::put('/units/{unitId}/approve', ['as' => 'units.approve', 'uses' => 'UnitController@approve']);
+
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
 
 Route::get('/user', function (Request $request) {

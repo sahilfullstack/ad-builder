@@ -81,4 +81,16 @@ class UnitController extends Controller
     {
         return [];
     }
+
+    public function listUnitsForApproval()
+    {
+      $units = Unit::notDeleted()->with(['template', 'template.components'])
+        ->whereNotNull('published_at')
+        ->whereNull('approved_at')
+        ->whereNull('rejected_at')
+        ->whereHas('template')
+        ->latest()->paginate();
+
+        return view('units.list_for_approval', compact('units'));
+    }
 }
