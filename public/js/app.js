@@ -44487,6 +44487,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        type: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         return {
             disable: {
@@ -44502,7 +44508,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.creating = true;
 
-            axios.post('/api/units', {}).then(function (response) {
+            axios.post('/api/units', { type: this.type }).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
 

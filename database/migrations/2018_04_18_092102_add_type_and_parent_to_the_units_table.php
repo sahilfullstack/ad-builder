@@ -15,7 +15,7 @@ class AddTypeAndParentToTheUnitsTable extends Migration
     {
         Schema::table('units', function (Blueprint $table) {
             $table->enum('type', ['ad', 'page']);
-            $table->unsignedBigInteger('parent_id');
+            $table->unsignedBigInteger('parent_id')->nullable()->default(null);
         });
     }
 

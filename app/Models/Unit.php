@@ -18,7 +18,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'components', 'user_id'
+        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id'
     ];
 
     /**
@@ -36,6 +36,12 @@ class Unit extends Model
     protected $casts = [
         'components' => 'array'
     ];
+    
+    protected $types = [
+        'ad' => 'Ad',
+        'page' => 'Landing Page'
+    ];
+
     /**
      * Limit the search to only not deleted elements.
      *
@@ -50,5 +56,21 @@ class Unit extends Model
     public function template()
     {
         return $this->belongsTo(Template::class);
+    }
+
+    public function getTypeHumanAttribute()
+    {
+        return $this->types[$this->type];
+    }
+
+    public function getStateAttribute()
+    {
+        if(! is_null($this->approved_at)) return 'Approved';
+        
+        if(! is_null($this->rejected_at)) return 'Rejected';
+        
+        if(! is_null($this->published_at)) return 'Published (awaiting approval)';
+
+        return 'Draft';
     }
 }

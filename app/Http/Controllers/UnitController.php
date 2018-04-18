@@ -29,9 +29,8 @@ class UnitController extends Controller
 
         $units = Unit::notDeleted()->with(['template', 'template.components'])
         ->where('user_id', auth()->user()->id)
-        ->whereHas('template', function($query) use ($type) {
-            $query->where('type', $type);
-        })->latest()->paginate();
+        ->where('type', $type)
+        ->latest()->paginate();
 
         return view('units.home', compact('units', 'type'));
     }
@@ -67,7 +66,7 @@ class UnitController extends Controller
 
     private function dataToEditTemplate(Unit $unit)
     {
-        $templates = Template::whereType('ad')->with('components')->get();
+        $templates = Template::whereType($unit->type)->with('components')->get();
         
         return ['templates' => $templates];
     }
