@@ -36,18 +36,7 @@ export default {
         createLandingPage() {
             this.disable.saving = true;
 
-            axios.post('/api/units', {type: 'page', parent_id: this.unit.id})
-                .then(response => {
-                    this.disable.saving = false;
-
-                    window.location = '/units/' + response.data.id + '/edit?section=template';
-                })
-                .catch(response => {
-                    // Fixing the optimism.
-                    this.disable.saving = false;
-
-                    console.log(response);
-                });
+            window.location = '/units/' + response.data.id + '/edit/page';
         },
 
         update() {

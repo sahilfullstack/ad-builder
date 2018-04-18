@@ -104,6 +104,42 @@ class UnitController extends Controller
     {
         return [];
     }
+
+    public function editLandingPage(Unit $unit)
+    {
+        // only ads can have page
+        if($unit->type != 'ad')
+        {
+            return redirect(route('units.list'));
+        }
+        
+        // only user's own ads can have pages
+        if($unit->user->id != auth()->user()->id)
+        {
+            return redirect(route('units.list'));
+        }
+
+        // ad has page existing already
+        if(! is_null($unit->child))
+        {
+            $child = $unit->child;
+        }
+        else
+        {
+            $child = new Unit([
+                'user_id' => auth()->user()->id,
+                'type' => 'page',
+                'parent_id' => $unit->id,
+                'components' => []
+            ]);
+
+            $child->save();
+
+            $child->fresh();
+        }
+
+        return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
+    }
     
     public function listUnitsForApproval()
     {

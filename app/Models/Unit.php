@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\User;
 
 class Unit extends Model
 {
@@ -111,9 +112,19 @@ class Unit extends Model
         return $this->belongsTo(Template::class);
     }
 
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function parent()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function child()
+    {
+        return $this->hasOne(Unit::class, 'parent_id');
     }
 
     public function getTypeHumanAttribute()
