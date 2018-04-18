@@ -35,11 +35,15 @@
 
                 <div class="collapse navbar-collapse" id="app-navbar-collapse">
                     <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        <li><a href="{{ route('templates.list') }}">Templates</a></li>
-                        <li><a href="{{ route('units.list') }}">Ad Builder</a></li>
-                        <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Page Builder</a></li>
-                    </ul>
+                    @guest
+
+                    @else
+                        <ul class="nav navbar-nav">
+                            <li><a href="{{ route('templates.list') }}">Templates</a></li>
+                            <li><a href="{{ route('units.list') }}">Ad Builder</a></li>
+                            <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Page Builder</a></li>
+                        </ul>
+                    @endguest
 
                     <!-- Right Side Of Navbar -->
                     <ul class="nav navbar-nav navbar-right">
