@@ -22,7 +22,13 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    @if($section == 'template')
+                    @if($section == 'ad')
+                        <edit-unit-ad-form
+                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                            :unit="{{ $unit->toJson() }}"
+                            :ads="{{ $data['ads']->toJson() }}">
+                        </edit-unit-ad-form>
+                    @elseif($section == 'template')
                         <edit-unit-template-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}"

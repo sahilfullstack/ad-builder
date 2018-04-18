@@ -55,8 +55,9 @@ class UnitController extends Controller
         $section = request()->input('section');
 
         // If no or invalid type was passed, we would move to creating an ad.
-        if (is_null($section) || !in_array($section, ['template', 'components', 'basic'])) {
-            return redirect(route('units.edit', ['unit' => $unit, 'section' => 'template']));
+        $validSections = array_pluck(Unit::$sections[$unit->type], 'slug');
+        if (is_null($section) || !in_array($section, $validSections)) {
+            return redirect(route('units.edit', ['unit' => $unit, 'section' => head($validSections)]));
         }
 
         $data = $this->{"dataToEdit$section"}($unit);
@@ -79,5 +80,10 @@ class UnitController extends Controller
     private function dataToEditBasic(Unit $unit)
     {
         return [];
+    }
+
+    private function dataToEditAd(Unit $unit)
+    {
+        return ['ads' => auth()->user()->units('ad')->get()];
     }
 }
