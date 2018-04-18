@@ -29,7 +29,7 @@ class UnitPolicy
      */
     public function publish(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id  || $user->canOverride($stack->creator));
+        return($user->id === $unit->user_id);
     }    
 
     /**
@@ -41,18 +41,6 @@ class UnitPolicy
      */
     public function update(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id  || $user->canOverride($stack->creator));
-    }    
-
-    /**
-     * Determine whether the user can approve the unit.
-     *
-     * @param  \App\User  $user
-     * @param  \App\Template  $unit
-     * @return mixed
-     */
-    public function approve(User $user, Unit $unit)
-    {
-        return $user->can('unit.approve');
+        return($user->id === $unit->user_id);
     }
 }

@@ -4,6 +4,12 @@
 
 <script>
 export default {
+    props: {
+        type: {
+            type: String,
+            required: true
+        }
+    },
     data() {
         return {
             disable: {
@@ -16,7 +22,7 @@ export default {
         create() {
             this.disable.creating = true;
 
-            axios.post('/api/units', {})
+            axios.post('/api/units', {type: this.type})
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.creating = false;

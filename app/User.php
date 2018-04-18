@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\{Role};
+use App\Models\Unit;
 
 class User extends Authenticatable
 {
@@ -49,5 +50,14 @@ class User extends Authenticatable
     public function canOverride(User $user)
     {
         return $this->role->canOverride($user->role);
+    }
+
+    public function units($type = null)
+    {
+        $query = $this->hasMany(Unit::class)->notDeleted()->latest();
+
+        if(is_null($type)) return $query;
+
+        return $query->where('type', $type);
     }
 }

@@ -29,9 +29,8 @@ class UnitController extends Controller
 
         $units = Unit::notDeleted()->with(['template', 'template.components'])
         ->where('user_id', auth()->user()->id)
-        ->whereHas('template', function($query) use ($type) {
-            $query->where('type', $type);
-        })->latest()->paginate();
+        ->where('type', $type)
+        ->latest()->paginate();
 
         return view('units.home', compact('units', 'type'));
     }
@@ -56,8 +55,9 @@ class UnitController extends Controller
         $section = request()->input('section');
 
         // If no or invalid type was passed, we would move to creating an ad.
-        if (is_null($section) || !in_array($section, ['template', 'components', 'basic'])) {
-            return redirect(route('units.edit', ['unit' => $unit, 'section' => 'template']));
+        $validSections = array_pluck(Unit::$sections[$unit->type], 'slug');
+        if (is_null($section) || !in_array($section, $validSections)) {
+            return redirect(route('units.edit', ['unit' => $unit, 'section' => head($validSections)]));
         }
 
         $data = $this->{"dataToEdit$section"}($unit);
@@ -67,7 +67,7 @@ class UnitController extends Controller
 
     private function dataToEditTemplate(Unit $unit)
     {
-        $templates = Template::whereType('ad')->with('components')->get();
+        $templates = Template::whereType($unit->type)->with('components')->get();
         
         return ['templates' => $templates];
     }
@@ -92,5 +92,10 @@ class UnitController extends Controller
         ->latest()->paginate();
 
         return view('units.list_for_approval', compact('units'));
+    }
+    
+    private function dataToEditAd(Unit $unit)
+    {
+        return ['ads' => auth()->user()->units('ad')->get()];
     }
 }

@@ -14,6 +14,8 @@
                     <div class="panel-heading">
                         <h5>{{ $unit->name }} <span class="badge badge-dark">{{ $unit->template->type_human }}</span></h5>
                         <a href="{{ route('units.edit', ['unit' => $unit]) }}">Edit</a>
+                        <a>Approve</a>
+                        <a>Reject</a>
                     </div>
 
                     <div class="panel-body">

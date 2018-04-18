@@ -1119,7 +1119,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(64);
+module.exports = __webpack_require__(67);
 
 
 /***/ }),
@@ -1147,9 +1147,10 @@ Vue.component('example-component', __webpack_require__(41));
 Vue.component('create-template-form', __webpack_require__(44));
 Vue.component('create-unit-form', __webpack_require__(47));
 Vue.component('create-unit-button', __webpack_require__(52));
-Vue.component('edit-unit-template-form', __webpack_require__(55));
-Vue.component('edit-unit-components-form', __webpack_require__(58));
-Vue.component('edit-unit-basic-form', __webpack_require__(61));
+Vue.component('edit-unit-ad-form', __webpack_require__(55));
+Vue.component('edit-unit-template-form', __webpack_require__(58));
+Vue.component('edit-unit-components-form', __webpack_require__(61));
+Vue.component('edit-unit-basic-form', __webpack_require__(64));
 
 var app = new Vue({
   el: '#app'
@@ -44487,6 +44488,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        type: {
+            type: String,
+            required: true
+        }
+    },
     data: function data() {
         return {
             disable: {
@@ -44502,7 +44509,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.creating = true;
 
-            axios.post('/api/units', {}).then(function (response) {
+            axios.post('/api/units', { type: this.type }).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
 
@@ -44576,6 +44583,215 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/units/EditUnitAdForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5ac91aa8", Component.options)
+  } else {
+    hotAPI.reload("data-v-5ac91aa8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 56 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        ads: {
+            type: Array,
+            required: true
+        },
+        unit: {
+            type: Object,
+            required: true
+        },
+        redirectTo: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            form: {
+                parent_id: this.unit.parent_id == null ? this.ads[0].id : this.unit.parent_id
+            },
+            errors: [],
+            disable: {
+                saving: false
+            }
+        };
+    },
+
+
+    methods: {
+        update: function update() {
+            var _this = this;
+
+            this.disable.saving = true;
+
+            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
+                // Fixing the optimism.
+                _this.disable.saving = false;
+
+                window.location = _this.redirectTo;
+            }).catch(function (response) {
+                // Fixing the optimism.
+                _this.disable.saving = false;
+
+                console.log(response);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 57 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.update($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.parent_id,
+                expression: "form.parent_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "parent_id", id: "template_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "parent_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          _vm._l(_vm.ads, function(ad) {
+            return _c("option", { key: ad.id, domProps: { value: ad.id } }, [
+              _vm._v(_vm._s(ad.name))
+            ])
+          })
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.disable.saving }
+        },
+        [_vm._v("Save")]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "parent_id" } }, [
+      _vm._v("AD "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5ac91aa8", module.exports)
+  }
+}
+
+/***/ }),
+/* 58 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(59)
+/* template */
+var __vue_template__ = __webpack_require__(60)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/units/EditUnitTemplateForm.vue"
 
 /* hot reload */
@@ -44598,7 +44814,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 56 */
+/* 59 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44674,7 +44890,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 57 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -44768,15 +44984,15 @@ if (false) {
 }
 
 /***/ }),
-/* 58 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(59)
+var __vue_script__ = __webpack_require__(62)
 /* template */
-var __vue_template__ = __webpack_require__(60)
+var __vue_template__ = __webpack_require__(63)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -44815,7 +45031,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 59 */
+/* 62 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -44910,7 +45126,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 60 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45022,15 +45238,15 @@ if (false) {
 }
 
 /***/ }),
-/* 61 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
 var normalizeComponent = __webpack_require__(1)
 /* script */
-var __vue_script__ = __webpack_require__(62)
+var __vue_script__ = __webpack_require__(65)
 /* template */
-var __vue_template__ = __webpack_require__(63)
+var __vue_template__ = __webpack_require__(66)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -45069,7 +45285,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 62 */
+/* 65 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -45137,7 +45353,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 63 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -45217,7 +45433,7 @@ if (false) {
 }
 
 /***/ }),
-/* 64 */
+/* 67 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
