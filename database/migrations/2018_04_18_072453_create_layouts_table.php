@@ -17,7 +17,7 @@ class CreateLayoutsTable extends Migration
             $table->increments('id');
             $table->string('name');
             $table->string('slug');
-            $table->integer('template_id');
+            $table->integer('user_id');
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_at_millis')->default(0);
