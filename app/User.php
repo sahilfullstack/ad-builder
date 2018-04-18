@@ -45,4 +45,9 @@ class User extends Authenticatable
     {
         return $this->role->permissions->contains('slug', $permission);
     }
+
+    public function canOverride(User $user)
+    {
+        return $this->role->canOverride($user->role);
+    }
 }

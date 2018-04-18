@@ -14,8 +14,8 @@ class UnitController extends Controller
     {
         // Blank unit is created
         $unit = new Unit([
-            'user_id' => auth()->user()->id,
-            'type' => $request->type,
+            'user_id'    => auth()->user()->id,
+            'type'       => $request->type,
             'components' => []
         ]);
 
@@ -67,9 +67,17 @@ class UnitController extends Controller
     
             $template = Template::find($request->template_id);
 
+            if(count($unitFound->components) == 0)
+            {
+                $templeteComponents = $template->components()->get();   
+                $preparedComponents = $this->preparedBlankComponents($templeteComponents);
+                $unitFound->components = $preparedComponents;
+            }
+
             if( ! is_null($request->components))
             {
                 $inputComponents = $request->components;
+
                 $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
 
                 // Validating that the selected template has the selected components.
@@ -113,6 +121,17 @@ class UnitController extends Controller
         foreach($templateComponents as $component)
         {
             $preparedComponents[$component->slug] = $inputComponents[$component->id];
+        }
+
+        return $preparedComponents;
+    }    
+
+    private function preparedBlankComponents($templateComponents)
+    {
+        $preparedComponents = [];
+        foreach($templateComponents as $component)
+        {
+            $preparedComponents[$component->slug] = '';
         }
 
         return $preparedComponents;

@@ -130,6 +130,7 @@ return [
             'permissions' => [
                 // Temlates
                 'template.manage',
+                'layout.manage',
             ]
         ],
     ],
@@ -142,6 +143,9 @@ return [
     'permissions' => [
         'template.manage' => [
             'name' => 'Create/update/delete a template.',
+        ], 
+        'layout.manage' => [
+            'name' => 'Create/update/delete a layout.',
         ],
     ],
 
