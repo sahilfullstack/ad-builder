@@ -21,6 +21,7 @@ class CreateLayoutsTable extends Migration
             $table->timestamps();
             $table->softDeletes();
             $table->unsignedBigInteger('deleted_at_millis')->default(0);
+            $table->unique(['slug', 'deleted_at_millis'], 'unique_layout');
         });
     }
 

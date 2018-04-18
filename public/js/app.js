@@ -43513,9 +43513,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
+        layouts: {
+            type: Array,
+            required: true
+        },
         afterCreatePath: {
             type: String,
             required: true
@@ -43526,6 +43537,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             form: {
                 type: 'ad',
+                layout_id: null,
                 name: '',
                 components: [{
                     type: 'text',
@@ -43539,6 +43551,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         };
     },
 
+
+    computed: {
+        selectedType: function selectedType() {
+            return this.form.type;
+        }
+    },
+
+    watch: {
+        selectedType: function selectedType(current, previous) {
+            Vue.set(this.form, 'layout_id', null);
+        }
+    },
 
     methods: {
         addComponentAfterIndex: function addComponentAfterIndex(index) {
@@ -43624,15 +43648,61 @@ var render = function() {
             }
           },
           [
-            _c("option", { attrs: { value: "ad" } }, [_vm._v("Ad Unit")]),
+            _c("option", { attrs: { value: "ad" } }, [_vm._v("Ad")]),
             _vm._v(" "),
             _c("option", { attrs: { value: "page" } }, [_vm._v("Landing Page")])
           ]
         )
       ]),
       _vm._v(" "),
+      _vm.form.type == "ad"
+        ? _c("div", { staticClass: "form-group" }, [
+            _vm._m(1),
+            _vm._v(" "),
+            _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.layout_id,
+                    expression: "form.layout_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "layout_id", id: "layout_id" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "layout_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.layouts, function(layout) {
+                return _c(
+                  "option",
+                  { key: layout.id, domProps: { value: layout.id } },
+                  [_vm._v(_vm._s(layout.name))]
+                )
+              })
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _vm._m(1),
+        _vm._m(2),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -43661,7 +43731,7 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _vm._m(2),
+      _vm._m(3),
       _vm._v(" "),
       _c(
         "div",
@@ -43809,6 +43879,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "type" } }, [
       _vm._v("TYPE "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "layout_id" } }, [
+      _vm._v("LAYOUT "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

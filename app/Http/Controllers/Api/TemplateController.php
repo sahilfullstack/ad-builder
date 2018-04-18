@@ -18,6 +18,7 @@ class TemplateController extends Controller
 
         $template = new Template([
             'type'    => $request->type,
+            'layout_id'    => $request->layout_id,
             'name'    => $request->name,
             'slug'    => str_slug($request->name),
             'user_id' => auth()->user()->id

@@ -9,7 +9,10 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <create-template-form after-create-path="{{ route('templates.list') }}"></create-template-form>
+                    <create-template-form
+                        after-create-path="{{ route('templates.list') }}"
+                        :layouts="{{ $layouts->toJson() }}">
+                    </create-template-form>
                 </div>
             </div>
         </div>

@@ -7,7 +7,7 @@
              <h1>
                 Templates 
                 @if(Auth::user()->can('template.manage'))
-                   <a href="{{ route('templates.create') }}" class="btn btn-link btn">Add New</a>
+                   <a href="{{ route('templates.create') }}" class="btn btn-primary btn-sm">Add New</a>
                 @endif 
              </h1>
             <hr>

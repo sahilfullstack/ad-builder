@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Template;
+use App\Models\Layout;
 
 class TemplateController extends Controller
 {
@@ -31,6 +32,8 @@ class TemplateController extends Controller
 
     public function create()
     {
-        return view('templates.create');
+        $layouts = Layout::notDeleted()->latest()->get();
+
+        return view('templates.create', compact('layouts'));
     }
 }

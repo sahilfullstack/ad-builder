@@ -3,8 +3,15 @@
         <div class="form-group">
             <label for="type">TYPE <span class="text-danger">*</span></label>
             <select name="type" id="type" class="form-control" v-model="form.type">
-                <option value="ad">Ad Unit</option>
+                <option value="ad">Ad</option>
                 <option value="page">Landing Page</option>
+            </select>
+        </div>
+        
+        <div class="form-group" v-if="form.type == 'ad'">
+            <label for="layout_id">LAYOUT <span class="text-danger">*</span></label>
+            <select name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">
+                <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
             </select>
         </div>
 
@@ -40,6 +47,10 @@
 <script>
 export default {
     props: {
+        layouts: {
+            type: Array,
+            required: true
+        },
         afterCreatePath: {
             type: String,
             required: true
@@ -50,6 +61,7 @@ export default {
         return {
             form: {
                 type: 'ad',
+                layout_id: null,
                 name: '',
                 components: [
                     {
@@ -63,6 +75,18 @@ export default {
                 creating: false
             }
         }
+    },
+
+    computed: {
+        selectedType() {
+            return this.form.type;
+        }
+    },
+
+    watch: {
+        selectedType(current, previous) {
+            Vue.set(this.form, 'layout_id', null);
+        } 
     },
 
     methods: {
