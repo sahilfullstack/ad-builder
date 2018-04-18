@@ -45860,33 +45860,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        createLandingPage: function createLandingPage() {
-            var _this = this;
-
-            this.disable.saving = true;
-
-            axios.post('/api/units', { type: 'page', parent_id: this.unit.id }).then(function (response) {
-                _this.disable.saving = false;
-
-                window.location = '/units/' + response.data.id + '/edit?section=template';
-            }).catch(function (response) {
-                // Fixing the optimism.
-                _this.disable.saving = false;
-
-                console.log(response);
-            });
-        },
         update: function update() {
-            var _this2 = this;
+            var _this = this;
 
             this.disable.saving = true;
 
             axios.put('/api/units/' + this.unit.id + '/publish', {}).then(function (response) {
 
-                if (_this2.unit.type == 'ad') _this2.createLandingPage();
+                if (_this.unit.type == 'ad') {
+                    window.location = '/units/' + response.data.id + '/edit/page';
+                }
             }).catch(function (response) {
                 // Fixing the optimism.
-                _this2.disable.saving = false;
+                _this.disable.saving = false;
 
                 console.log(response);
             });

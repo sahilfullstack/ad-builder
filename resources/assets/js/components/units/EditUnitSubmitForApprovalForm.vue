@@ -33,12 +33,6 @@ export default {
     },
 
     methods: {
-        createLandingPage() {
-            this.disable.saving = true;
-
-            window.location = '/units/' + response.data.id + '/edit/page';
-        },
-
         update() {
             this.disable.saving = true;
 
@@ -46,8 +40,9 @@ export default {
                 .then(response => {
 
                     if(this.unit.type == 'ad')
-
-                    this.createLandingPage();
+                    {
+                        window.location = '/units/' + response.data.id + '/edit/page';
+                    }
                 })
                 .catch(response => {
                     // Fixing the optimism.
