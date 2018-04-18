@@ -37,8 +37,8 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="nav navbar-nav">
                         <li><a href="{{ route('templates.list') }}">Templates</a></li>
-                        <li><a href="{{ route('units.list') }}">Ad Units</a></li>
-                        <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li>
+                        <li><a href="{{ route('units.list') }}">Ad Builder</a></li>
+                        <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Page Builder</a></li>
                     </ul>
 
                     <!-- Right Side Of Navbar -->
