@@ -29,7 +29,7 @@ class UnitPolicy
      */
     public function publish(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id  || $user->canOverride($stack->creator));
+        return($user->id === $unit->user_id);
     }    
 
     /**
@@ -41,6 +41,6 @@ class UnitPolicy
      */
     public function update(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id  || $user->canOverride($stack->creator));
+        return($user->id === $unit->user_id);
     }
 }

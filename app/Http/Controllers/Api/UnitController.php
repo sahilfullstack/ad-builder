@@ -108,6 +108,12 @@ class UnitController extends Controller
         if(! is_null($request->name))
         {
             $unitFound->name = $request->name;
+        }  
+
+        // if parent_id is sent
+        if(! is_null($request->parent_id))
+        {
+            $unitFound->parent_id = $request->parent_id;
         } 
 
         $unitFound->save();

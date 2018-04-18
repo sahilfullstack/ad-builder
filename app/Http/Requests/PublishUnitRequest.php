@@ -15,7 +15,7 @@ class PublishUnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('publish', Unit::class);
+        return true;
     }
 
     /**

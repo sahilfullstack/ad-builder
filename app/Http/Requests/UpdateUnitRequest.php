@@ -15,7 +15,7 @@ class UpdateUnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('update', Unit::class);
+        return true;
     }
 
     /**
