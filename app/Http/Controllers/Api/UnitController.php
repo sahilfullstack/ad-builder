@@ -15,6 +15,7 @@ class UnitController extends Controller
         // Blank unit is created
         $unit = new Unit([
             'user_id' => auth()->user()->id,
+            'type' => $request->type,
             'components' => []
         ]);
 

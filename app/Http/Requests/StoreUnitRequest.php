@@ -25,7 +25,7 @@ class StoreUnitRequest extends FormRequest
     public function rules()
     {
         return [
-        
+            'type' => 'required|in:ad,page',   
         ];
     }
 }
