@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Unit;
+use App\Models\Layout;
 
 class UnitController extends Controller
 {
@@ -65,11 +66,22 @@ class UnitController extends Controller
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
     }
 
+    private function dataToEditLayout(Unit $unit)
+    {
+        $layouts = Layout::notDeleted()->get();
+        
+        return ['layouts' => $layouts];
+    }
+
     private function dataToEditTemplate(Unit $unit)
     {
-        $templates = Template::whereType($unit->type)->with('components')->get();
+        $query = Template::notDeleted()
+            ->whereType($unit->type)
+            ->with('components');
         
-        return ['templates' => $templates];
+        if(! is_null($unit->layout_id)) $query->where('layout_id', $unit->layout_id);
+        
+        return ['templates' => $query->get()];
     }
 
     private function dataToEditComponents(Unit $unit)

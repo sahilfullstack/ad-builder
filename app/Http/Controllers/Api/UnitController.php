@@ -8,6 +8,7 @@ use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest};
 use App\Exceptions\InvalidInputException;
 use Carbon\Carbon;
+use App\Models\Layout;
 
 class UnitController extends Controller
 {
@@ -69,12 +70,18 @@ class UnitController extends Controller
 
         $inputComponents = $request->components;
 
+        // if layout is sent
+        if (!is_null($request->layout_id))
+        {
+            $unitFound->layout_id = $request->layout_id;
+        }
+
         // if template is sent
         if( ! is_null($request->template_id))
         {
             $unitFound->template_id = $request->template_id;            
     
-            $template = Template::find($request->template_id);
+            $template = Template::notDeleted()->find($request->template_id);
 
             if(count($unitFound->components) == 0)
             {

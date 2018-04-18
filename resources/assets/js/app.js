@@ -20,6 +20,7 @@ Vue.component('create-template-form', require('./components/templates/CreateTemp
 Vue.component('create-unit-form', require('./components/units/CreateUnitForm.vue'));
 Vue.component('create-unit-button', require('./components/units/CreateUnitButton.vue'));
 Vue.component('edit-unit-ad-form', require('./components/units/EditUnitAdForm.vue'));
+Vue.component('edit-unit-layout-form', require('./components/units/EditUnitLayoutForm.vue'));
 Vue.component('edit-unit-template-form', require('./components/units/EditUnitTemplateForm.vue'));
 Vue.component('edit-unit-components-form', require('./components/units/EditUnitComponentsForm.vue'));
 Vue.component('edit-unit-basic-form', require('./components/units/EditUnitBasicForm.vue'));

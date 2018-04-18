@@ -28,6 +28,12 @@
                             :unit="{{ $unit->toJson() }}"
                             :ads="{{ $data['ads']->toJson() }}">
                         </edit-unit-ad-form>
+                    @elseif($section == 'layout')
+                        <edit-unit-layout-form
+                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                            :unit="{{ $unit->toJson() }}"
+                            :layouts="{{ $data['layouts']->toJson() }}">
+                        </edit-unit-layout-form>
                     @elseif($section == 'template')
                         <edit-unit-template-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"

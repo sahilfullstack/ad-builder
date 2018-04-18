@@ -18,7 +18,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id'
+        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id'
     ];
 
     /**
@@ -45,24 +45,29 @@ class Unit extends Model
     public static $sections = [
         'ad' => [
             [
+                'name' => 'Choose Layout',
+                'slug' => 'layout',
+                'order' => 1
+            ],
+            [
                 'name' => 'Choose Template',
                 'slug' => 'template',
-                'order' => 1
+                'order' => 2
             ],
             [
                 'name' => 'Customize Ad',
                 'slug' => 'components',
-                'order' => 2
+                'order' => 3
             ],
             [
                 'name' => 'Ad Name',
                 'slug' => 'basic',
-                'order' => 3
+                'order' => 4
             ],
             [
                 'name' => 'Submit for Approval',
                 'slug' => 'submit',
-                'order' => 4
+                'order' => 5
             ],
         ],
         'page' => [

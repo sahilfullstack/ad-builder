@@ -27,6 +27,7 @@ class UpdateUnitRequest extends FormRequest
     {
         return [
             'name'        => 'sometimes',
+            'layout_id'   => 'sometimes|exists:layouts,id',
             'template_id' => 'sometimes|exists:templates,id',
             'components'  => 'sometimes'
         ];
