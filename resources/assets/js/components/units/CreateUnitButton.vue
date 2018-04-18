@@ -1,5 +1,5 @@
 <template>
-  <a href @click.prevent="create" class="btn btn-link btn" :disabled="disable.creating">Add New</a>
+  <a href @click.prevent="create" class="btn btn-sm btn-primary" :disabled="disable.creating">Add New</a>
 </template>
 
 <script>

@@ -44528,7 +44528,7 @@ var render = function() {
   return _c(
     "a",
     {
-      staticClass: "btn btn-link btn",
+      staticClass: "btn btn-sm btn-primary",
       attrs: { href: "", disabled: _vm.disable.creating },
       on: {
         click: function($event) {
