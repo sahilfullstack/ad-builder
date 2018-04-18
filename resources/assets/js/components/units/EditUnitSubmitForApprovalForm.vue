@@ -1,11 +1,7 @@
 <template>
     <form @submit.prevent="update">
-        <div class="form-group">
-            <label for="template_id">TEMPLATE <span class="text-danger">*</span></label>
-            <select name="template_id" id="template_id" class="form-control" v-model="form.template_id">    
-                <option v-for="template in templates" :key="template.id" :value="template.id">{{ template.name }}</option>
-            </select>
-        </div>
+        <h4>SUBMIT FOR APPROVAL</h4>
+        <p>Make sure that you've completed all the fields before submitting it for approval.</p>
 
         <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
@@ -14,10 +10,6 @@
 <script>
 export default {
     props: {
-        templates: {
-            type: Array,
-            required: true
-        },
         unit: {
             type: Object,
             required: true
@@ -31,7 +23,7 @@ export default {
     data() {
         return {
             form: {
-                template_id: this.unit.template_id == null ? this.templates[0].id : this.unit.template_id
+                
             },
             errors: [],
             disable: {
@@ -40,22 +32,33 @@ export default {
         }
     },
 
-    computed: {
-        selectedTemplate() {
-            return this.form.template_id;
-        },
-    },
-
     methods: {
-        update() {
+        createLandingPage() {
             this.disable.saving = true;
 
-            axios.put('/api/units/' + this.unit.id, this.form)
+            axios.post('/api/units', {type: 'page', parent_id: this.unit.id})
                 .then(response => {
+                    this.disable.saving = false;
+
+                    window.location = '/units/' + response.data.id + '/edit?section=template';
+                })
+                .catch(response => {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    window.location = this.redirectTo;
+                    console.log(response);
+                });
+        },
+
+        update() {
+            this.disable.saving = true;
+
+            axios.put('/api/units/' + this.unit.id + '/publish', {})
+                .then(response => {
+
+                    if(this.unit.type == 'ad')
+
+                    this.createLandingPage();
                 })
                 .catch(response => {
                     // Fixing the optimism.

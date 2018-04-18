@@ -21,6 +21,10 @@
                         <p><strong>Created at:</strong> {{ $unit->created_at->toDayDateTimeString() }}</p>
                         <p><strong>Last updated at:</strong> {{ $unit->updated_at->toDayDateTimeString() }}</p>
                         
+                        @if(! is_null($unit->parent))
+                            <p><strong>Against ad:</strong> {{ $unit->parent->name }}</p>
+                        @endif
+                        
                         @if(is_null($unit->template))
                         <p>No template selected yet.</p>
                         @else

@@ -23,6 +23,7 @@ Vue.component('edit-unit-ad-form', require('./components/units/EditUnitAdForm.vu
 Vue.component('edit-unit-template-form', require('./components/units/EditUnitTemplateForm.vue'));
 Vue.component('edit-unit-components-form', require('./components/units/EditUnitComponentsForm.vue'));
 Vue.component('edit-unit-basic-form', require('./components/units/EditUnitBasicForm.vue'));
+Vue.component('edit-unit-submit-form', require('./components/units/EditUnitSubmitForApprovalForm.vue'));
 
 const app = new Vue({
     el: '#app'

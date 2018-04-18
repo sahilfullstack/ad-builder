@@ -59,6 +59,11 @@ class Unit extends Model
                 'slug' => 'basic',
                 'order' => 3
             ],
+            [
+                'name' => 'Submit for Approval',
+                'slug' => 'submit',
+                'order' => 4
+            ],
         ],
         'page' => [
             [
@@ -99,6 +104,11 @@ class Unit extends Model
     public function template()
     {
         return $this->belongsTo(Template::class);
+    }
+
+    public function parent()
+    {
+        return $this->belongsTo(Unit::class);
     }
 
     public function getTypeHumanAttribute()

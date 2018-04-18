@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest};
 use App\Exceptions\InvalidInputException;
+use Carbon\Carbon;
 
 class UnitController extends Controller
 {
@@ -18,6 +19,15 @@ class UnitController extends Controller
             'type'       => $request->type,
             'components' => []
         ]);
+
+        if($request->has('parent_id'))
+        {
+            $parent = Unit::notDeleted()->find($request->parent_id);
+
+            if(is_null($parent)) throw InvalidInputException('Invalid parent unit passed.');
+
+            $unit->parent_id = $parent->id;
+        }
 
         $unit->save();
 
@@ -40,10 +50,9 @@ class UnitController extends Controller
         }
 
         $template = Template::find($unitFound->template_id);
-        $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
 
         // Validating that the selected template has the selected components.
-        if($components->count() != count($unitFound->components))
+        if($template->components->count() != count($unitFound->components))
         {
             throw InvalidInputException('Components are invalid.');
         }

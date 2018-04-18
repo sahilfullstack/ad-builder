@@ -1119,7 +1119,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(12);
-module.exports = __webpack_require__(67);
+module.exports = __webpack_require__(70);
 
 
 /***/ }),
@@ -1151,6 +1151,7 @@ Vue.component('edit-unit-ad-form', __webpack_require__(55));
 Vue.component('edit-unit-template-form', __webpack_require__(58));
 Vue.component('edit-unit-components-form', __webpack_require__(61));
 Vue.component('edit-unit-basic-form', __webpack_require__(64));
+Vue.component('edit-unit-submit-form', __webpack_require__(67));
 
 var app = new Vue({
   el: '#app'
@@ -44852,7 +44853,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                template_id: this.unit.template_id == 0 ? this.templates[0].id : this.unit.template_id
+                template_id: this.unit.template_id == null ? this.templates[0].id : this.unit.template_id
             },
             errors: [],
             disable: {
@@ -45434,6 +45435,175 @@ if (false) {
 
 /***/ }),
 /* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(1)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/units/EditUnitSubmitForApprovalForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e876fe7a", Component.options)
+  } else {
+    hotAPI.reload("data-v-e876fe7a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        unit: {
+            type: Object,
+            required: true
+        },
+        redirectTo: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            form: {},
+            errors: [],
+            disable: {
+                saving: false
+            }
+        };
+    },
+
+
+    methods: {
+        createLandingPage: function createLandingPage() {
+            var _this = this;
+
+            this.disable.saving = true;
+
+            axios.post('/api/units', { type: 'page', parent_id: this.unit.id }).then(function (response) {
+                _this.disable.saving = false;
+
+                window.location = '/units/' + response.data.id + '/edit?section=template';
+            }).catch(function (response) {
+                // Fixing the optimism.
+                _this.disable.saving = false;
+
+                console.log(response);
+            });
+        },
+        update: function update() {
+            var _this2 = this;
+
+            this.disable.saving = true;
+
+            axios.put('/api/units/' + this.unit.id + '/publish', {}).then(function (response) {
+
+                if (_this2.unit.type == 'ad') _this2.createLandingPage();
+            }).catch(function (response) {
+                // Fixing the optimism.
+                _this2.disable.saving = false;
+
+                console.log(response);
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.update($event)
+        }
+      }
+    },
+    [
+      _c("h4", [_vm._v("SUBMIT FOR APPROVAL")]),
+      _vm._v(" "),
+      _c("p", [
+        _vm._v(
+          "Make sure that you've completed all the fields before submitting it for approval."
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.disable.saving }
+        },
+        [_vm._v("Save")]
+      )
+    ]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-e876fe7a", module.exports)
+  }
+}
+
+/***/ }),
+/* 70 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

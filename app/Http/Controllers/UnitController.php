@@ -86,4 +86,9 @@ class UnitController extends Controller
     {
         return ['ads' => auth()->user()->units('ad')->get()];
     }
+
+    private function dataToEditSubmit(Unit $unit)
+    {
+        return [];
+    }
 }
