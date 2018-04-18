@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
-use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest};
+use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
 use App\Exceptions\InvalidInputException;
 use Carbon\Carbon;
 use App\Models\Layout;
@@ -157,5 +157,23 @@ class UnitController extends Controller
         }
 
         return $preparedComponents;
+    }
+
+    public function approve($unitId, ApproveUnitRequest $request)
+    {
+        $unitFound = Unit::find($unitId);
+
+        if($request->action == 'approve') 
+        {
+            $unitFound->approved_at = Carbon::now();                
+        }
+        else 
+        {
+            $unitFound->rejected_at = Carbon::now();
+        }
+
+        $unitFound->save();
+
+        return $unitFound->fresh();
     }
 }

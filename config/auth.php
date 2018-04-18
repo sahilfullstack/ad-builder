@@ -131,6 +131,7 @@ return [
                 // Temlates
                 'template.manage',
                 'layout.manage',
+                'unit.approve',
             ]
         ],
     ],
@@ -146,6 +147,9 @@ return [
         ], 
         'layout.manage' => [
             'name' => 'Create/update/delete a layout.',
+        ],        
+        'unit.approve' => [
+            'name' => 'Approve/Reject a unit.',
         ],
     ],
 

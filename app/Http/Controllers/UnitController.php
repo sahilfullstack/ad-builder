@@ -94,13 +94,28 @@ class UnitController extends Controller
         return [];
     }
 
+    
     private function dataToEditAd(Unit $unit)
     {
         return ['ads' => auth()->user()->units('ad')->get()];
     }
-
+    
     private function dataToEditSubmit(Unit $unit)
     {
         return [];
+    }
+    
+    public function listUnitsForApproval()
+    {
+
+      $units = Unit::notDeleted()->with(['template', 'template.components'])
+        ->whereNotNull('published_at')
+        ->whereNull('approved_at')
+        ->whereNull('rejected_at')
+        ->whereHas('template')
+        ->where('type', 'ad')
+        ->latest()->paginate();
+
+        return view('units.list_for_approval', compact('units'));
     }
 }
