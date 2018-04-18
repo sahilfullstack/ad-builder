@@ -14,7 +14,7 @@ class UpdateTemplatesAddLayoutId extends Migration
     public function up()
     {
         Schema::table('templates', function (Blueprint $table) {
-            $table->integer('layout_id');
+            $table->integer('layout_id')->after('slug');
         });
     }
 
