@@ -25,7 +25,7 @@ class UnitController extends Controller
         {
             $parent = Unit::notDeleted()->find($request->parent_id);
 
-            if(is_null($parent)) throw InvalidInputException('Invalid parent unit passed.');
+            if(is_null($parent)) throw new InvalidInputException('Invalid parent unit passed.');
 
             $unit->parent_id = $parent->id;
         }
@@ -42,12 +42,12 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if(is_null($unitFound->name))
         {
-            throw InvalidInputException('Name is empty.');
+            throw new InvalidInputException('Name is empty.');
         }        
 
         if(is_null($unitFound->template_id))
         {
-            throw InvalidInputException('Template is empty.');
+            throw new InvalidInputException('Template is empty.');
         }
 
         $template = Template::find($unitFound->template_id);
@@ -55,7 +55,7 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if($template->components->count() != count($unitFound->components))
         {
-            throw InvalidInputException('Components are invalid.');
+            throw new InvalidInputException('Components are invalid.');
         }
 
         $unitFound->published_at = Carbon::now();
@@ -99,7 +99,7 @@ class UnitController extends Controller
                 // Validating that the selected template has the selected components.
                 if($components->count() != count($inputComponents))
                 {
-                    throw InvalidInputException('Bad components sent.');
+                    throw new InvalidInputException('Bad components sent.');
                 }
                 
                 // components must not be empty
@@ -108,7 +108,7 @@ class UnitController extends Controller
                 ]);
 
                 if ($validator->fails()) {
-                    throw InvalidInputException($validator->errors()->first());
+                    throw new InvalidInputException($validator->errors()->first());
                 }
         
                 $preparedComponents = $this->preparedComponents($inputComponents, $components);

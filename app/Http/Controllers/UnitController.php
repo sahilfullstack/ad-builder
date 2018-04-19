@@ -66,6 +66,11 @@ class UnitController extends Controller
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
     }
 
+    public function render(Unit $unit)
+    {
+        return view($unit->template->renderer, compact('unit'));
+    }
+
     private function dataToEditLayout(Unit $unit)
     {
         $layouts = Layout::notDeleted()->get();

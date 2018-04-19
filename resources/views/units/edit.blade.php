@@ -1,10 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-<div class="container">
+<div class="container-fluid">
     
     <div class="row">
-        <div class="col-md-3" style="background: #fff; padding: 20px; height: 800px; border-radius: 5px;">
+        <div class="col-md-3" style="background: #fff; padding: 20px; height: 800px; margin-top: -22px;">
             <ul class="nav nav-pills nav-stacked unit-wizard-sidebar" data-spy="affix" data-offset-top="200">
                 @foreach(App\Models\Unit::$sections[$unit->type] as $index => $sectionItem)
                     <li class="{{ $section == $sectionItem['slug'] ? 'active' : ''}}">
@@ -17,8 +17,11 @@
         </div>
         <div class="col-md-9">
             
-            <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive" style="padding: 50px;">
-
+            @if(is_null($unit->template) || is_null($unit->template->renderer))
+                <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive" style="padding: 50px;">
+            @else
+                <iframe id="rederer-iframe" src="{{ route('units.render', compact('unit')) }}" frameborder="0" width="960" height="540"></iframe>
+            @endif
             <hr>
 
             <div class="panel panel-default">
@@ -63,4 +66,9 @@
         </div>
     </div>
 </div>
+
+<script>
+    var frameElement = document.getElementById("renderer-iframe");
+    frameElement.contentWindow.location.href = frameElement.src;
+</script>
 @endsection
