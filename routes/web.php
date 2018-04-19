@@ -25,3 +25,5 @@ Route::get('/units/create', 'UnitController@create')->name('units.create');
 Route::get('/units/{unit}/edit', 'UnitController@edit')->name('units.edit');
 Route::get('/units/{unit}/edit/page', 'UnitController@editLandingPage')->name('units.edit-landing-page');
 Route::get('/units/approval', 'UnitController@listUnitsForApproval')->name('units.approval.list');
+
+Route::get('/practice/templates/1', 'PracticeController@template1');

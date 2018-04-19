@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use App\Models\Traits\ContainsSoftDeletableUniques;
 use App\Models\Traits\Loggable;
 use App\Models\Interfaces\LoggableSubject;
+use App\User;
 
 class Role extends Model implements LoggableSubject
 {
@@ -52,7 +53,7 @@ class Role extends Model implements LoggableSubject
 
     public function users()
     {
-        return $this->hasMany(User::class)->where(User::SOFT_DELETION_TOKEN, 0);
+        return $this->hasMany(User::class);
     }
 
     public static function findBySlug(String $slug)
