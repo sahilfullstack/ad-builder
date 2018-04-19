@@ -55,6 +55,11 @@
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}">
                         </edit-unit-basic-form>
+                    @elseif($section == 'page')
+                        <edit-unit-landing-page-form
+                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                            :unit="{{ $unit->toJson() }}">
+                        </edit-unit-landing-page-form>
                     @elseif($section == 'submit')
                         <edit-unit-submit-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"

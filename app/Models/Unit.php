@@ -66,8 +66,8 @@ class Unit extends Model
                 'order' => 4
             ],
             [
-                'name' => 'Submit for Approval',
-                'slug' => 'submit',
+                'name' => 'Build Landing Page',
+                'slug' => 'page',
                 'order' => 5
             ],
         ],
@@ -91,6 +91,11 @@ class Unit extends Model
                 'name' => 'Landing Page Name',
                 'slug' => 'basic',
                 'order' => 4
+            ],
+            [
+                'name' => 'Submit for Approval',
+                'slug' => 'submit',
+                'order' => 5
             ],
         ]
 

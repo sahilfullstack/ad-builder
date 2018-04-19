@@ -109,6 +109,11 @@ class UnitController extends Controller
     {
         return [];
     }
+    
+    private function dataToEditPage(Unit $unit)
+    {
+        return [];
+    }
 
     public function editLandingPage(Unit $unit)
     {
