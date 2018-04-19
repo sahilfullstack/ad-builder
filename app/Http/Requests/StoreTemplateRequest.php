@@ -30,7 +30,7 @@ class StoreTemplateRequest extends FormRequest
             'layout_id' => 'sometimes|nullable|exists:layouts,id',
             'name' => 'required',
             'components.*.name' => 'required|distinct',
-            'components.*.type' => 'required|in:image,text',
+            'components.*.type' => 'required|in:image,text,video',
         ];
     }
 }

@@ -35,7 +35,8 @@ class Component extends Model
      * @var array
      */
     protected $casts = [
-        'order' => 'integer'
+        'order' => 'integer', 'rules' => 'array'
+
     ];
     /**
      * Limit the search to only not deleted elements.

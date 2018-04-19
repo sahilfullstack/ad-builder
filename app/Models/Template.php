@@ -34,6 +34,7 @@ class Template extends Model
         'page' => 'Landing Page'
     ];
 
+
     /**
      * Limit the search to only not deleted elements.
      *

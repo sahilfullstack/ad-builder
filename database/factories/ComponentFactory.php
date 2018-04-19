@@ -16,7 +16,7 @@ $factory->define(Component::class, function (Faker $faker) {
         'name' => $name,
         'slug' => str_slug($name),
         'type' => $faker->randomElement(['text', 'image']),
-        'rules'=> json_encode([])
+        'rules'=> []
     ];
 });
 
@@ -34,7 +34,7 @@ $factory->define(Component::class, function (Faker $faker) {
         'name'        => $name,
         'slug'        => str_slug($name),
         'type'        => 'text',
-        'rules'       => json_encode($rules)
+        'rules'       => $rules
     ];
 }, 'text');
 
@@ -50,9 +50,9 @@ $factory->define(Component::class, function (Faker $faker) {
         'name' => $name,
         'slug' => str_slug($name),
         'type' => 'image',
-        'rules'=> json_encode([
+        'rules'=> [
             'height' => 200, 
             'width' => 50
-        ])
+        ]
     ];
 }, 'image');
