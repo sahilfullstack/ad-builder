@@ -19,7 +19,7 @@ class Component extends Model
      * @var array
      */
     protected $fillable = [
-        'template_id', 'order', 'name', 'slug', 'type'
+        'template_id', 'order', 'name', 'slug', 'type', 'rules'
     ];
     
     /**
