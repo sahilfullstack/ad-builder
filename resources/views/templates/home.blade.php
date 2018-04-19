@@ -19,6 +19,15 @@
                     <div class="panel-body">
                         <p><strong>Created at:</strong> {{ $template->created_at->toDayDateTimeString() }}</p>
                         <p><strong>Last updated at:</strong> {{ $template->updated_at->toDayDateTimeString() }}</p>
+                        
+                        @if(! is_null($template->layout))
+                            <p><strong>Layout:</strong> {{ $template->layout->name }}</p>
+                        @endif
+
+                        @if(! is_null($template->renderer))
+                            <p><strong>Renderer:</strong> {{ $template->renderer }}</p>
+                        @endif
+
                         <p><strong>Components contained:</strong></p>
                         
                         <!-- Components -->

@@ -64,4 +64,9 @@ class Template extends Model
     {
         return $this->hasMany(Unit::class);
     }
+
+    public function layout()
+    {
+        return $this->belongsTo(Layout::class);
+    }
 }
