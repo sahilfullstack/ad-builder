@@ -10,6 +10,8 @@ use App\Exceptions\InvalidInputException;
 use Carbon\Carbon;
 use App\Models\Layout;
 
+use App\Rules\ValidComponents;
+
 class UnitController extends Controller
 {
     public function store(StoreUnitRequest $request)
@@ -96,20 +98,14 @@ class UnitController extends Controller
 
                 $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
 
+
                 // Validating that the selected template has the selected components.
                 if($components->count() != count($inputComponents))
                 {
                     throw new InvalidInputException('Bad components sent.');
                 }
-                
-                // components must not be empty
-                $validator = \Validator::make($request->all(), [
-                    'components.*' => 'required'
-                ]);
 
-                if ($validator->fails()) {
-                    throw new InvalidInputException($validator->errors()->first());
-                }
+                $this->validateComponents($request->components, $template->id);                
         
                 $preparedComponents = $this->preparedComponents($inputComponents, $components);
              
@@ -175,5 +171,30 @@ class UnitController extends Controller
         $unitFound->save();
 
         return $unitFound->fresh();
+    }
+
+    private function validateComponents($components, $templateId)
+    {
+        foreach ($components as $componentId => $value) 
+        {
+            $component = Component::find($componentId);
+
+            $rules = json_decode($component->rules, true);
+
+            foreach ($rules as $ruleKey => $ruleValue) 
+            {
+                $name = str_replace('.', '-', $component->name);
+
+                $validator = \Validator::make([$name => $value], [
+                    $name => [
+                        new ValidComponents($component->type, $ruleKey, $ruleValue)
+                    ]
+                ]);
+
+                if ($validator->fails()) {
+                    throw new InvalidInputException($validator->errors()->first());
+                }
+            }
+        }
     }
 }

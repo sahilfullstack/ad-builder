@@ -30,17 +30,58 @@ class TemplateController extends Controller
 
         foreach ($inputComponents as $key => $inputComponent) 
         {
+            $rules = isset($inputComponent['rules']) ? $inputComponent['rules']: [];
+            $rules = $this->prepareRules( $inputComponent['type'],  $rules);
+
             $component = new Component([
                 'template_id' => $template->id,
                 'order'       => $key,
                 'name'        => $inputComponent['name'],
                 'slug'        => str_slug($inputComponent['name']),
-                'type'        => $inputComponent['type']
+                'type'        => $inputComponent['type'],
+                'rules'       => $rules
             ]);
 
             $component->save();
         }
 
         return $template->fresh();
+    }
+
+    private function prepareRules($type, $rules)
+    {
+        $validRules = [
+            'text' => [
+                 'min_length',
+                'max_length'
+            ],
+            'video' => [
+                'height',
+                'width',
+                'max_duration',
+                'min_duration'
+            ],
+            'image' => [
+                'height',
+                'width',
+            ]
+        ];
+
+        $preparedRules = [];
+        foreach ($rules as $key => $value) {
+
+            if(in_array($key, $validRules[$type]))
+            {
+                if(is_numeric($value))
+                {
+
+                    $preparedRules[$key] = $value;
+                }
+                
+            }
+
+        }
+
+        return $preparedRules;
     }
 }

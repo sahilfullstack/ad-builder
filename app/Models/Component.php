@@ -19,7 +19,7 @@ class Component extends Model
      * @var array
      */
     protected $fillable = [
-        'template_id', 'order', 'name', 'slug', 'type'
+        'template_id', 'order', 'name', 'slug', 'type', 'rules'
     ];
     
     /**
@@ -35,7 +35,8 @@ class Component extends Model
      * @var array
      */
     protected $casts = [
-        'order' => 'integer'
+        'order' => 'integer', 'rules' => 'array'
+
     ];
     /**
      * Limit the search to only not deleted elements.
