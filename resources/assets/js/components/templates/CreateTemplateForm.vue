@@ -20,6 +20,11 @@
             <input type="text" class="form-control" id="name" placeholder="Example: Half Page Ad Template" v-model="form.name">
         </div>
 
+        <div class="form-group">
+            <label for="renderer">RENDERER <span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="renderer" placeholder="Example: templates.renderer.half-page-ad-template" v-model="form.renderer">
+        </div>
+
         <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
         
         <div class="form-group">
@@ -63,6 +68,7 @@ export default {
                 type: 'ad',
                 layout_id: null,
                 name: '',
+                renderer: '',
                 components: [
                     {
                         type: 'text',

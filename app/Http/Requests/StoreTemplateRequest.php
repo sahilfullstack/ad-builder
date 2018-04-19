@@ -29,6 +29,7 @@ class StoreTemplateRequest extends FormRequest
             'type' => 'required|in:ad,page',
             'layout_id' => 'sometimes|nullable|exists:layouts,id',
             'name' => 'required',
+            'renderer' => 'required',
             'components.*.name' => 'required|distinct',
             'components.*.type' => 'required|in:image,text',
         ];

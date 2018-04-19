@@ -43570,6 +43570,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -43589,6 +43594,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 type: 'ad',
                 layout_id: null,
                 name: '',
+                renderer: '',
                 components: [{
                     type: 'text',
                     name: ''
@@ -43781,7 +43787,37 @@ var render = function() {
         })
       ]),
       _vm._v(" "),
-      _vm._m(3),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.renderer,
+              expression: "form.renderer"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "text",
+            id: "renderer",
+            placeholder: "Example: templates.renderer.half-page-ad-template"
+          },
+          domProps: { value: _vm.form.renderer },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "renderer", $event.target.value)
+            }
+          }
+        })
+      ]),
+      _vm._v(" "),
+      _vm._m(4),
       _vm._v(" "),
       _c(
         "div",
@@ -43947,6 +43983,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "name" } }, [
       _vm._v("NAME "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "renderer" } }, [
+      _vm._v("RENDERER "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },
