@@ -43576,6 +43576,75 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -43596,10 +43665,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 layout_id: null,
                 name: '',
                 renderer: '',
-                components: [{
-                    type: 'text',
-                    name: ''
-                }]
+                components: []
             },
             errors: [],
             disable: {
@@ -43616,16 +43682,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     watch: {
+        // form: {
+        //     handler(current, previous) {
+        //         let components = [];
+        //         _.forEach(current.components, (component) => {
+        //             if(component.type == 'image') {
+        //                 component.rules = {
+        //                     width: 200,
+        //                     height: 200
+        //                 }
+        //             }
+        //             components.push(component);
+        //         });
+        //         Vue.set(this.form, 'components', components);
+        //     },
+        //     deep: true
+        // },
         selectedType: function selectedType(current, previous) {
             Vue.set(this.form, 'layout_id', null);
         }
     },
 
     methods: {
+        defaultRulesFor: function defaultRulesFor() {
+            var type = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'text';
+
+            var rules = {
+                text: {
+                    min_length: 0,
+                    max_length: 100
+                },
+                image: {
+                    width: null,
+                    height: null
+                },
+                video: {
+                    min_duration: 3,
+                    max_duration: 60,
+                    width: null,
+                    height: null
+                }
+            };
+
+            return rules[type];
+        },
         addComponentAfterIndex: function addComponentAfterIndex(index) {
+            var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'text';
+
             this.form.components.push({
-                type: 'text',
-                name: ''
+                type: type,
+                name: '',
+                rules: this.defaultRulesFor(type)
             });
         },
         removeComponentAtIndex: function removeComponentAtIndex(index) {
@@ -43820,65 +43927,28 @@ var render = function() {
       _vm._v(" "),
       _vm._m(4),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "form-group" },
-        _vm._l(_vm.form.components, function(component, index) {
-          return _c(
+      _vm._l(_vm.form.components, function(component, index) {
+        return _c("div", { key: index, staticClass: "form-group" }, [
+          _c("hr"),
+          _vm._v(" "),
+          _c("p", [
+            _c("strong", [
+              _vm._v(
+                "COMPONENT #" +
+                  _vm._s(index + 1) +
+                  " (" +
+                  _vm._s(component.type) +
+                  ") "
+              ),
+              _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c(
             "div",
-            {
-              key: index,
-              staticClass: "row",
-              staticStyle: { "margin-bottom": "15px" }
-            },
+            { staticClass: "row", staticStyle: { "margin-bottom": "15px" } },
             [
-              _c("div", { staticClass: "col-md-5" }, [
-                _c(
-                  "select",
-                  {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.form.components[index]["type"],
-                        expression: "form.components[index]['type']"
-                      }
-                    ],
-                    staticClass: "form-control",
-                    attrs: { name: "type", id: "type" },
-                    on: {
-                      change: function($event) {
-                        var $$selectedVal = Array.prototype.filter
-                          .call($event.target.options, function(o) {
-                            return o.selected
-                          })
-                          .map(function(o) {
-                            var val = "_value" in o ? o._value : o.value
-                            return val
-                          })
-                        _vm.$set(
-                          _vm.form.components[index],
-                          "type",
-                          $event.target.multiple
-                            ? $$selectedVal
-                            : $$selectedVal[0]
-                        )
-                      }
-                    }
-                  },
-                  [
-                    _c("option", { attrs: { value: "text" } }, [
-                      _vm._v("Text")
-                    ]),
-                    _vm._v(" "),
-                    _c("option", { attrs: { value: "image" } }, [
-                      _vm._v("Image")
-                    ])
-                  ]
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-5" }, [
+              _c("div", { staticClass: "col-md-10" }, [
                 _c("input", {
                   directives: [
                     {
@@ -43914,39 +43984,409 @@ var render = function() {
                 _c(
                   "a",
                   {
-                    staticClass: "btn btn-success",
+                    staticClass: "btn btn-danger",
                     attrs: { href: "" },
                     on: {
                       click: function($event) {
                         $event.preventDefault()
-                        _vm.addComponentAfterIndex(index)
+                        _vm.removeComponentAtIndex(index)
                       }
                     }
                   },
-                  [_vm._v("+")]
-                ),
-                _vm._v(" "),
-                _vm.form.components.length > 1
-                  ? _c(
-                      "a",
-                      {
-                        staticClass: "btn btn-danger",
-                        attrs: { href: "" },
-                        on: {
-                          click: function($event) {
-                            $event.preventDefault()
-                            _vm.removeComponentAtIndex(index)
-                          }
-                        }
-                      },
-                      [_vm._v("-")]
-                    )
-                  : _vm._e()
+                  [_vm._v("Remove")]
+                )
               ])
             ]
-          )
-        })
-      ),
+          ),
+          _vm._v(" "),
+          _vm._m(5, true),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "text"
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "min_length" } }, [
+                      _vm._v("Minimum Length "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.form.components[index]["rules"]["min_length"],
+                          expression:
+                            "form.components[index]['rules']['min_length']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "min_length" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["min_length"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "min_length",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "max_length" } }, [
+                      _vm._v("Maximum Length "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.form.components[index]["rules"]["max_length"],
+                          expression:
+                            "form.components[index]['rules']['max_length']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "max_length" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["max_length"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "max_length",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "image"
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "width" } }, [
+                      _vm._v("Width "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.components[index]["rules"]["width"],
+                          expression: "form.components[index]['rules']['width']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "width" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["width"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "width",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "height" } }, [
+                      _vm._v("Height "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.components[index]["rules"]["height"],
+                          expression:
+                            "form.components[index]['rules']['height']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "height" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["height"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "height",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "video"
+            ? _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "width" } }, [
+                      _vm._v("Width "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.components[index]["rules"]["width"],
+                          expression: "form.components[index]['rules']['width']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "width" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["width"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "width",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "height" } }, [
+                      _vm._v("Height "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.form.components[index]["rules"]["height"],
+                          expression:
+                            "form.components[index]['rules']['height']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "height" },
+                      domProps: {
+                        value: _vm.form.components[index]["rules"]["height"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "height",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "min_duration" } }, [
+                      _vm._v("Minimum Duration "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.form.components[index]["rules"]["min_duration"],
+                          expression:
+                            "form.components[index]['rules']['min_duration']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "min_duration" },
+                      domProps: {
+                        value:
+                          _vm.form.components[index]["rules"]["min_duration"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "min_duration",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "col-md-6" }, [
+                  _c("div", { staticClass: "form-group" }, [
+                    _c("label", { attrs: { for: index + "max_duration" } }, [
+                      _vm._v("Maximum Duration "),
+                      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+                    ]),
+                    _vm._v(" "),
+                    _c("input", {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value:
+                            _vm.form.components[index]["rules"]["max_duration"],
+                          expression:
+                            "form.components[index]['rules']['max_duration']"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      attrs: { type: "text", id: index + "max_duration" },
+                      domProps: {
+                        value:
+                          _vm.form.components[index]["rules"]["max_duration"]
+                      },
+                      on: {
+                        input: function($event) {
+                          if ($event.target.composing) {
+                            return
+                          }
+                          _vm.$set(
+                            _vm.form.components[index]["rules"],
+                            "max_duration",
+                            $event.target.value
+                          )
+                        }
+                      }
+                    })
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ])
+      }),
+      _vm._v(" "),
+      _c("hr"),
+      _vm._v(" "),
+      _c("div", { staticClass: "btn-group" }, [
+        _vm._m(6),
+        _vm._v(" "),
+        _c("ul", { staticClass: "dropdown-menu" }, [
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "text"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Text")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "image"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Image")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "video"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Video")]
+            )
+          ])
+        ])
+      ]),
       _vm._v(" "),
       _c(
         "button",
@@ -43956,7 +44396,8 @@ var render = function() {
         },
         [_vm._v("Create")]
       )
-    ]
+    ],
+    2
   )
 }
 var staticRenderFns = [
@@ -44000,12 +44441,39 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("p", [
-      _c("strong", [
+    return _c("div", { staticClass: "form-group" }, [
+      _c("label", [
         _vm._v("COMPONENTS "),
         _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
       ])
     ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("p", [_c("strong", [_vm._v("CONSTRAINTS")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "btn btn-default dropdown-toggle",
+        attrs: {
+          type: "button",
+          "data-toggle": "dropdown",
+          "aria-haspopup": "true",
+          "aria-expanded": "false"
+        }
+      },
+      [
+        _vm._v("\n            What type of another component to add? "),
+        _c("span", { staticClass: "caret" })
+      ]
+    )
   }
 ]
 render._withStripped = true

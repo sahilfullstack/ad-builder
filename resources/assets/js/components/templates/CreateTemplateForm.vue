@@ -25,24 +25,93 @@
             <input type="text" class="form-control" id="renderer" placeholder="Example: templates.renderer.half-page-ad-template" v-model="form.renderer">
         </div>
 
-        <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
-        
         <div class="form-group">
-            <div class="row" style="margin-bottom: 15px;" v-for="(component, index) in form.components" :key="index">
-                <div class="col-md-5">
-                    <select name="type" id="type" class="form-control" v-model="form.components[index]['type']">
-                        <option value="text">Text</option>
-                        <option value="image">Image</option>
-                    </select>
-                </div>
-                <div class="col-md-5">
+            <label>COMPONENTS <span class="text-danger">*</span></label>
+            
+            
+        </div>
+
+        
+        <div class="form-group" v-for="(component, index) in form.components" :key="index">
+            <hr />
+            <p><strong>COMPONENT #{{ index + 1 }} ({{ component.type }}) <span class="text-danger">*</span></strong></p>
+            <div class="row" style="margin-bottom: 15px;">
+                <div class="col-md-10">
                     <input type="text" class="form-control" id="components" placeholder="Example: Cover Image" v-model="form.components[index]['name']">
                 </div>
                 <div class="col-md-2">
-                    <a href class="btn btn-success" @click.prevent="addComponentAfterIndex(index)">+</a>
-                    <a href class="btn btn-danger" @click.prevent="removeComponentAtIndex(index)" v-if="form.components.length > 1">-</a>
+                    <a href class="btn btn-danger" @click.prevent="removeComponentAtIndex(index)">Remove</a>
                 </div>
             </div>
+            <p><strong>CONSTRAINTS</strong></p>
+            <div class="row" v-if="form.components[index]['type'] == 'text'">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'min_length'">Minimum Length <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'min_length'" v-model="form.components[index]['rules']['min_length']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'max_length'">Maximum Length <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'max_length'" v-model="form.components[index]['rules']['max_length']">
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="form.components[index]['type'] == 'image'">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'width'">Width <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'width'" v-model="form.components[index]['rules']['width']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'height'">Height <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'height'" v-model="form.components[index]['rules']['height']">
+                    </div>
+                </div>
+            </div>
+            <div class="row" v-if="form.components[index]['type'] == 'video'">
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'width'">Width <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'width'" v-model="form.components[index]['rules']['width']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'height'">Height <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'height'" v-model="form.components[index]['rules']['height']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'min_duration'">Minimum Duration <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'min_duration'" v-model="form.components[index]['rules']['min_duration']">
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="form-group">
+                        <label :for="index + 'max_duration'">Maximum Duration <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="index + 'max_duration'" v-model="form.components[index]['rules']['max_duration']">
+                    </div>
+                </div>
+            </div>
+
+        </div>
+        
+        <hr />
+        <!-- Component Type Chooser -->
+        <div class="btn-group">
+            <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                What type of another component to add? <span class="caret"></span>
+            </button>
+            <ul class="dropdown-menu">
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'text')">Text</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'image')">Image</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'video')">Video</a></li>
+            </ul>
         </div>
 
         <button type="submit" class="btn btn-primary" :disabled="disable.creating">Create</button>
@@ -70,10 +139,6 @@ export default {
                 name: '',
                 renderer: '',
                 components: [
-                    {
-                        type: 'text',
-                        name: ''
-                    }
                 ]
             },
             errors: [],
@@ -90,16 +155,53 @@ export default {
     },
 
     watch: {
+        // form: {
+        //     handler(current, previous) {
+        //         let components = [];
+        //         _.forEach(current.components, (component) => {
+        //             if(component.type == 'image') {
+        //                 component.rules = {
+        //                     width: 200,
+        //                     height: 200
+        //                 }
+        //             }
+        //             components.push(component);
+        //         });
+        //         Vue.set(this.form, 'components', components);
+        //     },
+        //     deep: true
+        // },
         selectedType(current, previous) {
             Vue.set(this.form, 'layout_id', null);
         } 
     },
 
     methods: {
-        addComponentAfterIndex(index) {
+        defaultRulesFor(type = 'text') {
+            let rules = {
+                text: {
+                    min_length: 0,
+                    max_length: 100
+                },
+                image: {
+                    width: null,
+                    height: null
+                },
+                video: {
+                    min_duration: 3,
+                    max_duration: 60,
+                    width: null,
+                    height: null
+                }
+            }
+
+            return rules[type];
+        },
+        addComponentAfterIndex(index, type = 'text') {
             this.form.components.push({
-                type: 'text',
-                name: ''
+                type: type,
+                name: '',
+                rules: this.defaultRulesFor(type)
             });
         },
         removeComponentAtIndex(index) {
