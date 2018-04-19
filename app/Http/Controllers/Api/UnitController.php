@@ -179,14 +179,13 @@ class UnitController extends Controller
         {
             $component = Component::find($componentId);
 
-            $rules = json_decode($component->rules, true);
-
-            foreach ($rules as $ruleKey => $ruleValue) 
+            foreach ($component->rules as $ruleKey => $ruleValue)
             {
                 $name = str_replace('.', '-', $component->name);
 
                 $validator = \Validator::make([$name => $value], [
                     $name => [
+                        'required',
                         new ValidComponents($component->type, $ruleKey, $ruleValue)
                     ]
                 ]);
