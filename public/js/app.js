@@ -43645,6 +43645,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -43729,6 +43736,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addComponentAfterIndex: function addComponentAfterIndex(index) {
             var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'text';
 
+            console.log(index);
             this.form.components.push({
                 type: type,
                 name: '',
@@ -43742,17 +43750,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.disable.creating = true;
+            var self = this;
+
+            this.errors = [];
 
             axios.post('/api/templates', this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
 
                 window.location = _this.afterCreatePath;
-            }).catch(function (response) {
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.creating = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    console.log(self.errors);
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
             });
         }
     }
@@ -43861,6 +43877,16 @@ var render = function() {
                   [_vm._v(_vm._s(layout.name))]
                 )
               })
+            ),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["layout_id"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["layout_id"]))]
             )
           ])
         : _vm._e(),
@@ -43892,7 +43918,17 @@ var render = function() {
               _vm.$set(_vm.form, "name", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["name"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["name"]))]
+        )
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
@@ -43922,7 +43958,17 @@ var render = function() {
               _vm.$set(_vm.form, "renderer", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["renderer"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["renderer"]))]
+        )
       ]),
       _vm._v(" "),
       _vm._m(4),
@@ -43943,6 +43989,18 @@ var render = function() {
               _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
             ])
           ]),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "text-danger",
+              class: {
+                hidden: _vm.errors["components." + index + ".type"] == undefined
+              },
+              staticStyle: { "margin-right": "10px" }
+            },
+            [_vm._v(_vm._s(_vm.errors["components." + index + ".type"]))]
+          ),
           _vm._v(" "),
           _c(
             "div",
@@ -43977,7 +44035,20 @@ var render = function() {
                       )
                     }
                   }
-                })
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "text-danger",
+                    class: {
+                      hidden:
+                        _vm.errors["components." + index + ".name"] == undefined
+                    },
+                    staticStyle: { "margin-right": "10px" }
+                  },
+                  [_vm._v(_vm._s(_vm.errors["components." + index + ".name"]))]
+                )
               ]),
               _vm._v(" "),
               _c("div", { staticClass: "col-md-2" }, [
@@ -44387,6 +44458,16 @@ var render = function() {
           ])
         ])
       ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
       _vm._v(" "),
       _c(
         "button",
@@ -45476,6 +45557,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -45511,17 +45594,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.disable.saving = true;
+            var self = this;
+
+            this.errors = [];
 
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
                 window.location = _this.redirectTo;
-            }).catch(function (response) {
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
             });
         }
     }
@@ -45587,8 +45677,30 @@ var render = function() {
               [_vm._v(_vm._s(layout.name))]
             )
           })
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["layout_id"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["layout_id"]))]
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c(
         "button",

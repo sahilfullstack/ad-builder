@@ -13,31 +13,35 @@
             <select name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">
                 <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
             </select>
+            <span class="text-danger" :class="{'hidden': errors['layout_id'] == undefined}" style="margin-right:10px;">{{errors['layout_id']}}</span>
         </div>
 
         <div class="form-group">
             <label for="name">NAME <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="name" placeholder="Example: Half Page Ad Template" v-model="form.name">
+            <span class="text-danger" :class="{'hidden': errors['name'] == undefined}" style="margin-right:10px;">{{errors['name']}}</span>
         </div>
 
         <div class="form-group">
             <label for="renderer">RENDERER <span class="text-danger">*</span></label>
             <input type="text" class="form-control" id="renderer" placeholder="Example: templates.renderer.half-page-ad-template" v-model="form.renderer">
+            <span class="text-danger" :class="{'hidden': errors['renderer'] == undefined}" style="margin-right:10px;">{{errors['renderer']}}</span>
         </div>
 
         <div class="form-group">
-            <label>COMPONENTS <span class="text-danger">*</span></label>
-            
-            
+            <label>COMPONENTS <span class="text-danger">*</span></label>                        
         </div>
 
         
         <div class="form-group" v-for="(component, index) in form.components" :key="index">
             <hr />
             <p><strong>COMPONENT #{{ index + 1 }} ({{ component.type }}) <span class="text-danger">*</span></strong></p>
+            <span class="text-danger" :class="{'hidden': errors['components.'+index+'.type'] == undefined}" style="margin-right:10px;">{{errors['components.'+index+'.type']}}</span>
+
             <div class="row" style="margin-bottom: 15px;">
                 <div class="col-md-10">
                     <input type="text" class="form-control" id="components" placeholder="Example: Cover Image" v-model="form.components[index]['name']">
+                     <span class="text-danger" :class="{'hidden': errors['components.'+index+'.name'] == undefined}" style="margin-right:10px;">{{errors['components.'+index+'.name']}}</span>
                 </div>
                 <div class="col-md-2">
                     <a href class="btn btn-danger" @click.prevent="removeComponentAtIndex(index)">Remove</a>
@@ -113,6 +117,9 @@
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'video')">Video</a></li>
             </ul>
         </div>
+
+
+        <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
 
         <button type="submit" class="btn btn-primary" :disabled="disable.creating">Create</button>
     </form>
@@ -198,6 +205,7 @@ export default {
             return rules[type];
         },
         addComponentAfterIndex(index, type = 'text') {
+        console.log(index);
             this.form.components.push({
                 type: type,
                 name: '',
@@ -209,6 +217,9 @@ export default {
         },
         create() {
             this.disable.creating = true;
+            var self = this;
+
+            this.errors = [];
 
             axios.post('/api/templates', this.form)
                 .then(response => {
@@ -217,11 +228,18 @@ export default {
 
                     window.location = this.afterCreatePath;
                 })
-                .catch(response => {
+                .catch(error => {
                     // Fixing the optimism.
                     this.disable.creating = false;
-
-                    console.log(response);
+                   
+                    _.forEach(error.response.data.errors, function(error, index) {
+                        console.log(self.errors);
+                        var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                        
+                        self.errors[errorIndex] = error[0];
+                    });
                 });
         },
     }

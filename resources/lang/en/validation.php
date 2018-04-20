@@ -100,8 +100,13 @@ return [
     */
 
     'custom' => [
-        'attribute-name' => [
-            'rule-name' => 'custom-message',
+        'components.*.name' => [
+            'required' => 'The name field is requeired.',
+            'distinct' => 'The name field has a duplicate value.',
+        ],
+        'components.*.type' => [
+            'required' => 'The type field is requeired.',
+            'in' => 'The type format is invalid.',
         ],
     ],
 

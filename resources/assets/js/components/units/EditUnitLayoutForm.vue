@@ -5,8 +5,10 @@
             <select name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">    
                 <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
             </select>
+            <span class="text-danger" :class="{'hidden': errors['layout_id'] == undefined}" style="margin-right:10px;">{{errors['layout_id']}}</span>
         </div>
-
+        <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
+        <br>
         <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
@@ -43,6 +45,9 @@ export default {
     methods: {
         update() {
             this.disable.saving = true;
+            var self = this;
+            
+            this.errors = [];
 
             axios.put('/api/units/' + this.unit.id, this.form)
                 .then(response => {
@@ -51,11 +56,17 @@ export default {
 
                     window.location = this.redirectTo;
                 })
-                .catch(response => {
+                .catch(error => {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    console.log(response);
+                    _.forEach(error.response.data.errors, function(error, index) {
+                        var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                                            
+                        self.errors[errorIndex] = error[0];
+                    });
                 });
         }
     }
