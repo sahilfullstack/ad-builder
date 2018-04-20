@@ -44,17 +44,17 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if(is_null($unitFound->name))
         {
-            throw new CustomInvalidInputException('name', 'Name is empty.');
+            throw new CustomInvalidInputException('parent_name', 'Name is empty.');
         }        
 
         if(is_null($unitFound->template_id))
         {
-            throw new CustomInvalidInputException('template', 'Template is empty.');
+            throw new CustomInvalidInputException('parent_template', 'Template is empty.');
         }
 
         if(is_null($unitFound->layout_id))
         {
-            throw new CustomInvalidInputException('layout', 'Layout is empty.');
+            throw new CustomInvalidInputException('parent_layout', 'Layout is empty.');
         }
 
         $template = Template::find($unitFound->template_id);
@@ -62,22 +62,55 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if($template->components->count() != count($unitFound->components))
         {
-            throw new CustomInvalidInputException('components', 'Components are missing.');
+            throw new CustomInvalidInputException('parent_components', 'Components are missing.');
         }
 
         foreach ($unitFound->components as $key => $component) 
         {
             if(empty($component))
             {                     
-                throw new CustomInvalidInputException('components', 'Components are missing.');
+                throw new CustomInvalidInputException('parent_components', 'Components are missing.');
             }
         }
 
-        dd("stop");
+        $childUnit = Unit::where('parent_id', $unitId)->first();
+
+        $this->validateChildUnit($childUnit);
+
         $unitFound->published_at = Carbon::now();
         $unitFound->save();
 
         return $unitFound->fresh();
+    }
+
+    private function validateChildUnit($unit)
+    {
+        // Validating that the selected template has the selected components.
+        if(is_null($unit->name))
+        {
+            throw new CustomInvalidInputException('name', 'Name is empty.');
+        }        
+
+        if(is_null($unit->template_id))
+        {
+            throw new CustomInvalidInputException('template', 'Template is empty.');
+        }
+
+        $template = Template::find($unit->template_id);
+
+        // Validating that the selected template has the selected components.
+        if($template->components->count() != count($unit->components))
+        {
+            throw new CustomInvalidInputException('components', 'Components are missing.');
+        }
+
+        foreach ($unit->components as $key => $component) 
+        {
+            if(empty($component))
+            {                     
+                throw new CustomInvalidInputException('components', 'Components are missing.');
+            }
+        }
     }
 
     public function update($unitId, UpdateUnitRequest $request)
@@ -196,7 +229,6 @@ class UnitController extends Controller
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
                 $name = $component->slug;
-                $component->type = 'video';
                 
                 $validator = \Validator::make([$name => $value], [
                     $name => [

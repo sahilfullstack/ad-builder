@@ -45611,6 +45611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
 
                     self.errors[errorIndex] = error[0];
+                    console.log(self.errors);
                 });
             });
         }
@@ -46562,6 +46563,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -46591,14 +46595,50 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.disable.saving = true;
+            var self = this;
+
+            this.errors = [];
 
             axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {}).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
                 _.forEach(error.response.data.errors, function (error, index) {
-                    console.log(error);
+                    var baseUrl = 'http://mesa.app';
+
+                    var url = '';
                     console.log(index);
+                    switch (index) {
+                        case "parent_components":
+                            url = '/units/' + self.unit.parent_id + '/edit?section=components';
+                            break;
+                        case "parent_layout":
+                            url = '/units/' + self.unit.parent_id + '/edit?section=layout';
+                            break;
+                        case "parent_template":
+                            url = '/units/' + self.unit.parent_id + '/edit?section=template';
+                            break;
+                        case "parent_name":
+                            url = '/units/' + self.unit.parent_id + '/edit?section=basic';
+                            break;
+                        case "components":
+                            url = '/units/' + self.unit.id + '/edit?section=components';
+                            break;
+                        case "template":
+                            url = '/units/' + self.unit.id + '/edit?section=template';
+                            break;
+                        case "name":
+                            url = '/units/' + self.unit.id + '/edit?section=basic';
+                            break;
+                        default:
+                            url = "";
+                            break;
+
+                    }
+
+                    self.errors['url'] = url;
+                    self.errors['general'] = error[0];
+                    console.log(self.errors);
                 });
             });
         }
@@ -46631,6 +46671,28 @@ var render = function() {
           "Make sure that you've completed all the fields before submitting it for approval."
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "30px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-danger",
+          class: { hidden: _vm.errors["url"] == undefined },
+          attrs: { href: _vm.errors["url"] }
+        },
+        [_vm._v("Fix It")]
+      ),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c(
         "button",

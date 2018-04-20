@@ -66,6 +66,7 @@ export default {
                                             : index;
                                             
                         self.errors[errorIndex] = error[0];
+                        console.log(self.errors);
                     });
                 });
         }
