@@ -196,7 +196,8 @@ class UnitController extends Controller
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
                 $name = $component->slug;
-
+                $component->type = 'video';
+                
                 $validator = \Validator::make([$name => $value], [
                     $name => [
                         'required',

@@ -16,14 +16,16 @@ class ValidComponents implements Rule
             'max_length' => ":attribute must be less than :ruleValue"
         ],
         'image' => [
-            'height' => 'Height of :attribute must be :ruleValue',
-            'width'  => 'Width of :attribute must be :ruleValue'
+            'height'  => 'Height of :attribute must be :ruleValue',
+            'width'   => 'Width of :attribute must be :ruleValue',
+            'invalid' => 'Image link is not valid',
         ],
         'video' => [
             'height'       => 'Height of :attribute must be :ruleValue',
             'width'        => 'Width of :attribute must be :ruleValue',
             'max_duration' => 'Maximum duration of :attribute must be :ruleValue',            
-            'min_duration' => 'Minimum duration of :attribute must be :ruleValue',            
+            'min_duration' => 'Minimum duration of :attribute must be :ruleValue',  
+            'invalid'      => 'Video link is not valid',          
         ]
     ];
     
@@ -89,7 +91,16 @@ class ValidComponents implements Rule
 
     private function validateImage($attribute, $value)
     {
-        $dimension = getImageSize($value);
+        try
+        {
+            $dimension = getImageSize($value);            
+        }
+        catch(\Exception $e)
+        {
+            $this->ruleKey = 'invalid';
+            return false;
+        }
+
         // index 1 for height
         // index 0 for width
         switch ($this->ruleKey) {
@@ -111,6 +122,12 @@ class ValidComponents implements Rule
     {
         $ffmpeg = FFMpeg\FFMpeg::create();
         $ffprobe = FFMpeg\FFProbe::create();
+
+        if( ! $ffprobe->isValid($value))
+        {
+            $this->ruleKey = 'invalid';
+            return false;
+        }
 
         $dimension = $ffmpeg->open($value)
             ->getStreams()

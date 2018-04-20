@@ -41,8 +41,8 @@ class GetDimensionsOfAMediaFileCommand extends Command
     public function handle()
     {
         // $this->playWithImage();
-        $this->validateComponents();
-        // $this->playWithVideo();
+        // $this->validateComponents();
+        $this->playWithVideo();
     }
 
     private function validateComponents()
@@ -85,14 +85,15 @@ class GetDimensionsOfAMediaFileCommand extends Command
     {
         $ffmpeg = FFMpeg\FFMpeg::create();
 
+        // $dimension = $ffmpeg->open("https://www.youtube.com/watch?v=3N3n23loy24")
         $dimension = $ffmpeg->open(resource_path("test_video.mp4"))
             ->getStreams()
             ->videos()
             ->first()
             ->getDimensions();
 
-        dd($dimension->getWidth());
-        dd($dimension->getHeight());
+        // dd($dimension->getWidth());
+        // dd($dimension->getHeight());
 
         $ffprobe = FFMpeg\FFProbe::create();
         // code gets duration of a video
