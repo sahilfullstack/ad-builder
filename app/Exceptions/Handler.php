@@ -15,7 +15,8 @@ class Handler extends ExceptionHandler
      * @var array
      */
     protected $dontReport = [
-        InvalidInputException::class
+        InvalidInputException::class,
+        CustomInvalidInputException::class
     ];
 
     /**
@@ -71,6 +72,10 @@ class Handler extends ExceptionHandler
 
             if ($exception instanceof AuthorizationException) {
                 return (new ForbiddenException)->getJsonResponse();
+            }            
+
+            if ($exception instanceof CustomInvalidInputException) {
+                return  $exception->getJsonResponse();
             }
 
             if ($exception instanceof \Illuminate\Database\Eloquent\ModelNotFoundException) {

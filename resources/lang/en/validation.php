@@ -108,6 +108,9 @@ return [
             'required' => 'The type field is requeired.',
             'in' => 'The type format is invalid.',
         ],
+        'name' => [
+            'required_if' => 'The name field is required'
+        ]
     ],
 
     /*

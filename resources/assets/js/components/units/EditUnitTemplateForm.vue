@@ -5,8 +5,11 @@
             <select name="template_id" id="template_id" class="form-control" v-model="form.template_id">    
                 <option v-for="template in templates" :key="template.id" :value="template.id">{{ template.name }}</option>
             </select>
+            <span class="text-danger" :class="{'hidden': errors['template_id'] == undefined}" style="margin-right:10px;">{{errors['template_id']}}</span>
         </div>
 
+        <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
+        <br>
         <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
@@ -49,6 +52,9 @@ export default {
     methods: {
         update() {
             this.disable.saving = true;
+            var self = this;
+            
+            this.errors = [];
 
             axios.put('/api/units/' + this.unit.id, this.form)
                 .then(response => {
@@ -57,11 +63,17 @@ export default {
 
                     window.location = this.redirectTo;
                 })
-                .catch(response => {
+                .catch(error => {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    console.log(response);
+                     _.forEach(error.response.data.errors, function(error, index) {
+                        var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                                            
+                        self.errors[errorIndex] = error[0];
+                    });
                 });
         }
     }

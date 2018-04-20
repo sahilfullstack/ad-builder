@@ -26,8 +26,8 @@ class UpdateUnitRequest extends FormRequest
     public function rules()
     {
         return [
-            'name'        => 'sometimes',
-            'layout_id'   => 'required|exists:layouts,id',
+            'name'        => 'required_if:section,name',
+            'layout_id'   => 'sometimes|exists:layouts,id',
             'template_id' => 'sometimes|exists:templates,id',
             'components'  => 'sometimes'
         ];

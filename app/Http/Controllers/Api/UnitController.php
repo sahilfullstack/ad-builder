@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
-use App\Exceptions\InvalidInputException;
+use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
 use Carbon\Carbon;
 use App\Models\Layout;
 
@@ -44,12 +44,17 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if(is_null($unitFound->name))
         {
-            throw new InvalidInputException('Name is empty.');
+            throw new CustomInvalidInputException('name', 'Name is empty.');
         }        
 
         if(is_null($unitFound->template_id))
         {
-            throw new InvalidInputException('Template is empty.');
+            throw new CustomInvalidInputException('template', 'Template is empty.');
+        }
+
+        if(is_null($unitFound->layout_id))
+        {
+            throw new CustomInvalidInputException('layout', 'Layout is empty.');
         }
 
         $template = Template::find($unitFound->template_id);
@@ -57,9 +62,18 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if($template->components->count() != count($unitFound->components))
         {
-            throw new InvalidInputException('Components are invalid.');
+            throw new CustomInvalidInputException('components', 'Components are missing.');
         }
 
+        foreach ($unitFound->components as $key => $component) 
+        {
+            if(empty($component))
+            {                     
+                throw new CustomInvalidInputException('components', 'Components are missing.');
+            }
+        }
+
+        dd("stop");
         $unitFound->published_at = Carbon::now();
         $unitFound->save();
 
@@ -181,7 +195,7 @@ class UnitController extends Controller
 
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
-                $name = str_replace('.', '-', $component->name);
+                $name = $component->slug;
 
                 $validator = \Validator::make([$name => $value], [
                     $name => [

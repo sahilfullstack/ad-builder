@@ -41,11 +41,14 @@ export default {
 
                     
                 })
-                .catch(response => {
+                .catch(error => {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    console.log(response);
+                    _.forEach(error.response.data.errors, function(error, index) {
+                        console.log(error);
+                        console.log(index);
+                    });
                 });
         }
     }

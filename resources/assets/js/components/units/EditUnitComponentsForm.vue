@@ -6,7 +6,11 @@
             <a href class="pull-right" v-if="component.type == 'image'" @click.prevent="upload(component.id)">Upload</a>
             <label :for="component.slug">{{ component.name }}</label>
             <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
+            <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
         </div>
+
+        <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
+        <br>
 
         <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
@@ -58,6 +62,10 @@ export default {
         update() {
             this.disable.saving = true;
 
+            var self = this;
+            
+            this.errors = [];
+
             axios.put('/api/units/' + this.unit.id, this.form)
                 .then(response => {
                     // Fixing the optimism.
@@ -65,11 +73,17 @@ export default {
 
                     window.location = this.redirectTo;
                 })
-                .catch(response => {
+                .catch(error => {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    console.log(response);
+                    _.forEach(error.response.data.errors, function(error, index) {
+                        var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                                            
+                        self.errors[errorIndex] = error[0];
+                    });
                 });
         },
 
@@ -82,6 +96,7 @@ export default {
                 })
                 .then(function(url) {
                     Vue.set(thiz.form.components, componentId, url);
+                
                 });
         },
     }

@@ -45799,6 +45799,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -45840,17 +45843,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var _this = this;
 
             this.disable.saving = true;
+            var self = this;
+
+            this.errors = [];
 
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
                 window.location = _this.redirectTo;
-            }).catch(function (response) {
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
             });
         }
     }
@@ -45916,8 +45926,30 @@ var render = function() {
               [_vm._v(_vm._s(template.name))]
             )
           })
+        ),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["template_id"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["template_id"]))]
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c(
         "button",
@@ -46019,6 +46051,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46067,16 +46103,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
+            var self = this;
+
+            this.errors = [];
+
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this2.disable.saving = false;
 
                 window.location = _this2.redirectTo;
-            }).catch(function (response) {
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this2.disable.saving = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
             });
         },
         upload: function upload(componentId) {
@@ -46166,9 +46210,31 @@ var render = function() {
                 _vm.$set(_vm.form.components, component.id, $event.target.value)
               }
             }
-          })
+          }),
+          _vm._v(" "),
+          _c(
+            "span",
+            {
+              staticClass: "text-danger",
+              class: { hidden: _vm.errors["component.slug"] == undefined },
+              staticStyle: { "margin-right": "10px" }
+            },
+            [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+          )
         ])
       }),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c(
         "button",
@@ -46271,6 +46337,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46288,7 +46358,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                name: this.unit.name
+                name: this.unit.name,
+                section: 'name'
             },
             errors: [],
             disable: {
@@ -46304,16 +46375,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
+            var self = this;
+
+            this.errors = [];
+
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
                 window.location = _this.redirectTo;
-            }).catch(function (response) {
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
             });
         }
     }
@@ -46365,8 +46444,30 @@ var render = function() {
               _vm.$set(_vm.form, "name", $event.target.value)
             }
           }
-        })
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["name"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["name"]))]
+        )
       ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c("br"),
       _vm._v(" "),
       _c(
         "button",
@@ -46491,11 +46592,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.disable.saving = true;
 
-            axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {}).catch(function (response) {
+            axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {}).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
-                console.log(response);
+                _.forEach(error.response.data.errors, function (error, index) {
+                    console.log(error);
+                    console.log(index);
+                });
             });
         }
     }
