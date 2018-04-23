@@ -46,7 +46,7 @@
                                 <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
                             @endif 
                             @if(Auth::user()->can('user.manage'))
-                                <li><a href="{{ route('users.approval.list') }}">Users</a></li>
+                                <li><a href="{{ route('users.list') }}">Users</a></li>
                             @endif
                         </ul>
                     @endguest

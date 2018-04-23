@@ -47470,7 +47470,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var thiz = this;
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to reject the ad?',
+                    message: 'Do you really want to reject the user?',
                     user: this.user
                 }
             }).then(function (url) {
