@@ -24,7 +24,7 @@ export default {
             let thiz = this;
             Modal.show(ConfirmModal, {
                 propsData: {
-                        message:'Do you really want to reject the ad?',
+                        message:'Do you really want to reject the user?',
                         user: this.user
                     }
                 })
