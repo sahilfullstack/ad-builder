@@ -40,8 +40,8 @@
                     @else
                         <ul class="nav navbar-nav">
                             <li><a href="{{ route('templates.list') }}">Templates</a></li>
-                            <li><a href="{{ route('units.list') }}">Ad Builder</a></li>
-                            <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Page Builder</a></li>
+                            <li><a href="{{ route('units.list') }}">Ads</a></li>
+                            <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li>
                             @if(Auth::user()->can('unit.approve'))
                                 <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
                             @endif 

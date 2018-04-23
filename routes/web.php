@@ -19,9 +19,11 @@ Auth::routes();
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
+Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
 
 Route::get('/units', 'UnitController@list')->name('units.list');
 Route::get('/units/create', 'UnitController@create')->name('units.create');
+Route::get('/units/{unit}', 'UnitController@show')->name('units.show');
 Route::get('/units/{unit}/edit', 'UnitController@edit')->name('units.edit');
 Route::get('/units/{unit}/render', 'UnitController@render')->name('units.render');
 Route::get('/units/{unit}/edit/page', 'UnitController@editLandingPage')->name('units.edit-landing-page');

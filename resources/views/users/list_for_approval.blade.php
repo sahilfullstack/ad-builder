@@ -9,9 +9,8 @@
             </h1>
             <hr>
 
-            <div class="panel">
+            <div class="panel panel-default">
                 <div class="panel-body">
-                    @if($users->count() > 0)
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                         <th class="text-center">#</th>
@@ -35,9 +34,6 @@
                         </td>
                         </tr>
                     @endforeach
-                    @else
-                        <em>No user to accept or reject.</em>
-                    @endif
                     </table>
                 </div>
             </div>
