@@ -28,8 +28,10 @@
                         <td>{{$user->email}}</td>
                         <td>{{$user->created_at->toDayDateTimeString()}}</td>
                         <td>
-                            <create-user-approve-button :user="{{ $user->toJson() }}"></create-user-approve-button>
-                            <create-user-reject-button :user="{{ $user->toJson() }}"></create-user-reject-button>
+                            @if(is_null($user->approved_at) && is_null($user->rejected_at))
+                                <create-user-approve-button :user="{{ $user->toJson() }}"></create-user-approve-button>
+                                <create-user-reject-button :user="{{ $user->toJson() }}"></create-user-reject-button>
+                            @endif
                         </td>
                         </tr>
                     @endforeach
