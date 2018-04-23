@@ -16,6 +16,7 @@ class AddApprovedAndRejectedAtToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->timestamp('approved_at')->nullable()->default(NULL)->after('password');
             $table->timestamp('rejected_at')->nullable()->default(NULL)->after('approved_at');
+            $table->boolean('active')->default(0)->after('rejected_at');
         });
     }
 
@@ -29,6 +30,7 @@ class AddApprovedAndRejectedAtToUsersTable extends Migration
         Schema::table('users', function (Blueprint $table) { 
             $table->dropColumn('rejected_at'); 
             $table->dropColumn('approved_at'); 
+            $table->dropColumn('active'); 
         });
     }
 }

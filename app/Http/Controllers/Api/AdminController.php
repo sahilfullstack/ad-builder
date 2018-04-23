@@ -16,10 +16,12 @@ class AdminController extends Controller
         if($request->action == 'approve') 
         {
             $userFound->approved_at = Carbon::now();                
+            $userFound->active = 1;                
         }
         else 
         {
             $userFound->rejected_at = Carbon::now();
+            $userFound->active = 0;                
         }
 
         $userFound->save();
