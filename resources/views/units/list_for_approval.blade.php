@@ -8,7 +8,7 @@
                 Approve or Reject Units 
             </h1>
             <hr>
-
+            
             @foreach($units as $unit)
                 <div class="panel panel-default">
                     <div class="panel-heading">

@@ -179,7 +179,7 @@ module.exports = function normalizeComponent (
 "use strict";
 
 
-var bind = __webpack_require__(5);
+var bind = __webpack_require__(6);
 var isBuffer = __webpack_require__(21);
 
 /*global toString:true*/
@@ -513,6 +513,53 @@ module.exports = g;
 /* 3 */
 /***/ (function(module, exports, __webpack_require__) {
 
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(79)
+/* template */
+var __vue_template__ = __webpack_require__(80)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/ConfirmModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-828081f8", Component.options)
+  } else {
+    hotAPI.reload("data-v-828081f8", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, exports, __webpack_require__) {
+
 "use strict";
 /* WEBPACK VAR INJECTION */(function(process) {
 
@@ -533,10 +580,10 @@ function getDefaultAdapter() {
   var adapter;
   if (typeof XMLHttpRequest !== 'undefined') {
     // For browsers use XHR adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   } else if (typeof process !== 'undefined') {
     // For node use HTTP adapter
-    adapter = __webpack_require__(7);
+    adapter = __webpack_require__(8);
   }
   return adapter;
 }
@@ -607,10 +654,10 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(7)))
 
 /***/ }),
-/* 4 */
+/* 5 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -657,7 +704,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 5 */
+/* 6 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -675,7 +722,7 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 6 */
+/* 7 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -865,7 +912,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 7 */
+/* 8 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -876,7 +923,7 @@ var settle = __webpack_require__(24);
 var buildURL = __webpack_require__(26);
 var parseHeaders = __webpack_require__(27);
 var isURLSameOrigin = __webpack_require__(28);
-var createError = __webpack_require__(8);
+var createError = __webpack_require__(9);
 var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(29);
 
 module.exports = function xhrAdapter(config) {
@@ -1052,7 +1099,7 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 8 */
+/* 9 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1077,7 +1124,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 9 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1089,7 +1136,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 10 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -1115,58 +1162,11 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(0)
-/* script */
-var __vue_script__ = __webpack_require__(79)
-/* template */
-var __vue_template__ = __webpack_require__(80)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/ConfirmModal.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-828081f8", Component.options)
-  } else {
-    hotAPI.reload("data-v-828081f8", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
 /* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(85);
+module.exports = __webpack_require__(91);
 
 
 /***/ }),
@@ -1203,6 +1203,8 @@ Vue.component('edit-unit-submit-form', __webpack_require__(71));
 Vue.component('edit-unit-landing-page-form', __webpack_require__(74));
 Vue.component('create-approve-button', __webpack_require__(77));
 Vue.component('create-reject-button', __webpack_require__(82));
+Vue.component('create-user-approve-button', __webpack_require__(85));
+Vue.component('create-user-reject-button', __webpack_require__(88));
 
 var app = new Vue({
   el: '#app'
@@ -31178,9 +31180,9 @@ module.exports = __webpack_require__(20);
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(5);
+var bind = __webpack_require__(6);
 var Axios = __webpack_require__(22);
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 
 /**
  * Create an instance of Axios
@@ -31213,9 +31215,9 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(10);
+axios.Cancel = __webpack_require__(11);
 axios.CancelToken = __webpack_require__(36);
-axios.isCancel = __webpack_require__(9);
+axios.isCancel = __webpack_require__(10);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -31263,7 +31265,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(3);
+var defaults = __webpack_require__(4);
 var utils = __webpack_require__(1);
 var InterceptorManager = __webpack_require__(31);
 var dispatchRequest = __webpack_require__(32);
@@ -31368,7 +31370,7 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 "use strict";
 
 
-var createError = __webpack_require__(8);
+var createError = __webpack_require__(9);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -31803,8 +31805,8 @@ module.exports = InterceptorManager;
 
 var utils = __webpack_require__(1);
 var transformData = __webpack_require__(33);
-var isCancel = __webpack_require__(9);
-var defaults = __webpack_require__(3);
+var isCancel = __webpack_require__(10);
+var defaults = __webpack_require__(4);
 var isAbsoluteURL = __webpack_require__(34);
 var combineURLs = __webpack_require__(35);
 
@@ -31963,7 +31965,7 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 "use strict";
 
 
-var Cancel = __webpack_require__(10);
+var Cancel = __webpack_require__(11);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -43351,7 +43353,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(6)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(7)))
 
 /***/ }),
 /* 42 */
@@ -44619,7 +44621,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
 //
 //
@@ -46036,7 +46038,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
 //
 //
@@ -46324,7 +46326,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
 //
 //
@@ -46881,7 +46883,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -47175,7 +47177,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -47258,6 +47260,274 @@ if (false) {
 
 /***/ }),
 /* 85 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(86)
+/* template */
+var __vue_template__ = __webpack_require__(87)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/CreateUserApproveButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-717a930a", Component.options)
+  } else {
+    hotAPI.reload("data-v-717a930a", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 86 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: {
+            type: Object,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            disable: {
+                approving: false
+            }
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
+                propsData: {
+                    message: 'Do you really want to approve the user?',
+                    user: this.user
+                }
+            }).then(function (url) {
+                thiz.disable.approving = true;
+                axios.put('/api/users/' + thiz.user.id + '/approve', { action: 'approve' }).then(function (response) {
+                    thiz.disable.approving = false;
+
+                    // reloading the page
+                    location.reload();
+                }).catch(function (error) {
+                    thiz.disable.approving = false;
+                    console.log(error);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 87 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-sm btn-success",
+      attrs: { href: "", disabled: _vm.disable.approving },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [_vm._v("Approve")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-717a930a", module.exports)
+  }
+}
+
+/***/ }),
+/* 88 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(89)
+/* template */
+var __vue_template__ = __webpack_require__(90)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/CreateUserRejectButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a951856", Component.options)
+  } else {
+    hotAPI.reload("data-v-5a951856", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 89 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: {
+            type: Object,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            disable: {
+                rejecting: false
+            }
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
+                propsData: {
+                    message: 'Do you really want to reject the ad?',
+                    user: this.user
+                }
+            }).then(function (url) {
+                thiz.disable.rejecting = true;
+                axios.put('/api/users/' + thiz.user.id + '/approve', { action: 'reject' }).then(function (response) {
+                    thiz.disable.rejecting = false;
+
+                    // reloading the page
+                    location.reload();
+                }).catch(function (error) {
+                    thiz.disable.rejecting = false;
+                    console.log(error);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 90 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-sm btn-danger",
+      attrs: { href: "", disabled: _vm.disable.rejecting },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [_vm._v("Reject")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5a951856", module.exports)
+  }
+}
+
+/***/ }),
+/* 91 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

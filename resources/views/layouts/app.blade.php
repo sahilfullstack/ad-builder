@@ -44,6 +44,7 @@
                             <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Page Builder</a></li>
                             @if(Auth::user()->can('unit.approve'))
                                 <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
+                                <li><a href="{{ route('users.approval.list') }}">Users</a></li>
                             @endif 
                         </ul>
                     @endguest

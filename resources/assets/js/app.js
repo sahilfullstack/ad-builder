@@ -28,6 +28,8 @@ Vue.component('edit-unit-submit-form', require('./components/units/EditUnitSubmi
 Vue.component('edit-unit-landing-page-form', require('./components/units/EditUnitLandingPageForm.vue'));
 Vue.component('create-approve-button', require('./components/units/CreateApproveButton.vue'));
 Vue.component('create-reject-button', require('./components/units/CreateRejectButton.vue'));
+Vue.component('create-user-approve-button', require('./components/users/CreateUserApproveButton.vue'));
+Vue.component('create-user-reject-button', require('./components/users/CreateUserRejectButton.vue'));
 
 const app = new Vue({
     el: '#app'
