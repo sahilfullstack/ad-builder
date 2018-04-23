@@ -15,6 +15,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         Commands\ChangePermissionOfUserCommand::class,
         Commands\CreateLayoutCommand::class,
+        Commands\ApproveUserCommand::class,
     ];
 
     /**

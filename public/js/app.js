@@ -46968,10 +46968,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         message: {
             type: String,
             required: true
-        },
-        unit: {
-            type: Object,
-            required: true
         }
     },
 

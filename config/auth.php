@@ -132,6 +132,7 @@ return [
                 'template.manage',
                 'layout.manage',
                 'unit.approve',
+                'user.manage',
             ]
         ],
     ],
@@ -151,6 +152,8 @@ return [
         'unit.approve' => [
             'name' => 'Approve/Reject a unit.',
         ],
+        'user.manage' => [
+            'name' => 'Approve/Reject a user.',
+        ],
     ],
-
 ];

@@ -29,11 +29,7 @@
     		message: {
     			type: String,
     			required: true,
-    		}, 
-	    	unit: {
-	            type: Object,
-	            required: true
-	        }
+    		}
     	},
 
     	data: function() {

@@ -3,13 +3,14 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
 use App\User;
 use Carbon\Carbon;
+use App\Http\Requests\{ApproveUserRequest};
+
 
 class AdminController extends Controller
 {
-    public function approve($userId, Request $request)
+    public function approve($userId, ApproveUserRequest $request)
     {
         $userFound = User::find($userId);
 
