@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Unit;
 use App\Models\Layout;
+use App\Http\Requests\{ListUnitRequest};
 
 class UnitController extends Controller
 {
@@ -151,7 +152,7 @@ class UnitController extends Controller
         return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
     }
     
-    public function listUnitsForApproval()
+    public function listUnitsForApproval(ListUnitRequest $request)
     {
 
       $units = Unit::notDeleted()->with(['template', 'template.components'])

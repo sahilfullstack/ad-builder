@@ -21,6 +21,18 @@ class UnitPolicy
     }
 
     /**
+     * Determine whether the user can list unit.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function list(User $user)
+    {
+        return $user->can('unit.approve');
+    }
+
+
+    /**
      * Determine whether the user can publish the unit.
      *
      * @param  \App\User  $user
@@ -50,9 +62,8 @@ class UnitPolicy
      * @param  \App\User  $user
      * @return mixed
      */
-    public function approve(User $user, Unit $unit)
+    public function approve(User $user)
     {
-        dd($user->can('unit.approve'));
         return $user->can('unit.approve');
     }
 }

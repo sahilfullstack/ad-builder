@@ -20,6 +20,17 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can list user.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function list(User $user)
+    {
+        return $user->can('user.manage');
+    }
+
+    /**
      * Determine whether the user can approve unit.
      *
      * @param  \App\User  $user

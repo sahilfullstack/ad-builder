@@ -4,9 +4,9 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
-use App\Models\Unit;
+use App\User;
 
-class ApproveUnitRequest extends FormRequest
+class ListUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class ApproveUnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('approve', Unit::class);
+        return auth()->user()->can('list', User::class);
     }
 
     /**
@@ -25,8 +25,7 @@ class ApproveUnitRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'action' => 'required|in:approve,reject'
+        return [            
         ];
     }
 }
