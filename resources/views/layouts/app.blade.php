@@ -39,6 +39,7 @@
 
                     @else
                         <ul class="nav navbar-nav">
+                            <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
                             <li><a href="{{ route('templates.list') }}">Templates</a></li>
                             <li><a href="{{ route('units.list') }}">Ads</a></li>
                             <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li>

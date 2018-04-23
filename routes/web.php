@@ -17,6 +17,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
 Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
