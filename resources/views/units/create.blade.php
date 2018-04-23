@@ -1,9 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    
-</style>
 <div class="container">
     <h1>Add New Unit</h1>
     <hr>
