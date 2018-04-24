@@ -40,7 +40,7 @@
                             @foreach($unit->template->components as $component)
                                 <li class="list-group-item">
                                     <h5><strong>{{ $component->name }}</strong></h5>
-                                    @if(empty($unit->components[$component->slug]))
+                                    @if(! empty($unit->components[$component->slug]))
                                         <p>{{ $unit->components[$component->slug] }}</p>
                                     @else
                                         <p><em>Not defined yet.</em></p>
@@ -88,7 +88,7 @@
                                 @foreach($unit->child->template->components as $component)
                                     <li class="list-group-item">
                                         <h5><strong>{{ $component->name }}</strong></h5>
-                                        @if(empty($unit->child->components[$component->slug]))
+                                        @if(! empty($unit->child->components[$component->slug]))
                                             <p>{{ $unit->child->components[$component->slug] }}</p>
                                         @else
                                             <p><em>Not defined yet.</em></p>
