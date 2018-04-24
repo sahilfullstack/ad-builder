@@ -36,4 +36,9 @@ class TemplateController extends Controller
 
         return view('templates.create', compact('layouts'));
     }
+
+    public function show(Template $template)
+    {        
+        return view('templates.show', compact('template'));
+    }
 }

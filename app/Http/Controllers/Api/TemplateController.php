@@ -6,7 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Component;
-use App\Models\Unit;
+use App\Models\Template;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Exceptions\InvalidInputException;
 
