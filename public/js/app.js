@@ -43654,6 +43654,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -43691,22 +43698,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
     watch: {
-        // form: {
-        //     handler(current, previous) {
-        //         let components = [];
-        //         _.forEach(current.components, (component) => {
-        //             if(component.type == 'image') {
-        //                 component.rules = {
-        //                     width: 200,
-        //                     height: 200
-        //                 }
-        //             }
-        //             components.push(component);
-        //         });
-        //         Vue.set(this.form, 'components', components);
-        //     },
-        //     deep: true
-        // },
         selectedType: function selectedType(current, previous) {
             Vue.set(this.form, 'layout_id', null);
         }
@@ -43730,7 +43721,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     max_duration: 60,
                     width: null,
                     height: null
-                }
+                },
+                qr: {}
             };
 
             return rules[type];
@@ -43738,7 +43730,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         addComponentAfterIndex: function addComponentAfterIndex(index) {
             var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'text';
 
-            console.log(index);
             this.form.components.push({
                 type: type,
                 name: '',
@@ -44392,6 +44383,10 @@ var render = function() {
                   ])
                 ])
               ])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "qr"
+            ? _c("div", { staticClass: "row" }, [_vm._m(6, true)])
             : _vm._e()
         ])
       }),
@@ -44399,7 +44394,7 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "btn-group" }, [
-        _vm._m(6),
+        _vm._m(7),
         _vm._v(" "),
         _c("ul", { staticClass: "dropdown-menu" }, [
           _c("li", [
@@ -44456,6 +44451,22 @@ var render = function() {
                 }
               },
               [_vm._v("Video")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(_vm.form.components.length, "qr")
+                  }
+                }
+              },
+              [_vm._v("QR Code")]
             )
           ])
         ])
@@ -44536,6 +44547,14 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [_c("strong", [_vm._v("CONSTRAINTS")])])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("em", [_vm._v("None available for QR Code.")])
+    ])
   },
   function() {
     var _vm = this

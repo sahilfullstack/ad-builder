@@ -31,7 +31,7 @@ class StoreTemplateRequest extends FormRequest
             'name' => 'required',
             'renderer' => 'required',
             'components.*.name' => 'required|distinct',
-            'components.*.type' => 'required|in:image,text,video',
+            'components.*.type' => 'required|in:image,text,video,qr',
         ];
     }
 }

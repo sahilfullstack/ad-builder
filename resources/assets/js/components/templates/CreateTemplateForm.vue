@@ -103,6 +103,12 @@
                 </div>
             </div>
 
+            <div class="row" v-if="form.components[index]['type'] == 'qr'">
+                <div class="col-md-12">
+                    <em>None available for QR Code.</em>
+                </div>
+            </div>
+
         </div>
         
         <hr />
@@ -115,6 +121,7 @@
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'text')">Text</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'image')">Image</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'video')">Video</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'qr')">QR Code</a></li>
             </ul>
         </div>
 
@@ -162,22 +169,6 @@ export default {
     },
 
     watch: {
-        // form: {
-        //     handler(current, previous) {
-        //         let components = [];
-        //         _.forEach(current.components, (component) => {
-        //             if(component.type == 'image') {
-        //                 component.rules = {
-        //                     width: 200,
-        //                     height: 200
-        //                 }
-        //             }
-        //             components.push(component);
-        //         });
-        //         Vue.set(this.form, 'components', components);
-        //     },
-        //     deep: true
-        // },
         selectedType(current, previous) {
             Vue.set(this.form, 'layout_id', null);
         } 
@@ -199,13 +190,15 @@ export default {
                     max_duration: 60,
                     width: null,
                     height: null
+                },
+                qr: {
+
                 }
             }
 
             return rules[type];
         },
         addComponentAfterIndex(index, type = 'text') {
-        console.log(index);
             this.form.components.push({
                 type: type,
                 name: '',

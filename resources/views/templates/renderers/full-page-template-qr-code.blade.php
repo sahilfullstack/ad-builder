@@ -169,12 +169,12 @@
                     <p class="category-header">HEALTH</p>
 
                     <div class="logo">
-                        @if(empty($unit->components['logo']))
+                        @if(empty($unit->components['blog-link']))
                             <div class="logo-placeholder">
-                                {!! QrCode::size(200)->generate('LOGO') !!}
+                                Blog Link (QR)
                             </div>
                         @else
-                            <img src="{{ $unit->components['logo'] }}" alt="Logo">
+                            {!! QrCode::size(200)->generate($unit->components['blog-link']) !!}
                         @endif
                     </div>
 
