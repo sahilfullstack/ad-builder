@@ -80,7 +80,7 @@
             <div class="content">
                 <div class="title m-b-md">
 
-                   {!! QrCode::size(100)->generate('MESA') !!}
+                   {!! QrCode::size(250)->generate('MESA') !!}
                 </div>
             </div>
         </div>
