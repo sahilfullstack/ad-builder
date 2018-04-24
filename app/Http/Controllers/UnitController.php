@@ -37,6 +37,13 @@ class UnitController extends Controller
         return view('units.home', compact('units', 'type'));
     }
 
+    public function show(Unit $unit)
+    {
+        $unit->load('child', 'template.components');
+        
+        return view('units.show', compact('unit'));
+    }
+
     public function create()
     {
         $type = request()->input('type');
@@ -69,6 +76,14 @@ class UnitController extends Controller
 
     public function render(Unit $unit)
     {
+        if(request()->input('nullable', 'n') == 'y')
+        {
+            if(is_null($unit->template) || is_null($unit->template->renderer))
+            {
+                return view('templates.renderers.null');
+            }
+        }
+
         return view($unit->template->renderer, compact('unit'));
     }
 
