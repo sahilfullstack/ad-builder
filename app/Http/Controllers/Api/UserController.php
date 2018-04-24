@@ -8,7 +8,7 @@ use Carbon\Carbon;
 use App\Http\Requests\{ApproveUserRequest};
 
 
-class AdminController extends Controller
+class UserController extends Controller
 {
     public function approve($userId, ApproveUserRequest $request)
     {
