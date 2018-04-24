@@ -40,15 +40,17 @@
                     @else
                         <ul class="nav navbar-nav">
                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            <li><a href="{{ route('templates.list') }}">Templates</a></li>
+                            @can('templates.manage')
+                                <li><a href="{{ route('templates.list') }}">Templates</a></li>
+                            @endcan
                             <li><a href="{{ route('units.list') }}">Ads</a></li>
                             <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li>
-                            @if(Auth::user()->can('unit.approve'))
+                            @can('unit.approve')
                                 <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
-                            @endif 
-                            @if(Auth::user()->can('user.manage'))
+                            @endcan
+                            @can('user.manage')
                                 <li><a href="{{ route('users.list') }}">Users</a></li>
-                            @endif
+                            @endcan
                         </ul>
                     @endguest
 

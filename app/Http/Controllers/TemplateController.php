@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Layout;
+use App\Http\Requests;
 
 class TemplateController extends Controller
 {
@@ -23,14 +24,14 @@ class TemplateController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function list()
+    public function list(Requests\ListTemplatesRequest $request)
     {
         $templates = Template::notDeleted()->with('components', 'layout')->latest()->paginate();
 
         return view('templates.home', compact('templates'));
     }
 
-    public function create()
+    public function create(Requests\CreateTemplateRequest $request)
     {
         $layouts = Layout::notDeleted()->latest()->get();
 

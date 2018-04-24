@@ -19,7 +19,7 @@ class TemplatePolicy
      */
     public function view(User $user, Template $template)
     {
-        //
+        return $user->can('template.manage');
     }
 
     /**
@@ -42,7 +42,7 @@ class TemplatePolicy
      */
     public function update(User $user, Template $template)
     {
-        //
+        return $user->can('template.manage');
     }
 
     /**
@@ -54,6 +54,6 @@ class TemplatePolicy
      */
     public function delete(User $user, Template $template)
     {
-        //
+        return $user->can('template.manage');
     }
 }
