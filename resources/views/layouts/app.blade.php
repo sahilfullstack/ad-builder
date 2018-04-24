@@ -40,7 +40,7 @@
                     @else
                         <ul class="nav navbar-nav">
                             <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
-                            @can('templates.manage')
+                            @can('template.manage')
                                 <li><a href="{{ route('templates.list') }}">Templates</a></li>
                             @endcan
                             <li><a href="{{ route('units.list') }}">Ads</a></li>

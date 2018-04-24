@@ -3,7 +3,7 @@
 namespace App\Policies;
 
 use App\User;
-use App\Template;
+use App\Models\Template;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class TemplatePolicy
@@ -17,7 +17,7 @@ class TemplatePolicy
      * @param  \App\Template  $template
      * @return mixed
      */
-    public function view(User $user, Template $template)
+    public function view(User $user)
     {
         return $user->can('template.manage');
     }
@@ -40,7 +40,7 @@ class TemplatePolicy
      * @param  \App\Template  $template
      * @return mixed
      */
-    public function update(User $user, Template $template)
+    public function update(User $user)
     {
         return $user->can('template.manage');
     }
@@ -52,7 +52,7 @@ class TemplatePolicy
      * @param  \App\Template  $template
      * @return mixed
      */
-    public function delete(User $user, Template $template)
+    public function delete(User $user)
     {
         return $user->can('template.manage');
     }

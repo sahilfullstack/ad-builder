@@ -27,7 +27,6 @@ class TemplateController extends Controller
     public function list(Requests\ListTemplatesRequest $request)
     {
         $templates = Template::notDeleted()->with('components', 'layout')->latest()->paginate();
-
         return view('templates.home', compact('templates'));
     }
 
