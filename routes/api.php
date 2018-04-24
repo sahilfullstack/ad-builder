@@ -18,8 +18,8 @@ Route::post('/upload', ['as' => 'upload', 'uses' => 'UploadController@upload']);
  * Units
  */
 Route::post('/units', ['as' => 'units.store', 'uses' => 'UnitController@store']);
-Route::put('/units/{unitId}', ['as' => 'units.update', 'uses' => 'UnitController@update']);
-Route::put('/units/{unitId}/publish', ['as' => 'units.update', 'uses' => 'UnitController@publish']);
+Route::put('/units/{unit}', ['as' => 'units.update', 'uses' => 'UnitController@update']);
+Route::put('/units/{unit}/publish', ['as' => 'units.update', 'uses' => 'UnitController@publish']);
 
 Route::put('/units/{unit}/approve', ['as' => 'units.approve', 'uses' => 'UnitController@approve']);
 Route::put('/users/{user}/approve', ['as' => 'users.approve', 'uses' => 'UserController@approve']);

@@ -46620,7 +46620,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
 
-            axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {}).catch(function (error) {
+            axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {
+                window.location.href = '/units?type=ad';
+            }).catch(function (error) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 

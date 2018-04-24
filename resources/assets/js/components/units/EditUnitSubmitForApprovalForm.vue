@@ -43,7 +43,8 @@ export default {
             this.errors = [];
 
             axios.put('/api/units/' + this.unit.parent_id + '/publish', {})
-                .then(response => {                    
+                .then(response => {  
+                    window.location.href = '/units?type=ad';                  
                 })
                 .catch(error => {
                     // Fixing the optimism.

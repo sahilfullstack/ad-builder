@@ -37,35 +37,33 @@ class UnitController extends Controller
         return $unit->fresh();
     }    
 
-    public function publish($unitId, PublishUnitRequest $request)
-    {
-        $unitFound = Unit::find($unitId);
-        
+    public function publish(PublishUnitRequest $request, Unit $unit)
+    {        
         // Validating that the selected template has the selected components.
-        if(is_null($unitFound->name))
+        if(is_null($unit->name))
         {
             throw new CustomInvalidInputException('parent_name', 'Name is empty.');
         }        
 
-        if(is_null($unitFound->template_id))
+        if(is_null($unit->template_id))
         {
             throw new CustomInvalidInputException('parent_template', 'Template is empty.');
         }
 
-        if(is_null($unitFound->layout_id))
+        if(is_null($unit->layout_id))
         {
             throw new CustomInvalidInputException('parent_layout', 'Layout is empty.');
         }
 
-        $template = Template::find($unitFound->template_id);
+        $template = Template::find($unit->template_id);
 
         // Validating that the selected template has the selected components.
-        if($template->components->count() != count($unitFound->components))
+        if($template->components->count() != count($unit->components))
         {
             throw new CustomInvalidInputException('parent_components', 'Components are missing.');
         }
 
-        foreach ($unitFound->components as $key => $component) 
+        foreach ($unit->components as $key => $component) 
         {
             if(empty($component))
             {                     
@@ -73,14 +71,14 @@ class UnitController extends Controller
             }
         }
 
-        $childUnit = Unit::where('parent_id', $unitId)->first();
+        $childUnit = Unit::where('parent_id', $unit->id)->first();
 
         $this->validateChildUnit($childUnit);
 
-        $unitFound->published_at = Carbon::now();
-        $unitFound->save();
+        $unit->published_at = Carbon::now();
+        $unit->save();
 
-        return $unitFound->fresh();
+        return $unit->fresh();
     }
 
     private function validateChildUnit($unit)
@@ -113,30 +111,28 @@ class UnitController extends Controller
         }
     }
 
-    public function update($unitId, UpdateUnitRequest $request)
+    public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        $unitFound = Unit::find($unitId);
-
         $inputComponents = $request->components;
 
         // if layout is sent
         if (!is_null($request->layout_id))
         {
-            $unitFound->layout_id = $request->layout_id;
+            $unit->layout_id = $request->layout_id;
         }
 
         // if template is sent
         if( ! is_null($request->template_id))
         {
-            $unitFound->template_id = $request->template_id;            
+            $unit->template_id = $request->template_id;            
     
             $template = Template::notDeleted()->find($request->template_id);
 
-            if(count($unitFound->components) == 0)
+            if(count($unit->components) == 0)
             {
                 $templeteComponents = $template->components()->get();   
                 $preparedComponents = $this->preparedBlankComponents($templeteComponents);
-                $unitFound->components = $preparedComponents;
+                $unit->components = $preparedComponents;
             }
 
             if( ! is_null($request->components))
@@ -158,7 +154,7 @@ class UnitController extends Controller
              
                 if(count($preparedComponents > 0))
                 {
-                    $unitFound->components = $preparedComponents;
+                    $unit->components = $preparedComponents;
                 }
             }
         }
@@ -166,18 +162,18 @@ class UnitController extends Controller
         // if name is sent
         if(! is_null($request->name))
         {
-            $unitFound->name = $request->name;
+            $unit->name = $request->name;
         }  
 
         // if parent_id is sent
         if(! is_null($request->parent_id))
         {
-            $unitFound->parent_id = $request->parent_id;
+            $unit->parent_id = $request->parent_id;
         } 
 
-        $unitFound->save();
+        $unit->save();
 
-        return $unitFound->fresh();
+        return $unit->fresh();
     }
 
     private function preparedComponents($inputComponents, $templateComponents)

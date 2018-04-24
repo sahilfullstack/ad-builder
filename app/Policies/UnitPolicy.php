@@ -41,6 +41,7 @@ class UnitPolicy
      */
     public function publish(User $user, Unit $unit)
     {
+
         return($user->id === $unit->user_id);
     }    
 
