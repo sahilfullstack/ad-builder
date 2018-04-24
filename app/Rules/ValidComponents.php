@@ -120,8 +120,20 @@ class ValidComponents implements Rule
 
     private function validateVideo($attribute, $value)
     {
-        $ffmpeg = FFMpeg\FFMpeg::create();
-        $ffprobe = FFMpeg\FFProbe::create();
+        $ffmpeg = FFMpeg\FFMpeg::create(
+            [
+                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/bin/ffprobe',
+                'timeout'          => 3600, // the timeout for the underlying process
+                'ffmpeg.threads'   => 1,   // the number of threads that FFMpeg should use
+            ]);
+        $ffprobe = FFMpeg\FFProbe::create(
+            [
+                'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+                'ffprobe.binaries' => '/usr/bin/ffprobe',
+                'timeout'          => 3600, // the timeout for the underlying process
+                'ffmpeg.threads'   => 1,   // the number of threads that FFMpeg should use
+            ]);
 
         if( ! $ffprobe->isValid($value))
         {
