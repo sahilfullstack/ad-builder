@@ -8,7 +8,7 @@
                 Approve or Reject Units 
             </h1>
             <hr>
-            
+            @if($units->count() > 0)
             @foreach($units as $unit)
                 <div class="panel panel-default">
                     <div class="panel-heading">
@@ -53,6 +53,9 @@
 
                 </div>
             @endforeach
+            @else
+                <em>No components yet.</em>
+            @endif
         </div>
     </div>
 </div>
