@@ -131,6 +131,7 @@ return [
                 // Temlates
                 'template.manage',
                 'layout.manage',
+                'unit.manage',
                 'unit.approve',
                 'user.manage',
             ]
@@ -154,6 +155,9 @@ return [
         ],
         'user.manage' => [
             'name' => 'Approve/Reject a user.',
+        ],
+        'unit.manage' => [
+            'name' => 'View/Create/update/delete any unit.',
         ],
     ],
 ];

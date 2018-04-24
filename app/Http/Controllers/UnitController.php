@@ -29,9 +29,14 @@ class UnitController extends Controller
             return redirect(route('units.list', ['type' => 'ad']));
         }
 
-        $units = Unit::notDeleted()->with(['template', 'template.components'])
-        ->where('user_id', auth()->user()->id)
-        ->where('type', $type)
+        $units = Unit::notDeleted()->with(['template', 'template.components']);
+
+        if( ! auth()->user()->can('unit.manage'))
+        {
+            $units = $units->where('user_id', auth()->user()->id);
+        }
+
+        $units = $units->where('type', $type)
         ->latest()->paginate();
 
         return view('units.home', compact('units', 'type'));
