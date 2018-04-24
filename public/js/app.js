@@ -46168,7 +46168,7 @@ var render = function() {
       _vm._v(" "),
       _vm._l(_vm.components, function(component) {
         return _c("div", { key: component.id, staticClass: "form-group" }, [
-          component.type == "image"
+          component.type == "image" || component.type == "video"
             ? _c(
                 "a",
                 {

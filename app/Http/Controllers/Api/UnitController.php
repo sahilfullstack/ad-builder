@@ -229,7 +229,7 @@ class UnitController extends Controller
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
                 $name = $component->slug;
-                
+
                 $validator = \Validator::make([$name => $value], [
                     $name => [
                         'required',

@@ -79,7 +79,8 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    MESA
+
+                   {!! QrCode::size(100)->generate('MESA') !!}
                 </div>
             </div>
         </div>

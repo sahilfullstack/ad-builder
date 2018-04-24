@@ -86,16 +86,24 @@ class GetDimensionsOfAMediaFileCommand extends Command
         $ffmpeg = FFMpeg\FFMpeg::create();
 
         // $dimension = $ffmpeg->open("https://www.youtube.com/watch?v=3N3n23loy24")
-        $dimension = $ffmpeg->open(resource_path("test_video.mp4"))
+        $dimension = $ffmpeg->open("http://mesa.app/storage/uploads/Tcks2eRehCxJWbRKOASjqORusXKqCLcv9UmGzQU4.mp4")
+        // $dimension = $ffmpeg->open(resource_path("test_video.mp4"))
             ->getStreams()
             ->videos()
             ->first()
             ->getDimensions();
 
-        // dd($dimension->getWidth());
-        // dd($dimension->getHeight());
+        dd($dimension->getHeight(), $dimension->getWidth());
 
         $ffprobe = FFMpeg\FFProbe::create();
+ $validator = \Validator::make([$name => $value], [
+                    'file' => [
+              'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,image/jpeg,image/png'
+                        
+                    ]
+                ]);
+
+        dd($ffprobe->isValid(resource_path("test_video.mp4")));
         // code gets duration of a video
         $duration = $ffprobe
             ->format(resource_path("test_video.mp4")) // extracts file informations
