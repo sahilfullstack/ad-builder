@@ -46103,6 +46103,24 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -46138,7 +46156,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var components = {};
         _.forEach(this.components, function (component) {
-            components[component.id] = _this.unit.components[component.slug] ? _this.unit.components[component.slug] : '';
+            components[component.id] = _this.unit.components[component.slug] ? _this.unit.components[component.slug] : _this.defaultForDataType(component.type);
         });
 
         Vue.set(this.form, 'components', components);
@@ -46146,6 +46164,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
+        defaultForDataType: function defaultForDataType() {
+            var dataType = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'text';
+
+            var defaults = {
+                text: '',
+                image: '',
+                video: '',
+                qr: '',
+                images: ['']
+            };
+
+            return defaults[dataType];
+        },
+        pushAnotherElementInComponent: function pushAnotherElementInComponent(componentId) {
+            this.form.components[componentId].push('');
+        },
+        removeElementAtPositionFromComponent: function removeElementAtPositionFromComponent(componentId, index) {
+            this.form.components[componentId].splice(index, 1);
+        },
         update: function update() {
             var _this2 = this;
 
@@ -46172,13 +46209,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             });
         },
         upload: function upload(componentId) {
+            var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
             var thiz = this;
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
                 propsData: {
                     apiPath: '/api/upload'
                 }
             }).then(function (url) {
-                Vue.set(thiz.form.components, componentId, url);
+                if (index !== null) {
+                    // let currentArray = thiz.form.components[componentId];
+                    // currentArray[index] = url;
+                    Vue.set(thiz.form.components[componentId], index, url);
+                } else {
+                    Vue.set(thiz.form.components, componentId, url);
+                }
             });
         }
     }
@@ -46212,64 +46257,216 @@ var render = function() {
         : _vm._e(),
       _vm._v(" "),
       _vm._l(_vm.components, function(component) {
-        return _c("div", { key: component.id, staticClass: "form-group" }, [
-          component.type == "image" || component.type == "video"
-            ? _c(
-                "a",
-                {
-                  staticClass: "pull-right",
-                  attrs: { href: "" },
-                  on: {
-                    click: function($event) {
-                      $event.preventDefault()
-                      _vm.upload(component.id)
+        return _c(
+          "div",
+          { key: component.id, staticClass: "form-group" },
+          _vm._l(_vm.form.components[component.id], function(
+            formComponent,
+            formComponentIndex
+          ) {
+            return component.type == "images"
+              ? _c(
+                  "div",
+                  {
+                    key: component.id + "-" + formComponentIndex,
+                    staticClass: "row",
+                    staticStyle: { "margin-bottom": "15px" }
+                  },
+                  [
+                    _c("div", { staticClass: "col-md-12" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "pull-right",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.upload(component.id, formComponentIndex)
+                            }
+                          }
+                        },
+                        [_vm._v("Upload")]
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "label",
+                        {
+                          attrs: {
+                            for: component.slug + "_" + formComponentIndex
+                          }
+                        },
+                        [
+                          _vm._v(
+                            "\n                    " +
+                              _vm._s(component.name) +
+                              " #" +
+                              _vm._s(formComponentIndex + 1) +
+                              "\n                "
+                          )
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _c("input", {
+                        directives: [
+                          {
+                            name: "model",
+                            rawName: "v-model",
+                            value:
+                              _vm.form.components[component.id][
+                                formComponentIndex
+                              ],
+                            expression:
+                              "form.components[component.id][formComponentIndex]"
+                          }
+                        ],
+                        staticClass: "form-control",
+                        attrs: {
+                          type: "text",
+                          id: component.slug + "_" + formComponentIndex,
+                          placeholder: component.type
+                        },
+                        domProps: {
+                          value:
+                            _vm.form.components[component.id][
+                              formComponentIndex
+                            ]
+                        },
+                        on: {
+                          input: function($event) {
+                            if ($event.target.composing) {
+                              return
+                            }
+                            _vm.$set(
+                              _vm.form.components[component.id],
+                              formComponentIndex,
+                              $event.target.value
+                            )
+                          }
+                        }
+                      }),
+                      _vm._v(" "),
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.pushAnotherElementInComponent(component.id)
+                            }
+                          }
+                        },
+                        [
+                          _c("span", { staticClass: "text-success" }, [
+                            _vm._v("Add Another")
+                          ])
+                        ]
+                      ),
+                      _vm._v(" "),
+                      _vm.form.components[component.id].length > 1
+                        ? _c(
+                            "a",
+                            {
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.removeElementAtPositionFromComponent(
+                                    component.id,
+                                    formComponentIndex
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("Remove")
+                              ])
+                            ]
+                          )
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c(
+                        "span",
+                        {
+                          staticClass: "text-danger",
+                          class: {
+                            hidden: _vm.errors["component.slug"] == undefined
+                          },
+                          staticStyle: { "margin-right": "10px" }
+                        },
+                        [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+                      )
+                    ])
+                  ]
+                )
+              : _c("div", [
+                  component.type == "image" || component.type == "video"
+                    ? _c(
+                        "a",
+                        {
+                          staticClass: "pull-right",
+                          attrs: { href: "" },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              _vm.upload(component.id)
+                            }
+                          }
+                        },
+                        [_vm._v("Upload")]
+                      )
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _c("label", { attrs: { for: component.slug } }, [
+                    _vm._v(_vm._s(component.name))
+                  ]),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.form.components[component.id],
+                        expression: "form.components[component.id]"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      type: "text",
+                      id: component.slug,
+                      placeholder: component.type
+                    },
+                    domProps: { value: _vm.form.components[component.id] },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(
+                          _vm.form.components,
+                          component.id,
+                          $event.target.value
+                        )
+                      }
                     }
-                  }
-                },
-                [_vm._v("Upload")]
-              )
-            : _vm._e(),
-          _vm._v(" "),
-          _c("label", { attrs: { for: component.slug } }, [
-            _vm._v(_vm._s(component.name))
-          ]),
-          _vm._v(" "),
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.components[component.id],
-                expression: "form.components[component.id]"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: {
-              type: "text",
-              id: component.slug,
-              placeholder: component.type
-            },
-            domProps: { value: _vm.form.components[component.id] },
-            on: {
-              input: function($event) {
-                if ($event.target.composing) {
-                  return
-                }
-                _vm.$set(_vm.form.components, component.id, $event.target.value)
-              }
-            }
-          }),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              staticClass: "text-danger",
-              class: { hidden: _vm.errors["component.slug"] == undefined },
-              staticStyle: { "margin-right": "10px" }
-            },
-            [_vm._v(_vm._s(_vm.errors["component.slug"]))]
-          )
-        ])
+                  }),
+                  _vm._v(" "),
+                  _c(
+                    "span",
+                    {
+                      staticClass: "text-danger",
+                      class: {
+                        hidden: _vm.errors["component.slug"] == undefined
+                      },
+                      staticStyle: { "margin-right": "10px" }
+                    },
+                    [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+                  )
+                ])
+          })
+        )
       }),
       _vm._v(" "),
       _c(

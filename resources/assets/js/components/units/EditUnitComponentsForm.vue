@@ -3,10 +3,28 @@
         <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
         <p v-if="components.length == 0"><em>No components in the selected template.</em></p>
         <div class="form-group" v-for="component in components" :key="component.id">
-            <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
-            <label :for="component.slug">{{ component.name }}</label>
-            <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
-            <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+            <div v-if="component.type == 'images'" v-for="(formComponent, formComponentIndex) in form.components[component.id]" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">
+                <div class="col-md-12">
+                    <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex)">Upload</a>
+                    <label :for="component.slug + '_' + formComponentIndex">
+                        {{ component.name }} #{{ formComponentIndex + 1 }}
+                    </label>
+                    <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id][formComponentIndex]">
+                    <a href @click.prevent="pushAnotherElementInComponent(component.id)"><span class="text-success">Add Another</span></a>
+                    <a href @click.prevent="removeElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id].length > 1"><span class="text-danger">Remove</span></a>
+                    <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                </div>
+                <!-- <div class="col-md-4">
+                    <a href class="btn btn-sm btn-success" @click.prevent="pushAnotherElementInComponent(component.id)">Add</a>
+                    <a href class="btn btn-sm btn-danger" @click.prevent="removeElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id].length > 1">Remove</a>
+                </div> -->
+            </div>
+            <div v-else>
+                <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
+                <label :for="component.slug">{{ component.name }}</label>
+                <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
+                <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+            </div>
         </div>
 
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
@@ -52,13 +70,30 @@ export default {
         _.forEach(this.components, (component) => {
             components[component.id] = this.unit.components[component.slug]
                                             ? this.unit.components[component.slug]
-                                            : '';
+                                            : this.defaultForDataType(component.type);
         });
 
         Vue.set(this.form, 'components', components);
     },
 
     methods: {
+        defaultForDataType(dataType = 'text') {
+            let defaults = {
+                text: '',
+                image: '',
+                video: '',
+                qr: '',
+                images: ['']
+            }
+
+            return defaults[dataType];
+        },
+        pushAnotherElementInComponent(componentId) {
+            this.form.components[componentId].push('');
+        },
+        removeElementAtPositionFromComponent(componentId, index) {
+            this.form.components[componentId].splice(index, 1);
+        },
         update() {
             this.disable.saving = true;
 
@@ -87,7 +122,7 @@ export default {
                 });
         },
 
-        upload(componentId) {
+        upload(componentId, index = null) {
             let thiz = this;
             Modal.show(FileUpload, {
                 propsData: {
@@ -95,8 +130,14 @@ export default {
                     }
                 })
                 .then(function(url) {
-                    Vue.set(thiz.form.components, componentId, url);
-                
+                    if(index !== null)
+                    {
+                        // let currentArray = thiz.form.components[componentId];
+                        // currentArray[index] = url;
+                        Vue.set(thiz.form.components[componentId], index, url);
+                    } else {
+                        Vue.set(thiz.form.components, componentId, url);
+                    }
                 });
         },
     }
