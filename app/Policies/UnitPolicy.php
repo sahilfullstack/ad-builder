@@ -20,6 +20,18 @@ class UnitPolicy
         //
     }
 
+   /**
+     * Determine whether the user can view the unit.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Template  $unit
+     * @return mixed
+     */
+    public function view(User $user, Unit $unit)
+    {
+        return ($user->id === $unit->user_id || $user->canOverride($unit->user));
+    }
+
     /**
      * Determine whether the user can list unit.
      *
@@ -54,7 +66,7 @@ class UnitPolicy
      */
     public function update(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id);
+        return($user->id === $unit->user_id || $user->canOverride($unit->user));
     }
 
     /**

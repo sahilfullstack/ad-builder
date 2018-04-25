@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Unit;
 use App\Models\Layout;
-use App\Http\Requests\{ListUnitRequest};
+use App\Http\Requests\{ListUnitRequest, ShowUnitRequest, EditUnitRequest};
 
 class UnitController extends Controller
 {
@@ -42,7 +42,7 @@ class UnitController extends Controller
         return view('units.home', compact('units', 'type'));
     }
 
-    public function show(Unit $unit)
+    public function show(ShowUnitRequest $request, Unit $unit)
     {
         $unit->load('child', 'template.components');
         
@@ -64,7 +64,7 @@ class UnitController extends Controller
         return view('units.create', compact('type', 'templates'));
     }
 
-    public function edit(Unit $unit)
+    public function edit(EditUnitRequest $request, Unit $unit)
     {
         $section = request()->input('section');
 
@@ -136,7 +136,7 @@ class UnitController extends Controller
         return [];
     }
 
-    public function editLandingPage(Unit $unit)
+    public function editLandingPage(EditUnitRequest $request, Unit $unit)
     {
         // only ads can have page
         if($unit->type != 'ad')
