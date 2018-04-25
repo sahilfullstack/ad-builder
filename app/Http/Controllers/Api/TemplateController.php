@@ -6,7 +6,6 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Component;
-use App\Models\Template;
 use App\Http\Requests\StoreTemplateRequest;
 use App\Exceptions\InvalidInputException;
 
@@ -62,6 +61,10 @@ class TemplateController extends Controller
                 'min_duration'
             ],
             'image' => [
+                'height',
+                'width',
+            ],
+            'images' => [
                 'height',
                 'width',
             ]

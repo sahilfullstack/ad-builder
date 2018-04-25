@@ -113,8 +113,6 @@ class UnitController extends Controller
 
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        $inputComponents = $request->components;
-
         // if layout is sent
         if (!is_null($request->layout_id))
         {
@@ -225,7 +223,7 @@ class UnitController extends Controller
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
                 $name = $component->slug;
-
+                                
                 $validator = \Validator::make([$name => $value], [
                     $name => [
                         'required',
