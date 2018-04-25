@@ -43661,6 +43661,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -43722,7 +43723,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     width: null,
                     height: null
                 },
-                qr: {}
+                qr: {},
+                images: {
+                    width: null,
+                    height: null
+                }
+
             };
 
             return rules[type];
@@ -44147,7 +44153,8 @@ var render = function() {
               ])
             : _vm._e(),
           _vm._v(" "),
-          _vm.form.components[index]["type"] == "image"
+          _vm.form.components[index]["type"] == "image" ||
+          _vm.form.components[index]["type"] == "images"
             ? _c("div", { staticClass: "row" }, [
                 _c("div", { staticClass: "col-md-6" }, [
                   _c("div", { staticClass: "form-group" }, [
@@ -44467,6 +44474,25 @@ var render = function() {
                 }
               },
               [_vm._v("QR Code")]
+            )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "images"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Series of Images")]
             )
           ])
         ])

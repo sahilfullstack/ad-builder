@@ -10,6 +10,8 @@ class ValidComponents implements Rule
     protected $type;
     protected $ruleKey;
     protected $ruleValue;
+    protected $index;
+
     protected $ruleBook = [
         'text' => [
             'min_length' => ":attribute must be greater than :ruleValue",
@@ -19,6 +21,11 @@ class ValidComponents implements Rule
             'height'  => 'Height of :attribute must be :ruleValue',
             'width'   => 'Width of :attribute must be :ruleValue',
             'invalid' => 'Image link is not valid',
+        ],
+        'images' => [
+            'height'  => 'Height of :attribute  image with :key index must be :ruleValue',
+            'width'   => 'Width of :attribute image with :key index must be :ruleValue',
+            'invalid' => 'Image with :key index link is not valid',
         ],
         'video' => [
             'height'       => 'Height of :attribute must be :ruleValue',
@@ -62,11 +69,30 @@ class ValidComponents implements Rule
             case 'video':
                 return $this->validateVideo($attribute, $value);
                 break;
+
+            case 'images':
+                return $this->validateImages($attribute, $value);
+                break;
             
             default:
                 # code...
                 break;
         }
+        return true;
+    }
+
+    private function validateImages($attribute, $values)
+    {
+        foreach ($values as $key => $value) {
+            $result = $this->validateImage($attribute, $value);
+
+            if($result == false)
+            {
+                $this->index = $key+1;
+                return $result;                
+            }
+        }
+
         return true;
     }
 
@@ -183,6 +209,11 @@ class ValidComponents implements Rule
      */
     public function message()
     {
+        if($this->type == 'images')
+        {
+            return str_replace(':key', $this->index,str_replace(':ruleValue',  $this->ruleValue, $this->ruleBook[$this->type][$this->ruleKey]));
+        }
+
         return str_replace(':ruleValue',  $this->ruleValue, $this->ruleBook[$this->type][$this->ruleKey]);
     }
 }

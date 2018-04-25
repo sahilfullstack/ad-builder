@@ -62,7 +62,7 @@
                     </div>
                 </div>
             </div>
-            <div class="row" v-if="form.components[index]['type'] == 'image'">
+            <div class="row" v-if="form.components[index]['type'] == 'image' || form.components[index]['type'] == 'images'">
                 <div class="col-md-6">
                     <div class="form-group">
                         <label :for="index + 'width'">Width <span class="text-danger">*</span></label>
@@ -122,6 +122,7 @@
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'image')">Image</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'video')">Video</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'qr')">QR Code</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'images')">Series of Images</a></li>
             </ul>
         </div>
 
@@ -193,7 +194,12 @@ export default {
                 },
                 qr: {
 
-                }
+                },
+                images: {
+                    width: null,
+                    height: null
+                },
+
             }
 
             return rules[type];

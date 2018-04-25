@@ -63,6 +63,10 @@ class TemplateController extends Controller
             'image' => [
                 'height',
                 'width',
+            ],
+            'images' => [
+                'height',
+                'width',
             ]
         ];
 
