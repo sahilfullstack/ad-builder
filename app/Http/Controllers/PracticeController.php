@@ -13,6 +13,11 @@ class PracticeController extends Controller
         return view('practice.templates.1', compact('unit'));
     }
 
+    public function renderTemplate($template)
+    {
+        return view("templates.renderers.$template");
+    }
+
     public function embed()
     {
         return view('practice.embed');

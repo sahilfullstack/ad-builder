@@ -35,4 +35,5 @@ Route::get('/users', 'UserController@list')->name('users.list');
 Route::get('/units/{unit}', 'UnitController@show')->name('units.show');
 
 Route::get('/practice/templates/1', 'PracticeController@template1');
+Route::get('/practice/templates/{template}', 'PracticeController@renderTemplate');
 Route::get('/practice/templates/embed', 'PracticeController@embed');
