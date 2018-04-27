@@ -62,7 +62,7 @@
             height: 540px;
             font-family: sans-serif;
 
-            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-02.jpg);
+            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-04.jpg);
             background-size: 960px 540px;*/
         }
 
@@ -82,21 +82,21 @@
         }
 
         div.logo {
-            width: 192px;
-            height: 47px;
+            width: 206px;
+            height: 109px;
             position: absolute;
-            top: 22px;
-            left: 22px;
+            top: 35px;
+            left: 367px;
         }
 
         div.logo img {
-            width: 192px;
-            height: 47px;
+            width: 206px;
+            height: 109px;
         }
 
         div.logo div.logo-placeholder {
-            width: 192px;
-            height: 47px;
+            width: 206px;
+            height: 109px;
             outline: 3px dotted #CC337A;
         }
 
@@ -105,16 +105,16 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 45px;
         }
 
         div.title {
-            width: 690px;
+            width: 391px;
             height: 68px;
             position: absolute;
-            top: 62px;
-            left: 13px;
-            font-size: 19px;
+            top: 213px;
+            left: 356px;
+            font-size: 24px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
@@ -124,8 +124,8 @@
             width: 159px;
             height: 36px;
             position: absolute;
-            top: 20px;
-            left: 781px;
+            top: 250px;
+            left: 777px;
             text-transform: uppercase;
             font-weight: bold;
         }
@@ -134,8 +134,8 @@
             height: 55px;
             background: #C6E5F3;
             position: absolute;
-            top: 56px;
-            left: 781px;
+            top: 286px;
+            left: 775px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -147,64 +147,64 @@
             background: rgba(255,0,0,0.2);
         }
 
-        div.hero-image {
-            width: 603px;
-            height: 246px;
+        div#image-1 {
+            width: 329px;
+            height: 159px;
             position: absolute;
-            top: 131px;
+            top: 21px;
             left: 21px;
         }
-        div.hero-image img {
-            width: 603px;
-            height: 246px;
+        div#image-1 img {
+            width: 329px;
+            height: 159px;
         }
-        div.hero-image div.hero-image-placeholder {
-            width: 603px;
-            height: 246px;
+        div#image-1 div#image-1-placeholder {
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
 
-        div.hero-video {
-            width: 308px;
-            height: 246px;
+        div#image-2 {
+            width: 329px;
+            height: 159px;
             position: absolute;
-            top: 131px;
-            left: 638px;
+            top: 188px;
+            left: 21px;
         }
-        div.hero-video img {
-            width: 308px;
-            height: 246px;
+        div#image-2 img {
+            width: 329px;
+            height: 159px;
         }
-        div.hero-video div.hero-video-placeholder {
-            width: 308px;
-            height: 246px;
+        div#image-2 div#image-2-placeholder {
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
 
         div#text-1 {
-            width: 465px;
-            height: 134px;
+            width: 573px;
+            height: 160px;
             background: #C6E5F3;
             position: absolute;
-            top: 384px;
-            left: 21px;
+            top: 352px;
+            left: 363px;
         }
 
-        div.timeline {
-            width: 443px;
-            height: 134px;
+        div#image-3 {
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
             position: absolute;
-            top: 385px;
-            left: 503px;
+            top: 352px;
+            left: 21px;
         }
-        div.timeline img {
-            width: 443px;
-            height: 134px;
+        div#image-3 img {
+            width: 329px;
+            height: 159px;
         }
-        div.timeline div.timeline-placeholder {
-            width: 443px;
-            height: 134px;
+        div#image-3 div#image-3-placeholder {
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
     </style>
@@ -240,15 +240,21 @@
                 </div>
             </div>
 
-            <div class="hero-image">
-                <div class="hero-image-placeholder">
-                    Hero Image
+            <div id="image-1">
+                <div id="image-1-placeholder">
+                    Image 1
                 </div>
             </div>
 
-            <div class="hero-video">
-                <div class="hero-video-placeholder">
-                    Hero Video
+            <div id="image-2">
+                <div id="image-2-placeholder">
+                    Image 2
+                </div>
+            </div>
+
+            <div id="image-3">
+                <div id="image-3-placeholder">
+                    Image 3
                 </div>
             </div>
 
@@ -256,11 +262,6 @@
                 <p>Text 1</p>
             </div>
 
-            <div class="timeline">
-                <div class="timeline-placeholder">
-                    Timeline
-                </div>
-            </div>
         </div>
     </div>
 </body>
