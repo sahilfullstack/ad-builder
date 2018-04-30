@@ -62,8 +62,8 @@
             height: 540px;
             font-family: sans-serif;
 
-            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-09.jpg);
-            background-size: 960px 540px;*/
+            background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-05.jpg);
+            background-size: 960px 540px;
         }
 
         div.banner {
@@ -75,7 +75,7 @@
         div.body {
             width: 960px;
             height: 540px;
-            background: #fff;
+            background: transparent;
 
             position: relative;
             overflow: auto;
@@ -83,20 +83,20 @@
 
         div.logo {
             width: 206px;
-            height: 74px;
+            height: 109px;
             position: absolute;
-            top: 38px;
-            left: 374px;
+            top: 35px;
+            left: 367px;
         }
 
         div.logo img {
             width: 206px;
-            height: 74px;
+            height: 109px;
         }
 
         div.logo div.logo-placeholder {
             width: 206px;
-            height: 74px;
+            height: 109px;
             outline: 3px dotted #CC337A;
         }
 
@@ -105,16 +105,16 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 25px;
+            padding-top: 45px;
         }
 
         div.title {
-            width: 528px;
+            width: 391px;
             height: 68px;
             position: absolute;
-            top: 95px;
-            left: 205px;
-            font-size: 29px;
+            top: 213px;
+            left: 356px;
+            font-size: 24px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
@@ -124,8 +124,8 @@
             width: 159px;
             height: 36px;
             position: absolute;
-            top: 22px;
-            left: 781px;
+            top: 250px;
+            left: 777px;
             text-transform: uppercase;
             font-weight: bold;
         }
@@ -134,8 +134,8 @@
             height: 55px;
             background: #C6E5F3;
             position: absolute;
-            top: 60px;
-            left: 781px;
+            top: 286px;
+            left: 775px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -148,80 +148,63 @@
         }
 
         div#image-1 {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             position: absolute;
-            top: 205px;
-            left: 33px;
+            top: 21px;
+            left: 21px;
         }
         div#image-1 img {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
         }
         div#image-1 div#image-1-placeholder {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
 
         div#image-2 {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             position: absolute;
-            top: 205px;
-            left: 337px;
+            top: 188px;
+            left: 21px;
         }
         div#image-2 img {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
         }
         div#image-2 div#image-2-placeholder {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
 
         div#text-1 {
-            width: 285px;
-            height: 82px;
+            width: 573px;
+            height: 160px;
             background: #C6E5F3;
             position: absolute;
-            top: 431px;
-            left: 33px;
-        }
-
-        div#text-2 {
-            width: 285px;
-            height: 82px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 431px;
-            left: 337px;
-        }
-        div#text-3 {
-            width: 285px;
-            height: 82px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 431px;
-            left: 642px;
+            top: 352px;
+            left: 363px;
         }
 
         div#image-3 {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
             position: absolute;
-            top: 205px;
-            left: 642px;
+            top: 352px;
+            left: 21px;
         }
         div#image-3 img {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
         }
         div#image-3 div#image-3-placeholder {
-            width: 285px;
-            height: 208px;
+            width: 329px;
+            height: 159px;
             background: #C6E5F3;
         }
     </style>
@@ -277,12 +260,6 @@
 
             <div id="text-1">
                 <p>Text 1</p>
-            </div>
-            <div id="text-2">
-                <p>Text 2</p>
-            </div>
-            <div id="text-3">
-                <p>Text 3</p>
             </div>
 
         </div>
