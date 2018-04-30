@@ -7,7 +7,7 @@ use Illuminate\Validation\Rule;
 use App\User;
 use App\Models\Unit;
 
-class ListUnitRequest extends FormRequest
+class ListUnitRequestForApproval extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -16,7 +16,7 @@ class ListUnitRequest extends FormRequest
      */
     public function authorize()
     {
-        return true;
+        return auth()->user()->can('list', Unit::class);
     }
 
     /**
@@ -26,9 +26,7 @@ class ListUnitRequest extends FormRequest
      */
     public function rules()
     {
-        return [ 
-            'type' => 'required|in:ad,page',         
-            'ids'  => 'sometimes'           
+        return [            
         ];
     }
 }

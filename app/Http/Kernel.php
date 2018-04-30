@@ -59,5 +59,6 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'api_client' => \Laravel\Passport\Http\Middleware\CreateFreshApiToken::class,
+        'valid_api_headers' => \App\Http\Middleware\ValidApiHeaders::class,
     ];
 }

@@ -33,27 +33,5 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-use App\Models\Unit;
-
-Route::get('/units', function(){
-
-    $units = Unit::notDeleted()->with(['template', 'template.components'])
-    		->where('type', 'ad')
-    		->get()->toJson();
-
-    return response($units, 200);
-
-})->middleware('auth:api');
-
-Route::get('/units/{unit}', function(Unit $unit){
-
-    $units = Unit::notDeleted()->with(['template', 'template.components'])
-    		->where([
-    			'type'=> 'ad',
-    			'id' => $unit->id
-    			])
-    		->first()->toJson();
-
-    return response($units, 200);
-
-})->middleware('auth:api');
+Route::get('/units', ['as' => 'api.unit.list', 'uses' => 'UnitController@list'])->middleware('valid_api_headers');
+Route::get('/units/{unit}',  ['as' => 'api.unit.list', 'uses' => 'UnitController@show'])->middleware('valid_api_headers');

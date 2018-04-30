@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
-use App\Http\Requests\{StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
+use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
+
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
 use Carbon\Carbon;
 use App\Models\Layout;
 
 use App\Rules\ValidComponents;
+use App\Services\Formatter\Formatter;
 
 class UnitController extends Controller
 {
@@ -35,7 +37,62 @@ class UnitController extends Controller
         $unit->save();
 
         return $unit->fresh();
+    }  
+
+    public function list(ListUnitRequest $request)
+    {
+        $ids = $request->get('ids');
+
+        $units = Unit::notDeleted()->with(['template', 'template.components'])
+            ->where('type', $request->get('type'));
+
+        if(isset($ids) and count($ids) != 0)
+        {
+            $units = $units->whereIn('id', explode(',', $ids));
+        }
+
+        $units = $units->get()->toArray();
+
+
+        $formatter = Formatter::make($units, Formatter::ARR);
+
+        return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
     }    
+
+    private function returnResponseToSpecificFormat($formatter, $format)
+    {
+        $response = null;
+        switch ($format) {
+            case 'xml':
+                $response = $formatter->toXml();
+                break;
+            case 'json':
+                $response = $formatter->toJson();
+                break;
+            case 'array':
+                $response = $formatter->toArray();
+                break;
+            
+            default:
+                # code...
+                break;
+        }
+        return response($response, 200);
+    }       
+
+    public function show(Unit $unit, Request $request)
+    {
+        $units = Unit::notDeleted()->with(['template', 'template.components'])
+                ->where([
+                    'type'=> 'ad',
+                    'id' => $unit->id
+                    ])
+                ->first()->toArray();
+
+        $formatter = Formatter::make($units, Formatter::ARR);
+
+        return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
+    }
 
     public function publish(PublishUnitRequest $request, Unit $unit)
     {        
