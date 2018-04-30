@@ -12,6 +12,9 @@ use Illuminate\Http\Request;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::delete('/personal-access-tokens/{personal_access_token}', ['as' => 'personal-access-tokens.revoke', 'uses' => 'AccessController@revokePersonalAccessToken']);
+Route::post('/personal-access-tokens', ['as' => 'personal-access-token.create', 'uses' => 'AccessController@createPersonalAccessToken']);
+
 Route::post('/upload', ['as' => 'upload', 'uses' => 'UploadController@upload']);
 
 /**
@@ -29,3 +32,28 @@ Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateControl
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
+
+use App\Models\Unit;
+
+Route::get('/units', function(){
+
+    $units = Unit::notDeleted()->with(['template', 'template.components'])
+    		->where('type', 'ad')
+    		->get()->toJson();
+
+    return response($units, 200);
+
+})->middleware('auth:api');
+
+Route::get('/units/{unit}', function(Unit $unit){
+
+    $units = Unit::notDeleted()->with(['template', 'template.components'])
+    		->where([
+    			'type'=> 'ad',
+    			'id' => $unit->id
+    			])
+    		->first()->toJson();
+
+    return response($units, 200);
+
+})->middleware('auth:api');

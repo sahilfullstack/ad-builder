@@ -134,6 +134,9 @@ return [
                 'unit.manage',
                 'unit.approve',
                 'user.manage',
+
+                // Personal Access Tokens
+                'personal-access-token.manage',
             ]
         ],
     ],
@@ -158,6 +161,9 @@ return [
         ],
         'unit.manage' => [
             'name' => 'View/Create/update/delete any unit.',
+        ],
+        'personal-access-token.manage' => [
+            'name' => 'Create/delete a personal access token.',
         ],
     ],
 ];

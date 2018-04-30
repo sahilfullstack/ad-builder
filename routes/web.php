@@ -37,3 +37,10 @@ Route::get('/units/{unit}', 'UnitController@show')->name('units.show');
 Route::get('/practice/templates/1', 'PracticeController@template1');
 Route::get('/practice/templates/{template}', 'PracticeController@renderTemplate');
 Route::get('/practice/templates/embed', 'PracticeController@embed');
+
+Route::get('me/access-tokens', [
+	'uses' => 'DashboardController@accessToken',
+	'as' => 'users.access-tokens',
+	'middleware' => 'can:create,Laravel\Passport\Token'
+]);
+

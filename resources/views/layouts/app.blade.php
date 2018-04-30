@@ -67,6 +67,13 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    @can('create', Laravel\Passport\Token::class)
+                                    <li>
+                                        <a href="{{ route('users.access-tokens') }}">
+                                            Access Tokens
+                                        </a>
+                                    </li>
+                                    @endcan
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
