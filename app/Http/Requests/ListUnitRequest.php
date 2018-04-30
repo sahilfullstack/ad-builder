@@ -27,7 +27,7 @@ class ListUnitRequest extends FormRequest
     public function rules()
     {
         return [ 
-            'type' => 'required|in:ad,page',         
+            'type' => 'required_if:ids,null|in:ad,page',         
             'ids'  => 'sometimes'           
         ];
     }

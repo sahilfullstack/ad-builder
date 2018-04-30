@@ -41,18 +41,19 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $ids = $request->get('ids');
-
-        $units = Unit::notDeleted()->with(['template', 'template.components'])
-            ->where('type', $request->get('type'));
-
-        if(isset($ids) and count($ids) != 0)
+        $units = Unit::notDeleted()->with(['template', 'template.components']);
+      
+        if( ! is_null($request->get('type')))
         {
-            $units = $units->whereIn('id', explode(',', $ids));
+            $units = $units->where('type', $request->get('type'));
+        }
+
+        if( ! is_null($request->get('ids')))
+        {
+            $units = $units->whereIn('id', explode(',', $request->get('ids')));
         }
 
         $units = $units->get()->toArray();
-
 
         $formatter = Formatter::make($units, Formatter::ARR);
 
