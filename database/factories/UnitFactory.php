@@ -21,7 +21,7 @@ $factory->define(Unit::class, function (Faker $faker) {
     $componentValues = [];
     foreach($components as $component)
     {
-        $componentValues[$component->slug] = get_fake_component_value($component, $faker);
+        $componentValues[$component->id] = get_fake_component_value($component, $faker);
     }
 
     return [
@@ -39,7 +39,7 @@ $factory->define(Unit::class, function (Faker $faker) {
 
     $componentValues = [];
     foreach ($components as $component) {
-        $componentValues[$component->slug] = get_fake_component_value($component);
+        $componentValues[$component->id] = get_fake_component_value($component);
     }
 
     return [
@@ -57,7 +57,7 @@ $factory->define(Unit::class, function (Faker $faker) {
 
     $componentValues = [];
     foreach ($components as $component) {
-        $componentValues[$component->slug] = get_fake_component_value($component);
+        $componentValues[$component->id] = get_fake_component_value($component);
     }
 
     return [

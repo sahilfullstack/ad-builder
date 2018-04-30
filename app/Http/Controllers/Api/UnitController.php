@@ -237,7 +237,9 @@ class UnitController extends Controller
         $preparedComponents = [];
         foreach($templateComponents as $component)
         {
-            $preparedComponents[$component->slug] = $inputComponents[$component->id];
+            $preparedComponents[$component->id] = [
+                '_value' => $inputComponents[$component->id]
+            ];
         }
 
         return $preparedComponents;
@@ -248,7 +250,7 @@ class UnitController extends Controller
         $preparedComponents = [];
         foreach($templateComponents as $component)
         {
-            $preparedComponents[$component->slug] = '';
+            $preparedComponents[$component->id] = '';
         }
 
         return $preparedComponents;
