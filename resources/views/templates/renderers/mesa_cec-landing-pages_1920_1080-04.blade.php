@@ -195,7 +195,7 @@
             height: 159px;
             background: #C6E5F3;
             position: absolute;
-            top: 352px;
+            top: 355px;
             left: 21px;
         }
         div#image-3 img {
