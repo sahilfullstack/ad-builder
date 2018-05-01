@@ -19,17 +19,24 @@
             </div>
             <div v-else-if="component.type =='text'">
                 <div class="row" style="margin-bottom: 15px;">
-                    <label :for="component.slug">{{ component.name }}</label>
-                    <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
-                    <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    <div class="col-md-6">
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                    <div class="col-md-6">
+                        <color-picker v-model="form.color" />
+                    </div>
                 </div>
             </div>
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
-                    <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
-                    <label :for="component.slug">{{ component.name }}</label>
-                    <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
-                    <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    <div class="col-md-12">
+                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,6 +50,8 @@
 
 <script>
 import FileUpload from './../FileUpload';
+import ColorPicker from './../ColorPicker';
+
 export default {
     props: {
         components: {
@@ -59,11 +68,16 @@ export default {
         }
     },
 
+    components: {
+        'color-picker': ColorPicker
+    },
+
     data() {
         return {
             form: {
                 template_id: this.unit.template_id,
-                components: {}
+                components: {},
+                color: '#000000'
             },
             errors: [],
             disable: {

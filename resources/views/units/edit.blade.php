@@ -74,6 +74,6 @@
 
 <script>
     var frameElement = document.getElementById("renderer-iframe");
-    frameElement.contentWindow.location.href = frameElement.src;
+    if(frameElement) frameElement.contentWindow.location.href = frameElement.src;
 </script>
 @endsection

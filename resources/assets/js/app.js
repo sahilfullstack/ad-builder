@@ -9,6 +9,8 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.VueColor = require('vue-color');
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -31,6 +33,8 @@ Vue.component('create-reject-button', require('./components/units/CreateRejectBu
 Vue.component('create-user-approve-button', require('./components/users/CreateUserApproveButton.vue'));
 Vue.component('create-user-reject-button', require('./components/users/CreateUserRejectButton.vue'));
 Vue.component('personal-access-tokens', require('./components/passport/PersonalAccessToken.vue'));
+
+
 
 const app = new Vue({
     el: '#app'
