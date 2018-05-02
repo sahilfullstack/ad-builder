@@ -68,7 +68,7 @@
 
         div.banner {
             width: 1920px;
-            height: 10px;
+            height: 26.758px;
             background: #199FD4;
         }
 
