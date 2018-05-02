@@ -132,58 +132,55 @@
             background: #C6E5F3;
         }
 
-        div.hero-image4 {
+        div.logo {
             width: 414px;
             height: 207px;
             position: absolute;
             top: 320px;
             left: 720px;
         }
-        div.hero-image4 img {
+
+        div.logo img {
             width: 414px;
             height: 207px;
         }
-        div.hero-image4 div.hero-image4-placeholder {
+
+        div.logo div.logo-placeholder {
             width: 414px;
             height: 207px;
-            background: #C6E5F3;
+            outline: 3px dotted #CC337A;
         }
-        
-        div.hero-image5 {
+
+        div.logo div.logo-placeholder p {
+            color: #CC337A;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        div.title {
             width: 1017px;
             height: 76px;
             position: absolute;
             top: 590px;
             left: 720px;
-        }
-        div.hero-image5 img {
-            width: 1017px;
-            height: 76px;
-        }
-        div.hero-image5 div.hero-image5-placeholder {
-            width: 1017px;
-            height: 76px;
-            background: #C6E5F3;
+            font-size: 19px;
+            padding-top: 18px;
+            padding-left: 7px;
+            color: #29aae2;
         }
 
-        div.hero-image6 {
+        div#hero-text {
             width: 1147.858px;
             height: 315.815px;
+            background: #C6E5F3;
             position: absolute;
             top: 730px;
             left: 720px;
         }
-        div.hero-image6 img {
-            width: 1147.858px;
-            height: 315.815px;
-        }
-        div.hero-image6 div.hero-image6-placeholder {
-            width: 1147.858px;
-            height: 315.815px;
-            background: #C6E5F3;
-        }
 
-                div.social-qrs-1 {
+        div.social-qrs-1 {
             width: 114.5px;
             height: 110.796px;
             background: #C6E5F3;
@@ -217,9 +214,20 @@
             align-items: center;
         }
 
-        div.social-qrs div.social-qr {
-            width: 50px;
-            height: 50px;
+        div.social-qrs-1 div.social-qr {
+           width: 114.5px;
+            height: 110.796px;
+            background: rgba(255,0,0,0.2);
+        }  
+        div.social-qrs-2 div.social-qr {
+           width: 114.5px;
+            height: 110.796px;
+            background: rgba(255,0,0,0.2);
+        }  
+
+        div.social-qrs-3 div.social-qr {
+            width: 114.5px;
+            height: 110.796px;
             background: rgba(255,0,0,0.2);
         }
 
@@ -299,23 +307,21 @@
                     Hero Image 3
                 </div>
             </div>
-            <div class="hero-image4">
-                <div class="hero-image4-placeholder">
-                    Hero Image 4
+
+            <div class="logo">
+                <div class="logo-placeholder">
+                    <p>LOGO</p>
                 </div>
+            </div>
+             <div class="title">
+                <h1>Landing Page Title</h1>
+            </div>
+            
+            <div id="hero-text">
+                <p>Hero Text</p>
             </div>
 
-            <div class="hero-image5">
-                <div class="hero-image5-placeholder">
-                    Hero Image 5
-                </div>
-            </div>
-            <div class="hero-image6">
-                <div class="hero-image6-placeholder">
-                    Hero Image 6
-                </div>
-            </div>
-                     <div class="social-logo-image1">
+            <div class="social-logo-image1">
                 <div class="social-logo-image1-placeholder">
                     1
                 </div>

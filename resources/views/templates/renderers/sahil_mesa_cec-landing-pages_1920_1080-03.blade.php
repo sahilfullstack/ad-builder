@@ -81,173 +81,158 @@
             overflow: auto;
         }
 
-        div.hero-image1 {
+       div.logo {
             width: 387px;
             height: 149px;
             position: absolute;
             top: 70.775px;
             left: 29px;
         }
-        div.hero-image1 img {
+
+        div.logo img {
             width: 387px;
             height: 149px;
         }
-        div.hero-image1 div.hero-image1-placeholder {
+
+        div.logo div.logo-placeholder {
             width: 387px;
             height: 149px;
-            background: #C6E5F3;
-        }  
+            outline: 3px dotted #CC337A;
+        }
 
-        div.hero-image2 {
+        div.logo div.logo-placeholder p {
+            color: #CC337A;
+            text-transform: uppercase;
+            font-weight: bold;
+            text-align: center;
+            padding-top: 15px;
+        }
+
+        div.title {
             width: 482px;
             height: 176px;
             position: absolute;
             top: 263.775px;
             left: 29px;
+            font-size: 19px;
+            padding-top: 18px;
+            padding-left: 7px;
+            color: #29aae2;
         }
-        div.hero-image2 img {
-            width: 482px;
-            height: 176px;
-        }
-        div.hero-image2 div.hero-image2-placeholder {
-            width: 482px;
-            height: 176px;
-            background: #C6E5F3;
-        }  
 
-        div.hero-image3 {
+        div#hero-text1 {
             width: 615.254px;
             height: 551.025px;
+            background: #C6E5F3;
             position: absolute;
             top: 483.775px;
             left: 29px;
         }
-        div.hero-image3 img {
-            width: 615.254px;
-            height: 551.025px;
-        }
-        div.hero-image3 div.hero-image3-placeholder {
-            width: 615.254px;
-            height: 551.025px;
-            background: #C6E5F3;
-        }
 
-        div.hero-image4 {
+        div.slideshow {
             width: 1199.024px;
             height: 561.439px;
             position: absolute;
             top: 70.775px;
             left: 673.254px;
         }
-        div.hero-image4 img {
+        div.slideshow img {
             width: 1199.024px;
             height: 561.439px;
         }
-        div.hero-image4 div.hero-image4-placeholder {
+        div.slideshow div.slideshow-placeholder {
             width: 1199.024px;
             height: 561.439px;
             background: #C6E5F3;
         }
-        
-        div.hero-image5 {
+
+        div#hero-text2 {
             width: 1199.056px;
             height: 162px;
+            background: #C6E5F3;
             position: absolute;
             top: 650px;
             left: 673.254px;
         }
-        div.hero-image5 img {
-            width: 1199.056px;
-            height: 162px;
-        }
-        div.hero-image5 div.hero-image5-placeholder {
-            width: 1199.056px;
-            height: 162px;
+        
+        div#address-text {
             background: #C6E5F3;
-        }
-        div.baby-image1 {
             width: 372.395px;
             height: 41.253px;
             position: absolute;
             top: 827px;
             left: 673.254px;
         }
-        div.baby-image1 img {
-            width: 372.395px;
-            height: 41.253px;
-        }
-        div.baby-image1 div.baby-image1-placeholder {
-            width: 372.395px;
-            height: 41.253px;
-            background: #C6E5F3;
-        }
 
-        div.baby-image2 {
+        div.map {
             width: 372.395px;
             height: 157.127px;
             position: absolute;
             top: 875.253px;
             left: 673.254px;
         }
-        div.baby-image2 img {
+        div.map img {
             width: 372.395px;
             height: 157.127px;
         }
-        div.baby-image2 div.baby-image2-placeholder {
+        div.map div.map-placeholder {
             width: 372.395px;
             height: 157.127px;
             background: #C6E5F3;
         }
-        div.baby-image3 {
+        div.audio {
             width: 188.839px;
             height: 202.139px;
             position: absolute;
             top: 827px;
             left: 1065.65px;
         }
-        div.baby-image3 img {
+        div.audio img {
             width: 188.839px;
             height: 202.139px;
         }
-        div.baby-image3 div.baby-image3-placeholder {
+        div.audio div.audio-placeholder {
             width: 188.839px;
             height: 202.139px;
             background: #C6E5F3;
         }
         
-        div.baby-image4 {
-            width: 114.5px;
-            height: 110.796px;
-            position: absolute;
-            top: 885.253px;
-            left: 1274.65px;
-        }
-        div.baby-image4 img {
-            width: 114.5px;
-            height: 110.796px;
-        }
-        div.baby-image4 div.baby-image4-placeholder {
-            width: 114.5px;
-            height: 110.796px;
-            background: #C6E5F3;
-        }
-        
-        div.baby-image5 {
+        div.blog-logo {
             width: 42.402px;
             height: 42.316px;
             position: absolute;
             top: 827px;
             left: 1294.65px;
+
         }
-        div.baby-image5 img {
+        div.blog-logo img {
             width: 42.402px;
             height: 42.316px;
         }
-        div.baby-image5 div.baby-image5-placeholder {
+        div.blog-logo div.blog-logo-placeholder {
             width: 42.402px;
             height: 42.316px;
             background: #C6E5F3;
         }
+        
+        div.blog-qrs {
+            width: 114.5px;
+            height: 110.796px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 885.253px;
+            left: 1274.65px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
+        div.blog-qrs div.blog-qr {
+            width: 114.5px;
+            height: 110.796px;
+            background: rgba(255,0,0,0.2);
+        }
+
     </style>
     
 </head>
@@ -257,56 +242,54 @@
         <div class="banner"></div>
 
         <div class="body">
-            <div class="hero-image1">
-                <div class="hero-image1-placeholder">
-                    Hero Image 1 
+            <div class="logo">
+                <div class="logo-placeholder">
+                    <p>LOGO</p>
                 </div>
             </div>
-            <div class="hero-image2">
-                <div class="hero-image2-placeholder">
-                    Hero Image 2
-                </div>                
-            </div>            
-            <div class="hero-image3">
-                <div class="hero-image3-placeholder">
-                    Hero Image 3
+             <div class="title">
+                <h1>Landing Page Title</h1>
+            </div>
+            
+            <div id="hero-text1">
+                <p>Hero Text 1</p>
+            </div>
+            <div class="slideshow">
+                <div class="slideshow-placeholder">
+                    Slideshow
                 </div>
             </div>
-            <div class="hero-image4">
-                <div class="hero-image4-placeholder">
-                    Hero Image 4
+            <div id="hero-text2">
+                <p>Hero Text 2</p>
+            </div>
+            <div id="address-text">
+                <p>Address</p>
+            </div>
+            <div class="map">
+                <div class="map-placeholder">
+                    Map
                 </div>
             </div>
-            <div class="hero-image5">
-                <div class="hero-image5-placeholder">
-                    Hero Image 5
-                </div>
-            </div>
-            <div class="baby-image1">
-                <div class="baby-image1-placeholder">
-                    Baby Image 1
-                </div>
-            </div>
-            <div class="baby-image2">
-                <div class="baby-image2-placeholder">
-                    Baby Image 2
+            <div class="audio">
+                <div class="audio-placeholder">
+                    Audio
                 </div>
             </div> 
-            <div class="baby-image3">
-                <div class="baby-image3-placeholder">
-                    Baby Image 3
-                </div>
-            </div> 
-            <div class="baby-image4">
-                <div class="baby-image4-placeholder">
-                    Baby Image 4
+            <div class="blog-logo">
+                <div class="blog-logo-placeholder">
+                    Blog Logo
                 </div>
             </div>
-            <div class="baby-image5">
+             <div class="blog-qrs">
+                <div class="blog-qr">
+                    
+                </div>
+            </div>
+<!--             <div class="baby-image5">
                 <div class="baby-image5-placeholder">
                     B-5
                 </div>
-            </div>
+            </div> -->
     </div>
 </body>
 </html>
