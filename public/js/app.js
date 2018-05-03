@@ -46456,6 +46456,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -46485,7 +46490,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form: {
                 template_id: this.unit.template_id,
                 components: {},
-                color: '#000000'
+                background_color: '#ffffff',
+                foreground_color: '#000000'
             },
             errors: [],
             disable: {
@@ -47105,15 +47111,52 @@ var render = function() {
                       _vm._v(" "),
                       _c(
                         "div",
-                        { staticClass: "col-md-6" },
+                        { staticClass: "col-md-3" },
                         [
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_background_color"
+                              }
+                            },
+                            [_vm._v("Background Color")]
+                          ),
+                          _vm._v(" "),
                           _c("color-picker", {
                             model: {
-                              value: _vm.form.color,
+                              value: _vm.form.background_color,
                               callback: function($$v) {
-                                _vm.$set(_vm.form, "color", $$v)
+                                _vm.$set(_vm.form, "background_color", $$v)
                               },
-                              expression: "form.color"
+                              expression: "form.background_color"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-3" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_foreground_color"
+                              }
+                            },
+                            [_vm._v("Text Color")]
+                          ),
+                          _vm._v(" "),
+                          _c("color-picker", {
+                            model: {
+                              value: _vm.form.foreground_color,
+                              callback: function($$v) {
+                                _vm.$set(_vm.form, "foreground_color", $$v)
+                              },
+                              expression: "form.foreground_color"
                             }
                           })
                         ],

@@ -24,8 +24,13 @@
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
-                    <div class="col-md-6">
-                        <color-picker v-model="form.color" />
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_background_color'">Background Color</label>
+                        <color-picker v-model="form.background_color" />
+                    </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_foreground_color'">Text Color</label>
+                        <color-picker v-model="form.foreground_color" />
                     </div>
                 </div>
             </div>
@@ -77,7 +82,8 @@ export default {
             form: {
                 template_id: this.unit.template_id,
                 components: {},
-                color: '#000000'
+                background_color: '#ffffff',
+                foreground_color: '#000000'
             },
             errors: [],
             disable: {
