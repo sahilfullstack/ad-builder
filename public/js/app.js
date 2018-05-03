@@ -1166,7 +1166,7 @@ module.exports = Cancel;
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(13);
-module.exports = __webpack_require__(99);
+module.exports = __webpack_require__(105);
 
 
 /***/ }),
@@ -1206,6 +1206,7 @@ Vue.component('create-reject-button', __webpack_require__(82));
 Vue.component('create-user-approve-button', __webpack_require__(85));
 Vue.component('create-user-reject-button', __webpack_require__(88));
 Vue.component('personal-access-tokens', __webpack_require__(91));
+Vue.component('update-user-subscription-button', __webpack_require__(99));
 
 var app = new Vue({
   el: '#app'
@@ -49114,6 +49115,383 @@ if (false) {
 
 /***/ }),
 /* 99 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(100)
+/* template */
+var __vue_template__ = __webpack_require__(104)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/UpdateUserSubscriptionButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-1e971c21", Component.options)
+  } else {
+    hotAPI.reload("data-v-1e971c21", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 100 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DatePickerModal__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DatePickerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__DatePickerModal__);
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: {
+            type: Object,
+            required: true
+        },
+        subscription: {
+            type: Object,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            disable: {
+                updating: false
+            }
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__DatePickerModal___default.a, {
+                propsData: {
+                    message: 'Do you really want to update the subscription?',
+                    user: this.user,
+                    subscription: this.subscription
+                }
+            }).then(function (expiryDate) {
+                thiz.disable.updating = true;
+                console.log(thiz.user);
+                console.log(thiz.subscription);
+                axios.put('/api/users/' + thiz.user.id + '/subscriptions/' + thiz.subscription.id, { expiry_date: expiryDate }).then(function (response) {
+                    thiz.disable.updating = false;
+
+                    // reloading the page
+                    location.reload();
+                }).catch(function (error) {
+                    thiz.disable.updating = false;
+                    console.log(error);
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 101 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(0)
+/* script */
+var __vue_script__ = __webpack_require__(102)
+/* template */
+var __vue_template__ = __webpack_require__(103)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/DatePickerModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-6865166c", Component.options)
+  } else {
+    hotAPI.reload("data-v-6865166c", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 102 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+
+    props: {
+        message: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            date: '',
+            displayMessage: this.message,
+            errors: [],
+            disable: {
+                yes: false
+            }
+        };
+    },
+    watch: {
+        permission: function permission(_permission) {
+            this.errors = [];
+            this.disable.yes = false;
+        }
+    },
+    methods: {
+        onClick: function onClick(event) {
+            event.preventDefault();
+            var self = this;
+
+            this.errors = [];
+            if (self.date == "") {
+                self.errors["general"] = "Expiry Date should not be empty";
+            } else {
+                self.$emit('resolve', self.date);
+            }
+        }
+    }
+});
+
+/***/ }),
+/* 103 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "modal fade", attrs: { role: "dialog", tabindex: "-1" } },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c("div", { staticClass: "col-xs-12 text-left" }, [
+                _vm._v(_vm._s(_vm.displayMessage))
+              ]),
+              _vm._v(" "),
+              _c(
+                "label",
+                { staticClass: "control-label h5", attrs: { for: "date" } },
+                [_vm._v("Expiry Date")]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.date,
+                    expression: "date"
+                  }
+                ],
+                attrs: { type: "date" },
+                domProps: { value: _vm.date },
+                on: {
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.date = $event.target.value
+                  }
+                }
+              })
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["general"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["general"]))]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("No")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button", disabled: _vm.disable.yes },
+                on: { click: _vm.onClick }
+              },
+              [_vm._v("Yes")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-6865166c", module.exports)
+  }
+}
+
+/***/ }),
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-sm btn-success",
+      attrs: { href: "", disabled: _vm.disable.updating },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [_vm._v("Update")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-1e971c21", module.exports)
+  }
+}
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
