@@ -46504,7 +46504,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
         var components = {};
         _.forEach(this.components, function (component) {
-            components[component.id] = _this.unit.components[component.slug] ? _this.unit.components[component.slug] : _this.defaultForDataType(component.type);
+            components[component.id] = _this.unit.components[component.id] ? _this.unit.components[component.id] : _this.defaultValueForDataType(component.type);
         });
 
         Vue.set(this.form, 'components', components);
@@ -46512,15 +46512,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
     methods: {
-        defaultForDataType: function defaultForDataType() {
+        defaultValueForDataType: function defaultValueForDataType() {
             var dataType = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'text';
 
             var defaults = {
-                text: '',
-                image: '',
-                video: '',
-                qr: '',
-                images: ['']
+                text: { _value: '' },
+                image: { _value: '' },
+                video: { _value: '' },
+                qr: { _value: '' },
+                images: { _value: [''] }
             };
 
             return defaults[dataType];
@@ -46962,9 +46962,9 @@ var render = function() {
                               value:
                                 _vm.form.components[component.id][
                                   formComponentIndex
-                                ],
+                                ]["_value"],
                               expression:
-                                "form.components[component.id][formComponentIndex]"
+                                "form.components[component.id][formComponentIndex]['_value']"
                             }
                           ],
                           staticClass: "form-control",
@@ -46977,7 +46977,7 @@ var render = function() {
                             value:
                               _vm.form.components[component.id][
                                 formComponentIndex
-                              ]
+                              ]["_value"]
                           },
                           on: {
                             input: function($event) {
@@ -46985,8 +46985,10 @@ var render = function() {
                                 return
                               }
                               _vm.$set(
-                                _vm.form.components[component.id],
-                                formComponentIndex,
+                                _vm.form.components[component.id][
+                                  formComponentIndex
+                                ],
+                                "_value",
                                 $event.target.value
                               )
                             }
@@ -47069,8 +47071,10 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.components[component.id],
-                              expression: "form.components[component.id]"
+                              value:
+                                _vm.form.components[component.id]["_value"],
+                              expression:
+                                "form.components[component.id]['_value']"
                             }
                           ],
                           staticClass: "form-control",
@@ -47080,7 +47084,7 @@ var render = function() {
                             placeholder: component.type
                           },
                           domProps: {
-                            value: _vm.form.components[component.id]
+                            value: _vm.form.components[component.id]["_value"]
                           },
                           on: {
                             input: function($event) {
@@ -47088,8 +47092,8 @@ var render = function() {
                                 return
                               }
                               _vm.$set(
-                                _vm.form.components,
-                                component.id,
+                                _vm.form.components[component.id],
+                                "_value",
                                 $event.target.value
                               )
                             }
@@ -47200,8 +47204,10 @@ var render = function() {
                             {
                               name: "model",
                               rawName: "v-model",
-                              value: _vm.form.components[component.id],
-                              expression: "form.components[component.id]"
+                              value:
+                                _vm.form.components[component.id]["_value"],
+                              expression:
+                                "form.components[component.id]['_value']"
                             }
                           ],
                           staticClass: "form-control",
@@ -47211,7 +47217,7 @@ var render = function() {
                             placeholder: component.type
                           },
                           domProps: {
-                            value: _vm.form.components[component.id]
+                            value: _vm.form.components[component.id]["_value"]
                           },
                           on: {
                             input: function($event) {
@@ -47219,8 +47225,8 @@ var render = function() {
                                 return
                               }
                               _vm.$set(
-                                _vm.form.components,
-                                component.id,
+                                _vm.form.components[component.id],
+                                "_value",
                                 $event.target.value
                               )
                             }

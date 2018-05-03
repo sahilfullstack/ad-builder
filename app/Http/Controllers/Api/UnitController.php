@@ -197,14 +197,13 @@ class UnitController extends Controller
 
                 $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
 
-
                 // Validating that the selected template has the selected components.
                 if($components->count() != count($inputComponents))
                 {
                     throw new InvalidInputException('Bad components sent.');
                 }
 
-                $this->validateComponents($request->components, $template->id);                
+                $this->validateComponents($inputComponents, $template->id);
         
                 $preparedComponents = $this->preparedComponents($inputComponents, $components);
              
@@ -237,9 +236,7 @@ class UnitController extends Controller
         $preparedComponents = [];
         foreach($templateComponents as $component)
         {
-            $preparedComponents[$component->id] = [
-                '_value' => $inputComponents[$component->id]
-            ];
+            $preparedComponents[$component->id] = $inputComponents[$component->id];
         }
 
         return $preparedComponents;
@@ -250,7 +247,7 @@ class UnitController extends Controller
         $preparedComponents = [];
         foreach($templateComponents as $component)
         {
-            $preparedComponents[$component->id] = '';
+            $preparedComponents[$component->id] = ['_value' => ''];
         }
 
         return $preparedComponents;
@@ -280,20 +277,24 @@ class UnitController extends Controller
         {
             $component = Component::find($componentId);
 
+            $validator = \Validator::make([$component->name => $value['_value']], [
+                $component->name => [
+                    'required'
+                ]
+            ]);
+
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
-                $name = $component->slug;
-                                
-                $validator = \Validator::make([$name => $value], [
-                    $name => [
-                        'required',
+                // $name = $component->name;
+                $validator->addRules([
+                    $component->name => [
                         new ValidComponents($component->type, $ruleKey, $ruleValue)
                     ]
                 ]);
+            }
 
-                if ($validator->fails()) {
-                    throw new InvalidInputException($validator->errors()->first());
-                }
+            if ($validator->fails()) {
+                throw new InvalidInputException($validator->errors()->first());
             }
         }
     }
