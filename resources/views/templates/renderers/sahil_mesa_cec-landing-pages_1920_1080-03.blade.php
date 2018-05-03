@@ -285,11 +285,6 @@
                     
                 </div>
             </div>
-<!--             <div class="baby-image5">
-                <div class="baby-image5-placeholder">
-                    B-5
-                </div>
-            </div> -->
     </div>
 </body>
 </html>
