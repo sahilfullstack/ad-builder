@@ -85,8 +85,8 @@
             width: 414px;
             height: 229px;
             position: absolute;
-            top: 68px;
-            left: 32px;
+            top: 50px;
+            left: 50px;
         }
 
         div.logo img {
@@ -112,8 +112,8 @@
             width: 849px;
             height: 57px;
             position: absolute;
-            top: 68px;
-            left: 490px;
+            top: 330px;
+            left: 50px;
             font-size: 19px;
             padding-top: 18px;
             padding-left: 7px;
@@ -124,8 +124,8 @@
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 420px;
+            left: 50px;
         }
         div.image-1 img {
             width: 235.374px;
@@ -141,16 +141,16 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 420px;
+            left: 330px;
         }
 
         div.image-2 {
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 620px;
+            left: 50px;
         }
         div.image-2 img {
             width: 235.374px;
@@ -166,15 +166,15 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 620px;
+            left: 330px;
         }
         div.image-3 {
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 820px;
+            left: 50px;
         }
         div.image-3 img {
             width: 235.374px;
@@ -190,15 +190,15 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 820px;
+            left: 330px;
         }
         div.image-4 {
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 50px;
+            left: 1000px;
         }
         div.image-4 img {
             width: 235.374px;
@@ -214,15 +214,15 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 50px;
+            left: 1265px;
         }
         div.image-5 {
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 250px;
+            left: 1000px;
         }
         div.image-5 img {
             width: 235.374px;
@@ -238,15 +238,15 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 250px;
+            left: 1265px;
         }
         div.image-6 {
             width: 235.374px;
             height: 170.728px;
             position: absolute;
-            top: 470px;
-            left: 151px;
+            top: 450px;
+            left: 1000px;
         }
         div.image-6 img {
             width: 235.374px;
@@ -262,8 +262,8 @@
             height: 170.728px;
             background: #C6E5F3;
             position: absolute;
-            top: 675px;
-            left: 151px;
+            top: 450px;
+            left: 1265px;
         }
 
          div#address-text {
@@ -271,16 +271,16 @@
             width: 372.395px;
             height: 41.253px;
             position: absolute;
-            top: 827px;
-            left: 673.254px;
+            top: 650px;
+            left: 1000px;
         }
 
         div.map {
             width: 372.395px;
             height: 157.127px;
             position: absolute;
-            top: 875.253px;
-            left: 673.254px;
+            top: 700.253px;
+            left: 1000px;
         }
         div.map img {
             width: 372.395px;
@@ -297,8 +297,8 @@
             width: 461px;
             height: 376px;
             position: absolute;
-            top: 827px;
-            left: 673.254px;
+            top: 650px;
+            left: 1402px;
         }
     </style>
     
@@ -322,7 +322,7 @@
                     Title Image 1
                 </div>
             </div>
-            <div id="text-1">
+             <div id="text-1">
                 <p>Text 1</p>
             </div>
             <div class="image-2">
@@ -341,7 +341,7 @@
             <div id="text-3">
                 <p>Text 3</p>
             </div>
-            <div class="image-4">
+             <div class="image-4">
                 <div class="image-4-placeholder">
                     Title Image 4
                 </div>
@@ -375,7 +375,7 @@
             </div>
             <div id="hours-of-operation">
                 <p>Hours of operation</p>
-            </div>
+            </div> 
          </div>
     </div>
 </body>
