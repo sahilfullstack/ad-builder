@@ -85,8 +85,8 @@
             width: 412px;
             height: 149px;
             position: absolute;
-            top: 68px;
-            left: 32px;
+            top: 60px;
+            left: 30px;
         }
 
         div.logo img {
@@ -112,8 +112,8 @@
             width: 1387px;
             height: 77px;
             position: absolute;
-            top: 220px;
-            left: 490px;
+            top: 130px;
+            left: 472px;
             font-size: 19px;
             padding-top: 18px;
             padding-left: 7px;
@@ -125,8 +125,8 @@
             height: 110.796px;
             background: #C6E5F3;
             position: absolute;
-            top: 106px;
-            left: 1420px;
+            top: 846px;
+            left: 1560px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -136,8 +136,8 @@
             height: 110.796px;
             background: #C6E5F3;
             position: absolute;
-            top: 106px;
-            left: 1540px;
+            top: 846px;
+            left: 1680px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -147,8 +147,8 @@
             height: 110.796px;
             background: #C6E5F3;
             position: absolute;
-            top: 106px;
-            left: 1660px;
+            top: 846px;
+            left: 1800px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -176,8 +176,8 @@
             width: 769.062px;
             height: 493.332px;
             position: absolute;
-            top: 340px;
-            left: 32px;
+            top: 260px;
+            left: 30px;
         }
         div.hero-image1 img {
             width: 769.062px;
@@ -193,8 +193,8 @@
             width: 526.542px;
             height: 268.734px;
             position: absolute;
-            top: 340px;
-            left: 32px;
+            top: 783px;
+            left: 830px;
         }
         div.hero-image2 img {
             width: 526.542px;
@@ -211,16 +211,16 @@
             height: 268.734px;
             background: #C6E5F3;
             position: absolute;
-            top: 437px;
-            left: 842px;
+            top: 783px;
+            left: 30px;
         }
 
         div.hero-video {
             width: 684.684px;
             height: 493.074px;
             position: absolute;
-            top: 437px;
-            left: 1264.146px;
+            top: 260px;
+            left: 1230.146px;
         }
         div.hero-video img {
             width: 684.684px;
@@ -237,8 +237,8 @@
             height: 493.659px;
             background: #C6E5F3;
             position: absolute;
-            top: 800px;
-            left: 32px;
+            top: 260px;
+            left: 830px;
         }
         div.photogalary img {
             width: 369.747px;
