@@ -7,6 +7,7 @@ use App\Models\Template;
 use App\Models\Unit;
 use App\Models\Layout;
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
+use Carbon\Carbon;
 
 class UnitController extends Controller
 {
@@ -94,7 +95,7 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
-        $layouts = Layout::notDeleted()->get();
+        $layouts = Layout::whereIn('slug', $unit->user->subscriptions->where('expiring_at', '>', Carbon::now())->pluck('allowed_layout'))->notDeleted()->get();
         
         return ['layouts' => $layouts];
     }

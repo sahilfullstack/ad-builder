@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
-use App\Models\{Role};
+use App\Models\{Role, Subscription};
 use App\Models\Unit;
 
 class User extends Authenticatable
@@ -59,5 +59,10 @@ class User extends Authenticatable
         if(is_null($type)) return $query;
 
         return $query->where('type', $type);
+    } 
+
+    public function subscriptions()
+    {
+        return $this->hasMany(Subscription::class);
     }
 }
