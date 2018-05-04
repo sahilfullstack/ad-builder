@@ -35,3 +35,5 @@ Route::get('/user', function (Request $request) {
 
 Route::get('/units', ['as' => 'api.unit.list', 'uses' => 'UnitController@list'])->middleware('valid_api_headers');
 Route::get('/units/{unit}',  ['as' => 'api.unit.list', 'uses' => 'UnitController@show'])->middleware('valid_api_headers');
+
+Route::post('/views', ['as' => 'api.view.store', 'uses' => 'ViewController@store'])->middleware('valid_api_headers');
