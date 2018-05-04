@@ -16,10 +16,10 @@ class CreateSubscriptionsTable extends Migration
         Schema::create('subscriptions', function (Blueprint $table) {
             $table->increments('id');
             $table->integer('user_id');
-            $table->string('allowed_layout');
+            $table->integer('layout_id');
             $table->timestamp('expiring_at');
             $table->timestamps();
-            $table->unique(['user_id', 'allowed_layout'], 'unique_layout');
+            $table->unique(['user_id', 'layout_id'], 'unique_layout');
         });
     }
 
