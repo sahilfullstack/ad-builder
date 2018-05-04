@@ -40,7 +40,7 @@
                                     </tr>
                                 @foreach($user->subscriptions as $subscription)
                                         <tr>
-                                        <td>{{$subscription->allowed_layout}}</td>
+                                        <td>{{$subscription->layout->slug}}</td>
                                         <td>{{$subscription->expiring_at}}</td>
                                         <td><update-user-subscription-button :user="{{ $user->toJson() }}" :subscription="{{ $subscription->toJson() }}"></update-user-subscription-button></td>
                                         </tr>

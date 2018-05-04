@@ -67,6 +67,11 @@
                                 </a>
 
                                 <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="{{ route('users.subscriptions') }}">
+                                            Subscription
+                                        </a>
+                                    </li>
                                     @can('create', Laravel\Passport\Token::class)
                                     <li>
                                         <a href="{{ route('users.access-tokens') }}">

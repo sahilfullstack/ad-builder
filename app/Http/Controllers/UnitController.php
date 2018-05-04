@@ -95,7 +95,7 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
-        $layouts = Layout::whereIn('slug', $unit->user->subscriptions->where('expiring_at', '>', Carbon::now())->pluck('allowed_layout'))->notDeleted()->get();
+        $layouts = Layout::whereIn('id', $unit->user->subscriptions->where('expiring_at', '>', Carbon::now())->pluck('layout_id'))->notDeleted()->get();
         
         return ['layouts' => $layouts];
     }

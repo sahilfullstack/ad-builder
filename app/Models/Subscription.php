@@ -11,7 +11,12 @@ class Subscription extends Model
     protected $fillable = [
         'id',
         'user_id',
-        'allowed_layout',
+        'layout_id',
         'expiring_at'
     ];
+    
+    public function layout()
+    {
+        return $this->belongsTo(Layout::class);
+    } 
 }

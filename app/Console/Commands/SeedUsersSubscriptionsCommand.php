@@ -49,14 +49,14 @@ class SeedUsersSubscriptionsCommand extends Command
 
                 $subscription = Subscription::where([
                     'user_id'        => $user->id,
-                    'allowed_layout' => $layout->slug
+                    'layout_id' => $layout->id
                     ])->first();
 
                 if(is_null($subscription))
                 {
                     $subscription = new Subscription([
                         'user_id'        => $user->id,
-                        'allowed_layout' => $layout->slug,
+                        'layout_id' => $layout->id,
                         'expiring_at'    => Carbon::now(),
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now()
