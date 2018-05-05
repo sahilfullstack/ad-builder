@@ -62239,6 +62239,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -62259,7 +62260,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                layout_id: this.unit.layout_id == null ? this.layouts[0].id : this.unit.layout_id
+                layout_id: this.unit.layout_id == null ? this.layouts.length > 0 ? this.layouts[0].id : 0 : this.unit.layout_id
             },
             errors: [],
             disable: {
@@ -62320,45 +62321,51 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
+        _vm.layouts.length == 0
+          ? _c("span", [_vm._v("No Subscriptions Yet.")])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.layouts.length > 0
+          ? _c(
+              "select",
               {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.layout_id,
-                expression: "form.layout_id"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "layout_id", id: "layout_id" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "layout_id",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.layout_id,
+                    expression: "form.layout_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "layout_id", id: "layout_id" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "layout_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.layouts, function(layout) {
+                return _c(
+                  "option",
+                  { key: layout.id, domProps: { value: layout.id } },
+                  [_vm._v(_vm._s(layout.name))]
                 )
-              }
-            }
-          },
-          _vm._l(_vm.layouts, function(layout) {
-            return _c(
-              "option",
-              { key: layout.id, domProps: { value: layout.id } },
-              [_vm._v(_vm._s(layout.name))]
+              })
             )
-          })
-        ),
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "span",
@@ -62399,7 +62406,7 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "layout_id" } }, [
+    return _c("label", [
       _vm._v("LAYOUT "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])

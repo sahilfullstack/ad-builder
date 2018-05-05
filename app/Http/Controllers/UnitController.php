@@ -7,7 +7,7 @@ use App\Models\Template;
 use App\Models\Unit;
 use App\Models\Layout;
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
-use Carbon\Carbon;
+use Carbon\Carbon, DB;
 
 class UnitController extends Controller
 {
@@ -95,9 +95,11 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
-        $unitsCreated = $unit->user->units()->where('id', '!=', $unit->id)->count();
+        $userId = $unit->user->id;
 
-        $layouts = Layout::whereIn('id', $unit->user->subscriptions->where('expiring_at', '>', Carbon::now())->where('allowed_quantity', '>', $unitsCreated)->pluck('layout_id'))->notDeleted()->get();
+        $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity;"));
+
+        $layouts = Layout::whereIn('id', array_pluck($layoutIds, 'layout_id'))->notDeleted()->get();
 
         return ['layouts' => $layouts];
     }
