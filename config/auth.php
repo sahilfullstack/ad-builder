@@ -137,6 +137,9 @@ return [
 
                 // Personal Access Tokens
                 'personal-access-token.manage',
+
+                // User Subscriptions
+                'subscription.manage',
             ]
         ],
     ],
@@ -164,6 +167,9 @@ return [
         ],
         'personal-access-token.manage' => [
             'name' => 'Create/delete a personal access token.',
+        ],
+        'subscription.manage' => [
+            'name' => 'Create/delete/Update a user\'s Subscription.',
         ],
     ],
 ];
