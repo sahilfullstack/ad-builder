@@ -65936,6 +65936,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
@@ -66013,66 +66019,72 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "row" }, [
-              _c("div", { staticClass: "col-xs-12 text-left" }, [
-                _vm._v(_vm._s(_vm.displayMessage))
-              ]),
-              _vm._v(" "),
-              _c(
-                "label",
-                { staticClass: "control-label h5", attrs: { for: "date" } },
-                [_vm._v("Expiry Date")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.date,
-                    expression: "date"
-                  }
-                ],
-                attrs: { type: "date" },
-                domProps: { value: _vm.date },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
-                    }
-                    _vm.date = $event.target.value
-                  }
-                }
-              })
+            _c("div", { staticClass: "col-xs-12 text-left" }, [
+              _vm._v(_vm._s(_vm.displayMessage))
             ]),
             _vm._v(" "),
-            _c("div", { staticClass: "row" }, [
-              _c(
-                "label",
-                { staticClass: "control-label h5", attrs: { for: "date" } },
-                [_vm._v("Allowed Quantity")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.allowedQuantity,
-                    expression: "allowedQuantity"
-                  }
-                ],
-                attrs: { type: "number" },
-                domProps: { value: _vm.allowedQuantity },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+            _c("form", [
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 form-group" }, [
+                  _c(
+                    "label",
+                    { staticClass: "control-label h5", attrs: { for: "date" } },
+                    [_vm._v("Expiry Date")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.date,
+                        expression: "date"
+                      }
+                    ],
+                    attrs: { type: "date" },
+                    domProps: { value: _vm.date },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.date = $event.target.value
+                      }
                     }
-                    _vm.allowedQuantity = $event.target.value
-                  }
-                }
-              })
+                  })
+                ])
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "row" }, [
+                _c("div", { staticClass: "col-md-12 form-group" }, [
+                  _c(
+                    "label",
+                    { staticClass: "control-label h5", attrs: { for: "date" } },
+                    [_vm._v("Allowed Quantity")]
+                  ),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.allowedQuantity,
+                        expression: "allowedQuantity"
+                      }
+                    ],
+                    attrs: { type: "number" },
+                    domProps: { value: _vm.allowedQuantity },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.allowedQuantity = $event.target.value
+                      }
+                    }
+                  })
+                ])
+              ])
             ])
           ]),
           _vm._v(" "),

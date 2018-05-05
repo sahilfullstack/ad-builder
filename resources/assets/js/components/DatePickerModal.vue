@@ -7,15 +7,21 @@
 					<span aria-hidden="true">×</span></button>
 				</div>
 				<div class="modal-body">
-					<div class="row">
-						<div class="col-xs-12 text-left">{{displayMessage}}</div>
-						<label for="date" class="control-label h5">Expiry Date</label>
-						 <input type="date" v-model="date" >
-					</div>
-					<div class="row">
-						<label for="date" class="control-label h5">Allowed Quantity</label>
-						 <input type="number" v-model="allowedQuantity" >
-					</div>
+					<div class="col-xs-12 text-left">{{displayMessage}}</div>
+					<form>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="date" class="control-label h5">Expiry Date</label>
+								 <input type="date" v-model="date" >
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-md-12 form-group">
+								<label for="date" class="control-label h5">Allowed Quantity</label>
+								 <input type="number" v-model="allowedQuantity" >
+							</div>
+						</div>
+					</form>
 				</div>
 				<div class="modal-footer">
 					<span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
