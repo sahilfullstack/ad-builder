@@ -6,8 +6,8 @@ use Laravel\Passport\Token as PersonalAccessToken;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Laravel\Passport\Passport;
-use App\Models\{Template, Unit};
-use App\Policies\{TemplatePolicy, UnitPolicy, UserPolicy, PersonalAccessTokenPolicy};
+use App\Models\{Template, Unit, Subscription};
+use App\Policies\{TemplatePolicy, UnitPolicy, UserPolicy, PersonalAccessTokenPolicy, SubscriptionPolicy};
 use App\User;
 
 class AuthServiceProvider extends ServiceProvider
@@ -22,6 +22,7 @@ class AuthServiceProvider extends ServiceProvider
         Unit::class => UnitPolicy::class,
         User::class => UserPolicy::class,
         PersonalAccessToken::class => PersonalAccessTokenPolicy::class,
+        Subscription::class => SubscriptionPolicy::class,
     ];
 
     /**

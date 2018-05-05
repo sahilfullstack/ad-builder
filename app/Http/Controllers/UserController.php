@@ -34,4 +34,11 @@ class UserController extends Controller
 
         return view('users.list_subscriptions', compact('subscriptions'));        
     }
+
+    public function manageSubscription(User $user)
+    {
+        $subscriptions = $user->subscriptions()->get();
+
+        return view('users.manage_subscription', compact('user', 'subscriptions'));        
+    }
 }

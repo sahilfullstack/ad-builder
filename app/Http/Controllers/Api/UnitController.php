@@ -174,6 +174,9 @@ class UnitController extends Controller
         // if layout is sent
         if (!is_null($request->layout_id))
         {
+            // validating if user has subscription
+            $this->hasSubscription($unit->user, $request->layout_id);   
+
             $unit->layout_id = $request->layout_id;
         }
 
@@ -296,5 +299,19 @@ class UnitController extends Controller
                 }
             }
         }
+    }
+
+    private function hasSubscription($user, $layoutId)
+    {
+        $subscription = $user->subscriptions
+            ->where('layout_id', $layoutId)
+            ->where('expiring_at', '>', Carbon::now())
+            ->where('allowed_quantity', '>', 0)
+            ->first();
+
+        if( ! is_null($subscription))
+        {
+            throw new InvalidInputException("Subscription is invalid.");
+        }   
     }
 }

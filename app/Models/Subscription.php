@@ -12,9 +12,12 @@ class Subscription extends Model
         'id',
         'user_id',
         'layout_id',
-        'expiring_at'
+        'expiring_at',
+        'allowed_quantity'
     ];
     
+    protected $dates = ['expiring_at'];
+
     public function layout()
     {
         return $this->belongsTo(Layout::class);

@@ -18,7 +18,9 @@ class SubscriptionController extends Controller
             'user_id' => $user->id
         ])->first();
 
-        $subscription->expiring_at = Carbon::parse($request->expiry_date);
+        $subscription->expiring_at      = Carbon::parse($request->expiry_date);
+        $subscription->allowed_quantity = $request->allowed_quantity;
+
         $subscription->save();
 
         return $subscription->fresh();

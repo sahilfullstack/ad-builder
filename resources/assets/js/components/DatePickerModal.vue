@@ -12,6 +12,10 @@
 						<label for="date" class="control-label h5">Expiry Date</label>
 						 <input type="date" v-model="date" >
 					</div>
+					<div class="row">
+						<label for="date" class="control-label h5">Allowed Quantity</label>
+						 <input type="number" v-model="allowedQuantity" >
+					</div>
 				</div>
 				<div class="modal-footer">
 					<span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
@@ -32,11 +36,17 @@
     			type: String,
     			required: true,
     		},
+    		defaultDate: {
+    			type: String,
+    			required: true,
+    		},
     	},
 
     	data: function() {
-    		return {	
-    			date: '',
+
+    		return {
+    			date: moment(this.defaultDate).format('YYYY-MM-DD'),
+    			allowedQuantity: '',
     			displayMessage: this.message,
 				errors: [],
 	    		disable: {
@@ -60,10 +70,20 @@
 				{
 					self.errors["general"] = "Expiry Date should not be empty";            				
 				}
+				else if(typeof self.allowedQuantity == 'number'){
+					self.errors["general"] = "allowed quantity should be a valid number.";            				
+				}
+				else if(self.allowedQuantity == ''){
+					self.errors["general"] = "Allowed Quantity should not be empty.";            				
+				}
 				else
 				{
-				    self.$emit('resolve', self.date);
+					var finalDate = self.date;
+					var finalQuantity = self.allowedQuantity;
+
+				    self.$emit('resolve', {date : finalDate, quantity: finalQuantity});
 				}
+
 			}
     	}
     }
