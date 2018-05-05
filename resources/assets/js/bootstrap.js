@@ -63,4 +63,4 @@ window.Modal = Modal;
 /**
  * Moment JS
  */
- window.moment = require('moment');
+window.moment = require('moment');

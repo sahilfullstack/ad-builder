@@ -10,7 +10,7 @@
             <hr>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    {{ var_dump($range) }}     
+                    <area-chart :data="{{ json_encode($range) }}"></area-chart>
                 </div>
             </div>
         </div>

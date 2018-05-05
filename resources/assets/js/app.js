@@ -11,6 +11,10 @@ window.Vue = require('vue');
 
 window.VueColor = require('vue-color');
 
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+Vue.use(VueChartkick, { adapter: Chart });
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
