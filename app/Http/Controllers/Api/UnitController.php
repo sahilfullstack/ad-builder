@@ -191,7 +191,7 @@ class UnitController extends Controller
             {
                 $templeteComponents = $template->components()->get();   
                 $preparedComponents = $this->preparedBlankComponents($templeteComponents);
-                $unit->components = $preparedComponents;
+                $unit->components   = $preparedComponents;
             }
 
             if( ! is_null($request->components))
@@ -309,7 +309,7 @@ class UnitController extends Controller
             ->where('allowed_quantity', '>', 0)
             ->first();
 
-        if( ! is_null($subscription))
+        if(is_null($subscription))
         {
             throw new InvalidInputException("Subscription is invalid.");
         }   
