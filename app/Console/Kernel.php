@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
         Commands\ChangePermissionOfUserCommand::class,
         Commands\CreateLayoutCommand::class,
         Commands\ApproveUserCommand::class,
+        Commands\RefactorComponentsStructureInUnits::class,
     ];
 
     /**
