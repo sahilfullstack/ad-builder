@@ -19,19 +19,19 @@
             </div>
             <div v-else-if="component.type =='text'">
                 <div class="row" style="margin-bottom: 15px;">
-                    <div class="col-md-6">
+                    <div class="col-md-12">
                         <label :for="component.slug">{{ component.name }}</label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
-                    <div class="col-md-3">
+                    <!-- <div class="col-md-3">
                         <label :for="component.slug + '_background_color'">Background Color</label>
                         <color-picker v-model="form.background_color" />
                     </div>
                     <div class="col-md-3">
                         <label :for="component.slug + '_foreground_color'">Text Color</label>
                         <color-picker v-model="form.foreground_color" />
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div v-else>

@@ -63693,7 +63693,7 @@ var render = function() {
                       staticStyle: { "margin-bottom": "15px" }
                     },
                     [
-                      _c("div", { staticClass: "col-md-6" }, [
+                      _c("div", { staticClass: "col-md-12" }, [
                         _c("label", { attrs: { for: component.slug } }, [
                           _vm._v(_vm._s(component.name))
                         ]),
@@ -63743,61 +63743,7 @@ var render = function() {
                           },
                           [_vm._v(_vm._s(_vm.errors["component.slug"]))]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-3" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              attrs: {
-                                for: component.slug + "_background_color"
-                              }
-                            },
-                            [_vm._v("Background Color")]
-                          ),
-                          _vm._v(" "),
-                          _c("color-picker", {
-                            model: {
-                              value: _vm.form.background_color,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "background_color", $$v)
-                              },
-                              expression: "form.background_color"
-                            }
-                          })
-                        ],
-                        1
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "col-md-3" },
-                        [
-                          _c(
-                            "label",
-                            {
-                              attrs: {
-                                for: component.slug + "_foreground_color"
-                              }
-                            },
-                            [_vm._v("Text Color")]
-                          ),
-                          _vm._v(" "),
-                          _c("color-picker", {
-                            model: {
-                              value: _vm.form.foreground_color,
-                              callback: function($$v) {
-                                _vm.$set(_vm.form, "foreground_color", $$v)
-                              },
-                              expression: "form.foreground_color"
-                            }
-                          })
-                        ],
-                        1
-                      )
+                      ])
                     ]
                   )
                 ])
