@@ -65833,8 +65833,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 propsData: {
                     message: 'Do you really want to update the subscription?',
                     defaultDate: this.subscription.expiring_at,
-                    user: this.user,
-                    subscription: this.subscription
+                    defaultQuantity: this.subscription.allowed_quantity
                 }
             }).then(function (data) {
 
@@ -65948,6 +65947,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     defaultDate: {
       type: String,
       required: true
+    },
+    defaultQuantity: {
+      type: Number,
+      required: true
     }
   },
 
@@ -65955,7 +65958,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     return {
       date: moment(this.defaultDate).format('YYYY-MM-DD'),
-      allowedQuantity: '',
+      allowedQuantity: this.defaultQuantity,
       displayMessage: this.message,
       errors: [],
       disable: {
@@ -65974,17 +65977,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       event.preventDefault();
       var self = this;
 
+      var finalQuantity = self.allowedQuantity;
+      var allowedQuantity = Number(self.allowedQuantity);
+
       this.errors = [];
       if (self.date == "") {
         self.errors["general"] = "Expiry Date should not be empty";
-      } else if (typeof self.allowedQuantity == 'number') {
+      } else if (typeof allowedQuantity != 'number') {
         self.errors["general"] = "allowed quantity should be a valid number.";
-      } else if (self.allowedQuantity == '') {
+      } else if (allowedQuantity == '') {
         self.errors["general"] = "Allowed Quantity should not be empty.";
       } else {
         var finalDate = self.date;
-        var finalQuantity = self.allowedQuantity;
-
+        var finalQuantity = allowedQuantity;
         self.$emit('resolve', { date: finalDate, quantity: finalQuantity });
       }
     }

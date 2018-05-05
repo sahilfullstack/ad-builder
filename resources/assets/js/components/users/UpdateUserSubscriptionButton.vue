@@ -31,8 +31,7 @@ export default {
                 propsData: {
                         message:'Do you really want to update the subscription?',
                         defaultDate: this.subscription.expiring_at,
-                        user: this.user,
-                        subscription: this.subscription,
+                        defaultQuantity: this.subscription.allowed_quantity
                     }
                 })
                 .then(function(data) {
