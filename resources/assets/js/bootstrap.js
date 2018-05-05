@@ -59,3 +59,8 @@ window.Modal = Modal;
 //     cluster: 'mt1',
 //     encrypted: true
 // });
+
+/**
+ * Moment JS
+ */
+ window.moment = require('moment');

@@ -1,8 +1,9 @@
 <template>
     <form @submit.prevent="update">
         <div class="form-group">
-            <label for="layout_id">LAYOUT <span class="text-danger">*</span></label>
-            <select name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">    
+            <label >LAYOUT <span class="text-danger">*</span></label>
+            <span v-if="layouts.length== 0">No Subscriptions Yet.</span>
+            <select v-if="layouts.length > 0" name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">    
                 <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
             </select>
             <span class="text-danger" :class="{'hidden': errors['layout_id'] == undefined}" style="margin-right:10px;">{{errors['layout_id']}}</span>
@@ -33,7 +34,7 @@ export default {
     data() {
         return {
             form: {
-                layout_id: this.unit.layout_id == null ? this.layouts[0].id : this.unit.layout_id
+                layout_id: this.unit.layout_id == null ? (this.layouts.length > 0 ? this.layouts[0].id :0) : this.unit.layout_id
             },
             errors: [],
             disable: {

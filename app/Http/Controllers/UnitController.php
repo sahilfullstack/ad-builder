@@ -7,6 +7,8 @@ use App\Models\Template;
 use App\Models\Unit;
 use App\Models\Layout;
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
+use Carbon\Carbon, DB;
+use Exception;
 
 class UnitController extends Controller
 {
@@ -74,7 +76,14 @@ class UnitController extends Controller
             return redirect(route('units.edit', ['unit' => $unit, 'section' => head($validSections)]));
         }
 
-        $data = $this->{"dataToEdit$section"}($unit);
+        try
+        {
+            $data = $this->{"dataToEdit$section"}($unit);
+        }
+        catch(Exception $e)
+        {
+            return redirect(route('units.edit', ['unit' => $unit, 'section' => 'layout']));
+        }
 
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
     }
@@ -94,18 +103,26 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
-        $layouts = Layout::notDeleted()->get();
-        
+        $userId = $unit->user->id;
+
+        $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity;"));
+
+        $layouts = Layout::whereIn('id', array_pluck($layoutIds, 'layout_id'))->notDeleted()->get();
+
         return ['layouts' => $layouts];
     }
 
     private function dataToEditTemplate(Unit $unit)
     {
+        if(is_null($unit->layout_id))
+        {
+            throw new Exception('Layout not selected yet.');
+        }
+
         $query = Template::notDeleted()
             ->whereType($unit->type)
+            ->where('layout_id', $unit->layout_id)
             ->with('components');
-        
-        if(! is_null($unit->layout_id)) $query->where('layout_id', $unit->layout_id);
         
         return ['templates' => $query->get()];
     }

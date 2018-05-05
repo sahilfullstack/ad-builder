@@ -33,6 +33,7 @@ Vue.component('create-reject-button', require('./components/units/CreateRejectBu
 Vue.component('create-user-approve-button', require('./components/users/CreateUserApproveButton.vue'));
 Vue.component('create-user-reject-button', require('./components/users/CreateUserRejectButton.vue'));
 Vue.component('personal-access-tokens', require('./components/passport/PersonalAccessToken.vue'));
+Vue.component('update-user-subscription-button', require('./components/users/UpdateUserSubscriptionButton.vue'));
 
 
 

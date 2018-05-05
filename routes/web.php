@@ -44,3 +44,9 @@ Route::get('me/access-tokens', [
 	'middleware' => 'can:create,Laravel\Passport\Token'
 ]);
 
+Route::get('me/subscriptions', [
+	'uses' => 'UserController@getSubscriptions',
+	'as' => 'users.subscriptions'
+]);
+
+Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');

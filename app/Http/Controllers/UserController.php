@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\User;
+use App\Models\{Layout};
 use App\Http\Requests\{ListUserRequest};
+use Carbon\Carbon;
 
 class UserController extends Controller
 {
@@ -20,8 +22,23 @@ class UserController extends Controller
 
     public function list(ListUserRequest $request)
     {
-        $users = User::with('role')->latest()->get();
+        $users = User::with(['role', 'subscriptions'])->latest()->get();       
 
         return view('users.list_for_approval', compact('users'));
+    }
+
+    public function getSubscriptions()
+    {
+        $user = User::find(auth()->user()->id);
+        $subscriptions = $user->subscriptions()->where('expiring_at', '>', Carbon::now())->get();
+
+        return view('users.list_subscriptions', compact('subscriptions'));        
+    }
+
+    public function manageSubscription(User $user)
+    {
+        $subscriptions = $user->subscriptions()->get();
+
+        return view('users.manage_subscription', compact('user', 'subscriptions'));        
     }
 }

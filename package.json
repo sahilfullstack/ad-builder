@@ -19,6 +19,7 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "moment": "^2.22.1",
         "node-sass": "^4.8.3",
         "vue-color": "^2.4.6"
     }

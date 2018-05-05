@@ -26,6 +26,7 @@ Route::put('/units/{unit}/publish', ['as' => 'units.update', 'uses' => 'UnitCont
 
 Route::put('/units/{unit}/approve', ['as' => 'units.approve', 'uses' => 'UnitController@approve']);
 Route::put('/users/{user}/approve', ['as' => 'users.approve', 'uses' => 'UserController@approve']);
+Route::put('/users/{user}/subscriptions/{subscription}', ['as' => 'users.subscription.update', 'uses' => 'SubscriptionController@update']);
 
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
 
