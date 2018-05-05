@@ -44,6 +44,8 @@ class RefactorComponentsStructureInUnits extends Command
         {
             $updatedComponents = [];
 
+            if(is_null($unit->template)) continue;
+            
             foreach($unit->template->components as $component)
             {
                 if(isset($unit->components[$component->slug]))
