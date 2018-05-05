@@ -40,13 +40,17 @@
     			type: String,
     			required: true,
     		},
+    		defaultQuantity: {
+    			type: Number,
+    			required: true,
+    		},
     	},
 
     	data: function() {
 
     		return {
     			date: moment(this.defaultDate).format('YYYY-MM-DD'),
-    			allowedQuantity: '',
+    			allowedQuantity: this.defaultQuantity,
     			displayMessage: this.message,
 				errors: [],
 	    		disable: {
@@ -65,25 +69,26 @@
     			event.preventDefault();
 				var self = this;
 
+				var finalQuantity = self.allowedQuantity;
+				var allowedQuantity = Number(self.allowedQuantity);
+
 				this.errors = [];
 				if(self.date == "")
 				{
 					self.errors["general"] = "Expiry Date should not be empty";            				
 				}
-				else if(typeof self.allowedQuantity == 'number'){
+				else if(typeof allowedQuantity != 'number'){
 					self.errors["general"] = "allowed quantity should be a valid number.";            				
 				}
-				else if(self.allowedQuantity == ''){
+				else if(allowedQuantity == ''){
 					self.errors["general"] = "Allowed Quantity should not be empty.";            				
 				}
 				else
 				{
 					var finalDate = self.date;
-					var finalQuantity = self.allowedQuantity;
-
-				    self.$emit('resolve', {date : finalDate, quantity: finalQuantity});
+					var finalQuantity = allowedQuantity;
+					self.$emit('resolve', {date : finalDate, quantity: finalQuantity});
 				}
-
 			}
     	}
     }
