@@ -56,13 +56,17 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
+
+        body.two-x {
+            zoom: 200%;
+        }
+
         #workspace {
             background: #ccc;
             width: 960px;
             height: 540px;
             font-family: sans-serif;
         }
-
         div.body {
             width: 240px;
             height: 265px;
@@ -162,8 +166,7 @@
     </style>
     
 </head>
-<body>
-    
+<body class="{{ $bodyClass }}">    
     <div id="workspace">
         <div class="banner"></div>
 

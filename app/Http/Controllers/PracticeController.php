@@ -13,9 +13,11 @@ class PracticeController extends Controller
         return view('practice.templates.1', compact('unit'));
     }
 
-    public function renderTemplate($template)
+    public function renderTemplate(Request $request, $template)
     {
-        return view("templates.renderers.$template");
+        $bodyClass = '';
+        if(! is_null($request->query('z'))) $bodyClass = 'two-x';
+        return view("templates.renderers.$template", compact('bodyClass'));
     }
 
     public function embed()
