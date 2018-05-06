@@ -56,6 +56,7 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
+        
         #workspace {
             background: #ccc;
             width: 1920px;
@@ -304,7 +305,7 @@
     </style>
     
 </head>
-<body>
+<body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
         <div class="banner"></div>

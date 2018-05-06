@@ -56,6 +56,9 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
+        body.two-x {
+            zoom: 200%;
+        }
         #workspace {
             background: #ccc;
             width: 960px;
@@ -153,7 +156,7 @@
     </style>
     
 </head>
-<body>
+<body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
 

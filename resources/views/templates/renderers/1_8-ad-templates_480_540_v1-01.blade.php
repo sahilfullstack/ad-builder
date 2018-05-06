@@ -166,7 +166,7 @@
     </style>
     
 </head>
-<body class="{{ $bodyClass }}">    
+<body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     <div id="workspace">
         <div class="banner"></div>
 
