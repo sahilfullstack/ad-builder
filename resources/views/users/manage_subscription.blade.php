@@ -10,13 +10,13 @@
             <hr>
             <div class="panel panel-default">
                 <div class="panel-body">
-                     <table class="table table-striped table-bordered table-hover">
+                    <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th class="text-center">Name</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Registered at</th>
                         </tr>
-                         <tr>
+                        <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at->toDayDateTimeString()}}</td>
@@ -26,6 +26,9 @@
             </div>
             @if($subscriptions->count() > 0)
             <div class="panel panel-default">
+                <div class="panel-heading">
+                    <span class="h3">Subscriptions</span> <add-subscription-button :user="{{ $user->toJson() }}" :layouts="{{ $layouts->toJson() }}"></add-subscription-button>
+                </div>
                 <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover">
                         <tr>

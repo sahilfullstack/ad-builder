@@ -39,6 +39,8 @@ class UserController extends Controller
     {
         $subscriptions = $user->subscriptions()->get();
 
-        return view('users.manage_subscription', compact('user', 'subscriptions'));        
+        $layouts = Layout::all();
+
+        return view('users.manage_subscription', compact('user', 'subscriptions', 'layouts'));
     }
 }

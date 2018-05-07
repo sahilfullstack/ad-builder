@@ -20177,7 +20177,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
-module.exports = __webpack_require__(299);
+module.exports = __webpack_require__(305);
 
 
 /***/ }),
@@ -20233,7 +20233,8 @@ Vue.component('create-user-approve-button', __webpack_require__(279));
 Vue.component('create-user-reject-button', __webpack_require__(282));
 Vue.component('personal-access-tokens', __webpack_require__(285));
 Vue.component('update-user-subscription-button', __webpack_require__(290));
-Vue.component('filter-form', __webpack_require__(296));
+Vue.component('add-subscription-button', __webpack_require__(296));
+Vue.component('filter-form', __webpack_require__(302));
 
 var app = new Vue({
   el: '#app'
@@ -83538,7 +83539,471 @@ var normalizeComponent = __webpack_require__(3)
 /* script */
 var __vue_script__ = __webpack_require__(297)
 /* template */
-var __vue_template__ = __webpack_require__(298)
+var __vue_template__ = __webpack_require__(301)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/AddSubscriptionButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-d1beecfc", Component.options)
+  } else {
+    hotAPI.reload("data-v-d1beecfc", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 297 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSubscriptionModal__ = __webpack_require__(298);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__AddSubscriptionModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__AddSubscriptionModal__);
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: {
+            type: Object,
+            required: true
+        },
+        layouts: {
+            type: Array,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            disable: {
+                adding: false
+            }
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__AddSubscriptionModal___default.a, {
+                propsData: {
+                    userId: this.user.id,
+                    layouts: this.layouts
+                }
+            }).then(function () {
+
+                thiz.disable.adding = true;
+
+                location.reload();
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 298 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(299)
+/* template */
+var __vue_template__ = __webpack_require__(300)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/AddSubscriptionModal.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-32deff0d", Component.options)
+  } else {
+    hotAPI.reload("data-v-32deff0d", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 299 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        userId: {
+            type: Number,
+            required: true
+        },
+        layouts: {
+            type: Array,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            expiring_at: moment().add(30, 'days')._d,
+            allowedQuantity: 1,
+            layout_id: this.layouts[0].id,
+            errors: [],
+            disable: {
+                adding: false
+            }
+        };
+    },
+
+
+    methods: {
+        add: function add() {
+            this.disable.adding = true;
+
+            axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity }).then(function (response) {
+                this.disable.adding = false;
+
+                self.$emit('resolve');
+            }).catch(function (error) {
+                this.disable.adding = false;
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 300 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "modal fade", attrs: { role: "dialog", tabindex: "-1" } },
+    [
+      _c("div", { staticClass: "modal-dialog", attrs: { role: "document" } }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c("form", [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [_vm._v("Layout")]),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.layout_id,
+                        expression: "layout_id"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { name: "layout_id", id: "layout_id" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.layout_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  _vm._l(_vm.layouts, function(layout) {
+                    return _c(
+                      "option",
+                      { key: layout.id, domProps: { value: layout.id } },
+                      [_vm._v(_vm._s(layout.name))]
+                    )
+                  })
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "text-danger",
+                    class: { hidden: _vm.errors["layout_id"] == undefined },
+                    staticStyle: { "margin-right": "10px" }
+                  },
+                  [_vm._v(_vm._s(_vm.errors["layout_id"]))]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allowed Quantity")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowedQuantity,
+                      expression: "allowedQuantity"
+                    }
+                  ],
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.allowedQuantity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.allowedQuantity = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
+                  _c(
+                    "label",
+                    { staticClass: "control-label h5", attrs: { for: "date" } },
+                    [_vm._v("Expiry Date")]
+                  ),
+                  _vm._v(" "),
+                  _c("date-picker", {
+                    attrs: { lang: "en" },
+                    model: {
+                      value: _vm.expiring_at,
+                      callback: function($$v) {
+                        _vm.expiring_at = $$v
+                      },
+                      expression: "expiring_at"
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["general"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["general"]))]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                attrs: { type: "button", "data-dismiss": "modal" }
+              },
+              [_vm._v("Cancel")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-primary",
+                attrs: { type: "button", disabled: _vm.disable.adding },
+                on: { click: _vm.add }
+              },
+              [_vm._v("Add")]
+            )
+          ])
+        ])
+      ])
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [
+        _vm._v("Add A New Subscription")
+      ]),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "close",
+          attrs: {
+            type: "button",
+            "data-dismiss": "modal",
+            "aria-label": "Close"
+          }
+        },
+        [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+      )
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-32deff0d", module.exports)
+  }
+}
+
+/***/ }),
+/* 301 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-sm btn-success",
+      attrs: { href: "", disabled: _vm.disable.adding },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [_vm._v("Add Another Subscription")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-d1beecfc", module.exports)
+  }
+}
+
+/***/ }),
+/* 302 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(303)
+/* template */
+var __vue_template__ = __webpack_require__(304)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -83577,7 +84042,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 297 */
+/* 303 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -83630,7 +84095,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 298 */
+/* 304 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -83679,7 +84144,7 @@ if (false) {
 }
 
 /***/ }),
-/* 299 */
+/* 305 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
