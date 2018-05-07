@@ -83,7 +83,7 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range'));
+        return view('stats.show', compact('range', 'from', 'to'));
     }
 
     protected function showSum(Request $request, $from, $to)
@@ -115,7 +115,7 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range'));
+        return view('stats.show', compact('range', 'from', 'to'));
     }
 
     protected function showSumOthers(Request $request, $from, $to)
@@ -147,7 +147,7 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range'));
+        return view('stats.show', compact('range', 'from', 'to'));
     }
 
     protected function showAverage(Request $request, $from, $to)
@@ -177,7 +177,7 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range'));
+        return view('stats.show', compact('range', 'from', 'to'));
     }
 
     protected function showAverageOthers(Request $request, $from, $to)
@@ -207,7 +207,7 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range'));
+        return view('stats.show', compact('range', 'from', 'to'));
     }
 
     private function generateDateRange($from, $to, $default = 0)

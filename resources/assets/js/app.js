@@ -14,6 +14,8 @@ window.VueColor = require('vue-color');
 import VueChartkick from 'vue-chartkick'
 import Chart from 'chart.js'
 Vue.use(VueChartkick, { adapter: Chart });
+import DatePicker from 'vue2-datepicker'
+Vue.component('date-picker', DatePicker);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -38,6 +40,7 @@ Vue.component('create-user-approve-button', require('./components/users/CreateUs
 Vue.component('create-user-reject-button', require('./components/users/CreateUserRejectButton.vue'));
 Vue.component('personal-access-tokens', require('./components/passport/PersonalAccessToken.vue'));
 Vue.component('update-user-subscription-button', require('./components/users/UpdateUserSubscriptionButton.vue'));
+Vue.component('filter-form', require('./components/stats/FilterForm.vue'));
 
 
 
