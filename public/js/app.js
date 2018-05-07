@@ -83619,10 +83619,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     userId: this.user.id,
                     layouts: this.layouts
                 }
-            }).then(function () {
+            }).then(function (response) {
 
                 thiz.disable.adding = true;
-
+                console.log("here");
                 location.reload();
             });
         }
@@ -83750,17 +83750,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         add: function add() {
             this.disable.adding = true;
-
+            var thiz = this;
             axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity }).then(function (response) {
-                this.disable.adding = false;
+                thiz.disable.adding = false;
 
-                self.$emit('resolve');
+                thiz.$emit('resolve');
             }).catch(function (error) {
-                this.disable.adding = false;
+                thiz.disable.adding = false;
+                console.log(error);
                 _.forEach(error.response.data.errors, function (error, index) {
                     var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
 
-                    self.errors[errorIndex] = error[0];
+                    thiz.errors[errorIndex] = error[0];
                 });
             });
         }

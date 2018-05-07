@@ -32,12 +32,10 @@ export default {
                         layouts: this.layouts
                     }
                 })
-                .then(function() {
+                .then(function(response) {
 
                     thiz.disable.adding = true;
-
                     location.reload();
-
                 });
         }
     }

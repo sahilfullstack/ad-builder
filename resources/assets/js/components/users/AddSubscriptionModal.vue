@@ -65,21 +65,22 @@ export default {
     methods: {
         add() {
             this.disable.adding = true;
-                    
+                   let thiz = this; 
             axios.post('/api/users/' + this.userId + '/subscriptions',  {layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity})
             .then(function (response) {
-                this.disable.adding = false;
+                thiz.disable.adding = false;
 
-                self.$emit('resolve');          
+                thiz.$emit('resolve');          
             })
             .catch(function (error) {
-                this.disable.adding = false;
+                thiz.disable.adding = false;
+                console.log(error);
                 _.forEach(error.response.data.errors, function(error, index) {
                     var errorIndex = _.startsWith(index, '_')
                                         ? _.trim(index, '_')
                                         : index;
                                         
-                    self.errors[errorIndex] = error[0];
+                    thiz.errors[errorIndex] = error[0];
                 });
             });                    
         }

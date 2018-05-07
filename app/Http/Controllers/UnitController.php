@@ -105,28 +105,6 @@ class UnitController extends Controller
         // // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 
-        // $layoutIds = DB::select(DB::raw("Select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`"));
-
-        // // $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity;"));
-        // $subscriptions = Subscription::where('allowed_quantity', '>', 0)
-        //                     ->where('expiring_at', '>', Carbon::now())
-        //                     ->where('user_id', '=', $userId)
-        //                     ->get(); 
-
-        // $finalIds = [];
-        // $layoutIds = array_pluck($layoutIds, 'count', 'layout_id');
-
-        // foreach ($subscriptions as $key => $subscription) {
-        //     if(isset($layoutIds[ $subscription->layout_id])) 
-        //     {
-        //         if($layoutIds[$subscription->layout_id] >= $subscription->allowed_quantity) continue; 
-        //     }
-
-        //     array_push($finalIds, $subscription->layout_id);
-        // }
-
-        // $layouts = Layout::whereIn('id', $finalIds)->notDeleted()->get();
-
         $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
 
         $layouts = Layout::whereIn('id', array_pluck($layouts, 'id'))->notDeleted()->get();

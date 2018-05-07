@@ -9,7 +9,7 @@ use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, Pub
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
 use Carbon\Carbon, DB;
-use App\Models\Layout;
+use App\Models\{Layout, Subscription};
 
 use App\Rules\ValidComponents;
 use App\Services\Formatter\Formatter;
@@ -171,68 +171,92 @@ class UnitController extends Controller
 
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        // if layout is sent
-        if (!is_null($request->layout_id))
+        try
         {
-            // validating if user has subscription
-            $this->hasSubscription($unit, $request->layout_id);   
+            DB::beginTransaction();
 
-            $unit->layout_id = $request->layout_id;
-
-        }
-
-        // if template is sent
-        if( ! is_null($request->template_id))
-        {
-            $unit->template_id = $request->template_id;            
-    
-            $template = Template::notDeleted()->find($request->template_id);
-
-            if(count($unit->components) == 0)
+            // if layout is sent
+            if (!is_null($request->layout_id))
             {
-                $templeteComponents = $template->components()->get();   
-                $preparedComponents = $this->preparedBlankComponents($templeteComponents);
-                $unit->components   = $preparedComponents;
-            }
-
-            if( ! is_null($request->components))
-            {
-                $inputComponents = $request->components;
-
-                $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
-
-                // Validating that the selected template has the selected components.
-                if($components->count() != count($inputComponents))
+                // validating if user has subscription
+                $this->hasSubscription($unit, $request->layout_id);   
+                
+                if( is_null($unit->redeemed_subscription_id))
                 {
-                    throw new InvalidInputException('Bad components sent.');
-                }
+                    $subscription = Subscription::where([
+                            'layout_id' => $request->layout_id,
+                            'user_id' => $unit->user->id
+                            ])
+                    ->whereRaw('allowed_quantity > redeemed_quantity')->orderBy('expiring_at', 'DESC')->first();
 
-                $this->validateComponents($inputComponents, $template->id);
-        
-                $preparedComponents = $this->preparedComponents($inputComponents, $components);
-             
-                if(count($preparedComponents > 0))
-                {
-                    $unit->components = $preparedComponents;
+                    $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;
+                    $unit->redeemed_subscription_id = $subscription->id;
+                    
+                    $subscription->save();
+
+                    $unit->layout_id = $request->layout_id;
                 }
             }
-        }
+
+            // if template is sent
+            if( ! is_null($request->template_id))
+            {
+                $unit->template_id = $request->template_id;            
         
-        // if name is sent
-        if(! is_null($request->name))
+                $template = Template::notDeleted()->find($request->template_id);
+
+                if(count($unit->components) == 0)
+                {
+                    $templeteComponents = $template->components()->get();   
+                    $preparedComponents = $this->preparedBlankComponents($templeteComponents);
+                    $unit->components   = $preparedComponents;
+                }
+
+                if( ! is_null($request->components))
+                {
+                    $inputComponents = $request->components;
+
+                    $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
+
+                    // Validating that the selected template has the selected components.
+                    if($components->count() != count($inputComponents))
+                    {
+                        throw new InvalidInputException('Bad components sent.');
+                    }
+
+                    $this->validateComponents($inputComponents, $template->id);
+            
+                    $preparedComponents = $this->preparedComponents($inputComponents, $components);
+                 
+                    if(count($preparedComponents > 0))
+                    {
+                        $unit->components = $preparedComponents;
+                    }
+                }
+            }
+            
+            // if name is sent
+            if(! is_null($request->name))
+            {
+                $unit->name = $request->name;
+            }  
+
+            // if parent_id is sent
+            if(! is_null($request->parent_id))
+            {
+                $unit->parent_id = $request->parent_id;
+            } 
+
+            $unit->save();
+            
+            DB::commit();   
+            return $unit->fresh();
+        }
+        catch(\Exception $e)
         {
-            $unit->name = $request->name;
-        }  
+            DB::rollBack();
 
-        // if parent_id is sent
-        if(! is_null($request->parent_id))
-        {
-            $unit->parent_id = $request->parent_id;
-        } 
-
-        $unit->save();
-
-        return $unit->fresh();
+        }
     }
 
     private function preparedComponents($inputComponents, $templateComponents)
