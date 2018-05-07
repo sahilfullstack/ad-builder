@@ -72,13 +72,15 @@ class StatisticsController extends Controller
         
         $result = $query->get();
         
+        // getting empty date range
         $range = $this->generateDateRange($from, $to);
-
+        // filling the data for the dates that we have data for
         foreach($result as $entry)
         {
             $range[$entry->viewed_on] = $entry->view_count;
         }
 
+        // pass the data to the view
         return view('stats.show', compact('range'));
     }
 
