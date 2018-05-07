@@ -108,6 +108,11 @@
                     <em>None available for QR Code.</em>
                 </div>
             </div>
+            <div class="row" v-if="form.components[index]['type'] == 'color'">
+                <div class="col-md-12">
+                    <em>None available for Color.</em>
+                </div>
+            </div>
 
         </div>
         
@@ -123,6 +128,7 @@
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'video')">Video</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'qr')">QR Code</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'images')">Series of Images</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'color')">Color</a></li>
             </ul>
         </div>
 
@@ -199,7 +205,9 @@ export default {
                     width: null,
                     height: null
                 },
+                color : {
 
+                }
             }
 
             return rules[type];

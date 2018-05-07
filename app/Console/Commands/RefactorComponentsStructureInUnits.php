@@ -55,9 +55,19 @@ class RefactorComponentsStructureInUnits extends Command
                     ];
                 }
                 else if (isset($unit->components[$component->id])) {
-                    $updatedComponents[$component->id] = [
-                        '_value' => $unit->components[$component->id]['_value']
-                    ];
+
+                    if(isset($unit->components[$component->id]['_value']))
+                    {                    
+                        $updatedComponents[$component->id] = [
+                            '_value' => $unit->components[$component->id]['_value']
+                        ];
+                    }
+                    else
+                    {
+                        $updatedComponents[$component->id] = [
+                            '_value' => ''
+                        ];
+                    }
                 }
                 else
                 {

@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Template;
-use App\Models\Unit;
-use App\Models\Layout;
+use App\Models\{Template, Unit, Layout, Subscription};
+
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
 use Carbon\Carbon, DB;
 use Exception;
@@ -106,9 +105,27 @@ class UnitController extends Controller
         // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 
-        $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity and s.expiring_at >= now();"));
+        $layoutIds = DB::select(DB::raw("Select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`"));
 
-        $layouts = Layout::whereIn('id', array_pluck($layoutIds, 'layout_id'))->notDeleted()->get();
+        // $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity;"));
+        $subscriptions = Subscription::where('allowed_quantity', '>', 0)
+                            ->where('expiring_at', '>', Carbon::now())
+                            ->where('user_id', '=', $userId)
+                            ->get(); 
+
+        $finalIds = [];
+        $layoutIds = array_pluck($layoutIds, 'count', 'layout_id');
+
+        foreach ($subscriptions as $key => $subscription) {
+            if(isset($layoutIds[ $subscription->layout_id])) 
+            {
+                if($layoutIds[$subscription->layout_id] >= $subscription->allowed_quantity) continue; 
+            }
+
+            array_push($finalIds, $subscription->layout_id);
+        }
+
+        $layouts = Layout::whereIn('id', $finalIds)->notDeleted()->get();
 
         return ['layouts' => $layouts];
     }
