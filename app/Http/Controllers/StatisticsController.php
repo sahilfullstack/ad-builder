@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Str;
 
 class StatisticsController extends Controller
 {
@@ -49,16 +50,17 @@ class StatisticsController extends Controller
             )
         );
 
-        return $this->{"show$type"}($request, $from->toDateString(), $to->toDateString());
+        return $this->{'show' . Str::studly($type)}($request, $from->toDateString(), $to->toDateString());
     }
 
-    protected function show12(Request $request, $from, $to)
+    protected function showCount(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
         
         if(is_null($source)) return response('Please select a source.', 422);
 
+        // select count(*), date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('count(*) as view_count, date(viewed_at) as viewed_on'))
@@ -78,6 +80,130 @@ class StatisticsController extends Controller
         foreach($result as $entry)
         {
             $range[$entry->viewed_on] = $entry->view_count;
+        }
+
+        // pass the data to the view
+        return view('stats.show', compact('range'));
+    }
+
+    protected function showSum(Request $request, $from, $to)
+    {
+        $source = $request->input('source');
+        $unitId = $request->input('unit_id');
+
+        if (is_null($source)) return response('Please select a source.', 422);
+
+        // select sum(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', auth()->user()->id)
+            ->where('views.landing_from', $source)
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+
+        if (!is_null($unitId)) $query->where('units.id', $unitId);
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->time_spent;
+        }
+
+        // pass the data to the view
+        return view('stats.show', compact('range'));
+    }
+
+    protected function showSumOthers(Request $request, $from, $to)
+    {
+        $source = $request->input('source');
+        $unitId = $request->input('unit_id');
+
+        if (is_null($source)) return response('Please select a source.', 422);
+
+        // select sum(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id <> 1 and landing_from = 'category' group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', '<>', auth()->user()->id)
+            ->where('views.landing_from', $source)
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+
+        if (!is_null($unitId)) $query->where('units.id', $unitId);
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->time_spent;
+        }
+
+        // pass the data to the view
+        return view('stats.show', compact('range'));
+    }
+
+    protected function showAverage(Request $request, $from, $to)
+    {
+        $source = $request->input('source');
+        $unitId = $request->input('unit_id');
+
+        // select avg(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('avg(duration) as time_spent, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', auth()->user()->id)
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+            
+        if(!is_null($unitId)) $query->where('units.id', $unitId);
+        if(!is_null($source)) $query->where('views.landing_from', $source);
+            
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->time_spent;
+        }
+
+        // pass the data to the view
+        return view('stats.show', compact('range'));
+    }
+
+    protected function showAverageOthers(Request $request, $from, $to)
+    {
+        $source = $request->input('source');
+        $unitId = $request->input('unit_id');
+
+        // select avg(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id <> 1 group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('avg(duration) as time_spent, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', '<>', auth()->user()->id)
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+
+        if (!is_null($unitId)) $query->where('units.id', $unitId);
+        if (!is_null($source)) $query->where('views.landing_from', $source);
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->time_spent;
         }
 
         // pass the data to the view
