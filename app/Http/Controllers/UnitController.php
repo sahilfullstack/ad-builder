@@ -102,7 +102,6 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
-
         // // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 

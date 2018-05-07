@@ -14,6 +14,11 @@ class UpdateExpiringAtToDefaultNullableInSubscriptions extends Migration
     public function up()
     {
         \DB::statement('ALTER TABLE subscriptions MODIFY expiring_at timestamp NULL default NULL;');
+        
+        Schema::table('subscriptions', function (Blueprint $table) {
+            $table->dropUnique('unique_layout');
+        });
+
     }
 
     /**

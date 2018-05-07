@@ -25,7 +25,8 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'expiry_date' => 'required',
+            'layout_id' => 'required|exists:layouts,id',
+            'expiring_at' => 'required',
             'allowed_quantity' => 'required',
         ];
     }

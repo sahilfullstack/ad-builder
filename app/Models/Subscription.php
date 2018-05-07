@@ -13,7 +13,8 @@ class Subscription extends Model
         'user_id',
         'layout_id',
         'expiring_at',
-        'allowed_quantity'
+        'allowed_quantity',
+        'redeemed_quantity'
     ];
     
     protected $dates = ['expiring_at'];

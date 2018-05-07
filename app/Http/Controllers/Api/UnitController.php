@@ -8,7 +8,7 @@ use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
-use Carbon\Carbon;
+use Carbon\Carbon, DB;
 use App\Models\Layout;
 
 use App\Rules\ValidComponents;
@@ -178,6 +178,7 @@ class UnitController extends Controller
             $this->hasSubscription($unit, $request->layout_id);   
 
             $unit->layout_id = $request->layout_id;
+
         }
 
         // if template is sent
@@ -315,13 +316,16 @@ class UnitController extends Controller
     private function hasSubscription($unit, $layoutId)
     {
         $user = $unit->user;
+        $userId = $unit->id;
         $subscription = $user->subscriptions
             ->where('layout_id', $layoutId)
             ->where('expiring_at', '>', Carbon::now())
-            ->havingRaw('sum(allowed_quantity - redeemed_quantity) > 0')
             ->first();
 
-        if(is_null($subscription) and $subscription->allowed_quantity <= $unitCounts)
+        \Log::info($subscription->allowed_quantity);
+        \Log::info($subscription->redeemed_quantity);
+
+        if(is_null($subscription) or (($subscription->allowed_quantity - $subscription->redeemed_quantity) <= 0))
         {
             throw new InvalidInputException("Subscription is invalid.");
         }
