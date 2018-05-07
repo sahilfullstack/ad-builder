@@ -27,12 +27,12 @@ class ValidApiHeaders
 
         if( ! isset($_SERVER['CONTENT_TYPE']))
         {  
-            return Response::json(array('error' => 'Please set content type'));  
+            return Response::json(array('error' => 'Please set content type'), 400);  
         } 
 
         if( ! in_array($_SERVER['CONTENT_TYPE'], ['application/vnd.mesa.v1+xml', 'application/vnd.mesa.v1+json'])) 
         {  
-            return Response::json(array('error'=>'Content type must be valid.'));  
+            return Response::json(array('error'=>'Content type must be valid.'), 400);
         }
 
         if($_SERVER['CONTENT_TYPE'] == 'application/vnd.mesa.v1+xml')

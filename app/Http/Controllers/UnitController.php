@@ -8,6 +8,7 @@ use App\Models\Unit;
 use App\Models\Layout;
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
 use Carbon\Carbon, DB;
+use Exception;
 
 class UnitController extends Controller
 {
@@ -75,7 +76,15 @@ class UnitController extends Controller
             return redirect(route('units.edit', ['unit' => $unit, 'section' => head($validSections)]));
         }
 
-        $data = $this->{"dataToEdit$section"}($unit);
+        try
+        {
+            $data = $this->{"dataToEdit$section"}($unit);
+        }
+        catch(Exception $e)
+        {
+            return redirect(route('units.edit', ['unit' => $unit, 'section' => 'layout']));
+        }
+
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
     }
 
@@ -105,11 +114,15 @@ class UnitController extends Controller
 
     private function dataToEditTemplate(Unit $unit)
     {
+        if(is_null($unit->layout_id))
+        {
+            throw new Exception('Layout not selected yet.');
+        }
+
         $query = Template::notDeleted()
             ->whereType($unit->type)
+            ->where('layout_id', $unit->layout_id)
             ->with('components');
-
-        if(! is_null($unit->layout_id)) $query->where('layout_id', $unit->layout_id);
         
         return ['templates' => $query->get()];
     }

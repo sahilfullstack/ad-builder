@@ -9,6 +9,12 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 
+window.VueColor = require('vue-color');
+
+import VueChartkick from 'vue-chartkick'
+import Chart from 'chart.js'
+Vue.use(VueChartkick, { adapter: Chart });
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -32,6 +38,8 @@ Vue.component('create-user-approve-button', require('./components/users/CreateUs
 Vue.component('create-user-reject-button', require('./components/users/CreateUserRejectButton.vue'));
 Vue.component('personal-access-tokens', require('./components/passport/PersonalAccessToken.vue'));
 Vue.component('update-user-subscription-button', require('./components/users/UpdateUserSubscriptionButton.vue'));
+
+
 
 const app = new Vue({
     el: '#app'

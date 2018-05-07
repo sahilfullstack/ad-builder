@@ -74,7 +74,8 @@
 
         div.body {
             width: 1920px;
-            height: 1080px;
+            /* height: 1080px; */
+            height: 1053.225px;
             background: #fff;
 
             position: relative;

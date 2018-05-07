@@ -10,7 +10,7 @@
                         <label :for="component.slug + '_' + formComponentIndex">
                             {{ component.name }} #{{ formComponentIndex + 1 }}
                         </label>
-                        <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id][formComponentIndex]">
+                        <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id][formComponentIndex]['_value']">
                         <a href @click.prevent="pushAnotherElementInComponent(component.id)"><span class="text-success">Add Another</span></a>
                         <a href @click.prevent="removeElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id].length > 1"><span class="text-danger">Remove</span></a>
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
@@ -19,17 +19,29 @@
             </div>
             <div v-else-if="component.type =='text'">
                 <div class="row" style="margin-bottom: 15px;">
-                    <label :for="component.slug">{{ component.name }}</label>
-                    <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
-                    <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    <div class="col-md-12">
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                    <!-- <div class="col-md-3">
+                        <label :for="component.slug + '_background_color'">Background Color</label>
+                        <color-picker v-model="form.background_color" />
+                    </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_foreground_color'">Text Color</label>
+                        <color-picker v-model="form.foreground_color" />
+                    </div> -->
                 </div>
             </div>
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
-                    <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
-                    <label :for="component.slug">{{ component.name }}</label>
-                    <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]">
-                    <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    <div class="col-md-12">
+                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
                 </div>
             </div>
         </div>
@@ -43,6 +55,8 @@
 
 <script>
 import FileUpload from './../FileUpload';
+import ColorPicker from './../ColorPicker';
+
 export default {
     props: {
         components: {
@@ -59,11 +73,17 @@ export default {
         }
     },
 
+    components: {
+        'color-picker': ColorPicker
+    },
+
     data() {
         return {
             form: {
                 template_id: this.unit.template_id,
-                components: {}
+                components: {},
+                background_color: '#ffffff',
+                foreground_color: '#000000'
             },
             errors: [],
             disable: {
@@ -75,22 +95,22 @@ export default {
     mounted() {
         let components = {};
         _.forEach(this.components, (component) => {
-            components[component.id] = this.unit.components[component.slug]
-                                            ? this.unit.components[component.slug]
-                                            : this.defaultForDataType(component.type);
+            components[component.id] = this.unit.components[component.id]
+                                            ? this.unit.components[component.id]
+                                            : this.defaultValueForDataType(component.type);
         });
 
         Vue.set(this.form, 'components', components);
     },
 
     methods: {
-        defaultForDataType(dataType = 'text') {
+        defaultValueForDataType(dataType = 'text') {
             let defaults = {
-                text: '',
-                image: '',
-                video: '',
-                qr: '',
-                images: ['']
+                text: {_value: ''},
+                image: {_value: ''},
+                video: {_value: ''},
+                qr: {_value: ''},
+                images: {_value: ['']}
             }
 
             return defaults[dataType];

@@ -56,7 +56,7 @@ class ValidComponents implements Rule
      * @return bool
      */
     public function passes($attribute, $value)
-    {
+    {   
         switch ($this->type) {
             case 'text':
                return $this->validateText($attribute, $value);
