@@ -107,6 +107,8 @@ class UnitController extends Controller
 
         $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
 
+        // this is done so that unit could be edited, 
+        // the layout cant be changed though from the backend.
         if(! is_null($unit->layout_id) and empty($layouts))
         {
             $layouts = [$unit->layout_id];
