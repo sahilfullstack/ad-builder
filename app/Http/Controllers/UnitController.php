@@ -107,7 +107,16 @@ class UnitController extends Controller
 
         $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
 
-        $layouts = Layout::whereIn('id', array_pluck($layouts, 'id'))->notDeleted()->get();
+        if(! is_null($unit->layout_id) and empty($layouts))
+        {
+            $layouts = [$unit->layout_id];
+        }
+        else
+        {
+            $layouts  = array_pluck($layouts, 'id');
+        }
+
+        $layouts = Layout::whereIn('id', $layouts)->notDeleted()->get();
 
         return ['layouts' => $layouts];
     }
