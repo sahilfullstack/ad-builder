@@ -318,14 +318,8 @@ class UnitController extends Controller
         $subscription = $user->subscriptions
             ->where('layout_id', $layoutId)
             ->where('expiring_at', '>', Carbon::now())
-            ->where('allowed_quantity', '>', 0)
+            ->havingRaw('sum(allowed_quantity - redeemed_quantity) > 0')
             ->first();
-
-        $unitCounts = $user->units
-                    ->where('id', '!=', $unit->id)
-                    ->where('deleted_at', null)
-                    ->where('layout_id', $layoutId)
-                    ->count();
 
         if(is_null($subscription) and $subscription->allowed_quantity <= $unitCounts)
         {

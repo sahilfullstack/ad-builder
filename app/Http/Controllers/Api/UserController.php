@@ -7,7 +7,7 @@ use App\User;
 use Carbon\Carbon;
 use App\Http\Requests\{ApproveUserRequest};
 use Mail, DB;
-use App\Models\{Layout, Subscription};
+use App\Models\{Layout};
 
 class UserController extends Controller
 {
@@ -24,29 +24,7 @@ class UserController extends Controller
                 $userFound->approved_at = Carbon::now();                
                 $userFound->active = 1;  
 
-                $layouts = Layout::notDeleted()->get();
-
-                foreach ($layouts as $key => $layout) {
-
-                    $subscription = Subscription::where([
-                        'user_id'        => $userId,
-                        'layout_id' => $layout->id
-                        ])->first();
-
-                    if(is_null($subscription))
-                    {
-                        $subscription = new Subscription([
-                            'user_id'        => $userId,
-                            'layout_id' => $layout->id,
-                            'expiring_at'    => Carbon::now(),
-                            'created_at'     => Carbon::now(),
-                            'updated_at'     => Carbon::now()
-                        ]);
-
-                        $subscription->save();
-                    }
-                }
-     
+                $layouts = Layout::notDeleted()->get();     
                 Mail::to($userFound->email)->send(new \App\Mail\AccountApprovalMailToUser($userFound));             
             }
             else 

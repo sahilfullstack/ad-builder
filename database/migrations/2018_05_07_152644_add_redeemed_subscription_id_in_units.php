@@ -14,7 +14,7 @@ class AddRedeemedSubscriptionIdInUnits extends Migration
     public function up()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->integer('redeemed_subscription_id')->after('rejected_at');
+            $table->integer('redeemed_subscription_id')->after('rejected_at')->nullable()->default(null);
         });
     }
 
