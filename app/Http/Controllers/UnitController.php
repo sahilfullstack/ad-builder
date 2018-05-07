@@ -76,7 +76,6 @@ class UnitController extends Controller
         }
 
         $data = $this->{"dataToEdit$section"}($unit);
-
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
     }
 
@@ -109,7 +108,7 @@ class UnitController extends Controller
         $query = Template::notDeleted()
             ->whereType($unit->type)
             ->with('components');
-        
+
         if(! is_null($unit->layout_id)) $query->where('layout_id', $unit->layout_id);
         
         return ['templates' => $query->get()];
