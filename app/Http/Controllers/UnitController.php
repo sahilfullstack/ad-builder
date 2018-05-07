@@ -103,6 +103,7 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
+        // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 
         $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity and s.expiring_at >= now();"));
