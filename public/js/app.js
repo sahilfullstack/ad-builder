@@ -77548,6 +77548,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -77614,7 +77619,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     width: null,
                     height: null
                 },
-                color: {}
+                color: {},
+                survey: {}
             };
 
             return rules[type];
@@ -78284,6 +78290,10 @@ var render = function() {
           _vm._v(" "),
           _vm.form.components[index]["type"] == "color"
             ? _c("div", { staticClass: "row" }, [_vm._m(7, true)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "survey"
+            ? _c("div", { staticClass: "row" }, [_vm._m(8, true)])
             : _vm._e()
         ])
       }),
@@ -78291,7 +78301,7 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "btn-group" }, [
-        _vm._m(8),
+        _vm._m(9),
         _vm._v(" "),
         _c("ul", { staticClass: "dropdown-menu" }, [
           _c("li", [
@@ -78403,6 +78413,25 @@ var render = function() {
               },
               [_vm._v("Color")]
             )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "survey"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Survey")]
+            )
           ])
         ])
       ]),
@@ -78497,6 +78526,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [
       _c("em", [_vm._v("None available for Color.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("em", [_vm._v("None available for Survey.")])
     ])
   },
   function() {
@@ -80075,6 +80112,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80120,7 +80166,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _.forEach(this.components, function (component) {
             components[component.id] = _this.unit.components[component.id] ? _this.unit.components[component.id] : _this.defaultValueForDataType(component.type);
         });
-
+        console.log(components);
         Vue.set(this.form, 'components', components);
     },
 
@@ -80134,7 +80180,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 image: { _value: '' },
                 video: { _value: '' },
                 qr: { _value: '' },
-                images: { _value: [''] }
+                images: { _value: [''] },
+                survey: { _value: [''], _yes: 0, _no: 0 }
             };
 
             return defaults[dataType];
@@ -80154,6 +80201,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
 
+            console.log(this.form);
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this2.disable.saving = false;
@@ -80729,7 +80777,7 @@ var render = function() {
                     ]
                   )
                 ])
-              : component.type == "color"
+              : component.type == "survey"
                 ? _c("div", [
                     _c(
                       "div",
@@ -80738,74 +80786,7 @@ var render = function() {
                         staticStyle: { "margin-bottom": "15px" }
                       },
                       [
-                        _c(
-                          "div",
-                          { staticClass: "col-md-12" },
-                          [
-                            _c("label", { attrs: { for: component.slug } }, [
-                              _vm._v(_vm._s(component.name))
-                            ]),
-                            _vm._v(" "),
-                            _c("color-picker", {
-                              model: {
-                                value:
-                                  _vm.form.components[component.id]["_value"],
-                                callback: function($$v) {
-                                  _vm.$set(
-                                    _vm.form.components[component.id],
-                                    "_value",
-                                    $$v
-                                  )
-                                },
-                                expression:
-                                  "form.components[component.id]['_value']"
-                              }
-                            }),
-                            _vm._v(" "),
-                            _c(
-                              "span",
-                              {
-                                staticClass: "text-danger",
-                                class: {
-                                  hidden:
-                                    _vm.errors["component.slug"] == undefined
-                                },
-                                staticStyle: { "margin-right": "10px" }
-                              },
-                              [_vm._v(_vm._s(_vm.errors["component.slug"]))]
-                            )
-                          ],
-                          1
-                        )
-                      ]
-                    )
-                  ])
-                : _c("div", [
-                    _c(
-                      "div",
-                      {
-                        staticClass: "row",
-                        staticStyle: { "margin-bottom": "15px" }
-                      },
-                      [
                         _c("div", { staticClass: "col-md-12" }, [
-                          component.type == "image" || component.type == "video"
-                            ? _c(
-                                "a",
-                                {
-                                  staticClass: "pull-right",
-                                  attrs: { href: "" },
-                                  on: {
-                                    click: function($event) {
-                                      $event.preventDefault()
-                                      _vm.upload(component.id)
-                                    }
-                                  }
-                                },
-                                [_vm._v("Upload")]
-                              )
-                            : _vm._e(),
-                          _vm._v(" "),
                           _c("label", { attrs: { for: component.slug } }, [
                             _vm._v(_vm._s(component.name))
                           ]),
@@ -80860,6 +80841,139 @@ var render = function() {
                       ]
                     )
                   ])
+                : component.type == "color"
+                  ? _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: { "margin-bottom": "15px" }
+                        },
+                        [
+                          _c(
+                            "div",
+                            { staticClass: "col-md-12" },
+                            [
+                              _c("label", { attrs: { for: component.slug } }, [
+                                _vm._v(_vm._s(component.name))
+                              ]),
+                              _vm._v(" "),
+                              _c("color-picker", {
+                                model: {
+                                  value:
+                                    _vm.form.components[component.id]["_value"],
+                                  callback: function($$v) {
+                                    _vm.$set(
+                                      _vm.form.components[component.id],
+                                      "_value",
+                                      $$v
+                                    )
+                                  },
+                                  expression:
+                                    "form.components[component.id]['_value']"
+                                }
+                              }),
+                              _vm._v(" "),
+                              _c(
+                                "span",
+                                {
+                                  staticClass: "text-danger",
+                                  class: {
+                                    hidden:
+                                      _vm.errors["component.slug"] == undefined
+                                  },
+                                  staticStyle: { "margin-right": "10px" }
+                                },
+                                [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+                              )
+                            ],
+                            1
+                          )
+                        ]
+                      )
+                    ])
+                  : _c("div", [
+                      _c(
+                        "div",
+                        {
+                          staticClass: "row",
+                          staticStyle: { "margin-bottom": "15px" }
+                        },
+                        [
+                          _c("div", { staticClass: "col-md-12" }, [
+                            component.type == "image" ||
+                            component.type == "video"
+                              ? _c(
+                                  "a",
+                                  {
+                                    staticClass: "pull-right",
+                                    attrs: { href: "" },
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.upload(component.id)
+                                      }
+                                    }
+                                  },
+                                  [_vm._v("Upload")]
+                                )
+                              : _vm._e(),
+                            _vm._v(" "),
+                            _c("label", { attrs: { for: component.slug } }, [
+                              _vm._v(_vm._s(component.name))
+                            ]),
+                            _vm._v(" "),
+                            _c("input", {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.form.components[component.id]["_value"],
+                                  expression:
+                                    "form.components[component.id]['_value']"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: {
+                                type: "text",
+                                id: component.slug,
+                                placeholder: component.type
+                              },
+                              domProps: {
+                                value:
+                                  _vm.form.components[component.id]["_value"]
+                              },
+                              on: {
+                                input: function($event) {
+                                  if ($event.target.composing) {
+                                    return
+                                  }
+                                  _vm.$set(
+                                    _vm.form.components[component.id],
+                                    "_value",
+                                    $event.target.value
+                                  )
+                                }
+                              }
+                            }),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              {
+                                staticClass: "text-danger",
+                                class: {
+                                  hidden:
+                                    _vm.errors["component.slug"] == undefined
+                                },
+                                staticStyle: { "margin-right": "10px" }
+                              },
+                              [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+                            )
+                          ])
+                        ]
+                      )
+                    ])
         ])
       }),
       _vm._v(" "),
@@ -83622,7 +83736,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
 
                 thiz.disable.adding = true;
-                console.log("here");
                 location.reload();
             });
         }

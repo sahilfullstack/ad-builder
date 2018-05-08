@@ -225,9 +225,9 @@ class UnitController extends Controller
                     }
 
                     $this->validateComponents($inputComponents, $template->id);
-            
+
                     $preparedComponents = $this->preparedComponents($inputComponents, $components);
-                 
+
                     if(count($preparedComponents > 0))
                     {
                         $unit->components = $preparedComponents;
@@ -275,7 +275,14 @@ class UnitController extends Controller
         $preparedComponents = [];
         foreach($templateComponents as $component)
         {
-            $preparedComponents[$component->id] = ['_value' => ''];
+            if($component->type == "survey")
+            {
+                $preparedComponents[$component->id] = ['_value' => '', '_yes' => 0, '_no' => 0 ];
+            }
+            else
+            {                  
+                $preparedComponents[$component->id] = ['_value' => ''];
+            }
         }
 
         return $preparedComponents;
@@ -345,9 +352,6 @@ class UnitController extends Controller
             ->where('layout_id', $layoutId)
             ->where('expiring_at', '>', Carbon::now())
             ->first();
-
-        \Log::info($subscription->allowed_quantity);
-        \Log::info($subscription->redeemed_quantity);
 
         if(is_null($subscription) or (($subscription->allowed_quantity - $subscription->redeemed_quantity) <= 0))
         {

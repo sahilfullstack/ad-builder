@@ -113,7 +113,11 @@
                     <em>None available for Color.</em>
                 </div>
             </div>
-
+            <div class="row" v-if="form.components[index]['type'] == 'survey'">
+                <div class="col-md-12">
+                    <em>None available for Survey.</em>
+                </div>
+            </div>
         </div>
         
         <hr />
@@ -129,6 +133,7 @@
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'qr')">QR Code</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'images')">Series of Images</a></li>
                 <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'color')">Color</a></li>
+                <li><a href @click.prevent="addComponentAfterIndex(form.components.length, 'survey')">Survey</a></li>
             </ul>
         </div>
 
@@ -206,6 +211,9 @@ export default {
                     height: null
                 },
                 color : {
+
+                },
+                survey : {
 
                 }
             }
