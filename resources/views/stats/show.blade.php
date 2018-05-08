@@ -16,7 +16,11 @@
             <hr>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <area-chart :data="{{ json_encode($range) }}"></area-chart>
+                    @if($type == 'daterange')
+                        <area-chart :data="{{ json_encode($range) }}"></area-chart>
+                    @elseif($type == 'pie')
+                        <pie-chart :data="{{ json_encode($range) }}"></pie-chart>
+                    @endif
                 </div>
             </div>
         </div>

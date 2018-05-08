@@ -83,7 +83,8 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range', 'from', 'to'));
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
     }
 
     protected function showSum(Request $request, $from, $to)
@@ -115,7 +116,80 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range', 'from', 'to'));
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
+    }
+
+    protected function showLayoutPerformance(Request $request, $from, $to)
+    {
+        // select sum(views.duration) as performance, units.layout_id from views join units on views.unit_id = units.id group by units.layout_id order by performance desc;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->join('layouts', 'units.layout_id', '=', 'layouts.id')
+            ->select(DB::raw('sum(duration) as performance, layouts.name'))
+            ->where(DB::raw('date(views.created_at)'), '>=', $from)
+            ->where(DB::raw('date(views.created_at)'), '<=', $to)
+            ->groupBy('layouts.id');
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = [];
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->name] = $entry->performance;
+        }
+        
+        // pass the data to the view
+        $type = 'pie';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
+    }
+
+    protected function showSubscriptionSum(Request $request, $from, $to)
+    {
+        // select sum(allowed_quantity), date(subscriptions.created_at) as created_on from subscriptions join layouts on subscriptions.layout_id = layouts.id group by created_on;
+        $query = DB::table('subscriptions')
+            ->select(DB::raw('sum(allowed_quantity) as subscription_count, date(created_at) as created_on'))
+            ->where(DB::raw('date(created_at)'), '>=', $from)
+            ->where(DB::raw('date(created_at)'), '<=', $to)
+            ->groupBy('created_on');
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->created_on] = $entry->subscription_count;
+        }
+        
+        // pass the data to the view
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
+    }
+
+    protected function showSubscriptionsByLayout(Request $request, $from, $to)
+    {
+        // select layouts.name, sum(allowed_quantity) from subscriptions join layouts on subscriptions.layout_id = layouts.id group by layout_id;
+        $query = DB::table('subscriptions')
+            ->join('layouts', 'subscriptions.layout_id', '=', 'layouts.id')
+            ->select(DB::raw('layouts.name, sum(allowed_quantity) as subscription_count'))
+            ->where(DB::raw('date(subscriptions.created_at)'), '>=', $from)
+            ->where(DB::raw('date(subscriptions.created_at)'), '<=', $to)
+            ->groupBy('subscriptions.layout_id');
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = [];
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->name] = $entry->subscription_count;
+        }
+
+        // pass the data to the view
+        $type = 'pie';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
     }
 
     protected function showSumOthers(Request $request, $from, $to)
@@ -147,7 +221,8 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range', 'from', 'to'));
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
     }
 
     protected function showAverage(Request $request, $from, $to)
@@ -177,7 +252,8 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range', 'from', 'to'));
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
     }
 
     protected function showAverageOthers(Request $request, $from, $to)
@@ -207,7 +283,8 @@ class StatisticsController extends Controller
         }
 
         // pass the data to the view
-        return view('stats.show', compact('range', 'from', 'to'));
+        $type = 'daterange';
+        return view('stats.show', compact('type', 'range', 'from', 'to'));
     }
 
     private function generateDateRange($from, $to, $default = 0)
