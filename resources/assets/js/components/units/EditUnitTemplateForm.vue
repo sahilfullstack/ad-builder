@@ -2,7 +2,8 @@
     <form @submit.prevent="update">
         <div class="form-group">
             <label for="template_id">TEMPLATE <span class="text-danger">*</span></label>
-            <select name="template_id" id="template_id" class="form-control" v-model="form.template_id">    
+            <span v-if="templates.length== 0">No Subscriptions Yet.</span>
+            <select v-if="templates.length > 0" name="template_id" id="template_id" class="form-control" v-model="form.template_id">    
                 <option v-for="template in templates" :key="template.id" :value="template.id">{{ template.name }}</option>
             </select>
             <span class="text-danger" :class="{'hidden': errors['template_id'] == undefined}" style="margin-right:10px;">{{errors['template_id']}}</span>
@@ -10,7 +11,7 @@
 
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
-        <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
+        <button v-if="templates.length > 0" type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
 
@@ -34,7 +35,7 @@ export default {
     data() {
         return {
             form: {
-                template_id: this.unit.template_id == null ? this.templates[0].id : this.unit.template_id
+                template_id: this.unit.template_id == null ? (this.templates.length > 0 ? this.templates[0].id :0) : this.unit.template_id
             },
             errors: [],
             disable: {

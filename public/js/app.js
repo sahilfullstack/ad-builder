@@ -79711,14 +79711,16 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.disable.saving }
-        },
-        [_vm._v("Save")]
-      )
+      _vm.templates.length > 0
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit", disabled: _vm.disable.saving }
+            },
+            [_vm._v("Save")]
+          )
+        : _vm._e()
     ]
   )
 }
@@ -79811,6 +79813,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -79831,7 +79834,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                template_id: this.unit.template_id == null ? this.templates[0].id : this.unit.template_id
+                template_id: this.unit.template_id == null ? this.templates.length > 0 ? this.templates[0].id : 0 : this.unit.template_id
             },
             errors: [],
             disable: {
@@ -79897,45 +79900,51 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c(
-          "select",
-          {
-            directives: [
+        _vm.templates.length == 0
+          ? _c("span", [_vm._v("No Subscriptions Yet.")])
+          : _vm._e(),
+        _vm._v(" "),
+        _vm.templates.length > 0
+          ? _c(
+              "select",
               {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.form.template_id,
-                expression: "form.template_id"
-              }
-            ],
-            staticClass: "form-control",
-            attrs: { name: "template_id", id: "template_id" },
-            on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.$set(
-                  _vm.form,
-                  "template_id",
-                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.template_id,
+                    expression: "form.template_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "template_id", id: "template_id" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "template_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.templates, function(template) {
+                return _c(
+                  "option",
+                  { key: template.id, domProps: { value: template.id } },
+                  [_vm._v(_vm._s(template.name))]
                 )
-              }
-            }
-          },
-          _vm._l(_vm.templates, function(template) {
-            return _c(
-              "option",
-              { key: template.id, domProps: { value: template.id } },
-              [_vm._v(_vm._s(template.name))]
+              })
             )
-          })
-        ),
+          : _vm._e(),
         _vm._v(" "),
         _c(
           "span",
@@ -79960,14 +79969,16 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.disable.saving }
-        },
-        [_vm._v("Save")]
-      )
+      _vm.templates.length > 0
+        ? _c(
+            "button",
+            {
+              staticClass: "btn btn-primary",
+              attrs: { type: "submit", disabled: _vm.disable.saving }
+            },
+            [_vm._v("Save")]
+          )
+        : _vm._e()
     ]
   )
 }
@@ -80201,7 +80212,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
 
-            console.log(this.form);
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
                 _this2.disable.saving = false;
