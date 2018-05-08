@@ -8,7 +8,7 @@ use App\Models\{Subscription};
 use App\User;
 use App\Exceptions\InvalidInputException;
 use Carbon\Carbon;
-use App\Http\Requests\CreateSubscriptionRequest;
+use App\Http\Requests\Subscription\CreateSubscriptionRequest;
 
 class SubscriptionController extends Controller
 {
@@ -27,7 +27,7 @@ class SubscriptionController extends Controller
         return $subscription->fresh();
     }
 
-    public function create(User $user, CreateSubscriptionRequest $request)
+    public function create(CreateSubscriptionRequest $request, User $user)
     {
          $subscription = new Subscription([
                 'user_id'          => $user->id,
