@@ -22,7 +22,11 @@
                     @foreach($subscriptions as $subscription)
                             <tr>
                             <td>{{$subscription->layout->name}}</td>
+                            @if($subscription->redeemed_quantity >= $subscription->allowed_quantity or \Carbon\Carbon::parse($subscription->expiring_at)->lt(\Carbon\Carbon::now()))
+                            <td>Inactive</td>
+                            @else
                             <td>Active</td>
+                            @endif
                             <td>{{\Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()}}</td>
                             <td>{{$subscription->allowed_quantity}}</td>
                             <td>{{$subscription->redeemed_quantity}}</td>
