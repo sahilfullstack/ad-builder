@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Requests;
+namespace App\Http\Requests\Subscription;
 
 use Illuminate\Foundation\Http\FormRequest;
 use App\Models\Subscription;
@@ -25,7 +25,8 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'expiry_date' => 'required',
+            'layout_id' => 'required|exists:layouts,id',
+            'expiring_at' => 'required',
             'allowed_quantity' => 'required',
         ];
     }

@@ -19,7 +19,7 @@ class Layout extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'user_id'
+        'name', 'slug', 'width', 'height', 'user_id'
     ];
 
     /**

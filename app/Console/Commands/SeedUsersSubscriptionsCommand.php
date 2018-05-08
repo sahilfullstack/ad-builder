@@ -47,23 +47,26 @@ class SeedUsersSubscriptionsCommand extends Command
             $this->info("seedig user". $user->id);
             foreach ($layouts as $key => $layout) {
 
-                $subscription = Subscription::where([
-                    'user_id'        => $user->id,
-                    'layout_id' => $layout->id
-                    ])->first();
+                // $subscription = Subscription::where([
+                //     'user_id'        => $user->id,
+                //     'layout_id' => $layout->id
+                //     ])->first();
 
-                if(is_null($subscription))
-                {
+                // if(is_null($subscription))
+                // {
                     $subscription = new Subscription([
                         'user_id'        => $user->id,
                         'layout_id' => $layout->id,
-                        'expiring_at'    => Carbon::now(),
+                        'allowed_quantity' => 3,
+                        'expiring_at'    => Carbon::now()->addDays(10),
                         'created_at'     => Carbon::now(),
                         'updated_at'     => Carbon::now()
                     ]);
 
                     $subscription->save();
-                }
+                // }
+
+                dd("stop");
             }
         }
     }

@@ -17,6 +17,7 @@
                         <th class="text-center">Status</th>
                         <th class="text-center">Expiring At</th>
                         <th class="text-center">Allowed Quantity</th>
+                        <th class="text-center">Redeemed Quantity</th>
                         </tr>
                     @foreach($subscriptions as $subscription)
                             <tr>
@@ -24,6 +25,7 @@
                             <td>Active</td>
                             <td>{{\Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()}}</td>
                             <td>{{$subscription->allowed_quantity}}</td>
+                            <td>{{$subscription->redeemed_quantity}}</td>
                             </tr>
                     @endforeach
                     </table>

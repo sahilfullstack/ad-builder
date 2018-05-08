@@ -34,6 +34,8 @@ Route::get('/users', 'UserController@list')->name('users.list')->middleware('aut
 
 Route::get('/units/{unit}', 'UnitController@show')->name('units.show')->middleware('auth');
 
+Route::get('/statistics/{type}', 'StatisticsController@show')->name('stats.show')->middleware('auth');
+
 Route::get('/practice/templates/1', 'PracticeController@template1');
 Route::get('/practice/templates/{template}', 'PracticeController@renderTemplate');
 Route::get('/practice/templates/embed', 'PracticeController@embed');
@@ -50,3 +52,5 @@ Route::get('me/subscriptions', [
 ]);
 
 Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');
+
+Route::get('/practice/units', ['as' => 'api.unit.list', 'uses' => 'Api\UnitController@list']);

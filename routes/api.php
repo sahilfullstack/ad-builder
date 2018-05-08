@@ -26,7 +26,8 @@ Route::put('/units/{unit}/publish', ['as' => 'units.update', 'uses' => 'UnitCont
 
 Route::put('/units/{unit}/approve', ['as' => 'units.approve', 'uses' => 'UnitController@approve']);
 Route::put('/users/{user}/approve', ['as' => 'users.approve', 'uses' => 'UserController@approve']);
-Route::put('/users/{user}/subscriptions/{subscription}', ['as' => 'users.subscription.update', 'uses' => 'SubscriptionController@update']);
+// Route::put('/users/{user}/subscriptions/{subscription}', ['as' => 'users.subscription.update', 'uses' => 'SubscriptionController@update']);
+Route::post('/users/{user}/subscriptions', ['as' => 'users.subscription.create', 'uses' => 'SubscriptionController@create']);
 
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
 
@@ -34,5 +35,6 @@ Route::get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get('/units', ['as' => 'api.unit.list', 'uses' => 'UnitController@list'])->middleware('valid_api_headers');
 Route::get('/units/{unit}',  ['as' => 'api.unit.list', 'uses' => 'UnitController@show'])->middleware('valid_api_headers');
+
+Route::post('/views', ['as' => 'api.view.store', 'uses' => 'ViewController@store'])->middleware('valid_api_headers');

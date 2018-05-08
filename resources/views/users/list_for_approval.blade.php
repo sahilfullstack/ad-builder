@@ -30,10 +30,10 @@
                             @if(is_null($user->approved_at) && is_null($user->rejected_at))
                                 <create-user-approve-button :user="{{ $user->toJson() }}"></create-user-approve-button>
                                 <create-user-reject-button :user="{{ $user->toJson() }}"></create-user-reject-button>
-                            @else
+                            @elseif( ! is_null($user->approved_at))
                                <a href="{{ route('users.manage.subscriptions', [
                                 'user' => $user->id
-                               ]) }}" target="_blank">
+                               ]) }}">
                                     Manage Subscription
                                 </a>
                             @endif

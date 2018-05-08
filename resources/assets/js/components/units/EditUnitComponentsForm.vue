@@ -34,6 +34,15 @@
                     </div> -->
                 </div>
             </div>
+             <div v-else-if="component.type =='color'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <color-picker v-model="form.components[component.id]['_value']" />
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>                   
+                </div>
+            </div>
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">

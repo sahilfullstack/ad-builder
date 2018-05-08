@@ -19,8 +19,11 @@
         "vue": "^2.5.7"
     },
     "dependencies": {
+        "chart.js": "^2.7.2",
         "moment": "^2.22.1",
         "node-sass": "^4.8.3",
-        "vue-color": "^2.4.6"
+        "vue-chartkick": "^0.3.1",
+        "vue-color": "^2.4.6",
+        "vue2-datepicker": "^1.9.7"
     }
 }

@@ -19,7 +19,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id'
+        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**
@@ -110,6 +110,26 @@ class Unit extends Model
     public function scopeNotDeleted($query)
     {
         return $query->whereNull('deleted_at')->where(self::SOFT_DELETION_TOKEN, 0);
+    }
+
+    public function scopePublished($query)
+    {
+        return $query->notDeleted()->whereNotNull('published_at');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->notDeleted()->whereNotNull('approved_at');
+    }
+
+    public function scopeAd($query)
+    {
+        return $query->where('type', 'ad');
+    }
+
+    public function layout()
+    {
+        return $this->belongsTo(Layout::class);
     }
 
     public function template()

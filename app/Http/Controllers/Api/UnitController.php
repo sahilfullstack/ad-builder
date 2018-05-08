@@ -8,11 +8,14 @@ use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
-use Carbon\Carbon;
-use App\Models\Layout;
+use Carbon\Carbon, DB;
+use App\Models\{Layout, Subscription};
 
 use App\Rules\ValidComponents;
 use App\Services\Formatter\Formatter;
+use Illuminate\Support\Str;
+use App\Services\SlideMaker\Element;
+use App\Services\SlideMaker\Canvas;
 
 class UnitController extends Controller
 {
@@ -41,7 +44,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::notDeleted()->with(['template', 'template.components']);
+        $units = Unit::published()->approved()->with(['layout', 'child', 'template.components']);
       
         if( ! is_null($request->get('type')))
         {
@@ -54,11 +57,85 @@ class UnitController extends Controller
         }
 
         $units = $units->get()->toArray();
-
-        $formatter = Formatter::make($units, Formatter::ARR);
-
+        
+        $formatter = Formatter::make($this->transformUnitsForKiosk($units), Formatter::ARR);
+        dd($formatter->toXml());
         return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
-    }    
+    }
+
+    protected function transformUnitsForKiosk($units)
+    {
+        /*
+            <PRODUCT> 
+                <product>
+                    <prid>105</prid>
+                    <detailimage>Full Page Landing Templates_1920x1080_v2-16.jpg</detailimage>
+                    <thumbnail>Ad-Pages05Thumb.jpg</thumbnail>
+                    <category>Upgrades</category>
+                    <title>MESA: Upgrades</title>
+                    <slideimage>http://mesa.metaworthy.com/practice/templates/full-page-ad-templates_1920x1080-02?z=2</slideimage>
+                <slidelayoutid>0</slidelayoutid>
+                    <startchar>M</startchar>
+                    <hoverimage>Transparent.png</hoverimage>
+                </product>
+            </PRODUCT>
+        */
+
+        $transformed = [
+            $this->fitInSlides($units),
+            'products' => []
+        ];
+
+        foreach($units as $unit)
+        {
+            $transformed['products'][] = [
+                'prid' => $unit['id'],
+                'category' => 'Category',
+                'title' => $unit['name'],
+                'render_url' => route('units.render', $unit['id']),
+                'landing_page_url' => route('units.render', $unit['child']['id']),
+                'layout_id' => $unit['layout_id'],
+                'startchar' => Str::upper(substr($unit['name'], 0, 1)),
+                'thumbnail' => 'Ad-Pages05Thumb.jpg',
+                'hoverimage' => 'Transparent.png',
+            ];
+        }
+        
+        return $transformed;
+    }
+
+    protected function fitInSlides($units)
+    {
+        $processedUnits = [];
+        $slides = [];
+        
+        $i = 0;
+        while (count($processedUnits) < count($units)) {
+            $slides[] = $this->fitInSlide($units, $processedUnits);
+            $i++;
+        }
+
+        return $slides;
+    }
+
+    protected function fitInSlide($units, &$processedUnits)
+    {
+        $selectedUnits = [];
+
+        $canvas = new Canvas(1920, 1080);
+        foreach ($units as $index => $unit) {
+            if (! in_array($unit['id'], $processedUnits)) {
+                $wasFit = $canvas->fitElement(new Element($unit['layout']['width'], $unit['layout']['height'], $unit['id']));
+
+                if ($wasFit) {
+                    array_push($processedUnits, $unit['id']);
+                    array_push($selectedUnits, $unit['id']);
+                }
+            }
+        }
+
+        return implode(',', $selectedUnits);
+    }
 
     private function returnResponseToSpecificFormat($formatter, $format)
     {
@@ -171,67 +248,92 @@ class UnitController extends Controller
 
     public function update(UpdateUnitRequest $request, Unit $unit)
     {
-        // if layout is sent
-        if (!is_null($request->layout_id))
+        try
         {
-            // validating if user has subscription
-            $this->hasSubscription($unit, $request->layout_id);   
+            DB::beginTransaction();
 
-            $unit->layout_id = $request->layout_id;
-        }
-
-        // if template is sent
-        if( ! is_null($request->template_id))
-        {
-            $unit->template_id = $request->template_id;            
-    
-            $template = Template::notDeleted()->find($request->template_id);
-
-            if(count($unit->components) == 0)
+            // if layout is sent
+            if (!is_null($request->layout_id))
             {
-                $templeteComponents = $template->components()->get();   
-                $preparedComponents = $this->preparedBlankComponents($templeteComponents);
-                $unit->components   = $preparedComponents;
-            }
-
-            if( ! is_null($request->components))
-            {
-                $inputComponents = $request->components;
-
-                $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
-
-                // Validating that the selected template has the selected components.
-                if($components->count() != count($inputComponents))
+                // validating if user has subscription
+                $this->hasSubscription($unit, $request->layout_id);   
+                
+                if( is_null($unit->redeemed_subscription_id))
                 {
-                    throw new InvalidInputException('Bad components sent.');
-                }
+                    $subscription = Subscription::where([
+                            'layout_id' => $request->layout_id,
+                            'user_id' => $unit->user->id
+                            ])
+                    ->whereRaw('allowed_quantity > redeemed_quantity')->orderBy('expiring_at', 'DESC')->first();
 
-                $this->validateComponents($inputComponents, $template->id);
-        
-                $preparedComponents = $this->preparedComponents($inputComponents, $components);
-             
-                if(count($preparedComponents > 0))
-                {
-                    $unit->components = $preparedComponents;
+                    $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;
+                    $unit->redeemed_subscription_id = $subscription->id;
+                    
+                    $subscription->save();
+
+                    $unit->layout_id = $request->layout_id;
                 }
             }
-        }
+
+            // if template is sent
+            if( ! is_null($request->template_id))
+            {
+                $unit->template_id = $request->template_id;            
         
-        // if name is sent
-        if(! is_null($request->name))
+                $template = Template::notDeleted()->find($request->template_id);
+
+                if(count($unit->components) == 0)
+                {
+                    $templeteComponents = $template->components()->get();   
+                    $preparedComponents = $this->preparedBlankComponents($templeteComponents);
+                    $unit->components   = $preparedComponents;
+                }
+
+                if( ! is_null($request->components))
+                {
+                    $inputComponents = $request->components;
+
+                    $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
+
+                    // Validating that the selected template has the selected components.
+                    if($components->count() != count($inputComponents))
+                    {
+                        throw new InvalidInputException('Bad components sent.');
+                    }
+
+                    $this->validateComponents($inputComponents, $template->id);
+            
+                    $preparedComponents = $this->preparedComponents($inputComponents, $components);
+                 
+                    if(count($preparedComponents > 0))
+                    {
+                        $unit->components = $preparedComponents;
+                    }
+                }
+            }
+            
+            // if name is sent
+            if(! is_null($request->name))
+            {
+                $unit->name = $request->name;
+            }  
+
+            // if parent_id is sent
+            if(! is_null($request->parent_id))
+            {
+                $unit->parent_id = $request->parent_id;
+            } 
+
+            $unit->save();
+            
+            DB::commit();   
+            return $unit->fresh();
+        }
+        catch(\Exception $e)
         {
-            $unit->name = $request->name;
-        }  
+            DB::rollBack();
 
-        // if parent_id is sent
-        if(! is_null($request->parent_id))
-        {
-            $unit->parent_id = $request->parent_id;
-        } 
-
-        $unit->save();
-
-        return $unit->fresh();
+        }
     }
 
     private function preparedComponents($inputComponents, $templateComponents)
@@ -281,10 +383,20 @@ class UnitController extends Controller
             $component = Component::find($componentId);
 
             $validator = \Validator::make([$component->name => $value['_value']], [
-                $component->name => [
-                    'required'
+                 $component->name => [
+                    'required',
                 ]
+
             ]);
+
+            if($component->type == "color")
+            {
+                $validator = \Validator::make([$component->name => $value['_value']], [
+                     $component->name => [
+                        'regex:/^(\#[\da-f]{3}|\#[\da-f]{6}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$/i',
+                    ]
+                ]);
+            }
 
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
@@ -305,19 +417,16 @@ class UnitController extends Controller
     private function hasSubscription($unit, $layoutId)
     {
         $user = $unit->user;
+        $userId = $unit->id;
         $subscription = $user->subscriptions
             ->where('layout_id', $layoutId)
             ->where('expiring_at', '>', Carbon::now())
-            ->where('allowed_quantity', '>', 0)
             ->first();
 
-        $unitCounts = $user->units
-                    ->where('id', '!=', $unit->id)
-                    ->where('deleted_at', null)
-                    ->where('layout_id', $layoutId)
-                    ->count();
+        \Log::info($subscription->allowed_quantity);
+        \Log::info($subscription->redeemed_quantity);
 
-        if(is_null($subscription) and $subscription->allowed_quantity <= $unitCounts)
+        if(is_null($subscription) or (($subscription->allowed_quantity - $subscription->redeemed_quantity) <= 0))
         {
             throw new InvalidInputException("Subscription is invalid.");
         }

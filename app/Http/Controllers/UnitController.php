@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Template;
-use App\Models\Unit;
-use App\Models\Layout;
+use App\Models\{Template, Unit, Layout, Subscription};
+
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
 use Carbon\Carbon, DB;
 use Exception;
@@ -103,11 +102,23 @@ class UnitController extends Controller
 
     private function dataToEditLayout(Unit $unit)
     {
+        // // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 
-        $layoutIds = DB::select(DB::raw("Select s.layout_id from subscriptions as s join (select layout_id, count(layout_id) as count from units where user_id=$userId and deleted_at is null and layout_id is not NULL GROUP BY `layout_id`) as a ON a.layout_id = s.layout_id WHERE s.user_id = $userId and a.count < s.allowed_quantity;"));
+        $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
 
-        $layouts = Layout::whereIn('id', array_pluck($layoutIds, 'layout_id'))->notDeleted()->get();
+        // this is done so that unit could be edited, 
+        // the layout cant be changed though from the backend.
+        if(! is_null($unit->layout_id) and empty($layouts))
+        {
+            $layouts = [$unit->layout_id];
+        }
+        else
+        {
+            $layouts  = array_pluck($layouts, 'id');
+        }
+
+        $layouts = Layout::whereIn('id', $layouts)->notDeleted()->get();
 
         return ['layouts' => $layouts];
     }

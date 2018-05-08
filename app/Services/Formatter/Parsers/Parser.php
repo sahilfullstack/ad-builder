@@ -87,16 +87,16 @@ abstract class Parser
                 }
 
                 // no numeric keys in our xml please!
-//                 if (is_numeric($key)) {
-//                     // make string key...
-//                     if (isset($value['@name']) && is_string($value['@name'])) {
-//                         $key = $value['@name'];
-//                     } else {
-//                         $key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : 'item';
-//                     }
+                if (is_numeric($key)) {
+                    // make string key...
+                    if (isset($value['@name']) && is_string($value['@name'])) {
+                        $key = $value['@name'];
+                    } else {
+                        $key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : 'item';
+                    }
 
-//                     // unset($value['@name']);
-//                 }
+                    // unset($value['@name']);
+                }
 
                 // replace anything not alpha numeric AND '@' because of '@attributes'
                 $key = preg_replace('/[^a-z_@\-0-9]/i', '', $key);
