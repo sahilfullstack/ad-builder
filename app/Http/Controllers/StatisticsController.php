@@ -53,7 +53,7 @@ class StatisticsController extends Controller
         return $this->{'show' . Str::studly($type)}($request, $from->toDateString(), $to->toDateString());
     }
 
-    protected function showCount(Request $request, $from, $to)
+    protected function showViewsCount(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
@@ -84,10 +84,11 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
-    protected function showSum(Request $request, $from, $to)
+    protected function showViewsDuration(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
@@ -117,7 +118,8 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
     protected function showLayoutPerformance(Request $request, $from, $to)
@@ -142,7 +144,8 @@ class StatisticsController extends Controller
         
         // pass the data to the view
         $type = 'pie';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
     protected function showSubscriptionSum(Request $request, $from, $to)
@@ -165,7 +168,8 @@ class StatisticsController extends Controller
         
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
     protected function showSubscriptionsByLayout(Request $request, $from, $to)
@@ -189,10 +193,11 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'pie';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
-    protected function showSumOthers(Request $request, $from, $to)
+    protected function showViewsDurationOthers(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
@@ -222,10 +227,11 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
-    protected function showAverage(Request $request, $from, $to)
+    protected function showViewsAverageDuration(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
@@ -253,10 +259,11 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
-    protected function showAverageOthers(Request $request, $from, $to)
+    protected function showViewsAverageDurationOthers(Request $request, $from, $to)
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
@@ -284,7 +291,8 @@ class StatisticsController extends Controller
 
         // pass the data to the view
         $type = 'daterange';
-        return view('stats.show', compact('type', 'range', 'from', 'to'));
+        $path = '/' . $request->path();
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
     }
 
     private function generateDateRange($from, $to, $default = 0)

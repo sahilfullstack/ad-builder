@@ -9,8 +9,7 @@
             </h1>
             <div class="panel panel-default">
                 <div class="panel-body">
-                    <filter-form path="/statistics/average" from="{{ $from }}" to="{{ $to }}"></filter-form>
-                    <!-- <date-picker v-model="time" range lang="en"></date-picker> -->
+                    <filter-form path="{{ $path }}" from="{{ $from }}" to="{{ $to }}"></filter-form>
                 </div>
             </div>
             <hr>
