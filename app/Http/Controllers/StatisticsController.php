@@ -57,20 +57,18 @@ class StatisticsController extends Controller
     {
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
-        
-        if(is_null($source)) return response('Please select a source.', 422);
 
         // select count(*), date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('count(*) as view_count, date(viewed_at) as viewed_on'))
             ->where('units.user_id', auth()->user()->id)
-            ->where('views.landing_from', $source)
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
-
+            
         if(! is_null($unitId)) $query->where('units.id', $unitId);
+        if(! is_null($source)) $query->where('views.landing_from', $source);
         
         $result = $query->get();
         
@@ -93,19 +91,17 @@ class StatisticsController extends Controller
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
 
-        if (is_null($source)) return response('Please select a source.', 422);
-
         // select sum(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
             ->where('units.user_id', auth()->user()->id)
-            ->where('views.landing_from', $source)
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
-
+            
         if (!is_null($unitId)) $query->where('units.id', $unitId);
+        if (!is_null($source)) $query->where('views.landing_from', $source);
 
         $result = $query->get();
         
@@ -202,19 +198,17 @@ class StatisticsController extends Controller
         $source = $request->input('source');
         $unitId = $request->input('unit_id');
 
-        if (is_null($source)) return response('Please select a source.', 422);
-
         // select sum(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id <> 1 and landing_from = 'category' group by viewed_on;
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
             ->where('units.user_id', '<>', auth()->user()->id)
-            ->where('views.landing_from', $source)
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
-
+            
         if (!is_null($unitId)) $query->where('units.id', $unitId);
+        if (!is_null($source)) $query->where('views.landing_from', $source);
 
         $result = $query->get();
         

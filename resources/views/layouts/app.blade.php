@@ -51,6 +51,54 @@
                             @can('user.manage')
                                 <li><a href="{{ route('users.list') }}">Users</a></li>
                             @endcan
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
+                                    Statistical Data <span class="caret"></span>
+                                </a>
+
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        <a href="/statistics/views-count">
+                                            Total Views
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/views-duration">
+                                            Views Duration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/views-duration-others">
+                                            Competitor's Views Duration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/layout-performance">
+                                            Layout Performance
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/subscription-sum">
+                                            Total Subscriptions
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/subscriptions-by-layout">
+                                            Subscriptions by layout
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/views-average-duration">
+                                            Average Views Duration
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/views-average-duration-others">
+                                            Competitor's Average Views Duration
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
                         </ul>
                     @endguest
 
