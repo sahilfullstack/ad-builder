@@ -80182,9 +80182,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 if (index !== null) {
                     // let currentArray = thiz.form.components[componentId];
                     // currentArray[index] = url;
-                    Vue.set(thiz.form.components[componentId], index, url);
+                    Vue.set(thiz.form.components[componentId], index, { _value: url });
                 } else {
-                    Vue.set(thiz.form.components, componentId, url);
+                    Vue.set(thiz.form.components, componentId, { _value: url });
                 }
             });
         }
@@ -83622,7 +83622,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             }).then(function (response) {
 
                 thiz.disable.adding = true;
-                console.log("here");
                 location.reload();
             });
         }

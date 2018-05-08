@@ -81,14 +81,12 @@ class UnitController extends Controller
             </PRODUCT>
         */
 
-        $transformed = [
-            $this->fitInSlides($units),
-            'products' => []
-        ];
-
+        $transformed = $this->fitInSlides($units);
+        
+        
         foreach($units as $unit)
         {
-            $transformed['products'][] = [
+            $transformed[]['product'] = [
                 'prid' => $unit['id'],
                 'category' => 'Category',
                 'title' => $unit['name'],
@@ -111,10 +109,19 @@ class UnitController extends Controller
         
         $i = 0;
         while (count($processedUnits) < count($units)) {
-            $slides[] = $this->fitInSlide($units, $processedUnits);
+            $slides[] = [
+                'slide' => [
+                    'slideadjustment' => $this->fitInSlide($units, $processedUnits)
+                ]
+            ];
+            $slides[] = [
+                'slide' => [
+                    'slideadjustment' => $this->fitInSlide($units, $processedUnits)
+                ]
+            ];
             $i++;
         }
-
+        // dd($slides);
         return $slides;
     }
 

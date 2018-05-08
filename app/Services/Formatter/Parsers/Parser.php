@@ -94,17 +94,16 @@ abstract class Parser
                     } else {
                         $key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : 'item';
                     }
-
-                    // unset($value['@name']);
+                    unset($value['@name']);
                 }
 
                 // replace anything not alpha numeric AND '@' because of '@attributes'
                 $key = preg_replace('/[^a-z_@\-0-9]/i', '', $key);
-
+                
                 // if there is another array found recursively call this function
                 if (is_array($value) or is_object($value)) {
                     $node = $structure->addChild($key);
-
+                    
                     // recursive call if value is not empty
                     if (!empty($value)) {
                         $this->xmlify($value, $node, $key);
