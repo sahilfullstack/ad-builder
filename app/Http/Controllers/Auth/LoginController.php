@@ -100,4 +100,15 @@ class LoginController extends Controller
             $this->username() => [$message],
         ]);
     }
+
+
+    /**
+     * Get the login username to be used by the controller.
+     *
+     * @return string
+     */
+    public function username()
+    {
+        return 'username';
+    }
 }
