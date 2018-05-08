@@ -112,6 +112,26 @@ class Unit extends Model
         return $query->whereNull('deleted_at')->where(self::SOFT_DELETION_TOKEN, 0);
     }
 
+    public function scopePublished($query)
+    {
+        return $query->notDeleted()->whereNotNull('published_at');
+    }
+
+    public function scopeApproved($query)
+    {
+        return $query->notDeleted()->whereNotNull('approved_at');
+    }
+
+    public function scopeAd($query)
+    {
+        return $query->where('type', 'ad');
+    }
+
+    public function layout()
+    {
+        return $this->belongsTo(Layout::class);
+    }
+
     public function template()
     {
         return $this->belongsTo(Template::class);

@@ -13,6 +13,9 @@ use App\Models\{Layout, Subscription};
 
 use App\Rules\ValidComponents;
 use App\Services\Formatter\Formatter;
+use Illuminate\Support\Str;
+use App\Services\SlideMaker\Element;
+use App\Services\SlideMaker\Canvas;
 
 class UnitController extends Controller
 {
@@ -41,7 +44,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::notDeleted()->with(['template', 'template.components']);
+        $units = Unit::published()->approved()->with(['layout', 'child', 'template.components']);
       
         if( ! is_null($request->get('type')))
         {
@@ -54,11 +57,85 @@ class UnitController extends Controller
         }
 
         $units = $units->get()->toArray();
-
-        $formatter = Formatter::make($units, Formatter::ARR);
-
+        
+        $formatter = Formatter::make($this->transformUnitsForKiosk($units), Formatter::ARR);
+        dd($formatter->toXml());
         return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
-    }    
+    }
+
+    protected function transformUnitsForKiosk($units)
+    {
+        /*
+            <PRODUCT> 
+                <product>
+                    <prid>105</prid>
+                    <detailimage>Full Page Landing Templates_1920x1080_v2-16.jpg</detailimage>
+                    <thumbnail>Ad-Pages05Thumb.jpg</thumbnail>
+                    <category>Upgrades</category>
+                    <title>MESA: Upgrades</title>
+                    <slideimage>http://mesa.metaworthy.com/practice/templates/full-page-ad-templates_1920x1080-02?z=2</slideimage>
+                <slidelayoutid>0</slidelayoutid>
+                    <startchar>M</startchar>
+                    <hoverimage>Transparent.png</hoverimage>
+                </product>
+            </PRODUCT>
+        */
+
+        $transformed = [
+            $this->fitInSlides($units),
+            'products' => []
+        ];
+
+        foreach($units as $unit)
+        {
+            $transformed['products'][] = [
+                'prid' => $unit['id'],
+                'category' => 'Category',
+                'title' => $unit['name'],
+                'render_url' => route('units.render', $unit['id']),
+                'landing_page_url' => route('units.render', $unit['child']['id']),
+                'layout_id' => $unit['layout_id'],
+                'startchar' => Str::upper(substr($unit['name'], 0, 1)),
+                'thumbnail' => 'Ad-Pages05Thumb.jpg',
+                'hoverimage' => 'Transparent.png',
+            ];
+        }
+        
+        return $transformed;
+    }
+
+    protected function fitInSlides($units)
+    {
+        $processedUnits = [];
+        $slides = [];
+        
+        $i = 0;
+        while (count($processedUnits) < count($units)) {
+            $slides[] = $this->fitInSlide($units, $processedUnits);
+            $i++;
+        }
+
+        return $slides;
+    }
+
+    protected function fitInSlide($units, &$processedUnits)
+    {
+        $selectedUnits = [];
+
+        $canvas = new Canvas(1920, 1080);
+        foreach ($units as $index => $unit) {
+            if (! in_array($unit['id'], $processedUnits)) {
+                $wasFit = $canvas->fitElement(new Element($unit['layout']['width'], $unit['layout']['height'], $unit['id']));
+
+                if ($wasFit) {
+                    array_push($processedUnits, $unit['id']);
+                    array_push($selectedUnits, $unit['id']);
+                }
+            }
+        }
+
+        return implode(',', $selectedUnits);
+    }
 
     private function returnResponseToSpecificFormat($formatter, $format)
     {

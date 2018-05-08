@@ -12,6 +12,8 @@ $factory->define(Layout::class, function (Faker $faker) {
     return [
         'name' => $name,
         'slug' => str_slug($name),
+        'width' => 1920,
+        'height' => 1080,
         'user_id' => $user->id
     ];
 });

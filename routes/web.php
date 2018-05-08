@@ -52,3 +52,5 @@ Route::get('me/subscriptions', [
 ]);
 
 Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');
+
+Route::get('/practice/units', ['as' => 'api.unit.list', 'uses' => 'Api\UnitController@list']);
