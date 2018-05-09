@@ -92,7 +92,7 @@ abstract class Parser
                     if (isset($value['@name']) && is_string($value['@name'])) {
                         $key = $value['@name'];
                     } else {
-                        $key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : 'item';
+                        $key = (Str::singular($basenode) != $basenode) ? Str::singular($basenode) : '';
                     }
                     unset($value['@name']);
                 }
@@ -100,8 +100,15 @@ abstract class Parser
                 // replace anything not alpha numeric AND '@' because of '@attributes'
                 $key = preg_replace('/[^a-z_@\-0-9]/i', '', $key);
                 
+                if(empty($key))
+                {   
+                    // recursive call if value is not empty
+                    if (!empty($value)) {
+                        $this->xmlify($value, $structure, $key);
+                    }
+                }
                 // if there is another array found recursively call this function
-                if (is_array($value) or is_object($value)) {
+                elseif (is_array($value) or is_object($value)) {
                     $node = $structure->addChild($key);
                     
                     // recursive call if value is not empty

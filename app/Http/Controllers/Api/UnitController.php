@@ -114,14 +114,8 @@ class UnitController extends Controller
                     'slideadjustment' => $this->fitInSlide($units, $processedUnits)
                 ]
             ];
-            $slides[] = [
-                'slide' => [
-                    'slideadjustment' => $this->fitInSlide($units, $processedUnits)
-                ]
-            ];
             $i++;
         }
-        // dd($slides);
         return $slides;
     }
 
