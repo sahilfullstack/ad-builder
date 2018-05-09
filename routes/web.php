@@ -17,6 +17,10 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/post-registration', function () {
+    return view('auth.post-registration');
+})->name('post-registration');
+
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
@@ -41,14 +45,14 @@ Route::get('/practice/templates/{template}', 'PracticeController@renderTemplate'
 Route::get('/practice/templates/embed', 'PracticeController@embed');
 
 Route::get('me/access-tokens', [
-	'uses' => 'DashboardController@accessToken',
-	'as' => 'users.access-tokens',
+	'uses'       => 'DashboardController@accessToken',
+	'as'         => 'users.access-tokens',
 	'middleware' => 'can:create,Laravel\Passport\Token'
 ]);
 
 Route::get('me/subscriptions', [
 	'uses' => 'UserController@getSubscriptions',
-	'as' => 'users.subscriptions'
+	'as'   => 'users.subscriptions'
 ]);
 
 Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');

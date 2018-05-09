@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\ApproveUserCommand::class,
         Commands\SeedUsersSubscriptionsCommand::class,
         Commands\RefactorComponentsStructureInUnits::class,
+        Commands\SeedOldUsernameCommand::class,
     ];
 
     /**

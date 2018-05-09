@@ -125,7 +125,7 @@ class UnitController extends Controller
 
     private function dataToEditTemplate(Unit $unit)
     {
-        if(is_null($unit->layout_id))
+        if($unit->type == 'ad' && is_null($unit->layout_id))
         {
             throw new Exception('Layout not selected yet.');
         }
@@ -134,7 +134,7 @@ class UnitController extends Controller
             ->whereType($unit->type)
             ->where('layout_id', $unit->layout_id)
             ->with('components');
-        
+
         return ['templates' => $query->get()];
     }
 
@@ -174,7 +174,7 @@ class UnitController extends Controller
         
         // only user's own ads can have pages
         if($unit->user->id != auth()->user()->id)
-        {
+        {           
             return redirect(route('units.list'));
         }
 
@@ -185,9 +185,12 @@ class UnitController extends Controller
         }
         else
         {
+            $layout = Layout::notDeleted()->whereSlug('full-page')->first();
+
             $child = new Unit([
                 'user_id' => auth()->user()->id,
                 'type' => 'page',
+                'layout_id' => is_null($layout) ? null : $layout->id,
                 'parent_id' => $unit->id,
                 'components' => []
             ]);
@@ -202,7 +205,6 @@ class UnitController extends Controller
     
     public function listUnitsForApproval(ListUnitRequestForApproval $request)
     {
-
       $units = Unit::notDeleted()->with(['template', 'template.components'])
         ->whereNotNull('published_at')
         ->whereNull('approved_at')

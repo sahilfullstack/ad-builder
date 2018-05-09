@@ -34,6 +34,15 @@
                     </div> -->
                 </div>
             </div>
+            <div v-else-if="component.type =='survey'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
              <div v-else-if="component.type =='color'">
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
@@ -108,7 +117,7 @@ export default {
                                             ? this.unit.components[component.id]
                                             : this.defaultValueForDataType(component.type);
         });
-
+        console.log(components);
         Vue.set(this.form, 'components', components);
     },
 
@@ -119,7 +128,8 @@ export default {
                 image: {_value: ''},
                 video: {_value: ''},
                 qr: {_value: ''},
-                images: {_value: ['']}
+                images: {_value: ['']},
+                survey: {_value: [''], _yes: 0, _no: 0},
             }
 
             return defaults[dataType];

@@ -10,7 +10,7 @@
         </div>
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
-        <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
+        <button v-if="layouts.length > 0" type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
 
