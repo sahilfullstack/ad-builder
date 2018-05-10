@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use App\Models\Unit;
 
 class StatisticsController extends Controller
 {
@@ -83,7 +84,28 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        
+        $filters = [
+            [
+                'name' => 'Source',
+                'slug' => 'source',
+                'options' => [
+                    'category' => 'Category',
+                    'navigation' => 'Navigation',
+                    'alphabet' => 'Alphabet',
+                    'slideshow' => 'Slideshow'
+                ],
+                'selected' => $source,
+            ],
+            [
+                'name' => 'Ad',
+                'slug' => 'unit_id',
+                'options' => Unit::ad()->published()->forCurrentUser()->get()->pluck('name', 'id'),
+                'selected' => $unitId,
+            ]
+        ];
+
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showViewsDuration(Request $request, $from, $to)

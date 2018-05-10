@@ -127,6 +127,19 @@ class Unit extends Model
         return $query->where('type', 'ad');
     }
 
+    public function scopeForCurrentUser($query)
+    {
+        $user = auth()->user();
+
+        // If a user exists without the permission to manage everyone's units. AKA Advertiser.
+        if( ! is_null($user) && $user->cannot('unit.manage'))
+        {
+            $query->where('user_id', $user->id);
+        }
+
+        return $query;
+    }
+
     public function layout()
     {
         return $this->belongsTo(Layout::class);

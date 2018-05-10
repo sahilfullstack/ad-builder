@@ -117,7 +117,6 @@ export default {
                                             ? this.unit.components[component.id]
                                             : this.defaultValueForDataType(component.type);
         });
-        console.log(components);
         Vue.set(this.form, 'components', components);
     },
 

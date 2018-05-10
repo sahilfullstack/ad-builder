@@ -79711,7 +79711,7 @@ var render = function() {
       _vm._v(" "),
       _c("br"),
       _vm._v(" "),
-      _vm.templates.length > 0
+      _vm.layouts.length > 0
         ? _c(
             "button",
             {
@@ -80177,7 +80177,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         _.forEach(this.components, function (component) {
             components[component.id] = _this.unit.components[component.id] ? _this.unit.components[component.id] : _this.defaultValueForDataType(component.type);
         });
-        console.log(components);
         Vue.set(this.form, 'components', components);
     },
 
@@ -84179,9 +84178,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-    // props: ['filterPath', 'from', 'to'],
 
     props: {
         path: {
@@ -84195,13 +84215,27 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         to: {
             type: String,
             required: true
+        },
+        filters: {
+            type: Array,
+            required: false
         }
     },
 
     data: function data() {
         return {
-            dateRange: [new Date(this.from), new Date(this.to)]
+            form: {
+                dateRange: [new Date(this.from), new Date(this.to)],
+                filters: {}
+            }
         };
+    },
+    mounted: function mounted() {
+        var filters = {};
+        _.forEach(this.filters, function (filter) {
+            filters[filter.slug] = filter.selected;
+        });
+        Vue.set(this.form, 'filters', filters);
     },
 
 
@@ -84210,10 +84244,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location = this.makeFullFilterPath();
         },
         makeFullFilterPath: function makeFullFilterPath() {
-            var from = this.dateRange[0].toISOString().substring(0, 10);
-            var to = this.dateRange[1].toISOString().substring(0, 10);
+            var from = this.form.dateRange[0].toISOString().substring(0, 10);
+            var to = this.form.dateRange[1].toISOString().substring(0, 10);
 
-            return this.path + '?from=' + from + '&to=' + to;
+            var filterPath = this.path + '?from=' + from + '&to=' + to;
+
+            _.forEach(this.form.filters, function (value, key) {
+                if (value != null) filterPath += '&' + key + '=' + value;
+            });
+
+            return filterPath;
         }
     }
 });
@@ -84226,36 +84266,108 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "div",
-    [
-      _c("date-picker", {
-        attrs: { range: "", lang: "en" },
-        model: {
-          value: _vm.dateRange,
-          callback: function($$v) {
-            _vm.dateRange = $$v
-          },
-          expression: "dateRange"
-        }
-      }),
-      _vm._v(" "),
-      _c(
-        "a",
-        {
-          attrs: { href: "" },
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.go($event)
+  return _c("form", [
+    _c(
+      "div",
+      { staticClass: "row" },
+      [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c(
+            "div",
+            { staticClass: "form-group" },
+            [
+              _c("date-picker", {
+                attrs: { range: "", lang: "en", id: "date_range" },
+                model: {
+                  value: _vm.form.dateRange,
+                  callback: function($$v) {
+                    _vm.$set(_vm.form, "dateRange", $$v)
+                  },
+                  expression: "form.dateRange"
+                }
+              })
+            ],
+            1
+          )
+        ]),
+        _vm._v(" "),
+        _vm._l(_vm.filters, function(filter, index) {
+          return _c("div", { key: index, staticClass: "col-md-4" }, [
+            _c("div", { staticClass: "form-group" }, [
+              _c(
+                "select",
+                {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.form.filters[filter.slug],
+                      expression: "form.filters[filter.slug]"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { name: filter.slug, id: "filter.slug" },
+                  on: {
+                    change: function($event) {
+                      var $$selectedVal = Array.prototype.filter
+                        .call($event.target.options, function(o) {
+                          return o.selected
+                        })
+                        .map(function(o) {
+                          var val = "_value" in o ? o._value : o.value
+                          return val
+                        })
+                      _vm.$set(
+                        _vm.form.filters,
+                        filter.slug,
+                        $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      )
+                    }
+                  }
+                },
+                [
+                  _c("option", { domProps: { value: null } }, [
+                    _vm._v("Select " + _vm._s(filter.name))
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(filter.options, function(option_value, option_key) {
+                    return _c(
+                      "option",
+                      { key: option_key, domProps: { value: option_key } },
+                      [_vm._v(_vm._s(option_value))]
+                    )
+                  })
+                ],
+                2
+              )
+            ])
+          ])
+        })
+      ],
+      2
+    ),
+    _vm._v(" "),
+    _c("div", { staticClass: "row" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c(
+          "a",
+          {
+            staticClass: "btn btn-primary",
+            attrs: { href: "" },
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.go($event)
+              }
             }
-          }
-        },
-        [_vm._v("Go")]
-      )
-    ],
-    1
-  )
+          },
+          [_vm._v("Go")]
+        )
+      ])
+    ])
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true
