@@ -59,7 +59,7 @@ class UnitController extends Controller
         $units = $units->get()->toArray();
         
         $formatter = Formatter::make($this->transformUnitsForKiosk($units), Formatter::ARR);
-        dd($formatter->toXml());
+        
         return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
     }
 
