@@ -178,9 +178,8 @@
                 <!-- <div class="hero-video-placeholder">
                     Hero Video
                 </div> -->
-                <video autoplay loop preload="auto"
+                <video autoplay loop preload="auto" muted
                     src="https://archive.org/download/ElephantsDream/ed_hd.ogv"
-                    poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
                     width="240" height="265">
             </div>
         </div>
