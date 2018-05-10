@@ -183,7 +183,9 @@
                 </div> -->
                 <video autoplay loop preload="auto" muted
                     src="https://archive.org/download/ElephantsDream/ed_hd.ogv"
-                    width="240" height="265">
+                    width="240"
+                    height="261"
+                >
             </div>
         </div>
     </div>
