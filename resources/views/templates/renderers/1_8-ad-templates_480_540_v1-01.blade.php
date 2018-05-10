@@ -176,7 +176,9 @@
         <div class="banner"></div>
 
         <div class="body">
-            <p class="category-header">Category Header</p>
+            <p class="category-header">
+                @include('templates.components.text', ['text' => null, 'default' => 'Category Header'])
+            </p>
             
             <div class="logo">
                 <div class="logo-placeholder">
