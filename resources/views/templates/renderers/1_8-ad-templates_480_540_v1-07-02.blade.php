@@ -178,7 +178,7 @@
                 <!-- <div class="hero-video-placeholder">
                     Hero Video
                 </div> -->
-                <video autoplay="true" controls loop
+                <video autoplay loop preload="auto"
                     src="https://archive.org/download/BigBuckBunny_124/Content/big_buck_bunny_720p_surround.mp4"
                     poster="https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217"
                     width="240" height="265">
