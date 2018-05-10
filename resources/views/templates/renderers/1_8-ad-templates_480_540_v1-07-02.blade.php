@@ -182,7 +182,7 @@
                     Hero Video
                 </div> -->
                 <video autoplay loop preload="auto" muted
-                    src="https://s3-us-west-2.amazonaws.com/testme21212121sar/format_changed_video.ogv"
+                    src="file:///D:/VisualStudio2017%20Projects/MesaCatalogueAssets/MesaCatalogue_v1.0.5/MesaCatalogue/MesaCatalogue/bin/x64/Debug/Data/image/products/format_changed_video.ogv"
                     width="240"
                     height="261"
                 >
