@@ -84,27 +84,10 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        
         $filters = [
-            [
-                'name' => 'Source',
-                'slug' => 'source',
-                'options' => [
-                    'category' => 'Category',
-                    'navigation' => 'Navigation',
-                    'alphabet' => 'Alphabet',
-                    'slideshow' => 'Slideshow'
-                ],
-                'selected' => $source,
-            ],
-            [
-                'name' => 'Ad',
-                'slug' => 'unit_id',
-                'options' => Unit::ad()->published()->forCurrentUser()->get()->pluck('name', 'id'),
-                'selected' => $unitId,
-            ]
+            $this->getSourcesFilter($source),
+            $this->getAdsFilter($unitId)
         ];
-
         return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
@@ -137,7 +120,11 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            $this->getSourcesFilter($source),
+            $this->getAdsFilter($unitId)
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showLayoutPerformance(Request $request, $from, $to)
@@ -163,7 +150,10 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'pie';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            // none
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showSubscriptionSum(Request $request, $from, $to)
@@ -187,7 +177,10 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            // none
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showSubscriptionsByLayout(Request $request, $from, $to)
@@ -212,7 +205,10 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'pie';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            // none
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showViewsDurationOthers(Request $request, $from, $to)
@@ -244,7 +240,11 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            $this->getSourcesFilter($source),
+            $this->getAdsFilter($unitId)
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showViewsAverageDuration(Request $request, $from, $to)
@@ -276,7 +276,11 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            $this->getSourcesFilter($source),
+            $this->getAdsFilter($unitId)
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
     }
 
     protected function showViewsAverageDurationOthers(Request $request, $from, $to)
@@ -308,7 +312,36 @@ class StatisticsController extends Controller
         // pass the data to the view
         $type = 'daterange';
         $path = '/' . $request->path();
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path'));
+        $filters = [
+            $this->getSourcesFilter($source),
+            $this->getAdsFilter($unitId)
+        ];
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters'));
+    }
+
+    private function getSourcesFilter($selected = null)
+    {
+        return [
+            'name' => 'Source',
+            'slug' => 'source',
+            'options' => [
+                'category' => 'Category',
+                'navigation' => 'Navigation',
+                'alphabet' => 'Alphabet',
+                'slideshow' => 'Slideshow'
+            ],
+            'selected' => $selected,
+        ];
+    }
+
+    private function getAdsFilter($selected = null)
+    {
+        return [
+            'name' => 'Ad',
+            'slug' => 'unit_id',
+            'options' => Unit::ad()->published()->forCurrentUser()->get()->pluck('name', 'id'),
+            'selected' => $selected,
+        ];
     }
 
     private function generateDateRange($from, $to, $default = 0)
