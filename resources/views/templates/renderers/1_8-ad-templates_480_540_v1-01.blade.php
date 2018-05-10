@@ -59,6 +59,9 @@
         body {
             overflow: hidden;
         }
+        body {
+            overflow: hidden;
+        }
         body.two-x {
             zoom: 200%;
         }

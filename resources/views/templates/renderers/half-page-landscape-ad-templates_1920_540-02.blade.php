@@ -56,6 +56,9 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
+        body {
+            overflow: hidden;
+        }
         body.two-x {
             zoom: 200%;
         }
