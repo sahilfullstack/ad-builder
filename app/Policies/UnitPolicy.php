@@ -66,7 +66,7 @@ class UnitPolicy
      */
     public function update(User $user, Unit $unit)
     {
-        return($user->id === $unit->user_id || $user->canOverride($unit->user));
+        return(($user->id === $unit->user_id and is_null($unit->approved_at)) || $user->canOverride($unit->user));
     }
 
     /**

@@ -21,8 +21,9 @@
                         @endif
                         <span class="badge badge-dark">{{ $unit->state }}</span>
                     </h2>
+                    @if(is_null($unit->approved_at))
                     <a href="{{ route('units.edit', ['unit' => $unit]) }}">Edit</a>
-
+                    @endif
                     <hr>
 
                     <p><strong>Created at:</strong> {{ $unit->created_at->toDayDateTimeString() }}</p>
