@@ -182,7 +182,7 @@
                     Hero Video
                 </div> -->
                 <video autoplay loop preload="auto" muted
-                    src="https://archive.org/download/ElephantsDream/ed_hd.ogv"
+                    src="https://s3-us-west-2.amazonaws.com/testme21212121sar/format_changed_video.ogv"
                     width="240"
                     height="261"
                 >
