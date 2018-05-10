@@ -98,10 +98,7 @@ export default {
     data() {
         return {
             form: {
-                template_id: this.unit.template_id,
-                components: {},
-                background_color: '#ffffff',
-                foreground_color: '#000000'
+                hoverimage: ''
             },
             errors: [],
             disable: {

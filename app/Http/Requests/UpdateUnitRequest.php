@@ -29,7 +29,7 @@ class UpdateUnitRequest extends FormRequest
             'name'        => 'required_if:section,name',
             'layout_id'   => 'sometimes|exists:layouts,id',
             'template_id' => 'sometimes|exists:templates,id',
-            'components'  => 'sometimes'
+            'components'  => 'sometimes',           
         ];
     }
 }
