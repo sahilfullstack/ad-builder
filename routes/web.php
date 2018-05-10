@@ -40,9 +40,9 @@ Route::get('/units/{unit}', 'UnitController@show')->name('units.show')->middlewa
 
 Route::get('/statistics/{type}', 'StatisticsController@show')->name('stats.show')->middleware('auth');
 
+Route::get('/practice/templates/embed', 'PracticeController@embed');
 Route::get('/practice/templates/1', 'PracticeController@template1');
 Route::get('/practice/templates/{template}', 'PracticeController@renderTemplate');
-Route::get('/practice/templates/embed', 'PracticeController@embed');
 
 Route::get('me/access-tokens', [
 	'uses'       => 'DashboardController@accessToken',
