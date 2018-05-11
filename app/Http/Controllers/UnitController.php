@@ -135,7 +135,7 @@ class UnitController extends Controller
             ->whereType($unit->type)
             ->where('layout_id', $unit->layout_id)
             ->with('components');
-
+        
         return ['templates' => $query->get()];
     }
 

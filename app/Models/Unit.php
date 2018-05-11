@@ -103,16 +103,6 @@ class Unit extends Model
                 'order' => 4
             ],
             [
-                'name' => 'Ad Hover Image',
-                'slug' => 'hoverimage',
-                'order' => 5
-            ],
-            [
-                'name' => 'Ad Thumbnail',
-                'slug' => 'thumbnail',
-                'order' => 6
-            ],
-            [
                 'name' => 'Submit for Approval',
                 'slug' => 'submit',
                 'order' => 7
