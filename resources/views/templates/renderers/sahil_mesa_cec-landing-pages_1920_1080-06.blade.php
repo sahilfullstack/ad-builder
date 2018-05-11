@@ -136,7 +136,7 @@
             top: 30px;
             left: 30px;
         }
-        div.hero-video img {
+        div.hero-video video {
             width: 982.597px;
             height: 554.237px;
         }

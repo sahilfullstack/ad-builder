@@ -140,7 +140,7 @@
             height: 130px;
         }
 
-        div.hero-video img {
+        div.hero-video video {
             width: 480px;
             height: 130px;
         }
