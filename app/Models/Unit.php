@@ -64,21 +64,11 @@ class Unit extends Model
                 'name' => 'Ad Name',
                 'slug' => 'basic',
                 'order' => 4
-            ], 
-            [
-                'name' => 'Ad Hover Image',
-                'slug' => 'hoverimage',
-                'order' => 5
-            ],
-            [
-                'name' => 'Ad Thumbnail',
-                'slug' => 'thumbnail',
-                'order' => 6
             ],
             [
                 'name' => 'Build Landing Page',
                 'slug' => 'page',
-                'order' => 7
+                'order' => 5
             ],
         ],
         'page' => [

@@ -4583,7 +4583,7 @@
 "use strict";
 
 
-module.exports = __webpack_require__(11);
+module.exports = __webpack_require__(10);
 module.exports.easing = __webpack_require__(185);
 module.exports.canvas = __webpack_require__(186);
 module.exports.options = __webpack_require__(187);
@@ -5668,53 +5668,6 @@ module.exports = {
 
 /***/ }),
 /* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(238)
-/* template */
-var __vue_template__ = __webpack_require__(239)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/FileUpload.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-12ca9994", Component.options)
-  } else {
-    hotAPI.reload("data-v-12ca9994", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 10 */
 /***/ (function(module, exports) {
 
 var g;
@@ -5741,7 +5694,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 11 */
+/* 10 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6087,7 +6040,7 @@ helpers.getValueAtIndexOrDefault = helpers.valueAtIndexOrDefault;
 
 
 /***/ }),
-/* 12 */
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
@@ -6134,7 +6087,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 13 */
+/* 12 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -6232,6 +6185,53 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 module.exports = defaults;
 
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(16)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(3)
+/* script */
+var __vue_script__ = __webpack_require__(238)
+/* template */
+var __vue_template__ = __webpack_require__(239)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/FileUpload.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-12ca9994", Component.options)
+  } else {
+    hotAPI.reload("data-v-12ca9994", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
 
 /***/ }),
 /* 14 */
@@ -20177,7 +20177,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
-module.exports = __webpack_require__(311);
+module.exports = __webpack_require__(305);
 
 
 /***/ }),
@@ -20235,9 +20235,6 @@ Vue.component('personal-access-tokens', __webpack_require__(285));
 Vue.component('update-user-subscription-button', __webpack_require__(290));
 Vue.component('add-subscription-button', __webpack_require__(296));
 Vue.component('filter-form', __webpack_require__(302));
-
-Vue.component('edit-unit-hoverimage-form', __webpack_require__(305));
-Vue.component('edit-unit-thumbnail-form', __webpack_require__(308));
 
 var app = new Vue({
   el: '#app'
@@ -37420,7 +37417,7 @@ window.moment = __webpack_require__(0);
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(14)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(14)(module)))
 
 /***/ }),
 /* 154 */
@@ -50192,7 +50189,7 @@ module.exports = __webpack_require__(157);
 var utils = __webpack_require__(4);
 var bind = __webpack_require__(15);
 var Axios = __webpack_require__(159);
-var defaults = __webpack_require__(13);
+var defaults = __webpack_require__(12);
 
 /**
  * Create an instance of Axios
@@ -50275,7 +50272,7 @@ function isSlowBuffer (obj) {
 "use strict";
 
 
-var defaults = __webpack_require__(13);
+var defaults = __webpack_require__(12);
 var utils = __webpack_require__(4);
 var InterceptorManager = __webpack_require__(168);
 var dispatchRequest = __webpack_require__(169);
@@ -50816,7 +50813,7 @@ module.exports = InterceptorManager;
 var utils = __webpack_require__(4);
 var transformData = __webpack_require__(170);
 var isCancel = __webpack_require__(19);
-var defaults = __webpack_require__(13);
+var defaults = __webpack_require__(12);
 var isAbsoluteURL = __webpack_require__(171);
 var combineURLs = __webpack_require__(172);
 
@@ -62371,7 +62368,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(178).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(178).setImmediate))
 
 /***/ }),
 /* 178 */
@@ -62438,7 +62435,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
                          (typeof global !== "undefined" && global.clearImmediate) ||
                          (this && this.clearImmediate);
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9)))
 
 /***/ }),
 /* 179 */
@@ -62631,7 +62628,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(10), __webpack_require__(16)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(9), __webpack_require__(16)))
 
 /***/ }),
 /* 180 */
@@ -65088,7 +65085,7 @@ module.exports = function() {
 "use strict";
 
 
-var helpers = __webpack_require__(11);
+var helpers = __webpack_require__(10);
 
 /**
  * Easing functions adapted from Robert Penner's easing equations.
@@ -65345,7 +65342,7 @@ helpers.easingEffects = effects;
 "use strict";
 
 
-var helpers = __webpack_require__(11);
+var helpers = __webpack_require__(10);
 
 /**
  * @namespace Chart.helpers.canvas
@@ -65566,7 +65563,7 @@ helpers.drawRoundedRectangle = function(ctx) {
 "use strict";
 
 
-var helpers = __webpack_require__(11);
+var helpers = __webpack_require__(10);
 
 /**
  * @alias Chart.helpers.options
@@ -78623,7 +78620,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
 //
 //
@@ -80058,7 +80055,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ColorPicker__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ColorPicker___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__ColorPicker__);
@@ -81085,8 +81082,19 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 //
 //
 //
@@ -81121,6 +81129,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             form: {
                 name: this.unit.name,
+                hover_image: this.unit.hover_image,
+                thumbnail: this.unit.thumbnail,
                 section: 'name'
             },
             errors: [],
@@ -81155,6 +81165,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
                     self.errors[errorIndex] = error[0];
                 });
+            });
+        },
+        upload: function upload(attr) {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
+                propsData: {
+                    apiPath: '/api/upload'
+                }
+            }).then(function (url) {
+                Vue.set(thiz.form, attr, url);
             });
         }
     }
@@ -81219,6 +81239,120 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _vm.unit.type == "ad"
+        ? _c("div", { staticClass: "form-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "pull-right",
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.upload("hover_image")
+                  }
+                }
+              },
+              [_vm._v("Upload")]
+            ),
+            _vm._v(" "),
+            _vm._m(1),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.hover_image,
+                  expression: "form.hover_image"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "hover_image",
+                placeholder: "Example: http://something.png"
+              },
+              domProps: { value: _vm.form.hover_image },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "hover_image", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["hover_image"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["hover_image"]))]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.unit.type == "ad"
+        ? _c("div", { staticClass: "form-group" }, [
+            _c(
+              "a",
+              {
+                staticClass: "pull-right",
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.upload("thumbnail")
+                  }
+                }
+              },
+              [_vm._v("Upload")]
+            ),
+            _vm._v(" "),
+            _vm._m(2),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.thumbnail,
+                  expression: "form.thumbnail"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: {
+                type: "text",
+                id: "thumbnail",
+                placeholder: "Example: http://something.png"
+              },
+              domProps: { value: _vm.form.thumbnail },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "thumbnail", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["thumbnail"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["thumbnail"]))]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
       _c(
         "span",
         {
@@ -81249,6 +81383,24 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "name" } }, [
       _vm._v("NAME "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "hover_image" } }, [
+      _vm._v("Hover Image"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "thumbnail" } }, [
+      _vm._v("Thumbnail"),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
@@ -81644,7 +81796,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -81934,7 +82086,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -82068,7 +82220,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -82202,7 +82354,7 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(11);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
 //
 //
@@ -84381,518 +84533,6 @@ if (false) {
 
 /***/ }),
 /* 305 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(306)
-/* template */
-var __vue_template__ = __webpack_require__(307)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/units/EditUnitHoverImageForm.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-b2c379f0", Component.options)
-  } else {
-    hotAPI.reload("data-v-b2c379f0", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 306 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        unit: {
-            type: Object,
-            required: true
-        },
-        redirectTo: {
-            type: String,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            form: {
-                hover_image: this.unit.hover_image,
-                section: 'hoverimage'
-            },
-            errors: [],
-            disable: {
-                saving: false
-            }
-        };
-    },
-
-
-    methods: {
-        update: function update() {
-            var _this = this;
-
-            this.disable.saving = true;
-
-            var self = this;
-
-            this.errors = [];
-
-            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
-                // Fixing the optimism.
-                _this.disable.saving = false;
-
-                window.location = _this.redirectTo;
-            }).catch(function (error) {
-                // Fixing the optimism.
-                _this.disable.saving = false;
-
-                _.forEach(error.response.data.errors, function (error, index) {
-                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
-
-                    self.errors[errorIndex] = error[0];
-                });
-            });
-        },
-        upload: function upload() {
-            var thiz = this;
-            Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
-                propsData: {
-                    apiPath: '/api/upload'
-                }
-            }).then(function (url) {
-                Vue.set(thiz.form, 'hover_image', url);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 307 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.update($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "a",
-          {
-            staticClass: "pull-right",
-            attrs: { href: "" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.upload()
-              }
-            }
-          },
-          [_vm._v("Upload")]
-        ),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.hover_image,
-              expression: "form.hover_image"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "hover_image",
-            placeholder: "Example: http://something.png"
-          },
-          domProps: { value: _vm.form.hover_image },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "hover_image", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "text-danger",
-            class: { hidden: _vm.errors["hover_image"] == undefined },
-            staticStyle: { "margin-right": "10px" }
-          },
-          [_vm._v(_vm._s(_vm.errors["hover_image"]))]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "span",
-        {
-          staticClass: "text-danger",
-          class: { hidden: _vm.errors["general"] == undefined },
-          staticStyle: { "margin-right": "10px" }
-        },
-        [_vm._v(_vm._s(_vm.errors["general"]))]
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.disable.saving }
-        },
-        [_vm._v("Save")]
-      )
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "hover_image" } }, [
-      _vm._v("Hover Image"),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-b2c379f0", module.exports)
-  }
-}
-
-/***/ }),
-/* 308 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var disposed = false
-var normalizeComponent = __webpack_require__(3)
-/* script */
-var __vue_script__ = __webpack_require__(309)
-/* template */
-var __vue_template__ = __webpack_require__(310)
-/* template functional */
-var __vue_template_functional__ = false
-/* styles */
-var __vue_styles__ = null
-/* scopeId */
-var __vue_scopeId__ = null
-/* moduleIdentifier (server only) */
-var __vue_module_identifier__ = null
-var Component = normalizeComponent(
-  __vue_script__,
-  __vue_template__,
-  __vue_template_functional__,
-  __vue_styles__,
-  __vue_scopeId__,
-  __vue_module_identifier__
-)
-Component.options.__file = "resources/assets/js/components/units/EditUnitThumbnailForm.vue"
-
-/* hot reload */
-if (false) {(function () {
-  var hotAPI = require("vue-hot-reload-api")
-  hotAPI.install(require("vue"), false)
-  if (!hotAPI.compatible) return
-  module.hot.accept()
-  if (!module.hot.data) {
-    hotAPI.createRecord("data-v-9052148a", Component.options)
-  } else {
-    hotAPI.reload("data-v-9052148a", Component.options)
-  }
-  module.hot.dispose(function (data) {
-    disposed = true
-  })
-})()}
-
-module.exports = Component.exports
-
-
-/***/ }),
-/* 309 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__FileUpload___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__FileUpload__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-
-
-/* harmony default export */ __webpack_exports__["default"] = ({
-    props: {
-        unit: {
-            type: Object,
-            required: true
-        },
-        redirectTo: {
-            type: String,
-            required: true
-        }
-    },
-
-    data: function data() {
-        return {
-            form: {
-                thumbnail: this.unit.thumbnail,
-                section: 'thumbnail'
-            },
-            errors: [],
-            disable: {
-                saving: false
-            }
-        };
-    },
-
-
-    methods: {
-        update: function update() {
-            var _this = this;
-
-            this.disable.saving = true;
-
-            var self = this;
-
-            this.errors = [];
-
-            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
-                // Fixing the optimism.
-                _this.disable.saving = false;
-
-                window.location = _this.redirectTo;
-            }).catch(function (error) {
-                // Fixing the optimism.
-                _this.disable.saving = false;
-
-                _.forEach(error.response.data.errors, function (error, index) {
-                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
-
-                    self.errors[errorIndex] = error[0];
-                });
-            });
-        },
-        upload: function upload() {
-            var thiz = this;
-            Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
-                propsData: {
-                    apiPath: '/api/upload'
-                }
-            }).then(function (url) {
-                Vue.set(thiz.form, 'thumbnail', url);
-            });
-        }
-    }
-});
-
-/***/ }),
-/* 310 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c(
-    "form",
-    {
-      on: {
-        submit: function($event) {
-          $event.preventDefault()
-          return _vm.update($event)
-        }
-      }
-    },
-    [
-      _c("div", { staticClass: "form-group" }, [
-        _c(
-          "a",
-          {
-            staticClass: "pull-right",
-            attrs: { href: "" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.upload()
-              }
-            }
-          },
-          [_vm._v("Upload")]
-        ),
-        _vm._v(" "),
-        _vm._m(0),
-        _vm._v(" "),
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.form.thumbnail,
-              expression: "form.thumbnail"
-            }
-          ],
-          staticClass: "form-control",
-          attrs: {
-            type: "text",
-            id: "thumbnail",
-            placeholder: "Example: http://something.png"
-          },
-          domProps: { value: _vm.form.thumbnail },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
-              }
-              _vm.$set(_vm.form, "thumbnail", $event.target.value)
-            }
-          }
-        }),
-        _vm._v(" "),
-        _c(
-          "span",
-          {
-            staticClass: "text-danger",
-            class: { hidden: _vm.errors["thumbnail"] == undefined },
-            staticStyle: { "margin-right": "10px" }
-          },
-          [_vm._v(_vm._s(_vm.errors["thumbnail"]))]
-        )
-      ]),
-      _vm._v(" "),
-      _c(
-        "span",
-        {
-          staticClass: "text-danger",
-          class: { hidden: _vm.errors["general"] == undefined },
-          staticStyle: { "margin-right": "10px" }
-        },
-        [_vm._v(_vm._s(_vm.errors["general"]))]
-      ),
-      _vm._v(" "),
-      _c("br"),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn btn-primary",
-          attrs: { type: "submit", disabled: _vm.disable.saving }
-        },
-        [_vm._v("Save")]
-      )
-    ]
-  )
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "thumbnail" } }, [
-      _vm._v("Thumbnail"),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  }
-]
-render._withStripped = true
-module.exports = { render: render, staticRenderFns: staticRenderFns }
-if (false) {
-  module.hot.accept()
-  if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-9052148a", module.exports)
-  }
-}
-
-/***/ }),
-/* 311 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
