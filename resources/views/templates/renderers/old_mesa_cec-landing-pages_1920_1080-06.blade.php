@@ -56,26 +56,31 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
-        
+        body {
+            overflow: hidden;
+        }
+        body.two-x {
+            zoom: 200%;
+        }
         #workspace {
             background: #ccc;
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             font-family: sans-serif;
 
-            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-01.jpg);*/
-            /*background-size: 1920px 1080px;*/
+            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-06.jpg);
+            background-size: 960px 540px;*/
         }
 
         div.banner {
-            width: 1920px;
-            height: 26.775px;
+            width: 960px;
+            height: 10px;
             background: #199FD4;
         }
 
         div.body {
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             background: #fff;
 
             position: relative;
@@ -83,21 +88,21 @@
         }
 
         div.logo {
-            width: 387px;
-            height: 149px;
+            width: 190px;
+            height: 73px;
             position: absolute;
-            top: 68px;
-            left: 35px
+            top: 29px;
+            left: 453px;
         }
 
         div.logo img {
-            width: 387px;
-            height: 149px;
+            width: 190px;
+            height: 73px;
         }
 
         div.logo div.logo-placeholder {
-            width: 387px;
-            height: 149px;
+            width: 190px;
+            height: 73px;
             outline: 3px dotted #CC337A;
         }
 
@@ -106,91 +111,89 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 70px;
+            padding-top: 25px;
         }
 
         div.title {
-            width: 1394px;
-            height: 70px;
+            width: 496px;
+            height: 133px;
             position: absolute;
-            top: 145px;
-            left: 491px;
-            font-size: 27px;
+            top: 90px;
+            left: 443px;
+            font-size: 23px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
         }
 
-        div.hero-image {
-            width: 769.227px;
-            height: 765.582px;
+        div.slideshow {
+            width: 576px;
+            height: 133px;
             position: absolute;
-            top: 275px;
-            left: 35px;
+            top: 383px;
+            left: 22px;
         }
-        div.hero-image img {
-            width: 769.227px;
-            height: 765.582px;
+        div.slideshow img {
+            width: 576px;
+            height: 133px;
         }
-        div.hero-image div.hero-image-placeholder {
-            width: 769.227px;
-            height: 765.582px;
-            background: #C6E5F3;
-        }
-
-        div#text-1 {
-            width: 1063.201px;
-            height: 268.782px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 275px;
-            left: 821.799px;
-        }
-        div#text-2 {
-            width: 372.482px;
-            height: 256.042px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 558.784px;
-            left: 821.799px;
-        }
-
-        div#map-title {
-            width: 373.268px;
-            height: 41.253px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 834.826px;
-            left: 821.799px;
-        }
-
-        div.map {
-            width: 373.268px;
-            height: 154px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 886px;
-            left: 821.799px;
-        }
-        div.map img {
-            width: 373.268px;
-            height: 41.253px;
-        }
-        div.map div.map-placeholder {
-            width: 373.268px;
-            height: 41.253px;
+        div.slideshow div.slideshow-placeholder {
+            width: 576px;
+            height: 133px;
             background: #C6E5F3;
         }
 
         div.survey {
-            width: 669.258px;
-            height: 478.319px;
-            background: #C6E5F3; 
+            width: 325px;
+            height: 134px;
             position: absolute;
-            top: 558.784px;
-            left: 1213.709px;
+            top: 383px;
+            left: 615px;
+        }
+        div.survey img {
+            width: 325px;
+            height: 134px;
+        }
+        div.survey div.survey-placeholder {
+            width: 325px;
+            height: 134px;
+            background: #C6E5F3;
         }
 
+        div.hero-video {
+            width: 416px;
+            height: 344px;
+            position: absolute;
+            top: 28px;
+            left: 21px;
+        }
+        div.hero-video img {
+            width: 416px;
+            height: 344px;
+        }
+        div.hero-video div.hero-video-placeholder {
+            width: 416px;
+            height: 344px;
+            background: #C6E5F3;
+        }
+
+        div#text-1 {
+            width: 489px;
+            height: 206px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 166px;
+            left: 450px;
+        }
+
+        div#text-2 {
+            width: 600px;
+            height: 34px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 339px;
+            left: 347px;
+        }
     </style>
     
 </head>
@@ -205,35 +208,31 @@
                     <p>LOGO</p>
                 </div>
             </div>
-             <div class="title">
+            <div class="title">
                 <h1>Landing Page Title</h1>
             </div>
-            <div class="hero-image">
-                <div class="hero-image-placeholder">
-                    Hero Image
+    
+            <div class="hero-video">
+                <div class="hero-video-placeholder">
+                    Hero Video
                 </div>
             </div>
+
+            <div class="slideshow">
+                <div class="slideshow-placeholder">
+                    Slideshow
+                </div>
+            </div>
+
 
             <div id="text-1">
                 <p>Text 1</p>
             </div>
 
-            <div id="text-2">
-                <p>Text 2</p>
-            </div>
-            
-            <div id="map-title">
-                <p>Map title</p>
-            </div>
-
-            <div class="map">
-                <div class="map-placeholder">
-                    Map
-                </div>
-            </div>
-
             <div class="survey">
-                <p>Survey</p>
+                <div class="survey-placeholder">
+                    Survey
+                </div>
             </div>
         </div>
     </div>

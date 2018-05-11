@@ -56,47 +56,53 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
-        
+        body {
+            overflow: hidden;
+        }
+        body.two-x {
+            zoom: 200%;
+        }
         #workspace {
             background: #ccc;
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             font-family: sans-serif;
 
-            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-02.jpg);
-            background-size: 1920px 1080px;*/
+            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-01.jpg);*/
+            /*background-size: 960px 540px;*/
         }
 
         div.banner {
-            width: 1920px;
-            height: 26.775px;
+            width: 960px;
+            height: 10px;
             background: #199FD4;
         }
 
         div.body {
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             background: #fff;
+
             position: relative;
             overflow: auto;
         }
 
         div.logo {
-            width: 414px;
-            height: 207px;
+            width: 204px;
+            height: 72px;
             position: absolute;
-            top: 30px;
-            left: 1040px;
+            top: 34px;
+            left: 23px
         }
 
         div.logo img {
-            width: 414px;
-            height: 207px;
+            width: 204px;
+            height: 72px;
         }
 
         div.logo div.logo-placeholder {
-            width: 414px;
-            height: 207px;
+            width: 204px;
+            height: 72px;
             outline: 3px dotted #CC337A;
         }
 
@@ -105,100 +111,83 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 35px;
         }
 
         div.title {
-            width: 830px;
-            height: 62px;
+            width: 690px;
+            height: 68px;
             position: absolute;
-            top: 250px;
-            left: 1040px;
-            font-size: 19px;
+            top: 40px;
+            left: 258px;
+            font-size: 27px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
         }
 
-        div#hero-text {
-            width: 840px;
-            height: 411.024px;
-            background: #C6E5F3;
+        div.hero-image {
+            width: 385px;
+            height: 383px;
             position: absolute;
-            top: 360px;
-            left: 1040px;
+            top: 131px;
+            left: 20px;
         }
-
-        div.hero-video {
-            width: 982.597px;
-            height: 554.237px;
-            position: absolute;
-            top: 30px;
-            left: 30px;
+        div.hero-image img {
+            width: 385px;
+            height: 383px;
         }
-        div.hero-video img {
-            width: 982.597px;
-            height: 554.237px;
-        }
-        div.hero-video div.hero-video-placeholder {
-            width: 982.597px;
-            height: 554.237px;
+        div.hero-image div.hero-image-placeholder {
+            width: 385px;
+            height: 383px;
             background: #C6E5F3;
         }
 
-        div.slideshow {
-            width: 396px;
-            height: 412.283px;
+        div#text-1 {
+            width: 531px;
+            height: 134px;
             background: #C6E5F3;
             position: absolute;
-            top: 600px;
-            left: 620px;
+            top: 131px;
+            left: 414px;
         }
-        div.slideshow img {
-            width: 396px;
-            height: 412.283px;
-        }
-        div.slideshow div.slideshow-placeholder {
-            width: 396px;
-            height: 412.283px;
+        div#text-2 {
+            width: 186px;
+            height: 128px;
             background: #C6E5F3;
+            position: absolute;
+            top: 276px;
+            left: 414px;
         }
 
         div.survey {
-            width: 572.244px;
-            height: 408.963px;
+            width: 335px;
+            height: 128px;
             background: #C6E5F3; 
             position: absolute;
-            top: 600px;
-            left: 30px;
-        }
-
-        div#address-text {
-            background: #C6E5F3;
-            width: 372.395px;
-            height: 41.253px;
-            position: absolute;
-            top: 800px;
-            left: 1040px;
+            top: 276px;
+            left: 610px;
         }
 
         div.map {
-            width: 372.395px;
-            height: 157.127px;
+            width: 187px;
+            height: 102px;
+            background: #C6E5F3;
             position: absolute;
-            top: 855.253px;
-            left: 1040px;
+            top: 412px;
+            left: 414px;
         }
         div.map img {
-            width: 372.395px;
-            height: 157.127px;
+            width: 187px;
+            height: 102px;
         }
         div.map div.map-placeholder {
-            width: 372.395px;
-            height: 157.127px;
+            width: 187px;
+            height: 102px;
             background: #C6E5F3;
         }
     </style>
+    
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
@@ -211,39 +200,34 @@
                     <p>LOGO</p>
                 </div>
             </div>
-             <div class="title">
+            <div class="title">
                 <h1>Landing Page Title</h1>
             </div>
 
-            <div id="hero-text">
-                <p>Hero Text</p>
-            </div>
-
-            <div class="hero-video">
-                <div class="hero-video-placeholder">
-                    Hero Video
+            <div class="hero-image">
+                <div class="hero-image-placeholder">
+                    Hero Image
                 </div>
             </div>
 
-            <div class="slideshow">
-                <div class="slideshow-placeholder">
-                    Slideshow
-                </div>
+            <div id="text-1">
+                <p>Text 1</p>
+            </div>
+
+            <div id="text-2">
+                <p>Text 2</p>
             </div>
 
             <div class="survey">
                 <p>Survey</p>
             </div>
 
-            <div id="address-text">
-                <p>Address</p>
-            </div>
             <div class="map">
                 <div class="map-placeholder">
                     Map
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </body>
 </html>

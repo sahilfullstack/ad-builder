@@ -56,26 +56,31 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
-        
+        body {
+            overflow: hidden;
+        }
+        body.two-x {
+            zoom: 200%;
+        }
         #workspace {
             background: #ccc;
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             font-family: sans-serif;
 
             /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-02.jpg);
-            background-size: 1920px 1080px;*/
+            background-size: 960px 540px;*/
         }
 
         div.banner {
-            width: 1920px;
-            height: 26.758px;
+            width: 960px;
+            height: 10px;
             background: #199FD4;
         }
 
         div.body {
-            width: 1920px;
-            height: 1080px;
+            width: 960px;
+            height: 540px;
             background: #fff;
 
             position: relative;
@@ -83,21 +88,21 @@
         }
 
         div.logo {
-            width: 416px;
-            height: 208px;
+            width: 192px;
+            height: 47px;
             position: absolute;
-            top: 68px;
-            left: 32px;
+            top: 22px;
+            left: 22px;
         }
 
         div.logo img {
-            width: 416px;
-            height: 208px;
+            width: 192px;
+            height: 47px;
         }
 
         div.logo div.logo-placeholder {
-            width: 416px;
-            height: 208px;
+            width: 192px;
+            height: 47px;
             outline: 3px dotted #CC337A;
         }
 
@@ -110,46 +115,33 @@
         }
 
         div.title {
-            width: 902px;
-            height: 70px;
+            width: 690px;
+            height: 68px;
             position: absolute;
-            top: 220px;
-            left: 490px;
+            top: 62px;
+            left: 13px;
             font-size: 19px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
         }
     
-        div.social-qrs-1 {
-            width: 114.5px;
-            height: 110.796px;
-            background: #C6E5F3;
+        div.social-qrs-text {
+            width: 159px;
+            height: 36px;
             position: absolute;
-            top: 106px;
-            left: 1420px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
+            top: 20px;
+            left: 781px;
+            text-transform: uppercase;
+            font-weight: bold;
         }
-        div.social-qrs-2 {
-            width: 114.5px;
-            height: 110.796px;
+        div.social-qrs {
+            width: 159px;
+            height: 55px;
             background: #C6E5F3;
             position: absolute;
-            top: 106px;
-            left: 1540px;
-            display: flex;
-            justify-content: space-evenly;
-            align-items: center;
-        }
-        div.social-qrs-3 {
-            width: 114.5px;
-            height: 110.796px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 106px;
-            left: 1660px;
+            top: 56px;
+            left: 781px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -162,114 +154,63 @@
         }
 
         div.hero-image {
-            width: 800px;
-            height: 430.372px;
+            width: 603px;
+            height: 246px;
             position: absolute;
-            top: 340px;
-            left: 32px;
+            top: 131px;
+            left: 21px;
         }
         div.hero-image img {
-            width: 800px;
-            height: 430.372px;
+            width: 603px;
+            height: 246px;
         }
         div.hero-image div.hero-image-placeholder {
-            width: 800px;
-            height: 430.372px;
+            width: 603px;
+            height: 246px;
             background: #C6E5F3;
-        }
-
-        div.social-logo-image1 {
-            width: 63.361px;
-            height: 43.552px;
-            position: absolute;
-            top: 46px;
-            left: 1440px;
-        }
-        div.social-logo-image1 img {
-            width: 63.361px;
-            height: 43.552px;
-        }
-        div.social-logo-image1 div.social-logo-image1-placeholder {
-            width: 63.361px;
-            height: 43.552px;
-            background: #C6E5F3;
-        }
-
-        div.social-logo-image2 {
-            width: 63.361px;
-            height: 43.552px;
-            position: absolute;
-            top: 46px;
-            left: 1570px;
-        }
-        div.social-logo-image2 img {
-            width: 63.361px;
-            height: 43.552px;
-        }
-        div.social-logo-image2 div.social-logo-image2-placeholder {
-            width: 63.361px;
-            height: 43.552px;
-            background: #C6E5F3;
-        }
-
-        div.social-logo-image3 {
-            width: 63.361px;
-            height: 43.552px;
-            position: absolute;
-            top: 46px;
-            left: 1680px;
-        }
-        div.social-logo-image3 img {
-            width: 63.361px;
-            height: 43.552px;
-        }
-        div.social-logo-image3 div.social-logo-image3-placeholder {
-            width: 63.361px;
-            height: 43.552px;
-            background: #C6E5F3;
-        }
-
-        div#hero-text {
-            width: 412.146px;
-            height: 334px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 437px;
-            left: 842px;
         }
 
         div.hero-video {
-            width: 638.318px;
-            height: 332.065px;
+            width: 308px;
+            height: 246px;
             position: absolute;
-            top: 437px;
-            left: 1264.146px;
+            top: 131px;
+            left: 638px;
         }
         div.hero-video img {
-            width: 638.318px;
-            height: 332.065px;
+            width: 308px;
+            height: 246px;
         }
         div.hero-video div.hero-video-placeholder {
-            width: 638.318px;
-            height: 332.065px;
+            width: 308px;
+            height: 246px;
             background: #C6E5F3;
         }
 
-        div.timeline {
-            width: 1866px;
-            height: 268.812px;
+        div#text-1 {
+            width: 465px;
+            height: 134px;
             background: #C6E5F3;
             position: absolute;
-            top: 800px;
-            left: 32px;
+            top: 384px;
+            left: 21px;
+        }
+
+        div.timeline {
+            width: 443px;
+            height: 134px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 385px;
+            left: 503px;
         }
         div.timeline img {
-            width: 1866px;
-            height: 268.812px;
+            width: 443px;
+            height: 134px;
         }
         div.timeline div.timeline-placeholder {
-            width: 1866px;
-            height: 268.812px;
+            width: 443px;
+            height: 134px;
             background: #C6E5F3;
         }
     </style>
@@ -286,37 +227,20 @@
                     <p>LOGO</p>
                 </div>
             </div>
-             <div class="title">
+            <div class="title">
                 <h1>Landing Page Title</h1>
             </div>
 
-            <div class="social-logo-image1">
-                <div class="social-logo-image1-placeholder">
-                    1
-                </div>
-            </div><div class="social-logo-image2">
-                <div class="social-logo-image2-placeholder">
-                    2
-                </div>
-            </div><div class="social-logo-image3">
-                <div class="social-logo-image3-placeholder">
-                    3
-                </div>
+            <div class="social-qrs-text">
+                <p>SOCIAL MEDIA QR CODES</p>
             </div>
-
-            <div class="social-qrs-1">
+            <div class="social-qrs">
                 <div class="social-qr">
                     
                 </div>
-            </div>
-
-            <div class="social-qrs-2">
                 <div class="social-qr">
                     
                 </div>
-            </div>
-
-            <div class="social-qrs-3">
                 <div class="social-qr">
                     
                 </div>
@@ -328,23 +252,22 @@
                 </div>
             </div>
 
-     <div id="hero-text">
-                <p>Hero Text</p>
-            </div>
-
             <div class="hero-video">
                 <div class="hero-video-placeholder">
                     Hero Video
                 </div>
             </div>
 
+            <div id="text-1">
+                <p>Text 1</p>
+            </div>
 
             <div class="timeline">
                 <div class="timeline-placeholder">
                     Timeline
                 </div>
             </div>
-         </div>
+        </div>
     </div>
 </body>
 </html>

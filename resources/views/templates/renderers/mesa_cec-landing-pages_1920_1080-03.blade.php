@@ -56,53 +56,48 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
-        body {
-            overflow: hidden;
-        }
-        body.two-x {
-            zoom: 200%;
-        }
+        
         #workspace {
             background: #ccc;
-            width: 960px;
-            height: 540px;
+            width: 1920px;
+            height: 1080px;
             font-family: sans-serif;
 
-            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-03.jpg);
-            background-size: 960px 540px;*/
+            /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-01.jpg);*/
+            /*background-size: 1920px 1080px;*/
         }
 
         div.banner {
-            width: 960px;
-            height: 10px;
+            width: 1920px;
+            height: 26.775px;
             background: #199FD4;
         }
 
         div.body {
-            width: 960px;
-            height: 540px;
-            background: #ffffff;
+            width: 1920px;
+            height: 1080px;
+            background: #fff;
 
             position: relative;
             overflow: auto;
         }
 
-        div.logo {
-            width: 190px;
-            height: 73px;
+       div.logo {
+            width: 387px;
+            height: 149px;
             position: absolute;
-            top: 22px;
-            left: 22px;
+            top: 70.775px;
+            left: 29px;
         }
 
         div.logo img {
-            width: 190px;
-            height: 73px;
+            width: 387px;
+            height: 149px;
         }
 
         div.logo div.logo-placeholder {
-            width: 190px;
-            height: 73px;
+            width: 387px;
+            height: 149px;
             outline: 3px dotted #CC337A;
         }
 
@@ -111,90 +106,134 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 25px;
+            padding-top: 15px;
         }
 
         div.title {
-            width: 316px;
-            height: 133px;
+            width: 482px;
+            height: 176px;
             position: absolute;
-            top: 95px;
-            left: 13px;
-            font-size: 25px;
+            top: 263.775px;
+            left: 29px;
+            font-size: 19px;
             padding-top: 18px;
             padding-left: 7px;
             color: #29aae2;
         }
 
-        div.slideshow {
-            width: 599px;
-            height: 302px;
+        div#hero-text1 {
+            width: 615.254px;
+            height: 551.025px;
+            background: #C6E5F3;
             position: absolute;
-            top: 28px;
-            left: 347px;
+            top: 483.775px;
+            left: 29px;
+        }
+
+        div.slideshow {
+            width: 1199.024px;
+            height: 561.439px;
+            position: absolute;
+            top: 70.775px;
+            left: 673.254px;
         }
         div.slideshow img {
-            width: 599px;
-            height: 302px;
+            width: 1199.024px;
+            height: 561.439px;
         }
         div.slideshow div.slideshow-placeholder {
-            width: 599px;
-            height: 302px;
+            width: 1199.024px;
+            height: 561.439px;
             background: #C6E5F3;
         }
 
-        div.audio {
-            width: 325px;
-            height: 134px;
+        div#hero-text2 {
+            width: 1199.056px;
+            height: 162px;
+            background: #C6E5F3;
             position: absolute;
-            top: 385px;
-            left: 621px;
+            top: 650px;
+            left: 673.254px;
+        }
+        
+        div#address-text {
+            background: #C6E5F3;
+            width: 372.395px;
+            height: 41.253px;
+            position: absolute;
+            top: 827px;
+            left: 673.254px;
+        }
+
+        div.map {
+            width: 372.395px;
+            height: 157.127px;
+            position: absolute;
+            top: 875.253px;
+            left: 673.254px;
+        }
+        div.map img {
+            width: 372.395px;
+            height: 157.127px;
+        }
+        div.map div.map-placeholder {
+            width: 372.395px;
+            height: 157.127px;
+            background: #C6E5F3;
+        }
+        div.audio {
+            width: 188.839px;
+            height: 202.139px;
+            position: absolute;
+            top: 827px;
+            left: 1065.65px;
         }
         div.audio img {
-            width: 325px;
-            height: 134px;
+            width: 188.839px;
+            height: 202.139px;
         }
         div.audio div.audio-placeholder {
-            width: 325px;
-            height: 134px;
+            width: 188.839px;
+            height: 202.139px;
             background: #C6E5F3;
         }
+        
+        div.blog-logo {
+            width: 42.402px;
+            height: 42.316px;
+            position: absolute;
+            top: 827px;
+            left: 1294.65px;
 
-        div#text-1 {
-            width: 307px;
-            height: 276px;
+        }
+        div.blog-logo img {
+            width: 42.402px;
+            height: 42.316px;
+        }
+        div.blog-logo div.blog-logo-placeholder {
+            width: 42.402px;
+            height: 42.316px;
+            background: #C6E5F3;
+        }
+        
+        div.blog-qrs {
+            width: 114.5px;
+            height: 110.796px;
             background: #C6E5F3;
             position: absolute;
-            top: 234px;
-            left: 21px;
+            top: 885.253px;
+            left: 1274.65px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
-        div#text-2 {
-            width: 600px;
-            height: 34px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 339px;
-            left: 347px;
+        div.blog-qrs div.blog-qr {
+            width: 114.5px;
+            height: 110.796px;
+            background: rgba(255,0,0,0.2);
         }
 
-        div.blog-feed {
-            width: 263px;
-            height: 134px;
-            background: #C6E5F3;
-            position: absolute;
-            top: 385px;
-            left: 347px;
-        }
-        div.blog-feed img {
-            width: 263px;
-            height: 134px;
-        }
-        div.blog-feed div.blog-feed-placeholder {
-            width: 263px;
-            height: 134px;
-            background: #C6E5F3;
-        }
     </style>
     
 </head>
@@ -209,37 +248,44 @@
                     <p>LOGO</p>
                 </div>
             </div>
-            <div class="title">
+             <div class="title">
                 <h1>Landing Page Title</h1>
             </div>
-
+            
+            <div id="hero-text1">
+                <p>Hero Text 1</p>
+            </div>
             <div class="slideshow">
                 <div class="slideshow-placeholder">
                     Slideshow
                 </div>
             </div>
-
-
-            <div id="text-1">
-                <p>Text 1</p>
+            <div id="hero-text2">
+                <p>Hero Text 2</p>
             </div>
-
-            <div id="text-2">
-                <p>Text 2</p>
+            <div id="address-text">
+                <p>Address</p>
             </div>
-
-            <div class="blog-feed">
-                <div class="blog-feed-placeholder">
-                    Blog Feed QR
+            <div class="map">
+                <div class="map-placeholder">
+                    Map
                 </div>
             </div>
-
             <div class="audio">
                 <div class="audio-placeholder">
                     Audio
                 </div>
+            </div> 
+            <div class="blog-logo">
+                <div class="blog-logo-placeholder">
+                    Blog Logo
+                </div>
             </div>
-        </div>
+             <div class="blog-qrs">
+                <div class="blog-qr">
+                    
+                </div>
+            </div>
     </div>
 </body>
 </html>
