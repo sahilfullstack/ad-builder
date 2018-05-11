@@ -51,7 +51,7 @@ class TemplateController extends Controller
     {
         $validRules = [
             'text' => [
-                 'min_length',
+                'min_length',
                 'max_length'
             ],
             'video' => [
