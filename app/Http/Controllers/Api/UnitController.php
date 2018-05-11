@@ -319,9 +319,9 @@ class UnitController extends Controller
             }  
 
             // if parent_id is sent
-            if(! is_null($request->parent_id))
+            if(! is_null($request->category_id))
             {
-                $unit->parent_id = $request->parent_id;
+                $unit->category_id = $request->category_id;
             } 
 
             // if parent_id is sent

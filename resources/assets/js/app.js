@@ -43,6 +43,7 @@ Vue.component('update-user-subscription-button', require('./components/users/Upd
 Vue.component('add-subscription-button', require('./components/users/AddSubscriptionButton.vue'));
 Vue.component('filter-form', require('./components/stats/FilterForm.vue'));
 
+Vue.component('edit-unit-category-form', require('./components/units/EditUnitCategoryForm.vue'));
 
 const app = new Vue({
     el: '#app'

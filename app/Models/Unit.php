@@ -61,14 +61,19 @@ class Unit extends Model
                 'order' => 3
             ],
             [
+                'name' => 'Category',
+                'slug' => 'category',
+                'order' => 4
+            ],
+            [
                 'name' => 'Ad Name',
                 'slug' => 'basic',
-                'order' => 4
+                'order' => 5
             ],
             [
                 'name' => 'Build Landing Page',
                 'slug' => 'page',
-                'order' => 5
+                'order' => 6
             ],
         ],
         'page' => [
@@ -95,7 +100,7 @@ class Unit extends Model
             [
                 'name' => 'Submit for Approval',
                 'slug' => 'submit',
-                'order' => 7
+                'order' => 5
             ],
         ]
 

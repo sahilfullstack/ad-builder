@@ -50,6 +50,12 @@
                             :unit="{{ $unit->load('template.components')->toJson() }}"
                             :components="{{ $data['components']->toJson() }}">
                         </edit-unit-components-form>
+                    @elseif($section == 'category')
+                        <edit-unit-category-form
+                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                            :unit="{{ $unit->toJson() }}"
+                            :categories="{{ $data['categories']->toJson() }}">
+                        </edit-unit-category-form>
                     @elseif($section == 'basic')
                         <edit-unit-basic-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"

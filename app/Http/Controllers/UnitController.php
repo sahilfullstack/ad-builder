@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\{Template, Unit, Layout, Subscription};
+use App\Models\{Template, Unit, Layout, Subscription, Category};
 
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
 use Carbon\Carbon, DB;
@@ -140,6 +140,13 @@ class UnitController extends Controller
             ->with('components');
         
         return ['templates' => $query->get()];
+    }    
+
+    private function dataToEditCategory(Unit $unit)
+    {
+        $query = new Category;
+        
+        return ['categories' => $query->get()];
     }
 
     private function dataToEditComponents(Unit $unit)
@@ -151,17 +158,6 @@ class UnitController extends Controller
     {
         return [];
     }
-
-    private function dataToEditHoverImage(Unit $unit)
-    {
-        return [];
-    }
-
-    private function dataToEditThumbnail(Unit $unit)
-    {
-        return [];
-    }
-
     
     private function dataToEditAd(Unit $unit)
     {

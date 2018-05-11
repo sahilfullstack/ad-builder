@@ -1719,9 +1719,9 @@ class TemplateSeeder extends Seeder
                 $found = Template::notDeleted()->whereSlug(str_slug($template['name']))->first();
 
                 if ( ! is_null($found)) continue;
-                
+
                 $t = Template::create([
-                    'type' => 'ad',
+                    'type' => $template['type'],
                     'layout_id' => $template['layout_id'],
                     'name' => $template['name'],
                     'slug' => str_slug($template['name']),
