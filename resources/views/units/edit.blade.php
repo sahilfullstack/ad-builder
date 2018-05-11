@@ -55,16 +55,6 @@
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}">
                         </edit-unit-basic-form>
-                    @elseif($section == 'hoverimage')
-                        <edit-unit-hoverimage-form
-                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
-                            :unit="{{ $unit->toJson() }}">
-                        </edit-unit-hoverimage-form>
-                    @elseif($section == 'thumbnail')
-                        <edit-unit-thumbnail-form
-                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
-                            :unit="{{ $unit->toJson() }}">
-                        </edit-unit-thumbnail-form>
                     @elseif($section == 'page')
                         <edit-unit-landing-page-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"

@@ -6,7 +6,18 @@
             <input type="text" class="form-control" id="name" placeholder="Example: Most amazing ad ever..." v-model="form.name">
              <span class="text-danger" :class="{'hidden': errors['name'] == undefined}" style="margin-right:10px;">{{errors['name']}}</span>
         </div>
-
+        <div v-if="unit.type == 'ad'" class="form-group">
+            <a href class="pull-right" @click.prevent="upload('hover_image')">Upload</a>
+            <label for="hover_image">Hover Image<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="hover_image" placeholder="Example: http://something.png" v-model="form.hover_image">
+             <span class="text-danger" :class="{'hidden': errors['hover_image'] == undefined}" style="margin-right:10px;">{{errors['hover_image']}}</span>
+        </div>
+        <div  v-if="unit.type == 'ad'" class="form-group">
+            <a href class="pull-right" @click.prevent="upload('thumbnail')">Upload</a>
+            <label for="thumbnail">Thumbnail<span class="text-danger">*</span></label>
+            <input type="text" class="form-control" id="thumbnail" placeholder="Example: http://something.png" v-model="form.thumbnail">
+             <span class="text-danger" :class="{'hidden': errors['thumbnail'] == undefined}" style="margin-right:10px;">{{errors['thumbnail']}}</span>
+        </div>
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
 
@@ -32,7 +43,9 @@ export default {
         return {
             form: {
                 name: this.unit.name,
-                section: 'name'
+                hover_image: this.unit.hover_image,
+                thumbnail: this.unit.thumbnail,
+                section: 'name',
             },
             errors: [],
             disable: {
@@ -68,7 +81,18 @@ export default {
                         self.errors[errorIndex] = error[0];
                     });
                 });
-        }
+        },
+        upload(attr) {
+            let thiz = this;
+            Modal.show(FileUpload, {
+                propsData: {
+                        apiPath: '/api/upload'
+                    }
+                })
+                .then(function(url) {
+                   Vue.set(thiz.form, attr, url);
+                });
+        },
     }
 }
 </script>
