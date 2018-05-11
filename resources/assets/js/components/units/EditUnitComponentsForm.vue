@@ -98,7 +98,7 @@ export default {
     data() {
         return {
             form: {
-                hoverimage: ''
+                template_id: this.unit.template_id
             },
             errors: [],
             disable: {

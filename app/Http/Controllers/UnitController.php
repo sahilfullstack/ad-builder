@@ -98,7 +98,10 @@ class UnitController extends Controller
             }
         }
 
-        return view($unit->template->renderer, compact('unit'));
+        $bodyClass = '';
+        if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
+        $readableComponents = $unit->readable_components;
+        return view($unit->template->renderer, compact('unit', 'readableComponents', 'bodyClass'));
     }
 
     private function dataToEditLayout(Unit $unit)
