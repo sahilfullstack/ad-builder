@@ -43,6 +43,8 @@ Vue.component('update-user-subscription-button', require('./components/users/Upd
 Vue.component('add-subscription-button', require('./components/users/AddSubscriptionButton.vue'));
 Vue.component('filter-form', require('./components/stats/FilterForm.vue'));
 
+Vue.component('edit-unit-hoverimage-form', require('./components/units/EditUnitHoverImageForm.vue'));
+Vue.component('edit-unit-thumbnail-form', require('./components/units/EditUnitThumbnailForm.vue'));
 
 
 const app = new Vue({

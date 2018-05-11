@@ -325,15 +325,40 @@ class UnitController extends Controller
                 $unit->parent_id = $request->parent_id;
             } 
 
+            // if parent_id is sent
+            if(! is_null($request->parent_id))
+            {
+                $unit->parent_id = $request->parent_id;
+            }
+
+            // if hover_image is sent
+            if(! is_null($request->hover_image))
+            {
+                $this->validateImage($request->hover_image, 'hover_image');
+
+                $unit->hover_image = $request->hover_image;
+            } 
+
+            // if thumbnail is sent
+            if(! is_null($request->thumbnail))
+            {
+                $this->validateImage($request->thumbnail, 'thumbnail');
+
+                $unit->thumbnail = $request->thumbnail;
+            } 
+
             $unit->save();
             
             DB::commit();   
             return $unit->fresh();
         }
+        catch(CustomInvalidInputException $e)
+        {
+            throw $e;
+        }
         catch(\Exception $e)
         {
             DB::rollBack();
-
         }
     }
 
@@ -434,6 +459,18 @@ class UnitController extends Controller
         if(is_null($subscription) or (($subscription->allowed_quantity - $subscription->redeemed_quantity) <= 0))
         {
             throw new InvalidInputException("Subscription is invalid.");
+        }
+    }
+
+    private function validateImage($url, $tag)
+    {
+        try
+        {
+            getImageSize($url);            
+        }
+        catch(\Exception $e)
+        {
+            throw new CustomInvalidInputException($tag, 'Image is invalid.');
         }
     }
 }
