@@ -190,7 +190,7 @@ class UnitController extends Controller
             $child = new Unit([
                 'user_id' => auth()->user()->id,
                 'type' => 'page',
-                'layout_id' => is_null($layout) ? null : $layout->id,
+                'layout_id' => $layout->id,
                 'parent_id' => $unit->id,
                 'components' => []
             ]);
