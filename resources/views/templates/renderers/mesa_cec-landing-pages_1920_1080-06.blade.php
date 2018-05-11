@@ -154,10 +154,17 @@
             top: 600px;
             left: 620px;
         }
+
         div.slideshow img {
             width: 396px;
             height: 412.283px;
         }
+
+        div.hero-video video {
+            width: 416px;
+            height: 344px;
+        }
+        
         div.slideshow div.slideshow-placeholder {
             width: 396px;
             height: 412.283px;

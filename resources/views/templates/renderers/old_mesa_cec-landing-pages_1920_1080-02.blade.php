@@ -192,8 +192,26 @@
             height: 134px;
             background: #C6E5F3;
             position: absolute;
-            top: 384px;
-            left: 21px;
+            top: 437px;
+            left: 842px;
+        }
+
+        div.hero-video {
+            width: 638.318px;
+            height: 332.065px;
+            position: absolute;
+            top: 437px;
+            left: 1264.146px;
+        }
+        div.hero-video video {
+            width: 638.318px;
+            height: 332.065px;
+        }
+        div.hero-video div.hero-video-placeholder {
+            width: 638.318px;
+            height: 332.065px;
+            background: #C6E5F3;
+>>>>>>> f872b4898a2b2a2276913302ec4d51384e427c9a:resources/views/templates/renderers/sahil_mesa_cec-landing-pages_1920_1080-02.blade.php
         }
 
         div.timeline {

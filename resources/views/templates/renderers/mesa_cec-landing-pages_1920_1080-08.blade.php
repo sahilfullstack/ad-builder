@@ -223,7 +223,7 @@
             top: 260px;
             left: 1230.146px;
         }
-        div.hero-video img {
+        div.hero-video video {
             width: 684.684px;
             height: 493.074px;
         }

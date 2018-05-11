@@ -133,10 +133,17 @@
             top: 383px;
             left: 22px;
         }
+
         div.slideshow img {
             width: 576px;
             height: 133px;
         }
+
+        div.hero-video video {
+            width: 982.597px;
+            height: 554.237px;
+        }
+
         div.slideshow div.slideshow-placeholder {
             width: 576px;
             height: 133px;

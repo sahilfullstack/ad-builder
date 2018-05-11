@@ -1,5 +1,5 @@
-@if(empty($text))
+@if(empty($value))
 {{ $default }}
 @else
-{{ $text }}
+{{ $value }}
 @endif

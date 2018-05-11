@@ -174,16 +174,13 @@
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     <div id="workspace">
         <div class="banner"></div>
-
         <div class="body">
             <p class="category-header">
-                @include('templates.components.text', ['text' => null, 'default' => 'Category Header'])
+                @include('templates.components.text', ['value' => null, 'default' => 'Category Header'])
             </p>
             
             <div class="logo">
-                <div class="logo-placeholder">
-                    <p>LOGO</p>
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
         </div>
     </div>

@@ -185,9 +185,16 @@
             top: 46px;
             left: 1440px;
         }
+
         div.social-logo-image1 img {
             width: 63.361px;
             height: 43.552px;
+        }
+
+        div.hero-video video {
+            width: 308px;
+            height: 246px;
+
         }
         div.social-logo-image1 div.social-logo-image1-placeholder {
             width: 63.361px;

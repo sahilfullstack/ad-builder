@@ -258,20 +258,19 @@ class UnitController extends Controller
             {
                 // validating if user has subscription
                 $this->hasSubscription($unit, $request->layout_id);   
-                
                 if( is_null($unit->redeemed_subscription_id))
                 {
                     $subscription = Subscription::where([
-                            'layout_id' => $request->layout_id,
-                            'user_id' => $unit->user->id
-                            ])
-                    ->whereRaw('allowed_quantity > redeemed_quantity')->orderBy('expiring_at', 'DESC')->first();
-
+                        'layout_id' => $request->layout_id,
+                        'user_id' => $unit->user->id
+                        ])
+                        ->whereRaw('allowed_quantity > redeemed_quantity')->orderBy('expiring_at', 'DESC')->first();
+                        
                     $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;
                     $unit->redeemed_subscription_id = $subscription->id;
                     
                     $subscription->save();
-
+                    
                     $unit->layout_id = $request->layout_id;
                 }
             }
@@ -450,13 +449,17 @@ class UnitController extends Controller
     private function hasSubscription($unit, $layoutId)
     {
         $user = $unit->user;
-        $userId = $unit->id;
-        $subscription = $user->subscriptions
+        
+        $subscription = DB::table('subscriptions')
+            ->selectRaw('sum(allowed_quantity - redeemed_quantity) as available_quantity')
+            ->where('user_id', $user->id)
             ->where('layout_id', $layoutId)
-            ->where('expiring_at', '>', Carbon::now())
+            ->whereRaw('expiring_at >= now()')
+            ->groupBy('layout_id')
+            ->havingRaw('available_quantity > 0')
             ->first();
 
-        if(is_null($subscription) or (($subscription->allowed_quantity - $subscription->redeemed_quantity) <= 0))
+        if(is_null($subscription) or (($subscription->available_quantity) <= 0))
         {
             throw new InvalidInputException("Subscription is invalid.");
         }

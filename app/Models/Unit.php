@@ -181,6 +181,19 @@ class Unit extends Model
         return 'Draft';
     }
 
+    public function getReadableComponentsAttribute()
+    {
+        $components = Component::notDeleted()->find(array_keys($this->components));
+        
+        $readableComponents = [];
+        foreach($this->components as $component)
+        {
+            $readableComponents[$components->where('id', 21)->first()->slug] = $component['_value'];
+        }
+
+        return $readableComponents;
+    }
+
     public function nextSectionEditRoute($currentSectionSlug)
     {
         $nextSection = unit_next_section($this->type, $currentSectionSlug);
