@@ -18,8 +18,7 @@ class LayoutsSeeder extends Seeder
             'Half Page (Portrait)' => [960, 1080],
             'Half Page (Landscape)' => [1920, 540],
             'Quarter Page' => [960, 540],
-            '1/8th Page' => [480, 540],
-            'Landing Page' => [1920, 1080],
+            '1/8th Page' => [480, 540]
         ];
 
         foreach ($layouts as $layout => $dimensions) {

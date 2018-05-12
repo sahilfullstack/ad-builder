@@ -21,7 +21,6 @@ class TemplateSeeder extends Seeder
             str_slug('Half Page (Landscape)') => Layout::notDeleted()->whereSlug(str_slug('Half Page (Landscape)'))->first()->id,
             str_slug('Quarter Page') => Layout::notDeleted()->whereSlug(str_slug('Quarter Page'))->first()->id,
             str_slug('1/8th Page') => Layout::notDeleted()->whereSlug(str_slug('1/8th Page'))->first()->id,
-            str_slug('Landing Page') => Layout::notDeleted()->whereSlug(str_slug('Landing Page'))->first()->id,
         ];
 
         $templates = [
@@ -1088,7 +1087,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #1',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-01',
                 'components' => [
@@ -1136,7 +1135,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #2',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-02',
                 'components' => [
@@ -1204,7 +1203,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #3',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-03',
                 'components' => [
@@ -1262,7 +1261,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #4',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-04',
                 'components' => [
@@ -1330,7 +1329,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #5',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-05',
                 'components' => [
@@ -1413,7 +1412,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #6',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-06',
                 'components' => [
@@ -1461,7 +1460,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #7',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-07',
                 'components' => [
@@ -1469,7 +1468,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #8',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-08',
                 'components' => [
@@ -1543,7 +1542,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #9',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-09',
                 'components' => [
@@ -1621,7 +1620,7 @@ class TemplateSeeder extends Seeder
             ],
             [
                 'type' => 'page',
-                'layout_id' => $layouts[str_slug('Landing Page')],
+                'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #10',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-10',
                 'components' => [
