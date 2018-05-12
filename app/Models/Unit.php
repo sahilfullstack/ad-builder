@@ -170,6 +170,11 @@ class Unit extends Model
         return $this->hasOne(Unit::class, 'parent_id');
     }
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function getTypeHumanAttribute()
     {
         return $this->types[$this->type];

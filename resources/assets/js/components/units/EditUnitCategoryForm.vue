@@ -1,9 +1,8 @@
 <template>
     <form @submit.prevent="update">
         <div class="form-group">
-            <label for="category_id">TEMPLATE <span class="text-danger">*</span></label>
-            <span v-if="categories.length== 0">No Subscriptions Yet.</span>
-            <select v-if="categories.length > 0" name="category_id" id="category_id" class="form-control" v-model="form.category_id">    
+            <label for="category_id">CATEGORY <span class="text-danger">*</span></label>
+            <select name="category_id" id="category_id" class="form-control" v-model="form.category_id">    
                 <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
             </select>
             <span class="text-danger" :class="{'hidden': errors['category_id'] == undefined}" style="margin-right:10px;">{{errors['category_id']}}</span>

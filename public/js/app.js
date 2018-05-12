@@ -84602,7 +84602,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -84689,51 +84688,45 @@ var render = function() {
       _c("div", { staticClass: "form-group" }, [
         _vm._m(0),
         _vm._v(" "),
-        _vm.categories.length == 0
-          ? _c("span", [_vm._v("No Subscriptions Yet.")])
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.categories.length > 0
-          ? _c(
-              "select",
+        _c(
+          "select",
+          {
+            directives: [
               {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.form.category_id,
-                    expression: "form.category_id"
-                  }
-                ],
-                staticClass: "form-control",
-                attrs: { name: "category_id", id: "category_id" },
-                on: {
-                  change: function($event) {
-                    var $$selectedVal = Array.prototype.filter
-                      .call($event.target.options, function(o) {
-                        return o.selected
-                      })
-                      .map(function(o) {
-                        var val = "_value" in o ? o._value : o.value
-                        return val
-                      })
-                    _vm.$set(
-                      _vm.form,
-                      "category_id",
-                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
-                    )
-                  }
-                }
-              },
-              _vm._l(_vm.categories, function(category) {
-                return _c(
-                  "option",
-                  { key: category.id, domProps: { value: category.id } },
-                  [_vm._v(_vm._s(category.name))]
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.category_id,
+                expression: "form.category_id"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "category_id", id: "category_id" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "category_id",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
                 )
-              })
+              }
+            }
+          },
+          _vm._l(_vm.categories, function(category) {
+            return _c(
+              "option",
+              { key: category.id, domProps: { value: category.id } },
+              [_vm._v(_vm._s(category.name))]
             )
-          : _vm._e(),
+          })
+        ),
         _vm._v(" "),
         _c(
           "span",
@@ -84777,7 +84770,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "category_id" } }, [
-      _vm._v("TEMPLATE "),
+      _vm._v("CATEGORY "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
