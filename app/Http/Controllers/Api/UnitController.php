@@ -44,7 +44,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::published()->approved()->with(['layout', 'child', 'template.components']);
+        $units = Unit::published()->approved()->with(['layout', 'child', 'template.components'])->orderBy('layout_id');
       
         if( ! is_null($request->get('type')))
         {
