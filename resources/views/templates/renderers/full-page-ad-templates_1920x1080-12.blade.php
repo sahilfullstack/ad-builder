@@ -168,19 +168,13 @@
 
             <div class="images">
                 <div class="image">
-                    <div class="image-placeholder">
-                        
-                    </div>
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image'])
                 </div>
                 <div class="image">
-                    <div class="image-placeholder">
-                        
-                    </div>
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image'])
                 </div>
                 <div class="image">
-                    <div class="image-placeholder">
-                        
-                    </div>
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image'])
                 </div>
             </div>
 
