@@ -50,7 +50,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]
@@ -68,7 +68,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ]
@@ -81,7 +81,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-04',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -99,7 +99,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-05',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -117,7 +117,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-06',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]
@@ -130,7 +130,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-07',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ] 
@@ -161,7 +161,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-01',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -184,7 +184,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-02',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -207,7 +207,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-03',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]
@@ -220,7 +220,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-04',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ]
@@ -233,7 +233,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-05',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -256,7 +256,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-06',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -279,7 +279,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-07',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -302,7 +302,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-08',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -335,7 +335,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -358,7 +358,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -381,7 +381,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -404,7 +404,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -427,7 +427,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -450,7 +450,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -478,7 +478,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -506,7 +506,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -534,7 +534,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -562,7 +562,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -583,7 +583,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-10',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]
@@ -596,7 +596,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-11',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ]
@@ -614,7 +614,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],                
@@ -632,7 +632,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],                   
@@ -650,7 +650,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -673,7 +673,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -691,7 +691,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-05',
                 'components' => [   
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],                   
@@ -704,7 +704,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-06',
                 'components' => [   
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],                
@@ -722,7 +722,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]                  
@@ -740,7 +740,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ]                  
@@ -758,7 +758,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -781,7 +781,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -804,7 +804,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -827,7 +827,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -845,7 +845,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-03',
                 'components' => [
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ]            
@@ -858,7 +858,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-04',
                 'components' => [
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ]   
@@ -876,7 +876,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -899,7 +899,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -922,7 +922,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -945,7 +945,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -973,7 +973,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],               
@@ -1001,7 +1001,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -1029,7 +1029,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],               
@@ -1103,7 +1103,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],     
@@ -1151,7 +1151,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],
@@ -1161,7 +1161,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],
@@ -1219,7 +1219,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image',
+                        'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
                     ],     
@@ -1428,7 +1428,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],     
@@ -1484,7 +1484,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
+                        'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
                     ],     
