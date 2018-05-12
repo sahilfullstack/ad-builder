@@ -196,9 +196,9 @@ class Unit extends Model
         $components = Component::notDeleted()->find(array_keys($this->components));
         
         $readableComponents = [];
-        foreach($this->components as $component)
+        foreach($this->components as $id => $component)
         {
-            $readableComponents[$components->where('id', 21)->first()->slug] = $component['_value'];
+            $readableComponents[$components->where('id', $id)->first()->slug] = $component['_value'];
         }
 
         return $readableComponents;
