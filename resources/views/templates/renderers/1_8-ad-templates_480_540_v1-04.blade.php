@@ -156,18 +156,14 @@
         <div class="banner"></div>
 
         <div class="body">
-            <p class="category-header">Category Header</p>
+            @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
             
             <div class="hero-image">
-                <div class="hero-image-placeholder">
-                    Hero Image
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
             </div>
 
             <div class="logo">
-                <div class="logo-placeholder">
-                    <p>LOGO</p>
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
     
         </div>

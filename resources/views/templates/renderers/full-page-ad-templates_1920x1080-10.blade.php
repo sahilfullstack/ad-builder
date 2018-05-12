@@ -178,28 +178,24 @@
 
         <div class="body">
             <div class="sidebar">
-                <p class="category-header">Category Header</p>
+                @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
 
                 <div class="logo">
-                    <div class="logo-placeholder">
-                        <p>LOGO</p>
-                    </div>
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
                 <div class="quote">
                     <div class="flag"></div>
-                    <p>Quote Text</p>
+                    @include('templates.components.text', ['value' => array_get($readableComponents, 'quote-text'), 'default' => 'Quote Text'])
                 </div>
 
                 <div class="text">
-                    <p>Text</p>
+                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
                 </div>
             </div>
     
             <div class="hero-video">
-                <div class="hero-video-placeholder">
-                    Hero Video
-                </div>
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
             </div>
         </div>
     </div>

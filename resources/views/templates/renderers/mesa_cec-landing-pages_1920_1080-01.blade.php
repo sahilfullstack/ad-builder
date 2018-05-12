@@ -201,17 +201,13 @@
 
         <div class="body">
             <div class="logo">
-                <div class="logo-placeholder">
-                    <p>LOGO</p>
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
                 <h1>Landing Page Title</h1>
             </div>
             <div class="hero-image">
-                <div class="hero-image-placeholder">
-                    Hero Image
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
             </div>
 
             <div id="text-1">

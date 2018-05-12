@@ -214,9 +214,7 @@
 
         <div class="body">
             <div class="logo">
-                <div class="logo-placeholder">
-                    <p>LOGO</p>
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
                 <h1>Landing Page Title</h1>
@@ -227,9 +225,7 @@
             </div>
 
             <div class="hero-video">
-                <div class="hero-video-placeholder">
-                    Hero Video
-                </div>
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
             </div>
 
             <div class="slideshow">

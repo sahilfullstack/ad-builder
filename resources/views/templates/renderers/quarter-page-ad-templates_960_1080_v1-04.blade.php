@@ -134,11 +134,9 @@
         <div class="banner"></div>
 
         <div class="body">
-            <p class="category-header">Category Header</p>
+            @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
             <div class="hero-video">
-                <div class="hero-video-placeholder">
-                    Hero Video
-                </div>
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
             </div>
         </div>
     </div>

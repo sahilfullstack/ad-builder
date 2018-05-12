@@ -176,7 +176,7 @@
         <div class="banner"></div>
         <div class="body">
             <p class="category-header">
-                @include('templates.components.text', ['value' => $unit->category->name, 'default' => 'Category Header'])
+                @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
             </p>
             
             <div class="logo">

@@ -185,19 +185,11 @@
                     </div>
 
                     <div class="quote">
-                        @if(empty($unit->components['quote-text']))
-                            <p>Quote Text</p>
-                        @else
-                            <p>{{ $unit->components['quote-text'] }}</p>
-                        @endif
+                        @include('templates.components.text', ['value' => array_get($readableComponents, 'quote-text'), 'default' => 'Quote Text'])
                     </div>
 
                     <div class="text">
-                        @if(empty($unit->components['text']))
-                            <p>Text</p>
-                        @else
-                            <p>{{ $unit->components['text'] }}</p>
-                        @endif
+                        @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
                     </div>
                 </div>
         

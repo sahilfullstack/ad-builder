@@ -175,12 +175,10 @@
         <div class="banner"></div>
 
         <div class="body">
-            <p class="category-header">Category Header</p>
+            @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
             
             <div class="hero-video">
-                <!-- <div class="hero-video-placeholder">
-                    Hero Video
-                </div> -->
+                <!-- @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video']) -->
                 <audio autoplay loop preload="auto"
                     src="file:///D:/VisualStudio2017%20Projects/MesaCatalogueAssets/MesaCatalogue_v1.0.5/MesaCatalogue/MesaCatalogue/bin/x64/Debug/Data/image/products/format_changed_audio.ogg"
                     width="240"

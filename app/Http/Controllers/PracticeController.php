@@ -18,7 +18,8 @@ class PracticeController extends Controller
         $bodyClass = '';
         if(! is_null($request->query('z'))) $bodyClass = 'two-x';
         $readableComponents = [];
-        return view("templates.renderers.$template", compact('bodyClass', 'readableComponents'));
+        $unit = Unit::find(1);
+        return view("templates.renderers.$template", compact('bodyClass', 'readableComponents', 'unit'));
     }
 
     public function embed()

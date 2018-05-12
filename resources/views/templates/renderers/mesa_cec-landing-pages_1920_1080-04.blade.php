@@ -310,9 +310,7 @@
             </div>
 
             <div class="logo">
-                <div class="logo-placeholder">
-                    <p>LOGO</p>
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
                 <h1>Landing Page Title</h1>
