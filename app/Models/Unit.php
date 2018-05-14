@@ -198,9 +198,9 @@ class Unit extends Model
         $readableComponents = [];
         foreach($this->components as $id => $component)
         {
-            $readableComponents[$components->where('id', $id)->first()->slug] = $component['_value'];
+            $readableComponents[$components->where('id', $id)->first()->slug] = array_merge(['_id' => $id], $component);
         }
-
+        
         return $readableComponents;
     }
 

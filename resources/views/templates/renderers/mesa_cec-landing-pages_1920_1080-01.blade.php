@@ -190,8 +190,55 @@
             top: 558.784px;
             left: 1213.709px;
         }
+        div.survey div.survey-buttons {
+            text-align: center;
+            margin-top: 30px;
+        }
+        div.survey div.survey-buttons button {
+            background-color: #0078e7;
+            font-size: 100%;
+            padding: .5em 1em;
+            text-decoration: none;
+            border-radius: 2px;
+            color: white;
+            border: transparent;
+            cursor: pointer;
+        }
+        div.survey div.survey-buttons button:disabled {
+            filter: alpha(opacity=40);
+            opacity: .4;
+            cursor: not-allowed;
+            pointer-events: none;
+        }
 
     </style>
+
+    <script>
+        var httpRequest;
+
+        function recordSurveyResponse(componentId, response) {
+            httpRequest = new XMLHttpRequest();
+
+            if (! httpRequest) {
+                alert('Giving up :( Cannot create an XMLHTTP instance');
+                return false;
+            }
+            httpRequest.onreadystatechange = recordedSurveyResponse;
+            httpRequest.open('POST', '/api/components/' + componentId + '/responses?' + (new Date()).getTime());
+            httpRequest.setRequestHeader('Content-Type', 'application/json');
+            httpRequest.send(JSON.stringify({response: response}));
+        }
+
+        function recordedSurveyResponse() {
+            if (httpRequest.readyState === XMLHttpRequest.DONE) {
+                if (httpRequest.status === 200) {
+                    // success
+                } else {
+                    // error
+                }
+            }
+        }
+    </script>
     
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
@@ -229,7 +276,11 @@
             </div>
 
             <div class="survey">
-                <p>Survey</p>
+                <p>Question is typed here.</p>
+                <div class="survey-buttons" style="text-align:center;">
+                    <button onclick="recordSurveyResponse({{ array_get($readableComponents, 'survey._id') }}, 'yes')">Yes</button>
+                    <button onclick="recordSurveyResponse({{ array_get($readableComponents, 'survey._id') }}, 'no')">No</button>
+                </div>
             </div>
         </div>
     </div>
