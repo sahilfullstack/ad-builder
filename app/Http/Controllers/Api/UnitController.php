@@ -44,7 +44,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::published()->approved()->with(['layout', 'child', 'template.components'])->orderBy('layout_id');
+        $units = Unit::published()->approved()->with(['category', 'layout', 'child', 'template.components'])->orderBy('layout_id');
       
         if( ! is_null($request->get('type')))
         {
@@ -88,14 +88,14 @@ class UnitController extends Controller
         {
             $transformed[]['product'] = [
                 'prid' => $unit['id'],
-                'category' => 'Category',
+                'category' => $unit['category']['id'],
                 'title' => $unit['name'],
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2']),
                 'landing_page_url' => route('units.render', $unit['child']['id']),
                 'layout_id' => $unit['layout_id'],
                 'startchar' => Str::upper(substr($unit['name'], 0, 1)),
-                'thumbnail' => 'Ad-Pages05Thumb.jpg',
-                'hoverimage' => 'Transparent.png',
+                'thumbnail' => array_get($unit, 'thumbnail'),
+                'hoverimage' => array_get($unit, 'hover_image'),
             ];
         }
         
