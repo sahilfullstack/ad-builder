@@ -120,7 +120,7 @@
             color: #29aae2;
         }
 
-        div#hero-text {
+        div#text {
             width: 840px;
             height: 411.024px;
             background: #C6E5F3;
@@ -217,11 +217,11 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
-            <div id="hero-text">
-                <p>Hero Text</p>
+            <div id="text">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 
             <div class="hero-video">
@@ -229,9 +229,7 @@
             </div>
 
             <div class="slideshow">
-                <div class="slideshow-placeholder">
-                    Slideshow
-                </div>
+                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
 
             <div class="survey">
@@ -239,12 +237,10 @@
             </div>
 
             <div id="address-text">
-                <p>Address</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
             <div class="map">
-                <div class="map-placeholder">
-                    Map
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
          </div>
     </div>

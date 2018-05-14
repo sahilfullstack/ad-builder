@@ -102,7 +102,6 @@
             <div id="hero-text-1">
                 <p>Hero Text 1</p>
             </div>
-
          </div>
     </div>
 </body>

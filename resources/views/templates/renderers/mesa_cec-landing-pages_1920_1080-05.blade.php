@@ -224,23 +224,23 @@
             background: #C6E5F3;
         }
 
-        div.hero-image-1 {
+        div.image-1 {
             width: 420px;
             height: 183px;
             position: absolute;
             top: 470px;
             left: 151px;
         }
-        div.hero-image-1 img {
+        div.image-1 img {
             width: 420px;
             height: 183px;
         }
-        div.hero-image-1 div.hero-image-1-placeholder {
+        div.image-1 div.image-1-placeholder {
             width: 420px;
             height: 183px;
             background: #C6E5F3;
         }
-        div#hero-text-1 {
+        div#text-1 {
             width: 419.601px;
             height: 350.585px;
             background: #C6E5F3;
@@ -249,41 +249,25 @@
             left: 151px;
         }
 
-        div.title-image-1 {
+        div.heading-1 {
             width: 120.691px;
             height: 120.691px;
             position: absolute;
             top: 330px;
             left: 291px;
-        }
-        div.title-image-1 img {
-            width: 120.691px;
-            height: 120.691px;
-        }
-        div.title-image-1 div.title-image-1-placeholder {
-            width: 120.691px;
-            height: 120.691px;
             background: #C6E5F3;
         }
 
-        div.title-image-2 {
+        div.heading-2 {
             width: 120.691px;
             height: 120.691px;
             position: absolute;
             top: 330px;
             left: 732px;
-        }
-        div.title-image-2 img {
-            width: 120.691px;
-            height: 120.691px;
-        }
-        div.title-image-2 div.title-image-2-placeholder {
-            width: 120.691px;
-            height: 120.691px;
             background: #C6E5F3;
         }
 
-        div.hero-image-2 {
+        div.image-2 {
             width: 420px;
             height: 183px;
             position: absolute;
@@ -291,18 +275,18 @@
             left: 602px;
         }
 
-        div.hero-image-2 img {
+        div.image-2 img {
             width: 420px;
             height: 183px;
         }
 
-        div.hero-image-2 div.hero-image-2-placeholder {
+        div.image-2 div.image-2-placeholder {
             width: 420px;
             height: 183px;
             background: #C6E5F3;
         }
 
-        div#hero-text-2 {
+        div#text-2 {
             width: 419.601px;
             height: 350.585px;
             background: #C6E5F3;
@@ -341,78 +325,66 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
             <div class="social-logo-image1">
                 <div class="social-logo-image1-placeholder">
-                    1
+                    Tw
                 </div>
             </div><div class="social-logo-image2">
                 <div class="social-logo-image2-placeholder">
-                    2
+                    In
                 </div>
             </div><div class="social-logo-image3">
                 <div class="social-logo-image3-placeholder">
-                    3
+                    Fb
                 </div>
             </div>
 
             <div class="social-qrs-1">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr'])
             </div>
 
             <div class="social-qrs-2">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr'])
             </div>
 
             <div class="social-qrs-3">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr'])
             </div>
             
-            <div class="title-image-1">
-                <div class="title-image-1-placeholder">
-                    Title Image 1
-                </div>
+            <div class="heading-1">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-1'), 'default' => 'Heading 1'])</p>
             </div>
 
-            <div class="hero-image-1">
-                <div class="hero-image-1-placeholder">
-                    Hero Image 1
-                </div>
+            <div class="image-1">
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
             </div>
 
-            <div id="hero-text-1">
-                <p>Hero Text 1</p>
+            <div id="text-1">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'text-1'])</p>
             </div>
 
-            <div class="title-image-2">
-                <div class="title-image-2-placeholder">
-                    Title Image 2
-                </div>
+            <!-- Amount 1 is pending. -->
+
+            <div class="heading-2">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-2'), 'default' => 'Heading 2'])</p>
             </div>
 
-            <div class="hero-image-2">
-                <div class="hero-image-2-placeholder">
-                    Hero Image 2
-                </div>
+            <div class="image-2">
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
             </div>
 
-            <div id="hero-text-2">
-                <p>Hero Text 2</p>
+            <div id="text-2">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'text-2'])</p>
             </div>
 
             <div class="slideshow">
-                <div class="slideshow-placeholder">
-                    Slideshow
-                </div>
+                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
+
+            <!-- Amount 2 is pending. -->
          </div>
     </div>
 </body>

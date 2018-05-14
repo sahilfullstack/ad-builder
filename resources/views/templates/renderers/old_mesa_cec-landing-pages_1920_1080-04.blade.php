@@ -226,7 +226,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
             <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
             <div class="social-qrs-text">

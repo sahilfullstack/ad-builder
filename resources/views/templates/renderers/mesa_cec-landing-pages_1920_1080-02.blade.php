@@ -236,7 +236,7 @@
             background: #C6E5F3;
         }
 
-        div#hero-text {
+        div.hero-text {
             width: 412.146px;
             height: 334px;
             background: #C6E5F3;
@@ -292,47 +292,41 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
             <div class="social-logo-image1">
                 <div class="social-logo-image1-placeholder">
-                    1
+                    Tw
                 </div>
             </div><div class="social-logo-image2">
                 <div class="social-logo-image2-placeholder">
-                    2
+                    In
                 </div>
             </div><div class="social-logo-image3">
                 <div class="social-logo-image3-placeholder">
-                    3
+                    Fb
                 </div>
             </div>
 
             <div class="social-qrs-1">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr'])
             </div>
 
             <div class="social-qrs-2">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr'])
             </div>
 
             <div class="social-qrs-3">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr'])
             </div>
 
             <div class="hero-image">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
             </div>
 
-     <div id="hero-text">
-                <p>Hero Text</p>
+            <div class="hero-text">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 
             <div class="hero-video">
@@ -341,9 +335,7 @@
 
 
             <div class="timeline">
-                <div class="timeline-placeholder">
-                    Timeline
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'timeline'), 'default' => 'timeline'])
             </div>
          </div>
     </div>

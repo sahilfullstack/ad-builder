@@ -204,28 +204,28 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>
+                    @include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])
+                </h1>
             </div>
             <div class="hero-image">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
             </div>
 
             <div id="text-1">
-                <p>Text 1</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
             <div id="text-2">
-                <p>Text 2</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             
             <div id="map-title">
-                <p>Map title</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
 
             <div class="map">
-                <div class="map-placeholder">
-                    Map
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
 
             <div class="survey">

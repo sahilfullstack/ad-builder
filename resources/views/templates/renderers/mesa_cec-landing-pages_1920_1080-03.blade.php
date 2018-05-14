@@ -247,27 +247,23 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
             
             <div id="hero-text1">
-                <p>Hero Text 1</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
             <div class="slideshow">
-                <div class="slideshow-placeholder">
-                    Slideshow
-                </div>
+                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
             <div id="hero-text2">
-                <p>Hero Text 2</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             <div id="address-text">
-                <p>Address</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
             <div class="map">
-                <div class="map-placeholder">
-                    Map
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
             <div class="audio">
                 <div class="audio-placeholder">
@@ -280,9 +276,7 @@
                 </div>
             </div>
              <div class="blog-qrs">
-                <div class="blog-qr">
-                    
-                </div>
+                @include('templates.components.images', ['value' => array_get($readableComponents, 'blog-feed-url'), 'default' => 'blog-qr'])
             </div>
     </div>
 </body>

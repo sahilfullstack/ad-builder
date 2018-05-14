@@ -173,35 +173,35 @@
             background: rgba(255,0,0,0.2);
         }
 
-        div.hero-image1 {
+        div.image-1 {
             width: 769.062px;
             height: 493.332px;
             position: absolute;
             top: 260px;
             left: 30px;
         }
-        div.hero-image1 img {
+        div.image-1 img {
             width: 769.062px;
             height: 493.332px;
         }
-        div.hero-image1 div.hero-image1-placeholder {
+        div.image-1 div.image-1-placeholder {
             width: 769.062px;
             height: 493.332px;
             background: #C6E5F3;
         }
 
-        div.hero-image2 {
+        div.image-2 {
             width: 526.542px;
             height: 268.734px;
             position: absolute;
             top: 783px;
             left: 830px;
         }
-        div.hero-image2 img {
+        div.image-2 img {
             width: 526.542px;
             height: 268.734px;
         }
-        div.hero-image2 div.hero-image2-placeholder {
+        div.image-2 div.image-2-placeholder {
             width: 526.542px;
             height: 268.734px;
             background: #C6E5F3;
@@ -216,24 +216,24 @@
             left: 30px;
         }
 
-        div.hero-video {
+        div.video {
             width: 684.684px;
             height: 493.074px;
             position: absolute;
             top: 260px;
             left: 1230.146px;
         }
-        div.hero-video video {
+        div.video video {
             width: 684.684px;
             height: 493.074px;
         }
-        div.hero-video div.hero-video-placeholder {
+        div.video div.video-placeholder {
             width: 684.684px;
             height: 493.074px;
             background: #C6E5F3;
         }
 
-        div.photogalary {
+        div.photogallery {
             width: 369.747px;
             height: 493.659px;
             background: #C6E5F3;
@@ -241,11 +241,11 @@
             top: 260px;
             left: 830px;
         }
-        div.photogalary img {
+        div.photogallery img {
             width: 369.747px;
             height: 493.659px;
         }
-        div.photogalary div.photogalary-placeholder {
+        div.photogallery div.photogallery-placeholder {
             width: 369.747px;
             height: 493.659px;
             background: #C6E5F3;
@@ -263,51 +263,45 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
+            <!-- QR Code Title 1 pending. -->
+            
             <div class="social-qrs-1">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'social-qr'])
             </div>
 
+            <!-- QR Code Title 2 pending. -->
+            
             <div class="social-qrs-2">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr'])
             </div>
+
+            <!-- QR Code Title 3 pending. -->
 
             <div class="social-qrs-3">
-                <div class="social-qr">
-                    
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr'])
             </div>
 
-            <div class="hero-image1">
-                <div class="hero-image1-placeholder">
-                    Hero Image 1
-                </div>
+            <div class="image-1">
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
             </div>
 
             <div id="hero-text">
-                <p>Hero Text</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 
-            <div class="hero-video">
-                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
+            <div class="video">
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
 
-            <div class="hero-image2">
-                <div class="hero-image2-placeholder">
-                    Hero Image 2
-                </div>
+            <div class="image-2">
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
             </div>
 
-            <div class="photogalary">
-                <div class="photogalary-placeholder">
-                    Photogalary
-                </div>
+            <div class="photogallery">
+                @include('templates.components.images', ['value' => array_get($readableComponents, 'photogallery'), 'default' => 'photogallery'])
             </div>
          </div>
     </div>

@@ -315,66 +315,52 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
              <div class="title">
-                <h1>Landing Page Title</h1>
+                <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>            
             <div class="image-1">
-                <div class="image-1-placeholder">
-                    Title Image 1
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
             </div>
              <div id="text-1">
-                <p>Text 1</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
             <div class="image-2">
-                <div class="image-2-placeholder">
-                    Title Image 2
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
             </div>
             <div id="text-2">
-                <p>Text 2</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>            
             <div class="image-3">
-                <div class="image-3-placeholder">
-                    Title Image 3
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image-3'])
             </div>
             <div id="text-3">
-                <p>Text 3</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-3'), 'default' => 'Text 3'])</p>
             </div>
              <div class="image-4">
-                <div class="image-4-placeholder">
-                    Title Image 4
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-4'), 'default' => 'image-4'])
             </div>
             <div id="text-4">
-                <p>Text 4</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-4'), 'default' => 'Text 4'])</p>
             </div>
             <div class="image-5">
-                <div class="image-5-placeholder">
-                    Title Image 5
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-5'), 'default' => 'image-5'])
             </div>
             <div id="text-5">
-                <p>Text 5</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-5'), 'default' => 'Text 5'])</p>
             </div>
             <div class="image-6">
-                <div class="image-6-placeholder">
-                    Title Image 6
-                </div>
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-6'), 'default' => 'image-6'])
             </div>
             <div id="text-6">
-                <p>Text 6</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-6'), 'default' => 'Text 6'])</p>
             </div>
             <div id="address-text">
-                <p>Address</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
             <div class="map">
-                <div class="map-placeholder">
-                    Map
-                </div>
+                <p>@include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])</p>
             </div>
             <div id="hours-of-operation">
-                <p>Hours of operation</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])</p>
             </div> 
          </div>
     </div>

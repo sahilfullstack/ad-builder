@@ -1170,33 +1170,18 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Social Media 1 QR',
+                        'name' => 'Twitter URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 2 QR',
+                        'name' => 'Instagram URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 3 QR',
+                        'name' => 'Facebook URL',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 1 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 2 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 3 Image',
-                        'type' => 'image',
                         'rules' => []
                     ],
                 ]
@@ -1218,10 +1203,10 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Hero Image',
-                        'type' => 'image',
+                        'name' => 'Slideshow',
+                        'type' => 'images',
                         'rules' => []
-                    ],     
+                    ],
                     [
                         'name' => 'Text 1',
                         'type' => 'text',
@@ -1241,20 +1226,15 @@ class TemplateSeeder extends Seeder
                         'name' => 'Map',
                         'type' => 'image',
                         'rules' => []
-                    ],               
-                    [
-                        'name' => 'Slideshow',
-                        'type' => 'images',
-                        'rules' => []
                     ],
                     [
-                        'name' => 'Blog Feed QR',
+                        'name' => 'Audio',
+                        'type' => 'audio',
+                        'rules' => []
+                    ],          
+                    [
+                        'name' => 'Blog Feed URL',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Blog Feed Image',
-                        'type' => 'image',
                         'rules' => []
                     ],
                 ]
@@ -1276,11 +1256,6 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Image 3',
-                        'type' => 'image',
-                        'rules' => []
-                    ],     
-                    [
                         'name' => 'Image 1',
                         'type' => 'image',
                         'rules' => []
@@ -1289,40 +1264,30 @@ class TemplateSeeder extends Seeder
                         'name' => 'Image 2',
                         'type' => 'image',
                         'rules' => []
-                    ],     
+                    ],
+                    [
+                        'name' => 'Image 3',
+                        'type' => 'image',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Text',
                         'type' => 'text',
                         'rules' => []
                     ],     
                     [
-                        'name' => 'Social Media 1 QR',
+                        'name' => 'Twitter URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 2 QR',
+                        'name' => 'Instagram URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 3 QR',
+                        'name' => 'Facebook URL',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 1 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 2 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 3 Image',
-                        'type' => 'image',
                         'rules' => []
                     ],
                 ]
@@ -1344,8 +1309,33 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Slideshow',
+                        'type' => 'images',
+                        'rules' => []
+                    ],     
+                    [
+                        'name' => 'Heading 1',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image 1',
                         'type' => 'image',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Text 1',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Amount 1',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Heading 2',
+                        'type' => 'text',
                         'rules' => []
                     ],
                     [
@@ -1354,58 +1344,28 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],     
                     [
-                        'name' => 'Image 3',
-                        'type' => 'image',
-                        'rules' => []
-                    ],    
-                    [
-                        'name' => 'Image 4',
-                        'type' => 'image',
-                        'rules' => []
-                    ],     
-                    [
-                        'name' => 'Text 1',
-                        'type' => 'text',
-                        'rules' => []
-                    ],  
-                    [
                         'name' => 'Text 2',
                         'type' => 'text',
                         'rules' => []
-                    ],   
+                    ],
                     [
-                        'name' => 'Slideshow',
-                        'type' => 'images',
+                        'name' => 'Amount 1',
+                        'type' => 'text',
                         'rules' => []
-                    ],     
+                    ],
                     [
-                        'name' => 'Social Media 1 QR',
+                        'name' => 'Twitter URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 2 QR',
+                        'name' => 'Instagram URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 3 QR',
+                        'name' => 'Facebook URL',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 1 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 2 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 3 Image',
-                        'type' => 'image',
                         'rules' => []
                     ],
                 ]
@@ -1464,6 +1424,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #7',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-07',
                 'components' => [
+                    [
+                        'name' => 'Custom Image',
+                        'type' => 'image',
+                        'rules' => []
+                    ],
                 ]
             ],
             [
@@ -1483,7 +1448,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Hero Video',
+                        'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
                     ],     
@@ -1503,38 +1468,38 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ], 
                     [
-                        'name' => 'Photogallery',
+                        'name' => 'Photo Gallery',
                         'type' => 'images',
                         'rules' => []
                     ], 
                     [
-                        'name' => 'Social Media 1 QR',
+                        'name' => 'QR Code Title 1',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'QR Code Value 1',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 2 QR',
+                        'name' => 'QR Code Title 2',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'QR Code Value 2',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 3 QR',
+                        'name' => 'QR Code Title 3',
+                        'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'QR Code Value 3',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 1 Tttle',
-                        'type' => 'text',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 2 Tttle',
-                        'type' => 'text',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 3 Tttle',
-                        'type' => 'text',
                         'rules' => []
                     ],
 
@@ -1587,33 +1552,18 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Social Media 1 QR',
+                        'name' => 'Twitter URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 2 QR',
+                        'name' => 'Instagram URL',
                         'type' => 'qr',
                         'rules' => []
                     ],  
                     [
-                        'name' => 'Social Media 3 QR',
+                        'name' => 'Facebook URL',
                         'type' => 'qr',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 1 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 2 Image',
-                        'type' => 'image',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Social Media 3 Image',
-                        'type' => 'image',
                         'rules' => []
                     ],
                 ]
@@ -1636,37 +1586,17 @@ class TemplateSeeder extends Seeder
                     ],
                     [
                         'name' => 'Image 1',
-                        'type' => 'images',
+                        'type' => 'image',
                         'rules' => []
                     ],     
-                    [
-                        'name' => 'Image 2',
-                        'type' => 'images',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Image 3',
-                        'type' => 'images',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Image 4',
-                        'type' => 'images',
-                        'rules' => []
-                    ],     
-                    [
-                        'name' => 'Image 5',
-                        'type' => 'images',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Image 6',
-                        'type' => 'images',
-                        'rules' => []
-                    ],
                     [
                         'name' => 'Text 1',
                         'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Image 2',
+                        'type' => 'image',
                         'rules' => []
                     ],
                     [
@@ -1675,18 +1605,38 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Image 3',
+                        'type' => 'image',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Text 3',
                         'type' => 'text',
                         'rules' => []
                     ],
+                    [
+                        'name' => 'Image 4',
+                        'type' => 'image',
+                        'rules' => []
+                    ],     
                     [
                         'name' => 'Text 4',
                         'type' => 'text',
                         'rules' => []
                     ],
                     [
+                        'name' => 'Image 5',
+                        'type' => 'image',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Text 5',
                         'type' => 'text',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Image 6',
+                        'type' => 'image',
                         'rules' => []
                     ],
                     [
