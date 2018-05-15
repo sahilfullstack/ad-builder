@@ -55,7 +55,7 @@
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
-                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video'" @click.prevent="upload(component.id)">Upload</a>
+                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video' || component.type == 'audio'" @click.prevent="upload(component.id)">Upload</a>
                         <label :for="component.slug">{{ component.name }}</label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
@@ -126,6 +126,7 @@ export default {
                 qr: {_value: ''},
                 images: {_value: ['']},
                 survey: {_value: [''], _yes: 0, _no: 0},
+                audio: {_value: ''},
             }
 
             return defaults[dataType];

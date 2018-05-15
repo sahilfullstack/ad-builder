@@ -31,7 +31,7 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $subscriptions = $user->subscriptions()->where('expiring_at', '>', Carbon::now())->get();
-
+       
         return view('users.list_subscriptions', compact('subscriptions'));        
     }
 

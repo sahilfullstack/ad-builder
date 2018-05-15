@@ -77555,6 +77555,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -77622,7 +77628,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     height: null
                 },
                 color: {},
-                survey: {}
+                survey: {},
+                audio: {}
             };
 
             return rules[type];
@@ -78296,6 +78303,10 @@ var render = function() {
           _vm._v(" "),
           _vm.form.components[index]["type"] == "survey"
             ? _c("div", { staticClass: "row" }, [_vm._m(8, true)])
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.form.components[index]["type"] == "audio"
+            ? _c("div", { staticClass: "row" }, [_vm._m(9, true)])
             : _vm._e()
         ])
       }),
@@ -78303,7 +78314,7 @@ var render = function() {
       _c("hr"),
       _vm._v(" "),
       _c("div", { staticClass: "btn-group" }, [
-        _vm._m(9),
+        _vm._m(10),
         _vm._v(" "),
         _c("ul", { staticClass: "dropdown-menu" }, [
           _c("li", [
@@ -78434,6 +78445,25 @@ var render = function() {
               },
               [_vm._v("Survey")]
             )
+          ]),
+          _vm._v(" "),
+          _c("li", [
+            _c(
+              "a",
+              {
+                attrs: { href: "" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.addComponentAfterIndex(
+                      _vm.form.components.length,
+                      "audio"
+                    )
+                  }
+                }
+              },
+              [_vm._v("Audio")]
+            )
           ])
         ])
       ]),
@@ -78536,6 +78566,14 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-md-12" }, [
       _c("em", [_vm._v("None available for Survey.")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-md-12" }, [
+      _c("em", [_vm._v("None available for Audio.")])
     ])
   },
   function() {
@@ -80190,7 +80228,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 video: { _value: '' },
                 qr: { _value: '' },
                 images: { _value: [''] },
-                survey: { _value: [''], _yes: 0, _no: 0 }
+                survey: { _value: [''], _yes: 0, _no: 0 },
+                audio: { _value: '' }
             };
 
             return defaults[dataType];
@@ -80910,7 +80949,8 @@ var render = function() {
                         [
                           _c("div", { staticClass: "col-md-12" }, [
                             component.type == "image" ||
-                            component.type == "video"
+                            component.type == "video" ||
+                            component.type == "audio"
                               ? _c(
                                   "a",
                                   {
