@@ -16,7 +16,14 @@ class UploadController extends Controller
         try {
             if($request->file->isValid())
             {
-                $url = Storage::url($request->file->store(config('uploads.folder')));
+                if($request->file->getMimeType() == "application/octet-stream")
+                {
+                    $url = Storage::url($request->file->storeAs(config('uploads.folder'), $request->get("file_name")));
+                }
+                else
+                {                    
+                    $url = Storage::url($request->file->store(config('uploads.folder')));
+                }
             }
             else
             {
