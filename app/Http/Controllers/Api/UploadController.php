@@ -13,13 +13,12 @@ class UploadController extends Controller
 {
     public function upload(UploadRequest $request, FileUploader $fileUploader)
     {
-        \Log::info($request->all());
         try {
             if($request->file->isValid())
             {
                 if($request->file->getMimeType() == "application/octet-stream")
                 {
-                    $url = Storage::url($request->file->storeAs(config('uploads.folder'), md5(microtime()),  ['mimetype' => $request->type]));
+                    $url = Storage::url($request->file->storeAs(config('uploads.folder'), md5(microtime()).".".explode('/', $request->get('type'))[1]));
                 }
                 else
                 {                    
