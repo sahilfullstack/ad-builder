@@ -26,7 +26,7 @@ class UploadRequest extends FormRequest
         return [
             // 'file' => 'required|file|image',
             'file' => 'required|file|mimetypes:video/avi,video/mpeg,video/quicktime,video/mp4,image/jpeg,image/png,audio/mp3,audio/mpeg,application/octet-stream',
-            'file_name' => 'required_if:file,application/octet-stream'
+            'type' => 'required_if:file,application/octet-stream'
         ];
     }
 }
