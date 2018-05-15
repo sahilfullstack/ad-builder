@@ -78826,60 +78826,63 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
 
-    props: ['modalIdentifier', 'apiPath', 'prefilled'],
+  props: ['modalIdentifier', 'apiPath', 'prefilled'],
 
-    data: function data() {
-        return {
-            form: {
-                file: null
-            },
-            isLoading: false,
-            errors: [],
-            disable: {
-                upload: false
-            }
-        };
+  data: function data() {
+    return {
+      form: {
+        file: null,
+        type: null
+      },
+      isLoading: false,
+      errors: [],
+      disable: {
+        upload: false
+      }
+    };
+  },
+
+  methods: {
+    getPreparedData: function getPreparedData() {
+      var data = new FormData();
+
+      data.append('file', this.form.file);
+      data.append('type', this.form.type);
+
+      return data;
     },
+    upload: function upload(event) {
 
-    methods: {
-        getPreparedData: function getPreparedData() {
-            var data = new FormData();
+      event.preventDefault();
+      var self = this;
 
-            data.append('file', this.form.file);
+      this.errors = [];
+      this.disable.upload = true;
 
-            return data;
-        },
-        upload: function upload(event) {
+      axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
-            event.preventDefault();
-            var self = this;
+        self.disable.upload = false;
+        self.$emit('resolve', response.data.data.url);
+      }).catch(function (error) {
 
-            this.errors = [];
-            this.disable.upload = true;
+        self.disable.upload = false;
 
-            axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
+        _.forEach(error.response.data.errors, function (error, index) {
+          var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
 
-                self.disable.upload = false;
-                self.$emit('resolve', response.data.data.url);
-            }).catch(function (error) {
+          self.errors[errorIndex] = error[0];
+        });
+      });
+    },
+    onFileChange: function onFileChange(event) {
+      var files = event.target.files || event.dataTransfer.files;
 
-                self.disable.upload = false;
+      if (!files.length) return;
 
-                _.forEach(error.response.data.errors, function (error, index) {
-                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
-
-                    self.errors[errorIndex] = error[0];
-                });
-            });
-        },
-        onFileChange: function onFileChange(event) {
-            var files = event.target.files || event.dataTransfer.files;
-
-            if (!files.length) return;
-
-            this.form.file = files[0];
-        }
+      this.form.file = files[0];
+      this.form.type = this.form.file.type;
     }
+  }
 });
 
 /***/ }),

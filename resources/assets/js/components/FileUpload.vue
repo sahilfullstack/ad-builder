@@ -39,7 +39,8 @@
     	data: function() {
     		return {
     			form: {
-    				file: null
+    				file: null,
+					type: null
     			},
     			isLoading: false,
                 errors: [],
@@ -54,6 +55,7 @@
 				const data = new FormData();
 
 				data.append('file', this.form.file);
+				data.append('type', this.form.type);
 
 				return data;
 			},			
@@ -90,6 +92,7 @@
                 if (!files.length) return;
                 
 				this.form.file = files[0];
+				this.form.type = this.form.file.type;
 			}
 		}
     }
