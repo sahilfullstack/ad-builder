@@ -212,34 +212,6 @@
         }
 
     </style>
-
-    <script>
-        var httpRequest;
-
-        function recordSurveyResponse(componentId, response) {
-            httpRequest = new XMLHttpRequest();
-
-            if (! httpRequest) {
-                alert('Giving up :( Cannot create an XMLHTTP instance');
-                return false;
-            }
-            httpRequest.onreadystatechange = recordedSurveyResponse;
-            httpRequest.open('POST', '/api/components/' + componentId + '/responses?' + (new Date()).getTime());
-            httpRequest.setRequestHeader('Content-Type', 'application/json');
-            httpRequest.send(JSON.stringify({response: response}));
-        }
-
-        function recordedSurveyResponse() {
-            if (httpRequest.readyState === XMLHttpRequest.DONE) {
-                if (httpRequest.status === 200) {
-                    // success
-                } else {
-                    // error
-                }
-            }
-        }
-    </script>
-    
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
@@ -274,13 +246,9 @@
             <div class="map">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
-
+            
             <div class="survey">
-                <p>Question is typed here.</p>
-                <div class="survey-buttons" style="text-align:center;">
-                    <button onclick="recordSurveyResponse({{ array_get($readableComponents, 'survey._id') }}, 'yes')">Yes</button>
-                    <button onclick="recordSurveyResponse({{ array_get($readableComponents, 'survey._id') }}, 'no')">No</button>
-                </div>
+                @include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>
             </div>
         </div>
     </div>

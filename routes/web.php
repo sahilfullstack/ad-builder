@@ -35,6 +35,7 @@ Route::get('/units/{unit}/render', 'UnitController@render')->name('units.render'
 Route::get('/units/{unit}/edit/page', 'UnitController@editLandingPage')->name('units.edit-landing-page')->middleware('auth');
 Route::get('/units/approval', 'UnitController@listUnitsForApproval')->name('units.approval.list')->middleware('auth');
 Route::get('/users', 'UserController@list')->name('users.list')->middleware('auth');
+Route::post('/units/{unit}/components/{component}/responses', 'UnitController@recordResponse')->name('units.respond');
 
 Route::get('/units/{unit}', 'UnitController@show')->name('units.show')->middleware('auth');
 
@@ -56,5 +57,3 @@ Route::get('me/subscriptions', [
 ]);
 
 Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');
-
-Route::get('/practice/units', ['as' => 'api.unit.list', 'uses' => 'Api\UnitController@list']);

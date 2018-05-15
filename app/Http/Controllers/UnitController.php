@@ -8,6 +8,7 @@ use App\Models\{Template, Unit, Layout, Subscription, Category};
 use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequest};
 use Carbon\Carbon, DB;
 use Exception;
+use App\Models\Component;
 
 class UnitController extends Controller
 {
@@ -86,6 +87,21 @@ class UnitController extends Controller
         }
 
         return view('units.edit', array_merge(compact('data'), compact('unit', 'section')));
+    }
+
+    public function recordResponse(Unit $unit, Component $component)
+    {
+        $response = request()->input('response');
+
+        if($component->type != 'survey') return;
+        if( ! in_array($response, ['yes', 'no'])) return;
+
+        $updatedComponent[$component->id] = $unit->components[$component->id];
+        $updatedComponent[$component->id]["_$response"] += 1;
+        
+        $unit->update(['components' => array_replace($unit->components, $updatedComponent)]);
+
+        return response('', 204);
     }
 
     public function render(Unit $unit)
