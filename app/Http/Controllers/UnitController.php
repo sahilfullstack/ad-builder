@@ -28,7 +28,7 @@ class UnitController extends Controller
 
         // If no or invalid type was passed, we would move to creating an ad.
         if (is_null($type) || !in_array($type, ['ad', 'page'])) {
-            return redirect(route('units.list', ['type' => 'ad']));
+            return redirect(route('units.list', array_merge(['type' => 'ad'], request()->query())));
         }
 
         $units = Unit::notDeleted()->with(['template', 'template.components']);
