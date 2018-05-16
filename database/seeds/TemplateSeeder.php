@@ -31,6 +31,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-01',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -43,6 +48,11 @@ class TemplateSeeder extends Seeder
                 'name' => '1/8th Template #2',
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-02',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -62,6 +72,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-03',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -79,6 +94,11 @@ class TemplateSeeder extends Seeder
                 'name' => '1/8th Template #4',
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-04',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -98,6 +118,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-05',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -116,6 +141,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-06',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
@@ -129,6 +159,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-07',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -141,6 +176,11 @@ class TemplateSeeder extends Seeder
                 'name' => '1/8th Template #7-2',
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-07-02',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
 
                 ]
             ],
@@ -150,6 +190,11 @@ class TemplateSeeder extends Seeder
                 'name' => '1/8th Template #7-3',
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-07-03',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
 
                 ]
             ],
@@ -159,6 +204,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Quater Template #1',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-01',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -183,6 +233,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-02',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -206,6 +261,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-03',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
@@ -219,6 +279,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-04',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -231,6 +296,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Quater Template #5',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-05',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -255,6 +325,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-06',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -277,6 +352,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Quater Template #7',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-07',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -301,6 +381,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-08',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -323,6 +408,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Quater Template #9',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-09',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -347,6 +437,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-10',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -369,6 +464,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #1',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-01',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -393,6 +493,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-02',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -415,6 +520,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #3',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-03',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -439,6 +549,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-04',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -461,6 +576,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #5',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-05',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -490,6 +610,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-06',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -517,6 +642,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #7',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-07',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -546,6 +676,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-08',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -573,6 +708,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #9',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-09',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                 ]
             ],            
             [
@@ -581,6 +721,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Half Page (Landscape) #10',
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-10',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -595,6 +740,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-11',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -606,7 +756,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #1',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-01',
-                'components' => [   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],   
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -624,7 +779,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #2',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-02',
-                'components' => [   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],   
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -642,7 +802,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #3',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-03',
-                'components' => [   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],   
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -665,7 +830,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #4',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-04',
-                'components' => [                   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],                   
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -688,7 +858,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #5',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-05',
-                'components' => [   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],   
                     [
                         'name' => 'Hero Image',
                         'type' => 'image',
@@ -701,7 +876,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #6',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-06',
-                'components' => [   
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],   
                     [
                         'name' => 'Hero Video',
                         'type' => 'video',
@@ -714,7 +894,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #7',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-07',
-                'components' => [ 
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ], 
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -732,7 +917,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #8',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-08',
-                'components' => [ 
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ], 
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -750,7 +940,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #9',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-09',
-                'components' => [ 
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ], 
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -773,7 +968,12 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Half Page (Portrait)')],
                 'name' => 'Half Page (Portrait) #10',
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-10',
-                'components' => [ 
+                'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ], 
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -798,6 +998,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-01',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -820,6 +1025,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #2',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-02',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -844,6 +1054,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-03',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Image',
                         'type' => 'image',
                         'rules' => []
@@ -857,6 +1072,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-04',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Hero Video',
                         'type' => 'video',
                         'rules' => []
@@ -869,6 +1089,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #5',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-05',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -893,6 +1118,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-06',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -916,6 +1146,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-07',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -938,6 +1173,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #8',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-08',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -967,6 +1207,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-09',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -995,6 +1240,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-10',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1022,6 +1272,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #11',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-11',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                    [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1050,6 +1305,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #12',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-12',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1083,6 +1343,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Full Page #13',
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-13',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                 ]
             ],
             [
@@ -1091,6 +1356,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #1',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-01',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1139,6 +1409,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #2',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-02',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1193,6 +1468,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-03',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1246,6 +1526,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-04',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1298,6 +1583,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #5',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-05',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1377,6 +1667,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-06',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1425,6 +1720,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-07',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Custom Image',
                         'type' => 'image',
                         'rules' => []
@@ -1437,6 +1737,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #8',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-08',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -1512,6 +1817,11 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-09',
                 'components' => [
                     [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1574,6 +1884,11 @@ class TemplateSeeder extends Seeder
                 'name' => 'Landing Page #10',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-10',
                 'components' => [
+                    [
+                        'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
