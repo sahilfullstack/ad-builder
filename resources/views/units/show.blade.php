@@ -41,8 +41,8 @@
                             @foreach($unit->template->components as $component)
                                 <li class="list-group-item">
                                     <h5><strong>{{ $component->name }}</strong></h5>
-                                    @if(! empty($unit->components[$component->slug]))
-                                        <p>{{ $unit->components[$component->slug] }}</p>
+                                    @if(! empty($unit->components[$component->id]))
+                                        <p>{{ $unit->components[$component->id]["_value"] }}</p>
                                     @else
                                         <p><em>Not defined yet.</em></p>
                                     @endif
@@ -70,8 +70,9 @@
                                 <em>Untitled</em>
                             @endif
                         </h2>
+                        @if(is_null($unit->approved_at))
                         <a href="{{ route('units.edit', ['unit' => $unit->child]) }}">Edit</a>
-
+                        @endif
                         <hr>
 
                         <p><strong>Created at:</strong> {{ $unit->child->created_at->toDayDateTimeString() }}</p>
@@ -89,8 +90,8 @@
                                 @foreach($unit->child->template->components as $component)
                                     <li class="list-group-item">
                                         <h5><strong>{{ $component->name }}</strong></h5>
-                                        @if(! empty($unit->child->components[$component->slug]))
-                                            <p>{{ $unit->child->components[$component->slug] }}</p>
+                                        @if(! empty($unit->child->components[$component->id]))
+                                            <p>{{ $unit->child->components[$component->id]["_value"] }}</p>
                                         @else
                                             <p><em>Not defined yet.</em></p>
                                         @endif

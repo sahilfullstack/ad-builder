@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
 use App\User;
+use Carbon\Carbon;
 use App\Models\Role;
 use App\Http\Controllers\Controller;
 
@@ -93,20 +94,26 @@ class RegisterController extends Controller
         if(User::count() == 0)
         {
             $role = Role::findBySlug('admin');
+            $approvedAt = Carbon::now();
+            $active = 1;
         }
         else
         {
             $role = Role::findBySlug('advertiser');
+            $approvedAt = null;
+            $active = 0;
         }
 
         return User::create([
-            'name'     => $data['name'],
-            'email'    => $data['email'],
-            'company'  => $data['company'],
-            'phone'    => $data['phone'],
-            'username' => $data['username'],
-            'password' => bcrypt($data['password']),
-            'role_id'  => $role->id
+            'name'        => $data['name'],
+            'email'       => $data['email'],
+            'company'     => $data['company'],
+            'phone'       => $data['phone'],
+            'username'    => $data['username'],
+            'password'    => bcrypt($data['password']),
+            'role_id'     => $role->id,
+            'approved_at' => $approvedAt,
+            'active'      => $active
         ]);
     }
 }

@@ -44,7 +44,7 @@
                                 <li><a href="{{ route('templates.list') }}">Templates</a></li>
                             @endcan
                             <li><a href="{{ route('units.list') }}">Ads</a></li>
-                            <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li>
+                            <!-- <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li> -->
                             @can('unit.approve')
                                 <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
                             @endcan
