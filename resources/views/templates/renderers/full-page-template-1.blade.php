@@ -168,7 +168,7 @@
             <p class="null-state">Workspace. Choose a template to begin.</p>
         @else
 
-            <div class="banner"></div>
+            @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
 
             <div class="body">
                 <div class="sidebar">

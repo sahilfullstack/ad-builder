@@ -240,7 +240,7 @@
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
-        <div class="banner"></div>
+        @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
 
         <div class="body">
             <div class="logo">
