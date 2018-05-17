@@ -88,7 +88,8 @@ class UnitController extends Controller
         {
             $transformed[]['product'] = [
                 'prid' => $unit['id'],
-                'category' => $unit['category']['id'],
+                'category_id' => $unit['category']['id'],
+                'category' => $unit['category']['name'],
                 'title' => $unit['name'],
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2']),
                 'landing_page_url' => route('units.render', $unit['child']['id']),
