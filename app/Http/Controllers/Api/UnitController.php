@@ -95,8 +95,8 @@ class UnitController extends Controller
                 'landing_page_url' => route('units.render', $unit['child']['id']),
                 'layout_id' => $unit['layout_id'] - 1,
                 'startchar' => Str::upper(substr($unit['name'], 0, 1)),
-                'thumbnail' => is_null($unit->thumbnail) ? 'Ad-Pages-5.jpeg' : $unit->thumbnail,
-                'hoverimage' => is_null($unit->hover_image) ? 'Transparent.png' : $unit->hover_image,
+                'thumbnail' => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : $unit['thumbnail'],
+                'hoverimage' => is_null($unit['hover_image']) ? 'Transparent.png' : $unit['hover_image'],
             ];
         }
         
