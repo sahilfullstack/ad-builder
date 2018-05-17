@@ -92,7 +92,7 @@ class UnitController extends Controller
                 'title' => $unit['name'],
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2']),
                 'landing_page_url' => route('units.render', $unit['child']['id']),
-                'layout_id' => $unit['layout_id'],
+                'layout_id' => $unit['layout_id'] - 1,
                 'startchar' => Str::upper(substr($unit['name'], 0, 1)),
                 'thumbnail' => array_get($unit, 'thumbnail'),
                 'hoverimage' => array_get($unit, 'hover_image'),
