@@ -167,7 +167,7 @@
         @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
 
         <div class="body">
-            @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
+            <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
 
             <div class="hero-image">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])

@@ -166,7 +166,7 @@
 
         <div class="body">
             <div class="sidebar">
-                @include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])
+                <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
 
                 <div class="logo">
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
