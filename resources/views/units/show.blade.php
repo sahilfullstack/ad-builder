@@ -91,7 +91,11 @@
                                     <li class="list-group-item">
                                         <h5><strong>{{ $component->name }}</strong></h5>
                                         @if(! empty($unit->child->components[$component->id]))
-                                            <p>{{ $unit->child->components[$component->id]["_value"] }}</p>
+                                            @if($component->type == 'images')
+                                                <p>{{ $unit->child->components[$component->id][0]["_value"] }}</p>
+                                            @else
+                                                <p>{{ $unit->child->components[$component->id]["_value"] }}</p>
+                                            @endif
                                         @else
                                             <p><em>Not defined yet.</em></p>
                                         @endif
