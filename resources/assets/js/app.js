@@ -42,6 +42,7 @@ Vue.component('personal-access-tokens', require('./components/passport/PersonalA
 Vue.component('update-user-subscription-button', require('./components/users/UpdateUserSubscriptionButton.vue'));
 Vue.component('add-subscription-button', require('./components/users/AddSubscriptionButton.vue'));
 Vue.component('filter-form', require('./components/stats/FilterForm.vue'));
+Vue.component('update-user-profile-form', require('./components/users/UpdateUserProfileForm.vue'));
 
 Vue.component('edit-unit-category-form', require('./components/units/EditUnitCategoryForm.vue'));
 

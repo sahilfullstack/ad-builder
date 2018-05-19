@@ -34,6 +34,7 @@ Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateControl
 Route::get('/user', function (Request $request) {
     return $request->user();
 });
+Route::put('/users/{user}/profile', ['as' => 'users.profile.update', 'uses' => 'UserController@updateProfile']);
 
 Route::get('/units', ['as' => 'api.unit.list', 'uses' => 'UnitController@list'])->middleware('valid_api_headers');
 Route::get('/units/{unit}',  ['as' => 'api.unit.list', 'uses' => 'UnitController@show'])->middleware('valid_api_headers');

@@ -51,6 +51,7 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Exception $exception)
     {
+        dd($exception);
         if ($request->expectsJson()) {
             if ($exception instanceof ValidationException) {
                 return response()->json(

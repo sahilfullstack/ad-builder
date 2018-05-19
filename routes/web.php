@@ -56,4 +56,9 @@ Route::get('me/subscriptions', [
 	'as'   => 'users.subscriptions'
 ]);
 
+Route::get('me/profile', [
+	'uses' => 'UserController@getProfile',
+	'as'   => 'users.profile'
+]);
+
 Route::get('/users/{user}/subscriptions', 'UserController@manageSubscription')->name('users.manage.subscriptions')->middleware('auth');

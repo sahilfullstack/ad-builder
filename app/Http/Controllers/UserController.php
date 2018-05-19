@@ -35,6 +35,13 @@ class UserController extends Controller
         return view('users.list_subscriptions', compact('subscriptions'));        
     }
 
+    public function getProfile()
+    {
+        $user = User::find(auth()->user()->id);
+       
+        return view('users.profile', compact('user'));        
+    }
+
     public function manageSubscription(User $user)
     {
         $subscriptions = $user->subscriptions()->get();
