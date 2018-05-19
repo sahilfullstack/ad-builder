@@ -16,6 +16,9 @@
                         <th class="text-center">#</th>
                         <th class="text-center">Name</th>
                         <th class="text-center">Email</th>
+                        <th class="text-center">Company</th>
+                        <th class="text-center">Phone</th>
+                        <th class="text-center">Username</th>
                         <th class="text-center">Registered at</th>
                         <th class="text-center">Actions</th>
                         <!-- <th class="text-center">Reject</th> -->
@@ -25,6 +28,9 @@
                         <td>{{$key + 1}}</td>
                         <td><span class="badge">{{ $user->role->name }}</span> {{$user->name}}</td>
                         <td>{{$user->email}}</td>
+                        <td>{{$user->company}}</td>
+                        <td>{{$user->phone}}</td>
+                        <td>{{$user->username}}</td>
                         <td>{{$user->created_at->toDayDateTimeString()}}</td>
                         <td>
                             @if(is_null($user->approved_at) && is_null($user->rejected_at))
