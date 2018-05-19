@@ -80176,6 +80176,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 
 
@@ -80228,7 +80232,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var dataType = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 'text';
 
             var defaults = {
-                text: { _value: '' },
+                text: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 12 },
                 image: { _value: '' },
                 video: { _value: '' },
                 qr: { _value: '' },
@@ -80775,7 +80779,7 @@ var render = function() {
                       staticStyle: { "margin-bottom": "15px" }
                     },
                     [
-                      _c("div", { staticClass: "col-md-12" }, [
+                      _c("div", { staticClass: "col-md-6" }, [
                         _c("label", { attrs: { for: component.slug } }, [
                           _vm._v(_vm._s(component.name))
                         ]),
@@ -80825,7 +80829,130 @@ var render = function() {
                           },
                           [_vm._v(_vm._s(_vm.errors["component.slug"]))]
                         )
-                      ])
+                      ]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "col-md-2" }, [
+                        _c(
+                          "label",
+                          { attrs: { for: component.slug + "_size" } },
+                          [_vm._v("Size")]
+                        ),
+                        _vm._v(" "),
+                        _c("input", {
+                          directives: [
+                            {
+                              name: "model",
+                              rawName: "v-model",
+                              value: _vm.form.components[component.id]["size"],
+                              expression:
+                                "form.components[component.id]['size']"
+                            }
+                          ],
+                          staticClass: "form-control",
+                          attrs: {
+                            type: "text",
+                            id: component.slug + "_size",
+                            placeholder: component.type
+                          },
+                          domProps: {
+                            value: _vm.form.components[component.id]["size"]
+                          },
+                          on: {
+                            input: function($event) {
+                              if ($event.target.composing) {
+                                return
+                              }
+                              _vm.$set(
+                                _vm.form.components[component.id],
+                                "size",
+                                $event.target.value
+                              )
+                            }
+                          }
+                        })
+                      ]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_background_color"
+                              }
+                            },
+                            [_vm._v("Background Color")]
+                          ),
+                          _vm._v(" "),
+                          _c("color-picker", {
+                            attrs: {
+                              color:
+                                _vm.form.components[component.id][
+                                  "background_color"
+                                ]
+                            },
+                            model: {
+                              value:
+                                _vm.form.components[component.id][
+                                  "background_color"
+                                ],
+                              callback: function($$v) {
+                                _vm.$set(
+                                  _vm.form.components[component.id],
+                                  "background_color",
+                                  $$v
+                                )
+                              },
+                              expression:
+                                "form.components[component.id]['background_color']"
+                            }
+                          })
+                        ],
+                        1
+                      ),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "col-md-2" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_foreground_color"
+                              }
+                            },
+                            [_vm._v("Text Color")]
+                          ),
+                          _vm._v(" "),
+                          _c("color-picker", {
+                            attrs: {
+                              color:
+                                _vm.form.components[component.id][
+                                  "foreground_color"
+                                ]
+                            },
+                            model: {
+                              value:
+                                _vm.form.components[component.id][
+                                  "foreground_color"
+                                ],
+                              callback: function($$v) {
+                                _vm.$set(
+                                  _vm.form.components[component.id],
+                                  "foreground_color",
+                                  $$v
+                                )
+                              },
+                              expression:
+                                "form.components[component.id]['foreground_color']"
+                            }
+                          })
+                        ],
+                        1
+                      )
                     ]
                   )
                 ])

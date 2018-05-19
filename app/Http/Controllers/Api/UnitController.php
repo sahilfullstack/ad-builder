@@ -393,6 +393,10 @@ class UnitController extends Controller
             {
                 $preparedComponents[$component->id] = [['_value' => '']];
             }
+            else if($component->type == 'text')
+            {
+                $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12];
+            }
             else
             {                  
                 $preparedComponents[$component->id] = ['_value' => ''];

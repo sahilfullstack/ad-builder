@@ -19,19 +19,23 @@
             </div>
             <div v-else-if="component.type =='text'">
                 <div class="row" style="margin-bottom: 15px;">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label :for="component.slug">{{ component.name }}</label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
-                    <!-- <div class="col-md-3">
-                        <label :for="component.slug + '_background_color'">Background Color</label>
-                        <color-picker v-model="form.background_color" />
+                    <div class="col-md-2">
+                        <label :for="component.slug + '_size'">Size</label>
+                        <input type="text" class="form-control" :id="component.slug + '_size'" :placeholder="component.type" v-model="form.components[component.id]['size']">
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-2">
+                        <label :for="component.slug + '_background_color'">Background Color</label>
+                        <color-picker v-model="form.components[component.id]['background_color']" :color="form.components[component.id]['background_color']" />
+                    </div>
+                    <div class="col-md-2">
                         <label :for="component.slug + '_foreground_color'">Text Color</label>
-                        <color-picker v-model="form.foreground_color" />
-                    </div> -->
+                        <color-picker v-model="form.components[component.id]['foreground_color']" :color="form.components[component.id]['foreground_color']" />
+                    </div>
                 </div>
             </div>
             <div v-else-if="component.type =='survey'">
@@ -121,7 +125,7 @@ export default {
     methods: {
         defaultValueForDataType(dataType = 'text') {
             let defaults = {
-                text: {_value: ''},
+                text: {_value: '', background_color: '#ffffff', foreground_color: '#000000', size: 12},
                 image: {_value: ''},
                 video: {_value: ''},
                 qr: {_value: ''},

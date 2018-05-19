@@ -189,8 +189,8 @@
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
-                <div class="quote">
-                    <div class="flag"></div>
+                <div class="quote" style="background-color: {{ array_get($readableComponents, 'quote-text.background_color') }}">
+                    <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'quote-text.background_color') }}"></div>
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'quote-text'), 'default' => 'Quote Text'])
                 </div>
 
