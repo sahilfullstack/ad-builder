@@ -279,33 +279,38 @@ class UnitController extends Controller
             // if template is sent
             if( ! is_null($request->template_id))
             {
-                $unit->template_id = $request->template_id;            
-        
                 $template = Template::notDeleted()->find($request->template_id);
-
-                if(count($unit->components) == 0)
+                
+                
+                if($unit->template_id != $request->template_id)
                 {
+                    // Update unit's template id.
+                    $unit->template_id = $request->template_id;
+                    
+                    // Seed blank components.
                     $templeteComponents = $template->components()->get();   
                     $preparedComponents = $this->preparedBlankComponents($templeteComponents);
                     $unit->components   = $preparedComponents;
                 }
-
+                
                 if( ! is_null($request->components))
                 {
                     $inputComponents = $request->components;
-
+                    
                     $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
-
+                    
+                    
                     // Validating that the selected template has the selected components.
                     if($components->count() != count($inputComponents))
                     {
                         throw new InvalidInputException('Bad components sent.');
                     }
-
+                    
                     $this->validateComponents($inputComponents, $template->id);
+                    
 
                     $preparedComponents = $this->preparedComponents($inputComponents, $components);
-
+                    
                     if(count($preparedComponents > 0))
                     {
                         $unit->components = $preparedComponents;
@@ -359,6 +364,8 @@ class UnitController extends Controller
         catch(\Exception $e)
         {
             DB::rollBack();
+            throw $e;
+
         }
     }
 
@@ -381,6 +388,10 @@ class UnitController extends Controller
             if($component->type == "survey")
             {
                 $preparedComponents[$component->id] = ['_value' => '', '_yes' => 0, '_no' => 0 ];
+            }
+            else if($component->type == 'images')
+            {
+                $preparedComponents[$component->id] = [['_value' => '']];
             }
             else
             {                  
@@ -415,14 +426,15 @@ class UnitController extends Controller
         {
             $component = Component::find($componentId);
 
-            $validator = \Validator::make([$component->name => $value['_value']], [
-                 $component->name => [
-                    'required',
-                ]
-
-            ]);
-
-            if($component->type == "color")
+            if($component->type == 'images')
+            {
+                $validator = \Validator::make([$component->name => $value], [
+                     $component->name . '.*._value' => [
+                        'required',
+                    ]
+                ]);
+            }
+            else if($component->type == "color")
             {
                 $validator = \Validator::make([$component->name => $value['_value']], [
                      $component->name => [
@@ -430,15 +442,32 @@ class UnitController extends Controller
                     ]
                 ]);
             }
+            else
+            {
+                $validator = \Validator::make([$component->name => $value['_value']], [
+                    $component->name => [
+                        'required',
+                    ]
+                ]);
+            }
+
 
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
-                // $name = $component->name;
-                $validator->addRules([
-                    $component->name => [
-                        new ValidComponents($component->type, $ruleKey, $ruleValue)
-                    ]
-                ]);
+                if($component->type == 'images')
+                {
+                    $validator->addRules([
+                        $component->name . '.*._value' => [
+                            new ValidComponents($component->type, $ruleKey, $ruleValue)
+                        ]
+                    ]);
+                } else {
+                    $validator->addRules([
+                        $component->name => [
+                            new ValidComponents($component->type, $ruleKey, $ruleValue)
+                        ]
+                    ]);
+                }
             }
 
             if ($validator->fails()) {

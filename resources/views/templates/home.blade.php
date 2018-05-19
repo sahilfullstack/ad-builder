@@ -52,6 +52,10 @@
                         @endforeach
                     </table>
                 </div>
+
+                <div class="panel-footer">
+                    {{ $templates->links() }}
+                </div>
             </div>
 
             {{-- @foreach($templates as $template)

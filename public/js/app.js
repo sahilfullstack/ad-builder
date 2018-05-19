@@ -80202,7 +80202,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                template_id: this.unit.template_id
+                template_id: this.unit.template_id,
+                components: {}
             },
             errors: [],
             disable: {
@@ -80231,14 +80232,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 video: { _value: '' },
                 qr: { _value: '' },
                 images: { _value: [''] },
-                survey: { _value: [''], _yes: 0, _no: 0 },
+                survey: { _value: '', _yes: 0, _no: 0 },
                 audio: { _value: '' }
             };
 
             return defaults[dataType];
         },
         pushAnotherElementInComponent: function pushAnotherElementInComponent(componentId) {
-            this.form.components[componentId].push('');
+            this.form.components[componentId].push({ _value: '' });
         },
         removeElementAtPositionFromComponent: function removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);

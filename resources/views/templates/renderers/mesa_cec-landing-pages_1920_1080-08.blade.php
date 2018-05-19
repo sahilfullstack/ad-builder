@@ -56,6 +56,14 @@
         *, *:before, *:after {
             box-sizing: inherit;
         }
+
+        body {
+            overflow: hidden;
+            zoom: 50%;
+        }
+        body.two-x {
+            zoom: 100%;
+        }
         
         #workspace {
             background: #ccc;

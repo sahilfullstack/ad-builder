@@ -17,11 +17,9 @@
         </div>
         <div class="col-md-9">
             
-            @if(is_null($unit->template) || is_null($unit->template->renderer))
-                <img src="http://mesa.metaworthy.com/storage/sample-template.jpg" class="img-responsive" style="padding: 50px;">
-            @else
-                <iframe id="rederer-iframe" src="{{ route('units.render', compact('unit')) }}" frameborder="0" width="960" height="540"></iframe>
-            @endif
+            
+            <iframe id="rederer-iframe" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
+            
             <hr>
 
             <div class="panel panel-default">

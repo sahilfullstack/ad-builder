@@ -98,7 +98,8 @@ export default {
     data() {
         return {
             form: {
-                template_id: this.unit.template_id
+                template_id: this.unit.template_id,
+                components: {}
             },
             errors: [],
             disable: {
@@ -125,14 +126,14 @@ export default {
                 video: {_value: ''},
                 qr: {_value: ''},
                 images: {_value: ['']},
-                survey: {_value: [''], _yes: 0, _no: 0},
+                survey: {_value: '', _yes: 0, _no: 0},
                 audio: {_value: ''},
             }
 
             return defaults[dataType];
         },
         pushAnotherElementInComponent(componentId) {
-            this.form.components[componentId].push('');
+            this.form.components[componentId].push({_value: ''});
         },
         removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
