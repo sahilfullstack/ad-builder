@@ -40,3 +40,9 @@ $input-color-placeholder: lighten($text-color, 30%);
 
 // Panels
 $panel-default-heading-bg: #fff;
+
+@font-face {
+    font-family: Gotham;
+    src: url('/fonts/Gotham-Medium.otf');
+}
+
