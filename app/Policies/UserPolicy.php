@@ -20,7 +20,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can list user.
+     * Determine whether the user can list users.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -31,7 +31,7 @@ class UserPolicy
     }
 
     /**
-     * Determine whether the user can approve unit.
+     * Determine whether the user can approve user.
      *
      * @param  \App\User  $user
      * @return mixed
@@ -39,5 +39,16 @@ class UserPolicy
     public function approve(User $user)
     {
         return $user->can('user.manage');
+    }    
+
+    /**
+     * Determine whether the user can update profile.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function update(User $user, User $userToUpdate)
+    {
+        return ($user->id === $userToUpdate->id || $user->canOverride($userToUpdate));
     }
 }

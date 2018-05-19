@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use App\Http\Requests\{ApproveUserRequest};
+use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest};
 use Mail, DB;
 use App\Models\{Layout};
 
@@ -44,5 +44,14 @@ class UserController extends Controller
             DB::rollBack();
             \Log::info($e);
         }
+    }
+
+    public function updateProfile(User $user, UpdateUserRequest $request)
+    {
+        $user->name = $request->get('name');
+        $user->email = $request->get('email');
+        $user->company = $request->get('company');
+        $user->phone = $request->get('phone');
+        $user->save();
     }
 }

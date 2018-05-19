@@ -120,6 +120,11 @@
                                             Subscription
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('users.profile') }}">
+                                            Profile
+                                        </a>
+                                    </li>
                                     @can('create', Laravel\Passport\Token::class)
                                     <li>
                                         <a href="{{ route('users.access-tokens') }}">
