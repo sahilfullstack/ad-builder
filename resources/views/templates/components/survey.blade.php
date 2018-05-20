@@ -4,7 +4,11 @@
     <script>
         var httpRequest;
 
-        function recordSurveyResponse(unitId, componentId, response) {
+        function recordSurveyResponse(event, unitId, componentId, response) {
+            event.target.disabled = true;
+            setTimeout(() => {
+                event.target.disabled = false;
+            }, 60000);
             httpRequest = new XMLHttpRequest();
 
             if (! httpRequest) {
@@ -29,7 +33,7 @@
     </script>
     <p>@include('templates.components.text', ['value' => $value['_value'], 'default' => 'Survey'])</p>
     <div class="survey-buttons">
-        <button onclick="recordSurveyResponse({{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
-        <button onclick="recordSurveyResponse({{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
+        <button onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
+        <button onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
     </div>
 @endif

@@ -1759,12 +1759,12 @@ class TemplateSeeder extends Seeder
                     ],     
                     [
                         'name' => 'Image 1',
-                        'type' => 'images',
+                        'type' => 'image',
                         'rules' => []
                     ],     
                     [
                         'name' => 'Image 2',
-                        'type' => 'images',
+                        'type' => 'image',
                         'rules' => []
                     ],
                     [
