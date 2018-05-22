@@ -248,14 +248,16 @@
             position: absolute;
             top: 260px;
             left: 830px;
+            padding: 20px;
         }
         div.photogallery img {
-            width: 369.747px;
-            height: 493.659px;
+            width: 142.8735px;
+            height: 123.55px;
+            text-align: center;
         }
         div.photogallery div.photogallery-placeholder {
-            width: 369.747px;
-            height: 493.659px;
+            width: 142.8735px;
+            height: 123.55px;
             background: #C6E5F3;
         }
     </style>
@@ -309,7 +311,7 @@
             </div>
 
             <div class="photogallery">
-                @include('templates.components.images', ['value' => array_get($readableComponents, 'photogallery'), 'default' => 'photogallery'])
+                @include('templates.components.photogallery', ['value' => array_get($readableComponents, 'photo-gallery'), 'default' => 'photogallery'])
             </div>
          </div>
     </div>
