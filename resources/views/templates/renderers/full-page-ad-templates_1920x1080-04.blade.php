@@ -76,6 +76,7 @@
         }
 
         div.body {
+            background: #ffffff;
             position: relative;
         }
 

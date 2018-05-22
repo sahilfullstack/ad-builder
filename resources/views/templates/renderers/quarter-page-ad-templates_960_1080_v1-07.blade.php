@@ -152,7 +152,7 @@
         }
 
         div.hero-image img {
-            width: 650px;
+            width: 325px;
             height: 260px;
         }
 

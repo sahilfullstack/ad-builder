@@ -82,6 +82,7 @@
 
         p.category-header {
             padding-top: 10px;
+            padding-left: 10px;
             color: #199FD4;
             font-size: 16px;
             font-weight: bold;

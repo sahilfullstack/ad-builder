@@ -150,6 +150,7 @@
         div.hero-video {
             margin-left: 155px;
             height: 260px;
+            background: #ffffff;
         }
 
         div.hero-video video {

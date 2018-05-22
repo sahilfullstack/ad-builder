@@ -72,7 +72,7 @@
         div.body {
             width: 960px;
             height: 260px;
-            background: red;
+            background: #ffffff;
         }
 
         div.banner {

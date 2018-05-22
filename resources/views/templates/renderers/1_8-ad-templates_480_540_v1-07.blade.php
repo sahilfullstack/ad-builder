@@ -74,7 +74,7 @@
             height: 265px;
             background: #fff;
             position: relative;
-            overflow: auto;
+            overflow: hidden;
         }
 
         div.banner {

@@ -69,6 +69,10 @@
             font-family: sans-serif;
         }
 
+        div.body {
+            background: #ffffff;
+        }
+
         div.banner {
             width: 960px;
             height: 10px;

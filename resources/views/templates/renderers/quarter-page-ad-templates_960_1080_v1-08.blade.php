@@ -149,10 +149,11 @@
 
         div.hero-video {
             height: 260px;
+            background: #ffffff;
         }
 
         div.hero-video video {
-            width: 650px;
+            width: 325px;
             height: 260px;
         }
 

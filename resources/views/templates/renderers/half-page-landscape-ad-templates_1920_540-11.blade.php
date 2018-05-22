@@ -73,6 +73,7 @@
             width: 960px;
             height: 260px;
             position: relative;
+            background: #ffffff;
         }
 
         div.banner {

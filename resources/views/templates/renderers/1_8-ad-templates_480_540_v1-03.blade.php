@@ -74,7 +74,7 @@
             height: 265px;
             background: #fff;
             position: relative;
-            overflow: auto;
+            overflow: hidden;
         }
 
         div.banner {
@@ -129,7 +129,7 @@
         }
 
         div.hero-video video {
-            width: 480px;
+            width: 240px;
             height: 132px;
         }
 

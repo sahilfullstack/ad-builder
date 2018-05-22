@@ -68,6 +68,9 @@
             height: 540px;
             font-family: sans-serif;
         }
+        div.body {
+            background: #ffffff;
+        }
 
         div.banner {
             width: 960px;

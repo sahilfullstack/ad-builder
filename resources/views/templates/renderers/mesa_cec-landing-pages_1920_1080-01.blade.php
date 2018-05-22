@@ -182,7 +182,7 @@
         }
         div.map img {
             width: 373.268px;
-            height: 41.253px;
+            height: 154px;
         }
         div.map div.map-placeholder {
             width: 373.268px;

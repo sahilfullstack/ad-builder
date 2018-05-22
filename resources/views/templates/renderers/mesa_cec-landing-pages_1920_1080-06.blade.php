@@ -144,7 +144,7 @@
             top: 30px;
             left: 30px;
         }
-        div.hero-video img {
+        div.hero-video video {
             width: 982.597px;
             height: 554.237px;
         }
@@ -166,11 +166,6 @@
         div.slideshow img {
             width: 396px;
             height: 412.283px;
-        }
-
-        div.hero-video video {
-            width: 416px;
-            height: 344px;
         }
         
         div.slideshow div.slideshow-placeholder {
