@@ -267,7 +267,7 @@
             </div>
 
             <div class="hero-video">
-                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
 
             <div id="text-1">

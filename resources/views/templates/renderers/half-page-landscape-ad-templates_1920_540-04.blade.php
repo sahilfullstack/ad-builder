@@ -72,7 +72,7 @@
         div.body {
             width: 960px;
             height: 260px;
-            background: red;
+            background: #ffffff;
         }
 
         div.banner {
@@ -189,7 +189,7 @@
             </div>
     
             <div class="hero-video">
-                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
         </div>
     </div>

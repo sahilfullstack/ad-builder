@@ -178,7 +178,7 @@
             <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
             
             <div class="hero-video">
-                <!-- @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video']) -->
+                <!-- @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video']) -->
                 <video autoplay loop preload="auto" muted
                     src="file:///D:/VisualStudio2017%20Projects/MesaCatalogueAssets/MesaCatalogue_v1.0.5/MesaCatalogue/MesaCatalogue/bin/x64/Debug/Data/image/products/format_changed_video.ogv"
                     width="240"

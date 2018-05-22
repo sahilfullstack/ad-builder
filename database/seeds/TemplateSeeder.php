@@ -863,7 +863,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
-                    ]                  
+                    ],                  
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -886,7 +886,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
-                    ]                  
+                    ],                  
                     [
                         'name' => 'Logo',
                         'type' => 'image',
