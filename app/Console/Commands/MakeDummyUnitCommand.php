@@ -5,7 +5,7 @@ namespace App\Console\Commands;
 use Illuminate\Console\Command;
 use App\User;
 use App\Models\{Template, Unit};
-use Carbon\Carbon;
+use Carbon\Carbon, Storage;
 use Faker\Generator as Faker;
 
 class MakeDummyUnitCommand extends Command
@@ -83,12 +83,39 @@ class MakeDummyUnitCommand extends Command
 
     protected function getFakeComponentValue($component)
     {
-        if(in_array($component->type, ["text", "qr"])) return $this->faker->sentence(6);
+        if(in_array($component->type, ["text", "qr"])) return ["_value" => $this->faker->sentence(6)];
 
-        if(in_array($component->type, ["image", "audio", "video"])) return $this->faker->imageUrl();
+        if(in_array($component->type, ["image"])) return ["_value" => $this->dummyImage()];
+        if(in_array($component->type, ["audio"])) return ["_value" => $this->dummyAudio()];
+        if(in_array($component->type, ["video"])) return ["_value" => $this->dummyVideo()];
         
-        if(in_array($component->type, ["images", "survey"])) return [$this->faker->imageUrl()];
+        if(in_array($component->type, ["images", "survey"])) return [ ["_value" => $this->dummyImage()], ["_value" => $this->dummyImage()]];
 
-        if($component->type == 'color') return sprintf('#%06X', mt_rand(0, 0xFFFFFF));;
+        if($component->type == 'color') return ["_value" => sprintf('#%06X', mt_rand(0, 0xFFFFFF))];
+    }
+
+    private function dummyImage()
+    {
+        return config('app.url') .'/dummy-image.png';                
+    }
+
+    private function dummyAudio()
+    {
+        return config('app.url') .'/dummy-audio.ogg';        
+    }
+
+    private function dummyVideo()
+    {
+        return config('app.url') .'/dummy-video.ogv';
+    }
+
+    protected function saveFromRemote($url)
+    {
+        $this->info('Saving... ' . $url);
+        $contents = file_get_contents($url);
+        $name = md5($contents);
+        Storage::put(config('uploads.folder') . '/' . $name, $contents);
+
+        return Storage::url(config('uploads.folder') . '/' . $name, $contents);
     }
 }

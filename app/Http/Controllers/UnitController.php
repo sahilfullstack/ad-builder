@@ -47,7 +47,7 @@ class UnitController extends Controller
     public function show(ShowUnitRequest $request, Unit $unit)
     {
         $unit->load('child', 'template.components');
-        
+
         return view('units.show', compact('unit'));
     }
 
