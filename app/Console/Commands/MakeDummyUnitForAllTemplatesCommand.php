@@ -60,13 +60,21 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                     $componentValues[$component->id] = $this->getFakeComponentValue($component);
                 }
 
+                $parentId = null;
+
+                if($template->type == 'page')
+                {
+                    $parentId = Unit::where('type', 'ad')->inRandomOrder()->get()->first()->id;
+                }
+
                 Unit::create([
                     'name'        => $this->faker->sentence(5),
                     'user_id'     => $user->id,
                     'template_id' => $template->id,
                     'components'  => $componentValues,
                     'layout_id'   => $template->layout_id,
-                    'type'        => 'ad'
+                    'type'        => $template->type,
+                    'parent_id'   => $parentId
                 ]);
             }
 
