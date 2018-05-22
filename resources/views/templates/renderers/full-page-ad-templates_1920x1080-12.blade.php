@@ -183,7 +183,7 @@
             </div>
     
             {{-- <div class="hero-image">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div> --}}
         </div>
     </div>

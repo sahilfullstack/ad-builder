@@ -158,7 +158,7 @@
             height: 260px;
         }
 
-        div.hero-image div.hero-image-placeholder {
+        div.hero-image div.placeholder {
             height: 260px;
             background: #C6E5F3;
         }

@@ -130,7 +130,7 @@
             height: 322px;
         }
 
-        div.hero-image div.hero-image-placeholder {
+        div.hero-image div.placeholder {
             height: 322px;
             background: #C6E5F3;
         }
@@ -159,7 +159,7 @@
             </div>
     
             <div class="hero-image">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
         </div>
     </div>

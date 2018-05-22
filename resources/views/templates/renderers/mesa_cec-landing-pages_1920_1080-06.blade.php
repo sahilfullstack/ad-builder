@@ -148,7 +148,7 @@
             width: 982.597px;
             height: 554.237px;
         }
-        div.hero-video div.hero-video-placeholder {
+        div.hero-video div.placeholder {
             width: 982.597px;
             height: 554.237px;
             background: #C6E5F3;

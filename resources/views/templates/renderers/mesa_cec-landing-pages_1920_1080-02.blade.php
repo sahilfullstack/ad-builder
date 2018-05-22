@@ -180,7 +180,7 @@
             width: 800px;
             height: 430.372px;
         }
-        div.hero-image div.hero-image-placeholder {
+        div.hero-image div.placeholder {
             width: 800px;
             height: 430.372px;
             background: #C6E5F3;
@@ -264,7 +264,7 @@
             width: 638.318px;
             height: 332.065px;
         }
-        div.hero-video div.hero-video-placeholder {
+        div.hero-video div.placeholder {
             width: 638.318px;
             height: 332.065px;
             background: #C6E5F3;
@@ -330,7 +330,7 @@
             </div>
 
             <div class="hero-image">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'hero-image'), 'default' => 'hero-image'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
             <div class="hero-text">

@@ -143,7 +143,7 @@
             height: 530px;
         }
 
-        div.hero-image div.hero-image-placeholder {
+        div.hero-image div.placeholder {
             height: 530px;
             background: #C6E5F3;
         }

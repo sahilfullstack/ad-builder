@@ -153,7 +153,7 @@
             height: 265px;
         }
 
-        div.hero-video div.hero-video-placeholder {
+        div.hero-video div.placeholder {
             height: 265px;
             background: #C6E5F3;
         }
@@ -178,7 +178,7 @@
             <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
             
             <div class="hero-video">
-                @include('templates.components.video', ['value' => array_get($readableComponents, 'hero-video'), 'default' => 'hero-video'])
+                @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
         </div>
     </div>

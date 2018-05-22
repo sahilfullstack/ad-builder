@@ -58,7 +58,7 @@ class Template extends Model
 
     public function components()
     {
-        return $this->hasMany(Component::class);
+        return $this->hasMany(Component::class)->orderBy('order');
     }
 
     public function units()

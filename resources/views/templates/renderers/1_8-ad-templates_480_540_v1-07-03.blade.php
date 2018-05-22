@@ -153,7 +153,7 @@
             height: 265px;
         }
 
-        div.hero-video div.hero-video-placeholder {
+        div.hero-video div.placeholder {
             height: 265px;
             background: #C6E5F3;
         }
