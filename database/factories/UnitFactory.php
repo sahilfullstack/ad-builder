@@ -7,9 +7,13 @@ use App\Models\Unit;
 
 function get_fake_component_value(Component $component, Faker $faker)
 {
-    if($component->type == 'text') return $faker->sentence(6);
+    if(in_array($component->type, ["text", "qr"])) return $faker->sentence(6);
 
-    if($component->type == 'image') return $faker->imageUrl();
+    if(in_array($component->type, ["image", "audio", "video"])) return $faker->imageUrl();
+    
+    if(in_array($component->type, ["images", "survey"])) return [$faker->imageUrl()];
+
+    if($component->type == 'color') return sprintf('#%06X', mt_rand(0, 0xFFFFFF));;
 }
 
 $factory->define(Unit::class, function (Faker $faker) {
@@ -66,3 +70,4 @@ $factory->define(Unit::class, function (Faker $faker) {
         'components' => $componentValues
     ];
 }, 'page');
+

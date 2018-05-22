@@ -19,6 +19,7 @@ class Kernel extends ConsoleKernel
         Commands\SeedUsersSubscriptionsCommand::class,
         Commands\RefactorComponentsStructureInUnits::class,
         Commands\SeedOldUsernameCommand::class,
+        Commands\MakeDummyUnitCommand::class,
     ];
 
     /**
