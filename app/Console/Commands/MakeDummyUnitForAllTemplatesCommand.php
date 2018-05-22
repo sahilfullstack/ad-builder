@@ -92,9 +92,12 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
         if(in_array($component->type, ["audio"])) return ["_value" => $this->dummyAudio()];
         if(in_array($component->type, ["video"])) return ["_value" => $this->dummyVideo()];
         
-        if(in_array($component->type, ["images", "survey"])) return [ ["_value" => $this->dummyImage()], ["_value" => $this->dummyImage()]];
+        if(in_array($component->type, ["images"])) return [ ["_value" => $this->dummyImage()], ["_value" => $this->dummyImage()]];
+        if(in_array($component->type, ["survey"])) return [ "_value" => $this->faker->sentence(6), "_yes"=> 0, "_no" => 0];
 
         if($component->type == 'color') return ["_value" => sprintf('#%06X', mt_rand(0, 0xFFFFFF))];
+
+        return ["_value" => $this->faker->sentence(6)];
     }
 
     private function dummyImage()
