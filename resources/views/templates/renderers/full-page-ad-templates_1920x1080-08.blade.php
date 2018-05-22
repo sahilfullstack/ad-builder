@@ -184,13 +184,13 @@
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
-                <div class="quote" style="background-color: {{ array_get($readableComponents, 'quote-text.background_color') }}">
-                    <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'quote-text.background_color') }}"></div>
-                    @include('templates.components.text', ['value' => array_get($readableComponents, 'quote-text'), 'default' => 'Quote Text'])
+                <div class="quote" style="background-color: {{ array_get($readableComponents, 'text-1.background_color') }}">
+                    <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text-1.background_color') }}"></div>
+                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])
                 </div>
 
                 <div class="text">
-                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
+                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])
                 </div>
             </div>
     
