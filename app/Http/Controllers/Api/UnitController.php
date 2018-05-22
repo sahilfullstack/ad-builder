@@ -485,6 +485,29 @@ class UnitController extends Controller
                 ]);
             }
 
+            if($component->type == 'images')
+            {
+                $validator->addRules([
+                    $component->name . '.*._value' => [
+                        'url',
+                        'regex:/^' . preg_quote(url()->to('/'), '/') . '/'
+                    ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '.*._value.regex' => 'The :attribute must be uploaded here.'
+                ]);
+            } else if(in_array($component->type, ['image', 'audio', 'video'])) {
+                $validator->addRules([
+                    $component->name => [
+                        'url',
+                        'regex:/^' . preg_quote(url()->to('/'), '/') . '/'
+                    ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '.regex' => 'The :attribute must be uploaded here.'
+                ]);
+            }
+
 
             foreach ($component->rules as $ruleKey => $ruleValue)
             {
