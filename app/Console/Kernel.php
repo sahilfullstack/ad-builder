@@ -20,6 +20,7 @@ class Kernel extends ConsoleKernel
         Commands\RefactorComponentsStructureInUnits::class,
         Commands\SeedOldUsernameCommand::class,
         Commands\MakeDummyUnitCommand::class,
+        Commands\MakeLocalCopiesOfRemoteAssetsInUnits::class,
     ];
 
     /**

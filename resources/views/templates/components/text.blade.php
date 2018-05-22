@@ -16,6 +16,12 @@
     @if(is_string($value))
         {{ $value }}
     @else
-        <span style="font-size: {{ $value['size'] }}px; background-color: {{ $value['background_color'] }}; color: {{ $value['foreground_color'] }};">{{ $value['_value'] }}</span>
+        @php
+            $style = '';
+            if(isset($value['size'])) $style .= 'font-size: ' . $value['size'] . 'px;';
+            if(isset($value['background_color'])) $style .= 'background-color: ' . $value['background_color'] . ';';
+            if(isset($value['foreground_color'])) $style .= 'color: ' . $value['foreground_color'] . ';';
+        @endphp
+        <span style="{{ $style }};">{{ $value['_value'] }}</span>
     @endif
 @endif
