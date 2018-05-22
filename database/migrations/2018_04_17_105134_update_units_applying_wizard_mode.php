@@ -30,8 +30,8 @@ class UpdateUnitsApplyingWizardMode extends Migration
      */
     public function down()
     {
-        \DB::statement('ALTER TABLE units MODIFY name varchar(255) NOT NULL');
-        \DB::statement('ALTER TABLE units MODIFY template_id bigint(20) unsigned  NOT NULL');
+        // \DB::statement('ALTER TABLE units MODIFY name varchar(255) NOT NULL');
+        // \DB::statement('ALTER TABLE units MODIFY template_id bigint(20) unsigned  NOT NULL');
 
         Schema::table('units', function (Blueprint $table) { 
             $table->dropColumn('user_id');

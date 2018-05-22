@@ -21,6 +21,7 @@ class Kernel extends ConsoleKernel
         Commands\SeedOldUsernameCommand::class,
         Commands\MakeDummyUnitCommand::class,
         Commands\MakeLocalCopiesOfRemoteAssetsInUnits::class,
+        Commands\MakeDummyUnitForAllTemplatesCommand::class,
     ];
 
     /**
