@@ -45,7 +45,7 @@ class UnitController extends Controller
     public function list(ListUnitRequest $request)
     {
         $units = Unit::published()->approved()->with(['category', 'layout', 'child', 'template.components'])->orderBy('layout_id');
-      
+        
         if( ! is_null($request->get('type')))
         {
             $units = $units->where('type', $request->get('type'));
@@ -70,6 +70,7 @@ class UnitController extends Controller
                 <product>
                     <prid>105</prid>
                     <detailimage>Full Page Landing Templates_1920x1080_v2-16.jpg</detailimage>
+                    <assets>URL1,URL2,URL3,URL4</assets>
                     <thumbnail>Ad-Pages05Thumb.jpg</thumbnail>
                     <category>Upgrades</category>
                     <title>MESA: Upgrades</title>
@@ -91,6 +92,7 @@ class UnitController extends Controller
                 'category_id' => $unit['category']['id'],
                 'category' => $unit['category']['name'],
                 'title' => $unit['name'],
+                'assets' => implode(',', $this->findAssetUrls($unit)),
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2']),
                 'landing_page_url' => route('units.render', $unit['child']['id']),
                 'layout_id' => $unit['layout_id'] - 1,
@@ -99,8 +101,36 @@ class UnitController extends Controller
                 'hoverimage' => is_null($unit['hover_image']) ? 'Transparent.png' : $unit['hover_image'],
             ];
         }
-        
         return $transformed;
+    }
+
+    protected function findAssetUrls($unit)
+    {
+        $assets = [];
+
+        foreach($unit['components'] as $componentId => $componentValue)
+        {
+            $component = Component::find($componentId);
+            if(
+                in_array($component->type, ['image', 'video', 'audio'])
+                &&
+                ! empty($componentValue['_value'])
+            )
+            {
+                $assets[] = $componentValue['_value'];
+            }
+            else if(
+                in_array($component->type, ['images'])
+            )
+            {
+                foreach($componentValue as $componentIndex => $componentIndexValue)
+                {
+                    if(! empty($componentIndexValue['_value']))
+                    $assets[] = $componentIndexValue['_value'];
+                }
+            }
+        }
+        return $assets;
     }
 
     protected function fitInSlides($units)
@@ -170,7 +200,7 @@ class UnitController extends Controller
                 ->first()->toArray();
 
         $formatter = Formatter::make($units, Formatter::ARR);
-
+    
         return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
     }
 
