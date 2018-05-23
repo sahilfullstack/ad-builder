@@ -69,7 +69,7 @@
             background: #ccc;
             width: 1920px;
             height: 1080px;
-            font-family: sans-serif;
+            font-family: Gotham;
 
             /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-01.jpg);*/
             /*background-size: 1920px 1080px;*/

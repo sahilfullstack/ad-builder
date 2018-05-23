@@ -66,7 +66,7 @@
             background: #ccc;
             width: 960px;
             height: 540px;
-            font-family: sans-serif;
+            font-family: Gotham;
         }
         div.body {
             background: #ffffff;
