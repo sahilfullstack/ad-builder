@@ -102,17 +102,17 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
 
     private function dummyImage()
     {
-        return config('app.url') .'/dummy-image.png';                
+        return config('app.url') .'/storage/dummy/dummy-image.png';                
     }
 
     private function dummyAudio()
     {
-        return config('app.url') .'/dummy-audio.ogg';        
+        return config('app.url') .'/storage/dummy/dummy-audio.ogg';        
     }
 
     private function dummyVideo()
     {
-        return config('app.url') .'/dummy-video.ogv';
+        return config('app.url') .'/storage/dummy/dummy-video.ogv';
     }
 
     protected function saveFromRemote($url)
