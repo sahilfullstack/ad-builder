@@ -94,7 +94,7 @@ class UnitController extends Controller
                 'title' => $unit['name'],
                 'assets' => implode(',', $this->findAssetUrls($unit)),
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2']),
-                'landing_page_url' => route('units.render', $unit['child']['id']),
+                'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2']),
                 'layout_id' => $unit['layout_id'] - 1,
                 'startchar' => Str::upper(substr($unit['name'], 0, 1)),
                 'thumbnail' => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : $unit['thumbnail'],
