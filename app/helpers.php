@@ -23,3 +23,8 @@ function unit_next_section($type, $sectionSlug)
 
     return $availableSections[$currentSection['order']];
 }
+
+function absolute_to_relative_url($url)
+{
+    return str_replace(url()->to('/'), '', $url);
+}

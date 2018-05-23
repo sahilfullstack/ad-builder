@@ -8,6 +8,6 @@
     </div>
 @else
     <video autoplay loop preload="auto" muted
-        src="{{ $value }}"
+        src="{{ absolute_to_relative_url($value) }}"
     >
 @endif

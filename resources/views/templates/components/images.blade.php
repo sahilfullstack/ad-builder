@@ -3,5 +3,5 @@
         <p>{{ Illuminate\Support\Str::upper($default) }}</p>
     </div>
 @else
-    <img src="{{ $value[0]['_value'] }}" alt="{{ $default }}">
+    <img src="{{ absolute_to_relative_url($value[0]['_value']) }}" alt="{{ $default }}">
 @endif

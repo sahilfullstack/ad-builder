@@ -7,5 +7,5 @@
         <p>{{ Illuminate\Support\Str::title($default) }}</p>
     </div>
 @else
-    <img src="{{ $value }}" alt="{{ $default }}">
+    <img src="{{ absolute_to_relative_url($value) }}" alt="{{ $default }}">
 @endif
