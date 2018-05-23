@@ -7,7 +7,13 @@
         <p>{{ Illuminate\Support\Str::title($default) }}</p>
     </div>
 @else
-    <video autoplay loop preload="auto" muted
-        src="{{ absolute_to_relative_url($value) }}"
-    >
+    @if(is_null(request()->input('relative')))
+        <video autoplay loop preload="auto" muted
+            src="{{ $value }}"
+        >
+    @else
+        <video autoplay loop preload="auto" muted
+            src="{{ absolute_to_relative_url($value) }}"
+        >
+    @endif
 @endif
