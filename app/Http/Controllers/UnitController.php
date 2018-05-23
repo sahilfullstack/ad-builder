@@ -117,6 +117,7 @@ class UnitController extends Controller
         $bodyClass = '';
         if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
         $readableComponents = $unit->readable_components;
+
         return view($unit->template->renderer, compact('unit', 'readableComponents', 'bodyClass'));
     }
 
