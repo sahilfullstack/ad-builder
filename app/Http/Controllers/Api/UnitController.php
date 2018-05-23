@@ -88,6 +88,7 @@ class UnitController extends Controller
         foreach($units as $unit)
         {
             $transformed[]['product'] = [
+                'hash' => md5($unit['updated_at'] . $unit['child']['updated_at']),
                 'prid' => $unit['id'],
                 'category_id' => $unit['category']['id'],
                 'category' => $unit['category']['name'],
