@@ -51,6 +51,11 @@ class Template extends Model
         return $query->notDeleted()->whereType('ad');
     }
 
+    public function scopePage($query)
+    {
+        return $query->notDeleted()->whereType('page');
+    }
+
     public function getTypeHumanAttribute()
     {
         return $this->types[$this->type];

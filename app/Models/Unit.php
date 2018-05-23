@@ -19,7 +19,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
+        'name', 'template_id', 'category_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**

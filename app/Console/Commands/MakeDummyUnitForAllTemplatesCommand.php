@@ -7,6 +7,8 @@ use App\User;
 use App\Models\{Template, Unit};
 use Carbon\Carbon, Storage;
 use Faker\Generator as Faker;
+use App\Models\Category;
+use Illuminate\Support\Facades\DB;
 
 class MakeDummyUnitForAllTemplatesCommand extends Command
 {
@@ -44,44 +46,80 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
      */
     public function handle()
     {
-        $count = $this->argument('count');
+        $adTemplates = Template::ad()->get();
+        $pageTemplates = Template::page()->get();
 
-        for ($i=0; $i < $count ; $i++) { 
-            $templates = Template::all();
+        $pageIndex = 0;
+        foreach ($adTemplates as $key => $template)
+        {
+            $user = User::inRandomOrder()->get()->first();
 
-            foreach ($templates as $key => $template) 
-            {
-                $user = User::inRandomOrder()->get()->first();        
+            $ad = Unit::create([
+                'name'        => $this->faker->sentence(5),
+                'user_id'     => $user->id,
+                'category_id' => Category::inRandomOrder()->first()->id,
+                'template_id' => $template->id,
+                'components'  => $this->makeComponents($template),
+                'layout_id'   => $template->layout_id,
+                'type'        => $template->type,
+                'parent_id'   => null
+            ]);
+            
+            $pageTemplate = $pageTemplates->get($pageIndex);
+            Unit::create([
+                'name'        => $this->faker->sentence(5),
+                'user_id'     => $user->id,
+                'template_id' => $pageTemplate->id,
+                'components'  => $this->makeComponents($pageTemplate),
+                'layout_id'   => $pageTemplate->layout_id,
+                'type'        => $pageTemplate->type,
+                'parent_id'   => $ad->id
+            ]);
 
-                $components = $template->components;
+            $pageIndex++;
 
-                $componentValues = [];
-                foreach ($components as $component) {
-                    $componentValues[$component->id] = $this->getFakeComponentValue($component);
-                }
-
-                $parentId = null;
-
-                if($template->type == 'page')
-                {
-                    $parentId = Unit::where('type', 'ad')->inRandomOrder()->get()->first()->id;
-                }
-
-                Unit::create([
-                    'name'        => $this->faker->sentence(5),
-                    'user_id'     => $user->id,
-                    'template_id' => $template->id,
-                    'components'  => $componentValues,
-                    'layout_id'   => $template->layout_id,
-                    'type'        => $template->type,
-                    'parent_id'   => $parentId
-                ]);
-            }
-
-            $this->info("unit created for index ". $i);
+            if($pageIndex >= $pageTemplates->count()) $pageIndex = 0;
         }
 
+        // publishing landing page for each ad.
+        // $ads = Unit::ad()->get();
+        // $pageTemplates = Template::page()->get();
+        // $index = 0;
+        // foreach($ads as $ad)
+        // {
+        //     $user = User::inRandomOrder()->get()->first();        
+        //     $template = $pageTemplates->get($index);
+
+        //     Unit::create([
+        //         'name'        => $this->faker->sentence(5),
+        //         'user_id'     => $user->id,
+        //         'template_id' => $template->id,
+        //         'components'  => $this->makeComponents($template),
+        //         'layout_id'   => $template->layout_id,
+        //         'type'        => $template->type,
+        //         'parent_id'   => $ad->id
+        //     ]);
+
+        //     $index++;
+
+        //     if($index >= $pageTemplates->count()) $index = 0;
+        // }
+
+        DB::table('units')->update(['published_at' => Carbon::now(), 'approved_at' => Carbon::now()]);
+
         $this->info("process completed ....");
+    }
+
+    protected function makeComponents(Template $template)
+    {
+        $components = $template->components;
+
+        $componentValues = [];
+        foreach ($components as $component) {
+            $componentValues[$component->id] = $this->getFakeComponentValue($component);
+        }
+
+        return $componentValues;
     }
 
     protected function getFakeComponentValue($component)
