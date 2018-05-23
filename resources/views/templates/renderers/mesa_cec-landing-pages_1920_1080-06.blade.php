@@ -252,7 +252,7 @@
             </div>
 
             <div class="slideshow">
-                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
+                @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
 
             <div class="survey">
