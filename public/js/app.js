@@ -80475,6 +80475,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 
 
@@ -80507,7 +80508,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             },
             errors: [],
             disable: {
-                saving: false
+                saving: false,
+                previewing: false
             }
         };
     },
@@ -80544,8 +80546,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         removeElementAtPositionFromComponent: function removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
         },
-        update: function update() {
+        reloadPreview: function reloadPreview() {
             var _this2 = this;
+
+            this.disable.previewing = true;
+
+            var self = this;
+            var experimentalForm = _.cloneDeep(this.form);
+            delete experimentalForm.components;
+            experimentalForm.experimental_components = this.form.components;
+
+            this.errors = [];
+            axios.put('/api/units/' + this.unit.id, experimentalForm).then(function (response) {
+                _this2.disable.previewing = false;
+
+                var frameElement = document.getElementById("renderer-iframe");
+                if (frameElement) frameElement.contentWindow.location.href = frameElement.src + '&is_preview=y';
+            }).catch(function (error) {
+                // Fixing the optimism.
+                _this2.disable.previewing = false;
+
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
+            });
+        },
+        update: function update() {
+            var _this3 = this;
 
             this.disable.saving = true;
 
@@ -80555,12 +80584,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
-                _this2.disable.saving = false;
+                _this3.disable.saving = false;
 
-                window.location = _this2.redirectTo;
+                window.location = _this3.redirectTo;
             }).catch(function (error) {
                 // Fixing the optimism.
-                _this2.disable.saving = false;
+                _this3.disable.saving = false;
 
                 _.forEach(error.response.data.errors, function (error, index) {
                     var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
@@ -81463,6 +81492,21 @@ var render = function() {
       ),
       _vm._v(" "),
       _c("br"),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-info",
+          attrs: { disabled: _vm.disable.previewing },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              return _vm.reloadPreview($event)
+            }
+          }
+        },
+        [_vm._v("Reload preview")]
+      ),
       _vm._v(" "),
       _c(
         "button",

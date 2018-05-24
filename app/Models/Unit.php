@@ -19,7 +19,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'category_id', 'components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
+        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**
@@ -35,7 +35,8 @@ class Unit extends Model
      * @var array
      */
     protected $casts = [
-        'components' => 'array'
+        'components' => 'array',
+        'experimental_components' => 'array'
     ];
     
     protected $types = [
@@ -197,6 +198,20 @@ class Unit extends Model
         
         $readableComponents = [];
         foreach($this->components as $id => $component)
+        {
+            $readableComponents[$components->where('id', $id)->first()->slug] = array_merge(['_id' => $id], $component);
+        }
+        
+        return $readableComponents;
+    }
+
+
+    public function getReadableExperimentalComponentsAttribute()
+    {
+        $components = Component::notDeleted()->find(array_keys($this->experimental_components));
+        
+        $readableComponents = [];
+        foreach($this->experimental_components as $id => $component)
         {
             $readableComponents[$components->where('id', $id)->first()->slug] = array_merge(['_id' => $id], $component);
         }

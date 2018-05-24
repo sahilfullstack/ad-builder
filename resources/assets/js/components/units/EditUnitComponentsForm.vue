@@ -71,6 +71,7 @@
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
 
+        <button class="btn btn-info" :disabled="disable.previewing" @click.prevent="reloadPreview">Reload preview</button>
         <button type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
@@ -107,7 +108,8 @@ export default {
             },
             errors: [],
             disable: {
-                saving: false
+                saving: false,
+                previewing: false
             }
         }
     },
@@ -141,6 +143,35 @@ export default {
         },
         removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
+        },
+        reloadPreview() {
+            this.disable.previewing = true;
+
+            var self = this;
+            var experimentalForm = _.cloneDeep(this.form);
+            delete experimentalForm.components;
+            experimentalForm.experimental_components = this.form.components;
+            
+            this.errors = [];
+            axios.put('/api/units/' + this.unit.id, experimentalForm)
+                .then(response => {
+                    this.disable.previewing = false;
+
+                    var frameElement = document.getElementById("renderer-iframe");
+                    if(frameElement) frameElement.contentWindow.location.href = frameElement.src + '&is_preview=y';
+                })
+                .catch(error => {
+                    // Fixing the optimism.
+                    this.disable.previewing = false;
+
+                    _.forEach(error.response.data.errors, function(error, index) {
+                        var errorIndex = _.startsWith(index, '_')
+                                            ? _.trim(index, '_')
+                                            : index;
+                                            
+                        self.errors[errorIndex] = error[0];
+                    });
+                });
         },
         update() {
             this.disable.saving = true;

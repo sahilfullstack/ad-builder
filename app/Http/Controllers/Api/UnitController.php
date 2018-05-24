@@ -404,8 +404,33 @@ class UnitController extends Controller
                     $templeteComponents = $template->components()->get();   
                     $preparedComponents = $this->preparedBlankComponents($templeteComponents);
                     $unit->components   = $preparedComponents;
+                    $unit->experimental_components   = $preparedComponents;
                 }
                 
+                if( ! is_null($request->experimental_components))
+                {
+                    $inputComponents = $request->experimental_components;
+                    
+                    $components = $template->components()->whereIn('id', array_keys($inputComponents))->get();
+                    
+                    
+                    // Validating that the selected template has the selected components.
+                    if($components->count() != count($inputComponents))
+                    {
+                        throw new InvalidInputException('Bad components sent.');
+                    }
+                    
+                    $this->validateComponents($inputComponents, $template->id);
+                    
+
+                    $preparedComponents = $this->preparedComponents($inputComponents, $components);
+                    
+                    if(count($preparedComponents > 0))
+                    {
+                        $unit->experimental_components = $preparedComponents;
+                    }
+                }
+
                 if( ! is_null($request->components))
                 {
                     $inputComponents = $request->components;
@@ -427,6 +452,7 @@ class UnitController extends Controller
                     if(count($preparedComponents > 0))
                     {
                         $unit->components = $preparedComponents;
+                        $unit->experimental_components = $preparedComponents;
                     }
                 }
             }
