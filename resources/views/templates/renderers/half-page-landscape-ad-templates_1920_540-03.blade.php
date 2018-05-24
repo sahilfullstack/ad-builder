@@ -111,13 +111,13 @@
             height: 90px;
         }
 
-        div.sidebar div.logo div.logo-placeholder {
+        div.sidebar div.logo div.placeholder {
             width: 270px;
             height: 90px;
             outline: 3px dotted #CC337A;
         }
 
-        div.sidebar div.logo div.logo-placeholder p {
+        div.sidebar div.logo div.placeholder p {
             color: #CC337A;
             text-transform: uppercase;
             font-weight: bold;

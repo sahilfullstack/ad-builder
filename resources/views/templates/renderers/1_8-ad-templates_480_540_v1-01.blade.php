@@ -108,13 +108,13 @@
             height: 150px;
         }
 
-        div.logo div.logo-placeholder {
+        div.logo div.placeholder {
             width: 150px;
             height: 150px;
             outline: 3px dotted #CC337A;
         }
 
-        div.logo div.logo-placeholder p {
+        div.logo div.placeholder p {
             color: #CC337A;
             text-transform: uppercase;
             font-weight: bold;
