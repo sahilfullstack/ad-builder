@@ -44,12 +44,14 @@ class UnitController extends Controller
 
     public function storeCopy(StoreCopyUnitRequest $request, Unit $unit)
     {
+
         // creating a unit
         $unitCopy = new Unit;
         $unitCopy->name = "Copy of ".$unit->name;
         $unitCopy->template_id = $unit->template_id;
         $unitCopy->layout_id = $unit->layout_id;
         $unitCopy->components = $unit->components;
+        $unitCopy->experimental_components = is_null($unit->experimental_components) ? [] : $unit->experimental_components;
         $unitCopy->user_id = $unit->user_id;
         $unitCopy->type = $unit->type;
         $unitCopy->parent_id = null;
@@ -65,6 +67,7 @@ class UnitController extends Controller
         $unitCopyChild->template_id = $child->template_id;
         $unitCopyChild->layout_id = $child->layout_id;
         $unitCopyChild->components = $child->components;
+        $unitCopyChild->experimental_components = is_null($child->experimental_components) ? [] : $child->experimental_components;
         $unitCopyChild->user_id = $child->user_id;
         $unitCopyChild->type = $child->type;
         $unitCopyChild->parent_id = $unitCopy->id;
@@ -73,7 +76,7 @@ class UnitController extends Controller
         $unitCopyChild->category_id = $child->category_id;
         
         $unitCopyChild->save();
-        
+
         return $unitCopy->fresh();
     }  
 

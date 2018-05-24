@@ -37,9 +37,8 @@ export default {
                     axios.post('/api/units/' + thiz.unit.id + '/copy',  {})
                     .then(function (response) {
                         thiz.disable.copying = false;
-
-                        // go to list units
-                        window.location = thiz.redirectTo;
+                        // go to edit unit
+                        window.location =  thiz.redirectTo.replace("units", "units/"+response.data.id+"/edit?section=layout");
                     })
                     .catch(function (error) {
                         thiz.disable.copying = false;
