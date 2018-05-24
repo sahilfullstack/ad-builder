@@ -60,10 +60,6 @@
         }
         body {
             overflow: hidden;
-            font-family: Gotham;
-        }
-        body {
-            overflow: hidden;
         }
         body.two-x {
             zoom: 200%;
@@ -73,7 +69,7 @@
             background: #ccc;
             width: 960px;
             height: 540px;
-            font-family: sans-serif;
+            font-family: Gotham;
         }
         div.body {
             width: 240px;

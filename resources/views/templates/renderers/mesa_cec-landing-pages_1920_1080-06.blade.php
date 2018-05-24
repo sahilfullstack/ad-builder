@@ -69,7 +69,7 @@
             background: #ccc;
             width: 1920px;
             height: 1080px;
-            font-family: sans-serif;
+            font-family: Gotham;
 
             /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-02.jpg);
             background-size: 1920px 1080px;*/
@@ -252,7 +252,7 @@
             </div>
 
             <div class="slideshow">
-                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
+                @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
 
             <div class="survey">

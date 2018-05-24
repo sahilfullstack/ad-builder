@@ -66,7 +66,7 @@
             background: #ccc;
             width: 960px;
             height: 540px;
-            font-family: sans-serif;
+            font-family: Gotham;
 
             /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-06.jpg);
             background-size: 960px 540px;*/

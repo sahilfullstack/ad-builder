@@ -69,7 +69,7 @@
             background: #ccc;
             width: 1920px;
             height: 1080px;
-            font-family: sans-serif;
+            font-family: Gotham;
 
             /*background-image: url(http://chrl.test/temp/MESA_CEC%20Landing%20Pages_1920_1080-01.jpg);*/
             /*background-size: 1920px 1080px;*/
@@ -262,7 +262,7 @@
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
             <div class="slideshow">
-                @include('templates.components.images', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
+                @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
             <div id="hero-text2">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>

@@ -21,6 +21,10 @@
                             <input type="number" v-model="allowedQuantity" >
                         </div>
                         <div class="form-group">
+                            <label for="date" class="control-label h5">Allow Videos</label>
+                            <input type="checkbox" v-model="allowVideos" >
+                        </div>
+                        <div class="form-group">
                             <label for="date" class="control-label h5">Expiry Date</label>
                             <date-picker v-model="expiring_at" lang="en"></date-picker>
                         </div>
@@ -55,6 +59,7 @@ export default {
             expiring_at: moment().add(30, 'days')._d,
             allowedQuantity: 1,
             layout_id: this.layouts[0].id,
+            allowVideos : 0,
             errors: [],
             disable: {
                 adding: false
@@ -66,7 +71,7 @@ export default {
         add() {
             this.disable.adding = true;
                    let thiz = this; 
-            axios.post('/api/users/' + this.userId + '/subscriptions',  {layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity})
+            axios.post('/api/users/' + this.userId + '/subscriptions',  {layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos})
             .then(function (response) {
                 thiz.disable.adding = false;
 

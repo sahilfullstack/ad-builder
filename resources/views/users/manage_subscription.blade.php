@@ -35,6 +35,7 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Expiry</th>
                         <th class="text-center">Allowed Quantity</th>
+                        <th class="text-center">Allowed Videos</th>
                         <!-- <th class="text-center">Update</th> -->
                         <!-- <th class="text-center">Reject</th> -->
                         </tr>
@@ -43,6 +44,7 @@
                             <td>{{$subscription->layout->name}}</td>
                             <td>{{\Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()}}</td>
                             <td>{{$subscription->allowed_quantity}}</td>
+                            <td>{{$subscription->allow_videos}}</td>
                             <!-- <td><update-user-subscription-button :user="{{ $user->toJson() }}" :subscription="{{ $subscription->toJson() }}" ></update-user-subscription-button></td> -->
                             </tr>
                     @endforeach

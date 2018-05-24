@@ -243,10 +243,73 @@ class UnitController extends Controller
 
         $this->validateChildUnit($childUnit);
 
+        $subscription = $this->getRedeemedSubscription($unit);
+
+        $unit->redeemed_subscription_id = $subscription->id;
         $unit->published_at = Carbon::now();
         $unit->save();
 
         return $unit->fresh();
+    }
+
+    private function getRedeemedSubscription($unit)
+    {
+        $userId     = $unit->user_id;
+        $layoutId   = $unit->layout_id;
+        $templateId = $unit->template_id;
+
+        $layouts = DB::select(
+            DB::raw(
+                "select 
+                    sum(allowed_quantity - redeemed_quantity) 
+                        as available_quantity, 
+                    layouts.* 
+
+                    from subscriptions 
+
+                    join layouts on 
+                        subscriptions.layout_id = layouts.id 
+
+                    where subscriptions.user_id = $userId 
+                    and 
+                    subscriptions.expiring_at >= now() 
+                    and 
+                    layouts.id=$layoutId
+
+                    group by 
+                        subscriptions.layout_id 
+                    having available_quantity > 0;
+                ")
+            );
+
+        if(count($layouts) < 1 )
+        {
+            throw new CustomInvalidInputException('general', 'Subscription Doesnot exist. Please contact the admin at admin@mesa.com');
+        }
+
+        $componentsWithVideo = Component::where('template_id', $templateId)
+                            ->where('type', 'video')
+                            ->get();
+
+        if(count($componentsWithVideo) > 0)
+        {
+            $subscription = Subscription::where('user_id', $userId)
+                            ->where('layout_id', $layoutId)
+                            ->whereRaw('allowed_quantity > redeemed_quantity')
+                            ->whereRaw('expiring_at >= now()')
+                            ->where('allow_videos', 1)
+                            ->orderBy('expiring_at', 'DESC')->first();
+
+            if(is_null($subscription))
+            {
+                throw new CustomInvalidInputException('general', 'Cannot use video element of this subscription. Please contact the admin at admin@mesa.com');
+            }
+        }
+
+        $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
+        $subscription->save();
+            
+        return $subscription;
     }
 
     private function validateChildUnit($unit)
@@ -288,23 +351,7 @@ class UnitController extends Controller
             // if layout is sent
             if (!is_null($request->layout_id))
             {
-                // validating if user has subscription
-                $this->hasSubscription($unit, $request->layout_id);   
-                if( is_null($unit->redeemed_subscription_id))
-                {
-                    $subscription = Subscription::where([
-                        'layout_id' => $request->layout_id,
-                        'user_id' => $unit->user->id
-                        ])
-                        ->whereRaw('allowed_quantity > redeemed_quantity')->orderBy('expiring_at', 'DESC')->first();
-                        
-                    $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;
-                    $unit->redeemed_subscription_id = $subscription->id;
-                    
-                    $subscription->save();
-                    
-                    $unit->layout_id = $request->layout_id;
-                }
+                $unit->layout_id = $request->layout_id;
             }
 
             // if template is sent
@@ -560,24 +607,25 @@ class UnitController extends Controller
         }
     }
 
-    private function hasSubscription($unit, $layoutId)
-    {
-        $user = $unit->user;
+    // not using this for now
+    // private function hasSubscription($unit, $layoutId)
+    // {
+    //     $user = $unit->user;
         
-        $subscription = DB::table('subscriptions')
-            ->selectRaw('sum(allowed_quantity - redeemed_quantity) as available_quantity')
-            ->where('user_id', $user->id)
-            ->where('layout_id', $layoutId)
-            ->whereRaw('expiring_at >= now()')
-            ->groupBy('layout_id')
-            ->havingRaw('available_quantity > 0')
-            ->first();
+    //     $subscription = DB::table('subscriptions')
+    //         ->selectRaw('sum(allowed_quantity - redeemed_quantity) as available_quantity')
+    //         ->where('user_id', $user->id)
+    //         ->where('layout_id', $layoutId)
+    //         ->whereRaw('expiring_at >= now()')
+    //         ->groupBy('layout_id')
+    //         ->havingRaw('available_quantity > 0')
+    //         ->first();
 
-        if(is_null($subscription) or (($subscription->available_quantity) <= 0))
-        {
-            throw new InvalidInputException("Subscription is invalid.");
-        }
-    }
+    //     if(is_null($subscription) or (($subscription->available_quantity) <= 0))
+    //     {
+    //         throw new InvalidInputException("Subscription is invalid.");
+    //     }
+    // }
 
     private function validateImage($url, $tag)
     {
