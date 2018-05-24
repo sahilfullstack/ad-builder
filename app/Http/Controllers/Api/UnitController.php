@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
-use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest};
+use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest, StoreCopyUnitRequest};
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
 use Carbon\Carbon, DB;
@@ -40,6 +40,41 @@ class UnitController extends Controller
         $unit->save();
 
         return $unit->fresh();
+    }      
+
+    public function storeCopy(StoreCopyUnitRequest $request, Unit $unit)
+    {
+        // creating a unit
+        $unitCopy = new Unit;
+        $unitCopy->name = "Copy of ".$unit->name;
+        $unitCopy->template_id = $unit->template_id;
+        $unitCopy->layout_id = $unit->layout_id;
+        $unitCopy->components = $unit->components;
+        $unitCopy->user_id = $unit->user_id;
+        $unitCopy->type = $unit->type;
+        $unitCopy->parent_id = null;
+        $unitCopy->thumbnail = $unit->thumbnail;
+        $unitCopy->hover_image = $unit->hover_image;
+        $unitCopy->category_id = $unit->category_id;
+
+        $unitCopy->save();
+
+        $child = Unit::where('parent_id', $unit->id)->first();
+        $unitCopyChild = new Unit;
+        $unitCopyChild->name = $child->name;
+        $unitCopyChild->template_id = $child->template_id;
+        $unitCopyChild->layout_id = $child->layout_id;
+        $unitCopyChild->components = $child->components;
+        $unitCopyChild->user_id = $child->user_id;
+        $unitCopyChild->type = $child->type;
+        $unitCopyChild->parent_id = $unitCopy->id;
+        $unitCopyChild->thumbnail = $child->thumbnail;
+        $unitCopyChild->hover_image = $child->hover_image;
+        $unitCopyChild->category_id = $child->category_id;
+        
+        $unitCopyChild->save();
+        
+        return $unitCopy->fresh();
     }  
 
     public function list(ListUnitRequest $request)

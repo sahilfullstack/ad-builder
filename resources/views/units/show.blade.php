@@ -23,6 +23,7 @@
                     </h2>
                     @if(is_null($unit->approved_at))
                     <a href="{{ route('units.edit', ['unit' => $unit]) }}">Edit</a>
+                    <create-unit-copy-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></create-unit-copy-button>
                     @endif
                     <hr>
 
