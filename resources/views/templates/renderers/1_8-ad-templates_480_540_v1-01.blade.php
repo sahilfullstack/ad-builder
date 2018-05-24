@@ -7,6 +7,11 @@
 
     <style>
     
+        @font-face {
+            font-family: Gotham;
+            src: url('/fonts/Gotham-Medium.otf');
+        }
+        
         /* Reset Begins */
         html, body, ul, ol, li, form, fieldset, legend
         {

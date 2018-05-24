@@ -6,6 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
         /* Reset Begins */
+        @font-face {
+            font-family: Gotham;
+            src: url('/fonts/Gotham-Medium.otf');
+        }
+
         html, body, ul, ol, li, form, fieldset, legend
         {
             margin: 0;

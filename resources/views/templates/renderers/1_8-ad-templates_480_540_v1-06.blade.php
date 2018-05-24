@@ -5,6 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <style>
+        @font-face {
+            font-family: Gotham;
+            src: url('/fonts/Gotham-Medium.otf');
+        }
+    
         /* Reset Begins */
         html, body, ul, ol, li, form, fieldset, legend
         {
