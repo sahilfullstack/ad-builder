@@ -25,9 +25,10 @@ class CreateSubscriptionRequest extends FormRequest
     public function rules()
     {
         return [
-            'layout_id' => 'required|exists:layouts,id',
-            'expiring_at' => 'required',
+            'layout_id'        => 'required|exists:layouts,id',
+            'expiring_at'      => 'required',
             'allowed_quantity' => 'required',
+            'allow_videos'     => 'required',
         ];
     }
 }

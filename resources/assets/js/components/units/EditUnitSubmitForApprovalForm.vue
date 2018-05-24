@@ -78,6 +78,9 @@ export default {
                              case "name":
                                 url = '/units/'+self.unit.id+'/edit?section=basic';
                                 break;
+                            case "general":
+                                url = undefined;
+                                break;
                             default:
                                 url = "";
                                 break;

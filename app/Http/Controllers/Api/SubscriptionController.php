@@ -33,6 +33,7 @@ class SubscriptionController extends Controller
                 'user_id'          => $user->id,
                 'layout_id'        => $request->layout_id,
                 'allowed_quantity' => $request->allowed_quantity,
+                'allow_videos'     => $request->allow_videos,
                 'expiring_at'      => Carbon::parse($request->expiring_at),
                 'created_at'       => Carbon::now(),
                 'updated_at'       => Carbon::now()

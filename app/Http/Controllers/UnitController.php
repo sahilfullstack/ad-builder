@@ -126,7 +126,8 @@ class UnitController extends Controller
         // // query to make sure only those layouts are available for which the user has a subscription
         $userId = $unit->user->id;
 
-        $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
+        // $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
+        $layouts = Layout::all();
 
         // this is done so that unit could be edited, 
         // the layout cant be changed though from the backend.

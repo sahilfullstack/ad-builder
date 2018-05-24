@@ -81719,6 +81719,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                         case "name":
                             url = '/units/' + self.unit.id + '/edit?section=basic';
                             break;
+                        case "general":
+                            url = undefined;
+                            break;
                         default:
                             url = "";
                             break;
@@ -84169,6 +84172,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -84187,6 +84194,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             expiring_at: moment().add(30, 'days')._d,
             allowedQuantity: 1,
             layout_id: this.layouts[0].id,
+            allowVideos: 0,
             errors: [],
             disable: {
                 adding: false
@@ -84199,7 +84207,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         add: function add() {
             this.disable.adding = true;
             var thiz = this;
-            axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity }).then(function (response) {
+            axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos }).then(function (response) {
                 thiz.disable.adding = false;
 
                 thiz.$emit('resolve');
@@ -84310,6 +84318,52 @@ var render = function() {
                         return
                       }
                       _vm.allowedQuantity = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allow Videos")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowVideos,
+                      expression: "allowVideos"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.allowVideos)
+                      ? _vm._i(_vm.allowVideos, null) > -1
+                      : _vm.allowVideos
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.allowVideos,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.allowVideos = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.allowVideos = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.allowVideos = $$c
+                      }
                     }
                   }
                 })
