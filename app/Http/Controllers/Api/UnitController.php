@@ -305,7 +305,7 @@ class UnitController extends Controller
                 throw new CustomInvalidInputException('general', 'Cannot use video element of this subscription. Please contact the admin at admin@mesa.com');
             }
         }
-                        
+
         $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
         $subscription->save();
             
@@ -581,24 +581,25 @@ class UnitController extends Controller
         }
     }
 
-    private function hasSubscription($unit, $layoutId)
-    {
-        $user = $unit->user;
+    // not using this for now
+    // private function hasSubscription($unit, $layoutId)
+    // {
+    //     $user = $unit->user;
         
-        $subscription = DB::table('subscriptions')
-            ->selectRaw('sum(allowed_quantity - redeemed_quantity) as available_quantity')
-            ->where('user_id', $user->id)
-            ->where('layout_id', $layoutId)
-            ->whereRaw('expiring_at >= now()')
-            ->groupBy('layout_id')
-            ->havingRaw('available_quantity > 0')
-            ->first();
+    //     $subscription = DB::table('subscriptions')
+    //         ->selectRaw('sum(allowed_quantity - redeemed_quantity) as available_quantity')
+    //         ->where('user_id', $user->id)
+    //         ->where('layout_id', $layoutId)
+    //         ->whereRaw('expiring_at >= now()')
+    //         ->groupBy('layout_id')
+    //         ->havingRaw('available_quantity > 0')
+    //         ->first();
 
-        if(is_null($subscription) or (($subscription->available_quantity) <= 0))
-        {
-            throw new InvalidInputException("Subscription is invalid.");
-        }
-    }
+    //     if(is_null($subscription) or (($subscription->available_quantity) <= 0))
+    //     {
+    //         throw new InvalidInputException("Subscription is invalid.");
+    //     }
+    // }
 
     private function validateImage($url, $tag)
     {
