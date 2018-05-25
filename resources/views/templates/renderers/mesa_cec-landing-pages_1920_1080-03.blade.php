@@ -279,9 +279,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
             <div class="audio">
-                <div class="audio-placeholder">
-                    Audio
-                </div>
+                @include('templates.components.audio', ['value' => array_get($readableComponents, 'audio'), 'default' => 'audio'])
             </div> 
             <div class="blog-logo">
                 <div class="blog-logo-placeholder">
