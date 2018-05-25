@@ -323,15 +323,15 @@
             </div>
 
             <div class="social-qrs-1">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <div class="social-qrs-2">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <div class="social-qrs-3">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <div class="hero-image">

@@ -284,19 +284,19 @@
             <!-- QR Code Title 1 pending. -->
             
             <div class="social-qrs-1">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <!-- QR Code Title 2 pending. -->
             
             <div class="social-qrs-2">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <!-- QR Code Title 3 pending. -->
 
             <div class="social-qrs-3">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
             <div class="image-1">

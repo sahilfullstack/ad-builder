@@ -287,7 +287,7 @@
                 </div>
             </div>
              <div class="blog-qrs">
-                @include('templates.components.images', ['value' => array_get($readableComponents, 'blog-feed-url'), 'default' => 'blog-qr'])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'blog-feed-url'), 'default' => 'blog-qr', 'size' => 115])
             </div>
     </div>
 </body>
