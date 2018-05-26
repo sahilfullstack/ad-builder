@@ -77,6 +77,38 @@ class Unit extends Model
                 'order' => 6
             ],
         ],
+        'holder' => [
+            [
+                'name' => 'Choose Layout',
+                'slug' => 'layout',
+                'order' => 1
+            ],
+            [
+                'name' => 'Choose Template',
+                'slug' => 'template',
+                'order' => 2
+            ],
+            [
+                'name' => 'Customize Ad',
+                'slug' => 'components',
+                'order' => 3
+            ],
+            [
+                'name' => 'Category',
+                'slug' => 'category',
+                'order' => 4
+            ],
+            [
+                'name' => 'Ad Name',
+                'slug' => 'basic',
+                'order' => 5
+            ],
+            [
+                'name' => 'Build Landing Page',
+                'slug' => 'page',
+                'order' => 6
+            ],
+        ],
         'page' => [
             [
                 'name' => 'Choose Ad',
@@ -164,6 +196,11 @@ class Unit extends Model
     public function parent()
     {
         return $this->belongsTo(Unit::class);
+    }
+
+    public function children()
+    {
+        return $this->hasMany(Unit::class, 'parent_id');
     }
 
     public function child()

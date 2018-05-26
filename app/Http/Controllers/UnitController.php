@@ -69,7 +69,7 @@ class UnitController extends Controller
     public function edit(EditUnitRequest $request, Unit $unit)
     {
         $section = request()->input('section');
-
+        
         // If no or invalid type was passed, we would move to creating an ad.
         $validSections = array_pluck(Unit::$sections[$unit->type], 'slug');
 
@@ -156,12 +156,21 @@ class UnitController extends Controller
             throw new Exception('Layout not selected yet.');
         }
 
-        $query = Template::notDeleted()
-            ->whereType($unit->type)
-            ->where('layout_id', $unit->layout_id)
-            ->with('components');
+        if($unit->type == 'holder') {
+            $templates = Template::notDeleted()
+                ->whereType('ad')
+                ->whereIn('layout_id', $unit->children->pluck('layout_id')->unique())
+                ->with('components')
+                ->get()->groupBy('layout_id');
+        } else {
+            $templates = Template::notDeleted()
+                ->whereType($unit->type)
+                ->where('layout_id', $unit->layout_id)
+                ->with('components')
+                ->get();
+        }
         
-        return ['templates' => $query->get()];
+        return ['templates' => $templates];
     }    
 
     private function dataToEditCategory(Unit $unit)
@@ -173,7 +182,12 @@ class UnitController extends Controller
 
     private function dataToEditComponents(Unit $unit)
     {
-        return ['components' => $unit->template->components];
+        if($unit->type == 'holder') {
+            $components = $unit->children->pluck('template.components', 'template_id');
+        } else {
+            $components = $unit->template->components;
+        }
+        return ['components' => $components];
     }
 
     private function dataToEditBasic(Unit $unit)
