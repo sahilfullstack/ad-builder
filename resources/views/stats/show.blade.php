@@ -15,6 +15,9 @@
             <hr>
             <div class="panel panel-default">
                 <div class="panel-body">
+                    <create-pinned-report-button redirect-to="{{ route('dashboard')}}" report="{{ $report }}" :filters="{{ json_encode($filters) }}"></create-pinned-report-button>
+                </div>
+                <div class="panel-body">
                     @if($type == 'daterange')
                         <area-chart :data="{{ json_encode($range) }}"></area-chart>
                     @elseif($type == 'pie')

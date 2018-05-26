@@ -46,6 +46,8 @@ Vue.component('filter-form', require('./components/stats/FilterForm.vue'));
 Vue.component('update-user-profile-form', require('./components/users/UpdateUserProfileForm.vue'));
 
 Vue.component('edit-unit-category-form', require('./components/units/EditUnitCategoryForm.vue'));
+Vue.component('create-pinned-report-button', require('./components/reports/CreatePinnedReportButton.vue'));
+Vue.component('create-unpinned-report-button', require('./components/reports/CreateUnPinnedReportButton.vue'));
 
 const app = new Vue({
     el: '#app'

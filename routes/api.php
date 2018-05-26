@@ -41,3 +41,5 @@ Route::get('/units', ['as' => 'api.unit.list', 'uses' => 'UnitController@list'])
 Route::get('/units/{unit}',  ['as' => 'api.unit.list', 'uses' => 'UnitController@show'])->middleware('valid_api_headers');
 
 Route::post('/views', ['as' => 'api.view.store', 'uses' => 'ViewController@store'])->middleware('valid_api_headers');
+Route::post('/reports/pin', ['as' => 'reports.pin', 'uses' => 'ReportController@pin']);
+Route::delete('/reports/pin/{pinnedReport}', ['as' => 'reports.unpin', 'uses' => 'ReportController@unpin']);
