@@ -63,14 +63,19 @@ class DashboardController extends Controller
 
 	    foreach ($pinnedReports as $key => $pinnedReport) 
 	    {
-	    	foreach ($pinnedReport->filter as $filter) 
+	    	foreach ($pinnedReport->filter as $slug => $selected) 
 	    	{
-				$request->merge(array($filter['slug'] => $filter['selected']));
+				$request->merge(array($slug => $selected));
 	    	}
 
 	        list($type, $range, $fromDate, $toDate, $path, $filters, $report) = $this->{'get' . Str::studly($pinnedReport->report)}($request, $from->toDateString(), $to->toDateString());
 
-	        $preparedReports[] = [$type, $range, $fromDate, $toDate, $path, $filters, $report, $pinnedReport];
+            foreach ($pinnedReport->filter as $slug => $selected) 
+            {
+                $request->merge(array($slug => null));
+            }
+	        
+            $preparedReports[] = [$type, $range, $fromDate, $toDate, $path, $filters, $report, $pinnedReport];
 	    }
 
 	    return $preparedReports;
