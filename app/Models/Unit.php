@@ -19,7 +19,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
+        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'is_holder', 'parent_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**
@@ -46,38 +46,6 @@ class Unit extends Model
 
     public static $sections = [
         'ad' => [
-            [
-                'name' => 'Choose Layout',
-                'slug' => 'layout',
-                'order' => 1
-            ],
-            [
-                'name' => 'Choose Template',
-                'slug' => 'template',
-                'order' => 2
-            ],
-            [
-                'name' => 'Customize Ad',
-                'slug' => 'components',
-                'order' => 3
-            ],
-            [
-                'name' => 'Category',
-                'slug' => 'category',
-                'order' => 4
-            ],
-            [
-                'name' => 'Ad Name',
-                'slug' => 'basic',
-                'order' => 5
-            ],
-            [
-                'name' => 'Build Landing Page',
-                'slug' => 'page',
-                'order' => 6
-            ],
-        ],
-        'holder' => [
             [
                 'name' => 'Choose Layout',
                 'slug' => 'layout',
@@ -198,14 +166,14 @@ class Unit extends Model
         return $this->belongsTo(Unit::class);
     }
 
-    public function children()
+    public function holdee()
     {
         return $this->hasMany(Unit::class, 'parent_id');
     }
 
     public function child()
     {
-        return $this->hasOne(Unit::class, 'parent_id');
+        return $this->hasOne(Unit::class, 'parent_id')->where('is_holder', $this->is_holder);
     }
 
     public function category()

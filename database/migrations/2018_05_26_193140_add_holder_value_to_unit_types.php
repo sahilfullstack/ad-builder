@@ -13,7 +13,9 @@ class AddHolderValueToUnitTypes extends Migration
      */
     public function up()
     {
-        DB::statement("ALTER TABLE `units` MODIFY COLUMN `type` ENUM('ad', 'page', 'holder') NOT NULL DEFAULT 'ad'");
+        Schema::table('units', function (Blueprint $table) {
+            $table->boolean('is_holder')->after('type');
+        });
     }
 
     /**
@@ -23,6 +25,8 @@ class AddHolderValueToUnitTypes extends Migration
      */
     public function down()
     {
-        DB::statement("ALTER TABLE `units` MODIFY COLUMN `type` ENUM('ad', 'page') NOT NULL DEFAULT 'ad'");
+        Schema::table('units', function (Blueprint $table) {
+            $table->dropColumn('is_holder');
+        });
     }
 }

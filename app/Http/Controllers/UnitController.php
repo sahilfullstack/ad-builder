@@ -156,10 +156,10 @@ class UnitController extends Controller
             throw new Exception('Layout not selected yet.');
         }
 
-        if($unit->type == 'holder') {
+        if($unit->is_holder) {
             $templates = Template::notDeleted()
                 ->whereType('ad')
-                ->whereIn('layout_id', $unit->children->pluck('layout_id')->unique())
+                ->whereIn('layout_id', $unit->holdee->pluck('layout_id')->unique())
                 ->with('components')
                 ->get()->groupBy('layout_id');
         } else {
@@ -182,8 +182,8 @@ class UnitController extends Controller
 
     private function dataToEditComponents(Unit $unit)
     {
-        if($unit->type == 'holder') {
-            $components = $unit->children->pluck('template.components', 'template_id');
+        if($unit->is_holder) {
+            $components = $unit->holdee->pluck('template.components', 'template_id');
         } else {
             $components = $unit->template->components;
         }
@@ -212,41 +212,65 @@ class UnitController extends Controller
 
     public function editLandingPage(EditUnitRequest $request, Unit $unit)
     {
-        // only ads can have page
-        if($unit->type != 'ad')
-        {
-            return redirect(route('units.list'));
+        try {
+
+            DB::beginTransaction();
+
+            // only ads can have page
+            if ($unit->type != 'ad') {
+                return redirect(route('units.list'));
+            }
+            
+            // only user's own ads can have pages
+            if ($unit->user->id != auth()->user()->id) {
+                return redirect(route('units.list'));
+            }
+
+            // ad has page existing already
+            if (! is_null($unit->child)) {
+                $child = $unit->child;
+            } else {
+                $layout = Layout::notDeleted()->whereSlug('full-page')->first();
+
+                $child = new Unit([
+                    'user_id' => auth()->user()->id,
+                    'type' => 'page',
+                    'is_holder' => $unit->is_holder,
+                    'layout_id' => $layout->id,
+                    'parent_id' => $unit->id,
+                    'components' => [],
+                    'experimental_components' => [],
+                ]);
+
+                $child->save();
+
+                $child->fresh();
+            }
+
+            if ($unit->is_holder) {
+                foreach ($unit->holdee as $held) {
+                    $layout = Layout::notDeleted()->whereSlug('full-page')->first();
+
+                    $page = new Unit([
+                        'user_id' => auth()->user()->id,
+                        'type' => 'page',
+                        'is_holder' => false,
+                        'layout_id' => $layout->id,
+                        'parent_id' => $child->id,
+                        'components' => [],
+                        'experimental_components' => [],
+                    ]);
+
+                    $page->save();
+                }
+            }
+            DB::commit();
+            return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
+        } catch(\Exception $e){
+            DB::rollback();
+
+            throw $e;
         }
-        
-        // only user's own ads can have pages
-        if($unit->user->id != auth()->user()->id)
-        {           
-            return redirect(route('units.list'));
-        }
-
-        // ad has page existing already
-        if(! is_null($unit->child))
-        {
-            $child = $unit->child;
-        }
-        else
-        {
-            $layout = Layout::notDeleted()->whereSlug('full-page')->first();
-
-            $child = new Unit([
-                'user_id' => auth()->user()->id,
-                'type' => 'page',
-                'layout_id' => $layout->id,
-                'parent_id' => $unit->id,
-                'components' => []
-            ]);
-
-            $child->save();
-
-            $child->fresh();
-        }
-
-        return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
     }
     
     public function listUnitsForApproval(ListUnitRequestForApproval $request)

@@ -26,7 +26,7 @@ class AddExperimentalComponentsToUnitsTable extends Migration
     public function down()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->json('experimental_components')->after('components');
+            $table->dropColumn('experimental_columns');
         });
     }
 }

@@ -36,9 +36,9 @@
                             :layouts="{{ $data['layouts']->toJson() }}">
                         </edit-unit-layout-form>
                     @elseif($section == 'template')
-                        @if($unit->type == 'holder')
+                        @if($unit->is_holder)
                             <div class="panel-group" id="accordion" role="tablist" >
-                            @foreach($unit->children as $index => $child)
+                            @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
@@ -49,7 +49,7 @@
                                     </div>
                                     <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
-                                            @if($unit->children->get($index + 1) == null)
+                                            @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-template-form
                                                     redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                                                     :unit="{{ $child->toJson() }}"
@@ -58,7 +58,7 @@
                                             @else
                                                 <edit-unit-template-form
                                                     moving-from="collapse-{{ $child->id }}"
-                                                    move-to="collapse-{{ $unit->children->get($index + 1)->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
                                                     :unit="{{ $child->toJson() }}"
                                                     :templates="{{ $data['templates'][$child->layout_id]->toJson() }}">
                                                 </edit-unit-template-form>
@@ -76,9 +76,9 @@
                             </edit-unit-template-form>
                         @endif
                     @elseif($section == 'components')
-                        @if($unit->type == 'holder')
+                        @if($unit->is_holder)
                             <div class="panel-group" id="accordion" role="tablist" >
-                            @foreach($unit->children as $index => $child)
+                            @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
@@ -89,7 +89,7 @@
                                     </div>
                                     <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
-                                            @if($unit->children->get($index + 1) == null)
+                                            @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-components-form
                                                     redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                                                     :unit="{{ $child->toJson() }}"
@@ -98,7 +98,7 @@
                                             @else
                                                 <edit-unit-components-form
                                                     moving-from="collapse-{{ $child->id }}"
-                                                    move-to="collapse-{{ $unit->children->get($index + 1)->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
                                                     :unit="{{ $child->toJson() }}"
                                                     :components="{{ $data['components'][$child->template_id]->toJson() }}">
                                                 </edit-unit-components-form>
@@ -116,9 +116,9 @@
                         </edit-unit-components-form>
                         @endif
                     @elseif($section == 'category')
-                        @if($unit->type == 'holder')
+                        @if($unit->is_holder)
                             <div class="panel-group" id="accordion" role="tablist" >
-                            @foreach($unit->children as $index => $child)
+                            @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
@@ -129,7 +129,7 @@
                                     </div>
                                     <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
-                                            @if($unit->children->get($index + 1) == null)
+                                            @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-category-form
                                                     redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                                                     :unit="{{ $child->toJson() }}"
@@ -138,7 +138,7 @@
                                             @else
                                                 <edit-unit-category-form
                                                     moving-from="collapse-{{ $child->id }}"
-                                                    move-to="collapse-{{ $unit->children->get($index + 1)->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
                                                     :unit="{{ $child->toJson() }}"
                                                     :categories="{{ $data['categories']->toJson() }}">
                                                 </edit-unit-category-form>
@@ -156,9 +156,9 @@
                         </edit-unit-category-form>
                         @endif
                     @elseif($section == 'basic')
-                        @if($unit->type == 'holder')
+                        @if($unit->is_holder)
                             <div class="panel-group" id="accordion" role="tablist" >
-                            @foreach($unit->children as $index => $child)
+                            @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
@@ -169,7 +169,7 @@
                                     </div>
                                     <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
-                                            @if($unit->children->get($index + 1) == null)
+                                            @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-basic-form
                                                     redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                                                     :unit="{{ $child->toJson() }}">
@@ -177,7 +177,7 @@
                                             @else
                                                 <edit-unit-basic-form
                                                     moving-from="collapse-{{ $child->id }}"
-                                                    move-to="collapse-{{ $unit->children->get($index + 1)->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
                                                     :unit="{{ $child->toJson() }}">
                                                 </edit-unit-basic-form>
                                             @endif
