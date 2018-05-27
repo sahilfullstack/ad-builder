@@ -9,6 +9,8 @@ use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequ
 use Carbon\Carbon, DB;
 use Exception;
 use App\Models\Component;
+use App\Services\SlideMaker\Canvas;
+use App\Services\SlideMaker\Element;
 
 class UnitController extends Controller
 {
@@ -113,9 +115,28 @@ class UnitController extends Controller
                 return view('templates.renderers.null');
             }
         }
-
+        
         $bodyClass = '';
         if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
+
+        if($unit->is_holder)
+        {
+            $unit->load('holdee');
+
+            $canvas = new Canvas(1920, 1080);
+
+            $contents = $unit->layout->contents;
+            
+            $contentLayouts = Layout::findMany($contents);
+            
+            foreach($unit->holdee as $index => $held)
+            {
+                $canvas->fitElement(new Element($held->layout->width, $held->layout->height, $held));
+            }
+
+            return view('templates.renderers.full-page-customizable', compact('canvas'));
+        }
+
         if(! is_null(request()->query('is_preview')))
         {
             $readableComponents = $unit->readable_experimental_components;
