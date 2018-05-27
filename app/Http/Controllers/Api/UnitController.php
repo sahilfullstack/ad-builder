@@ -25,7 +25,9 @@ class UnitController extends Controller
         $unit = new Unit([
             'user_id'    => auth()->user()->id,
             'type'       => $request->type,
-            'components' => []
+            'components' => [],
+            'experimental_components' => [],
+            'is_holder' => false,
         ]);
 
         if($request->has('parent_id'))
@@ -390,6 +392,22 @@ class UnitController extends Controller
             if (!is_null($request->layout_id))
             {
                 $unit->layout_id = $request->layout_id;
+
+                if($unit->layout->hasParent()) {
+                    $unit->is_holder = true;
+
+                    foreach(str_split($unit->layout->contents) as $layoutId) {
+                        Unit::create([
+                            'user_id'    => auth()->user()->id,
+                            'parent_id'  => $unit->id,
+                            'layout_id'  => $layoutId,
+                            'type'       => $unit->type,
+                            'components' => [],
+                            'experimental_components' => [],
+                            'is_holder' => false,
+                        ]);
+                    }
+                }
             }
 
             // if template is sent

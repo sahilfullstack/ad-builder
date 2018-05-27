@@ -87,9 +87,9 @@
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
-    <div id="workspace">
+    <div id="workspace" style="background: {{ request()->input('color', 'y') == 'y' ? sprintf('#%06X', mt_rand(0, 0xFFFFFF)) : ''}}">
         <!-- Empty -->
-        <p class="null-state">Workspace.</p>
+        <p class="null-state"></p>
     </div>
 </body>
 </html>

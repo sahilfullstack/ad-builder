@@ -19,7 +19,7 @@ class Layout extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'width', 'height', 'user_id'
+        'name', 'slug', 'width', 'height', 'user_id', 'parent_id'
     ];
 
     /**
@@ -43,5 +43,10 @@ class Layout extends Model
     public function templates()
     {
         return $this->hasMany(Template::class);
+    }
+
+    public function hasParent()
+    {
+        return ! is_null($this->parent_id);
     }
 }

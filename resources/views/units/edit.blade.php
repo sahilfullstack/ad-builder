@@ -36,7 +36,7 @@
                         width="{{ $origin->getElement()->getPixelWidth() / 2 }}"
                         height="{{ $origin->getElement()->getPixelHeight() / 2 }}"
                         src="{{ route('units.render', array_merge(
-                            ['unit' => $origin->getElement()->getContent()->id], request()->query()
+                            ['unit' => $origin->getElement()->getContent()->id, 'nullable' => 'y', 'color' => 'y'], request()->query()
                         ))}}"
                         data-meta="{{ $origin->getPositionTop() }} - {{ $origin->getPositionLeft() }}"
                         style="
