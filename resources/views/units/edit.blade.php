@@ -33,7 +33,8 @@
                         <edit-unit-layout-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}"
-                            :layouts="{{ $data['layouts']->toJson() }}">
+                            :layouts="{{ $data['layouts']->toJson() }}"
+                            :children="{{ json_encode(array_pluck($data['layouts'], 'children', 'id')) }}">
                         </edit-unit-layout-form>
                     @elseif($section == 'template')
                         @if($unit->is_holder)

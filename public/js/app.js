@@ -79902,10 +79902,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
         layouts: {
+            type: Array,
+            required: true
+        },
+        children: {
             type: Array,
             required: true
         },
@@ -79922,7 +79930,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                layout_id: this.unit.layout_id == null ? this.layouts.length > 0 ? this.layouts[0].id : 0 : this.unit.layout_id
+                layout_id: this.unit.layout_id == null ? this.layouts.length > 0 ? this.layouts[0].id : 0 : this.unit.layout_id,
+                child_id: 0
             },
             errors: [],
             disable: {
@@ -79932,6 +79941,19 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    watch: {
+        'form.layout_id': function formLayout_id() {
+
+            if (this.children[this.form.layout_id] != undefined) {
+                this.form.child_id = 0;
+            }
+
+            if (this.children[this.form.layout_id] != undefined && this.children[this.form.layout_id].length > 0) {
+                this.form.child_id = this.children[this.form.layout_id][0].id;
+            }
+        }
+    },
+
     methods: {
         update: function update() {
             var _this = this;
@@ -79940,6 +79962,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             this.errors = [];
+            console.log(this.form.layout_id);
+            if (this.form.child_id != 0) {
+                this.form.layout_id = this.form.child_id;
+            }
+
+            console.log(this.form.layout_id);
 
             axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
                 // Fixing the optimism.
@@ -79957,6 +79985,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     console.log(self.errors);
                 });
             });
+        }
+    },
+    mounted: function mounted() {
+        if (this.children[this.form.layout_id] != undefined && this.children[this.form.layout_id].length > 0) {
+            this.form.child_id = this.children[this.form.layout_id][0].id;
         }
     }
 });
@@ -80024,6 +80057,51 @@ var render = function() {
                   "option",
                   { key: layout.id, domProps: { value: layout.id } },
                   [_vm._v(_vm._s(layout.name))]
+                )
+              })
+            )
+          : _vm._e(),
+        _vm._v(" "),
+        _c("br"),
+        _vm._v(" "),
+        _vm.children[_vm.form.layout_id] != undefined &&
+        _vm.children[_vm.form.layout_id].length > 0
+          ? _c(
+              "select",
+              {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.form.child_id,
+                    expression: "form.child_id"
+                  }
+                ],
+                staticClass: "form-control",
+                attrs: { name: "child_id", id: "child_id" },
+                on: {
+                  change: function($event) {
+                    var $$selectedVal = Array.prototype.filter
+                      .call($event.target.options, function(o) {
+                        return o.selected
+                      })
+                      .map(function(o) {
+                        var val = "_value" in o ? o._value : o.value
+                        return val
+                      })
+                    _vm.$set(
+                      _vm.form,
+                      "child_id",
+                      $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                    )
+                  }
+                }
+              },
+              _vm._l(_vm.children[_vm.form.layout_id], function(child, key) {
+                return _c(
+                  "option",
+                  { key: key, domProps: { value: child.id } },
+                  [_vm._v(_vm._s(child.name))]
                 )
               })
             )

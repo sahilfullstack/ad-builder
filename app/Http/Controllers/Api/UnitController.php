@@ -23,9 +23,11 @@ class UnitController extends Controller
     {
         // Blank unit is created
         $unit = new Unit([
-            'user_id'    => auth()->user()->id,
-            'type'       => $request->type,
-            'components' => []
+            'user_id'                 => auth()->user()->id,
+            'type'                    => $request->type,
+            'components'              => [],
+            'experimental_components' => [],
+            'is_holder'               => 0
         ]);
 
         if($request->has('parent_id'))

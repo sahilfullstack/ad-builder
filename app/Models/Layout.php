@@ -44,4 +44,9 @@ class Layout extends Model
     {
         return $this->hasMany(Template::class);
     }
+
+    public function children()
+    {
+        return $this->hasMany(Layout::class, 'parent_id')->orderBy('id');
+    }
 }
