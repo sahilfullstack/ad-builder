@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
+use App\Models\Traits\ContainsSoftDeletableUniques;
 
 class Unit extends Model
 {
-    use Loggable, SoftDeletes;
+    use Loggable, SoftDeletes, ContainsSoftDeletableUniques;
 
     const SOFT_DELETION_TOKEN = 'deleted_at_millis';
 
@@ -168,7 +169,7 @@ class Unit extends Model
 
     public function holdee()
     {
-        return $this->hasMany(Unit::class, 'parent_id')->where('type', $this->type)->where('is_holder', false)->orderBy('id');
+        return $this->hasMany(Unit::class, 'parent_id')->where('is_holder', false)->orderBy('id');
     }
 
     public function child()

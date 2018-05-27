@@ -84,22 +84,28 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::published()->approved()->with(['category', 'layout', 'child', 'template.components'])->orderBy('layout_id');
+        $units = Unit::published()->approved()->with(['holdee', 'holdee.category', 'holdee.layout', 'holdee.child', 'category', 'layout', 'child', 'template.components'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
         
         if( ! is_null($request->get('type')))
         {
             $units = $units->where('type', $request->get('type'));
+
+            if($request->get('type') == 'ad') $units->whereNull('parent_id');
         }
 
         if( ! is_null($request->get('ids')))
         {
             $units = $units->whereIn('id', explode(',', $request->get('ids')));
         }
-
         $units = $units->get()->toArray();
         
-        $formatter = Formatter::make($this->transformUnitsForKiosk($units), Formatter::ARR);
+        foreach($units as $index => $unit)
+        {
+            if($unit['is_holder']) array_splice($units, $index, 1, $unit['holdee']);
+        }
         
+        $formatter = Formatter::make($this->transformUnitsForKiosk($units), Formatter::ARR);
+        dd($formatter->toXml());
         return $this->returnResponseToSpecificFormat($formatter, $request->get('responseFormat'));
     }
 
@@ -133,7 +139,6 @@ class UnitController extends Controller
                 'category_id' => $unit['category']['id'],
                 'category' => $unit['category']['name'],
                 'title' => $unit['name'],
-                'assets' => implode(',', $this->findAssetUrls($unit)),
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
                 'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
                 'layout_id' => $unit['layout_id'] - 1,
@@ -395,29 +400,30 @@ class UnitController extends Controller
                 {
                     // if layout is changed, we will remove all the holdees.
                     foreach($unit->holdee as $held) $held->delete();
+                    
+                    $unit->layout_id = $request->layout_id;
+    
+                    if($unit->layout->hasParent()) {
+    
+                        // if this layout is a holder layout
+                        $unit->is_holder = true;
+    
+                        foreach(str_split($unit->layout->contents) as $layoutId) {
+                            Unit::create([
+                                'user_id'    => auth()->user()->id,
+                                'parent_id'  => $unit->id,
+                                'layout_id'  => $layoutId,
+                                'type'       => $unit->type,
+                                'components' => [],
+                                'experimental_components' => [],
+                                'is_holder' => false,
+                            ]);
+                        }
+                    } else {
+                        $unit->is_holder = false;
+                    }
                 }
                 
-                $unit->layout_id = $request->layout_id;
-
-                if($unit->layout->hasParent()) {
-
-                    // if this layout is a holder layout
-                    $unit->is_holder = true;
-
-                    foreach(str_split($unit->layout->contents) as $layoutId) {
-                        Unit::create([
-                            'user_id'    => auth()->user()->id,
-                            'parent_id'  => $unit->id,
-                            'layout_id'  => $layoutId,
-                            'type'       => $unit->type,
-                            'components' => [],
-                            'experimental_components' => [],
-                            'is_holder' => false,
-                        ]);
-                    }
-                } else {
-                    $unit->is_holder = false;
-                }
             }
 
             // if template is sent
