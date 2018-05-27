@@ -80581,7 +80581,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.put('/api/units/' + this.unit.id, experimentalForm).then(function (response) {
                 _this2.disable.previewing = false;
 
-                var frameElement = document.getElementById("renderer-iframe");
+                var frameElement = document.getElementById("renderer-iframe-" + _this2.unit.id);
                 if (frameElement) frameElement.contentWindow.location.href = frameElement.src + '&is_preview=y';
             }).catch(function (error) {
                 // Fixing the optimism.

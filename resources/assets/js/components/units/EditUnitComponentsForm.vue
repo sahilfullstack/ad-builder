@@ -165,7 +165,7 @@ export default {
                 .then(response => {
                     this.disable.previewing = false;
 
-                    var frameElement = document.getElementById("renderer-iframe");
+                    var frameElement = document.getElementById("renderer-iframe-" + this.unit.id);
                     if(frameElement) frameElement.contentWindow.location.href = frameElement.src + '&is_preview=y';
                 })
                 .catch(error => {

@@ -108,14 +108,6 @@ class UnitController extends Controller
 
     public function render(Unit $unit)
     {
-        if(request()->input('nullable', 'n') == 'y')
-        {
-            if(is_null($unit->template) || is_null($unit->template->renderer))
-            {
-                return view('templates.renderers.null');
-            }
-        }
-        
         $bodyClass = '';
         if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
 
@@ -135,6 +127,14 @@ class UnitController extends Controller
             }
 
             return view('templates.renderers.full-page-customizable', compact('canvas'));
+        }
+
+        if(request()->input('nullable', 'n') == 'y')
+        {
+            if(is_null($unit->template) || is_null($unit->template->renderer))
+            {
+                return view('templates.renderers.null');
+            }
         }
 
         if(! is_null(request()->query('is_preview')))

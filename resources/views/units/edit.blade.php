@@ -17,7 +17,7 @@
         </div>
         <div class="col-md-9">
             
-            <iframe id="renderer-iframe" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
+            <iframe id="renderer-iframe-{{ $unit->id }}" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
             
             <hr>
 
