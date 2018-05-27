@@ -72,15 +72,19 @@ export default {
             var self = this;
             
             this.errors = [];
-console.log(this.form.layout_id);
+
             if(this.form.child_id != 0)
             {
-                this.form.layout_id = this.form.child_id;            
-            }
+                var formToBeSubmitted = _.cloneDeep(this.form);
 
-            console.log(this.form.layout_id);
+                formToBeSubmitted.layout_id = this.form.child_id;            
+            } else {
+                formToBeSubmitted = _.cloneDeep(this.form);
+            } 
 
-            axios.put('/api/units/' + this.unit.id, this.form)
+            delete formToBeSubmitted['child_id'];
+
+            axios.put('/api/units/' + this.unit.id, formToBeSubmitted)
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.saving = false;

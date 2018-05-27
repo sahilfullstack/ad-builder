@@ -79962,14 +79962,18 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var self = this;
 
             this.errors = [];
-            console.log(this.form.layout_id);
+
             if (this.form.child_id != 0) {
-                this.form.layout_id = this.form.child_id;
+                var formToBeSubmitted = _.cloneDeep(this.form);
+
+                formToBeSubmitted.layout_id = this.form.child_id;
+            } else {
+                formToBeSubmitted = _.cloneDeep(this.form);
             }
 
-            console.log(this.form.layout_id);
+            delete formToBeSubmitted['child_id'];
 
-            axios.put('/api/units/' + this.unit.id, this.form).then(function (response) {
+            axios.put('/api/units/' + this.unit.id, formToBeSubmitted).then(function (response) {
                 // Fixing the optimism.
                 _this.disable.saving = false;
 
