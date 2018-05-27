@@ -114,13 +114,7 @@ class UnitController extends Controller
         if($unit->is_holder)
         {
             $unit->load('holdee');
-
             $canvas = new Canvas(1920, 1080);
-
-            $contents = $unit->layout->contents;
-            
-            $contentLayouts = Layout::findMany($contents);
-            
             foreach($unit->holdee as $index => $held)
             {
                 $canvas->fitElement(new Element($held->layout->width, $held->layout->height, $held));

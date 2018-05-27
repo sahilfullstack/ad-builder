@@ -6,10 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
+use App\Models\Traits\ContainsSoftDeletableUniques;
 
 class Unit extends Model
 {
-    use Loggable, SoftDeletes;
+    use Loggable, SoftDeletes, ContainsSoftDeletableUniques;
 
     const SOFT_DELETION_TOKEN = 'deleted_at_millis';
 

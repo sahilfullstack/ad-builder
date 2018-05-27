@@ -19,7 +19,7 @@ class Layout extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'slug', 'width', 'height', 'user_id'
+        'name', 'slug', 'width', 'height', 'user_id', 'parent_id'
     ];
 
     /**
@@ -48,5 +48,10 @@ class Layout extends Model
     public function children()
     {
         return $this->hasMany(Layout::class, 'parent_id')->orderBy('id');
+    }
+
+    public function hasParent()
+    {
+        return ! is_null($this->parent_id);
     }
 }
