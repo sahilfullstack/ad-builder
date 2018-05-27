@@ -391,9 +391,17 @@ class UnitController extends Controller
             // if layout is sent
             if (!is_null($request->layout_id))
             {
+                if($unit->layout_id != $request->layout_id)
+                {
+                    // if layout is changed, we will remove all the holdees.
+                    foreach($unit->holdee as $held) $held->delete();
+                }
+                
                 $unit->layout_id = $request->layout_id;
 
                 if($unit->layout->hasParent()) {
+
+                    // if this layout is a holder layout
                     $unit->is_holder = true;
 
                     foreach(str_split($unit->layout->contents) as $layoutId) {
@@ -407,6 +415,8 @@ class UnitController extends Controller
                             'is_holder' => false,
                         ]);
                     }
+                } else {
+                    $unit->is_holder = false;
                 }
             }
 
