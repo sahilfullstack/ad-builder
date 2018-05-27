@@ -17,8 +17,7 @@
         </div>
         <div class="col-md-9">
             
-            
-            <iframe id="renderer-iframe" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
+            <iframe id="renderer-iframe-{{ $unit->id }}" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
             
             <hr>
 
@@ -37,28 +36,162 @@
                             :layouts="{{ $data['layouts']->toJson() }}">
                         </edit-unit-layout-form>
                     @elseif($section == 'template')
-                        <edit-unit-template-form
-                            redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
-                            :unit="{{ $unit->toJson() }}"
-                            :templates="{{ $data['templates']->toJson() }}">
-                        </edit-unit-template-form>
+                        @if($unit->is_holder)
+                            <div class="panel-group" id="accordion" role="tablist" >
+                            @foreach($unit->holdee as $index => $child)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            {{ $child->layout->name }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                        <div class="panel-body">
+                                            @if($unit->holdee->get($index + 1) == null)
+                                                <edit-unit-template-form
+                                                    redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :templates="{{ $data['templates'][$child->layout_id]->toJson() }}">
+                                                </edit-unit-template-form>
+                                            @else
+                                                <edit-unit-template-form
+                                                    moving-from="collapse-{{ $child->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :templates="{{ $data['templates'][$child->layout_id]->toJson() }}">
+                                                </edit-unit-template-form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        @else
+                            <edit-unit-template-form
+                                redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                                :unit="{{ $unit->toJson() }}"
+                                :templates="{{ $data['templates']->toJson() }}">
+                            </edit-unit-template-form>
+                        @endif
                     @elseif($section == 'components')
+                        @if($unit->is_holder)
+                            <div class="panel-group" id="accordion" role="tablist" >
+                            @foreach($unit->holdee as $index => $child)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            {{ $child->layout->name }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                        <div class="panel-body">
+                                            @if($unit->holdee->get($index + 1) == null)
+                                                <edit-unit-components-form
+                                                    redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :components="{{ $data['components'][$child->template_id]->toJson() }}">
+                                                </edit-unit-components-form>
+                                            @else
+                                                <edit-unit-components-form
+                                                    moving-from="collapse-{{ $child->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :components="{{ $data['components'][$child->template_id]->toJson() }}">
+                                                </edit-unit-components-form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        @else
                         <edit-unit-components-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->load('template.components')->toJson() }}"
                             :components="{{ $data['components']->toJson() }}">
                         </edit-unit-components-form>
+                        @endif
                     @elseif($section == 'category')
+                        @if($unit->is_holder)
+                            <div class="panel-group" id="accordion" role="tablist" >
+                            @foreach($unit->holdee as $index => $child)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            {{ $child->layout->name }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                        <div class="panel-body">
+                                            @if($unit->holdee->get($index + 1) == null)
+                                                <edit-unit-category-form
+                                                    redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :categories="{{ $data['categories']->toJson() }}">
+                                                </edit-unit-category-form>
+                                            @else
+                                                <edit-unit-category-form
+                                                    moving-from="collapse-{{ $child->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
+                                                    :unit="{{ $child->toJson() }}"
+                                                    :categories="{{ $data['categories']->toJson() }}">
+                                                </edit-unit-category-form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        @else
                         <edit-unit-category-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}"
                             :categories="{{ $data['categories']->toJson() }}">
                         </edit-unit-category-form>
+                        @endif
                     @elseif($section == 'basic')
+                        @if($unit->is_holder)
+                            <div class="panel-group" id="accordion" role="tablist" >
+                            @foreach($unit->holdee as $index => $child)
+                                <div class="panel panel-default">
+                                    <div class="panel-heading" role="tab">
+                                        <h4 class="panel-title">
+                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            {{ $child->layout->name }}
+                                            </a>
+                                        </h4>
+                                    </div>
+                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                        <div class="panel-body">
+                                            @if($unit->holdee->get($index + 1) == null)
+                                                <edit-unit-basic-form
+                                                    redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
+                                                    :unit="{{ $child->toJson() }}">
+                                                </edit-unit-basic-form>
+                                            @else
+                                                <edit-unit-basic-form
+                                                    moving-from="collapse-{{ $child->id }}"
+                                                    move-to="collapse-{{ $unit->holdee->get($index + 1)->id }}"
+                                                    :unit="{{ $child->toJson() }}">
+                                                </edit-unit-basic-form>
+                                            @endif
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                            </div>
+                        @else
                         <edit-unit-basic-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"
                             :unit="{{ $unit->toJson() }}">
                         </edit-unit-basic-form>
+                        @endif
                     @elseif($section == 'page')
                         <edit-unit-landing-page-form
                             redirect-to="{{ $unit->nextSectionEditRoute($section) }}"

@@ -28,7 +28,15 @@ export default {
         },
         redirectTo: {
             type: String,
-            required: true
+            required: false
+        },
+        movingFrom: {
+            type: String,
+            required: false
+        },
+        moveTo: {
+            type: String,
+            required: false
         }
     },
 
@@ -62,7 +70,12 @@ export default {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    window.location = this.redirectTo;
+                    if(this.moveTo !== undefined) {
+                        $('#' + this.movingFrom).collapse('hide');
+                        $('#' + this.moveTo).collapse('show');
+                    } else {
+                        window.location = this.redirectTo;
+                    }
                 })
                 .catch(error => {
                     // Fixing the optimism.

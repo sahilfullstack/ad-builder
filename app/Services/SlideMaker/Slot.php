@@ -9,6 +9,9 @@ class Slot
     protected $y;
     protected $element;
 
+    const WIDTH = 480;
+    const HEIGHT = 540;
+
     public function __construct($x, $y)
     {
         $this->x = $x;
@@ -26,9 +29,19 @@ class Slot
         return $this->x;
     }
 
+    public function getPositionTop()
+    {
+        return $this->x * self::HEIGHT;
+    }
+
     public function getY()
     {
         return $this->y;
+    }
+
+    public function getPositionLeft()
+    {
+        return $this->y * self::WIDTH;
     }
 
     public function getElement()

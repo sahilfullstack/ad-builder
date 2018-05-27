@@ -9,6 +9,8 @@ use App\Http\Requests\{ListUnitRequestForApproval, ShowUnitRequest, EditUnitRequ
 use Carbon\Carbon, DB;
 use Exception;
 use App\Models\Component;
+use App\Services\SlideMaker\Canvas;
+use App\Services\SlideMaker\Element;
 
 class UnitController extends Controller
 {
@@ -69,7 +71,7 @@ class UnitController extends Controller
     public function edit(EditUnitRequest $request, Unit $unit)
     {
         $section = request()->input('section');
-
+        
         // If no or invalid type was passed, we would move to creating an ad.
         $validSections = array_pluck(Unit::$sections[$unit->type], 'slug');
 
@@ -106,6 +108,27 @@ class UnitController extends Controller
 
     public function render(Unit $unit)
     {
+        $bodyClass = '';
+        if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
+
+        if($unit->is_holder)
+        {
+            $unit->load('holdee');
+
+            $canvas = new Canvas(1920, 1080);
+
+            $contents = $unit->layout->contents;
+            
+            $contentLayouts = Layout::findMany($contents);
+            
+            foreach($unit->holdee as $index => $held)
+            {
+                $canvas->fitElement(new Element($held->layout->width, $held->layout->height, $held));
+            }
+
+            return view('templates.renderers.full-page-customizable', compact('canvas'));
+        }
+
         if(request()->input('nullable', 'n') == 'y')
         {
             if(is_null($unit->template) || is_null($unit->template->renderer))
@@ -114,8 +137,6 @@ class UnitController extends Controller
             }
         }
 
-        $bodyClass = '';
-        if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
         if(! is_null(request()->query('is_preview')))
         {
             $readableComponents = $unit->readable_experimental_components;
@@ -156,12 +177,21 @@ class UnitController extends Controller
             throw new Exception('Layout not selected yet.');
         }
 
-        $query = Template::notDeleted()
-            ->whereType($unit->type)
-            ->where('layout_id', $unit->layout_id)
-            ->with('components');
+        if($unit->is_holder) {
+            $templates = Template::notDeleted()
+                ->whereType('ad')
+                ->whereIn('layout_id', $unit->holdee->pluck('layout_id')->unique())
+                ->with('components')
+                ->get()->groupBy('layout_id');
+        } else {
+            $templates = Template::notDeleted()
+                ->whereType($unit->type)
+                ->where('layout_id', $unit->layout_id)
+                ->with('components')
+                ->get();
+        }
         
-        return ['templates' => $query->get()];
+        return ['templates' => $templates];
     }    
 
     private function dataToEditCategory(Unit $unit)
@@ -173,7 +203,12 @@ class UnitController extends Controller
 
     private function dataToEditComponents(Unit $unit)
     {
-        return ['components' => $unit->template->components];
+        if($unit->is_holder) {
+            $components = $unit->holdee->pluck('template.components', 'template_id');
+        } else {
+            $components = $unit->template->components;
+        }
+        return ['components' => $components];
     }
 
     private function dataToEditBasic(Unit $unit)
@@ -198,41 +233,65 @@ class UnitController extends Controller
 
     public function editLandingPage(EditUnitRequest $request, Unit $unit)
     {
-        // only ads can have page
-        if($unit->type != 'ad')
-        {
-            return redirect(route('units.list'));
+        try {
+
+            DB::beginTransaction();
+
+            // only ads can have page
+            if ($unit->type != 'ad') {
+                return redirect(route('units.list'));
+            }
+            
+            // only user's own ads can have pages
+            if ($unit->user->id != auth()->user()->id) {
+                return redirect(route('units.list'));
+            }
+
+            // ad has page existing already
+            if (! is_null($unit->child)) {
+                $child = $unit->child;
+            } else {
+                $layout = Layout::notDeleted()->whereSlug('full-page')->first();
+
+                $child = new Unit([
+                    'user_id' => auth()->user()->id,
+                    'type' => 'page',
+                    'is_holder' => $unit->is_holder,
+                    'layout_id' => $layout->id,
+                    'parent_id' => $unit->id,
+                    'components' => [],
+                    'experimental_components' => [],
+                ]);
+
+                $child->save();
+
+                $child->fresh();
+            }
+
+            if ($unit->is_holder) {
+                foreach ($unit->holdee as $held) {
+                    $layout = Layout::notDeleted()->whereSlug('full-page')->first();
+
+                    $page = new Unit([
+                        'user_id' => auth()->user()->id,
+                        'type' => 'page',
+                        'is_holder' => false,
+                        'layout_id' => $layout->id,
+                        'parent_id' => $child->id,
+                        'components' => [],
+                        'experimental_components' => [],
+                    ]);
+
+                    $page->save();
+                }
+            }
+            DB::commit();
+            return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
+        } catch(\Exception $e){
+            DB::rollback();
+
+            throw $e;
         }
-        
-        // only user's own ads can have pages
-        if($unit->user->id != auth()->user()->id)
-        {           
-            return redirect(route('units.list'));
-        }
-
-        // ad has page existing already
-        if(! is_null($unit->child))
-        {
-            $child = $unit->child;
-        }
-        else
-        {
-            $layout = Layout::notDeleted()->whereSlug('full-page')->first();
-
-            $child = new Unit([
-                'user_id' => auth()->user()->id,
-                'type' => 'page',
-                'layout_id' => $layout->id,
-                'parent_id' => $unit->id,
-                'components' => []
-            ]);
-
-            $child->save();
-
-            $child->fresh();
-        }
-
-        return redirect(route('units.edit', ['unit' => $child->id, 'section' => 'template']));
     }
     
     public function listUnitsForApproval(ListUnitRequestForApproval $request)

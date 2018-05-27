@@ -1,48 +1,40 @@
 <template>
     <form @submit.prevent="update">
         <div class="form-group">
-            <label for="category_id">CATEGORY <span class="text-danger">*</span></label>
-            <select name="category_id" id="category_id" class="form-control" v-model="form.category_id">    
-                <option v-for="category in categories" :key="category.id" :value="category.id">{{ category.name }}</option>
+            <label for="template_id">TEMPLATE <span class="text-danger">*</span></label>
+            <select name="template_id" id="template_id" class="form-control" v-model="form.template_id">
+                <option v-for="template in templates" :key="template.id" :value="template.id">{{ template.name }}</option>
             </select>
-            <span class="text-danger" :class="{'hidden': errors['category_id'] == undefined}" style="margin-right:10px;">{{errors['category_id']}}</span>
+            <span class="text-danger" :class="{'hidden': errors['template_id'] == undefined}" style="margin-right:10px;">{{errors['template_id']}}</span>
         </div>
 
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
-        <button v-if="categories.length > 0" type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
+        <button v-if="templates.length > 0" type="submit" class="btn btn-primary" :disabled="disable.saving">Save</button>
     </form>
 </template>
 
 <script>
 export default {
     props: {
-        categories: {
+        templates: {
             type: Array,
             required: true
         },
-        unit: {
-            type: Object,
+        units: {
+            type: Array,
             required: true
         },
         redirectTo: {
             type: String,
-            required: false
-        },
-        movingFrom: {
-            type: String,
-            required: false
-        },
-        moveTo: {
-            type: String,
-            required: false
+            required: true
         }
     },
 
     data() {
         return {
             form: {
-                category_id: this.unit.category_id == null ? (this.categories.length > 0 ? this.categories[0].id :0) : this.unit.category_id
+                template_id: this.unit.template_id == null ? (this.templates.length > 0 ? this.templates[0].id :0) : this.unit.template_id
             },
             errors: [],
             disable: {
@@ -53,7 +45,7 @@ export default {
 
     computed: {
         selectedTemplate() {
-            return this.form.category_id;
+            return this.form.template_id;
         },
     },
 
@@ -69,12 +61,7 @@ export default {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    if(this.moveTo !== undefined) {
-                        $('#' + this.movingFrom).collapse('hide');
-                        $('#' + this.moveTo).collapse('show');
-                    } else {
-                        window.location = this.redirectTo;
-                    }
+                    window.location = this.redirectTo;
                 })
                 .catch(error => {
                     // Fixing the optimism.

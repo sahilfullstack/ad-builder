@@ -75,4 +75,13 @@ class Template extends Model
     {
         return $this->belongsTo(Layout::class);
     }
+
+    public static function forLayout($layoutId, $type = 'ad')
+    {
+        return static::notDeleted()
+            ->whereType($type)
+            ->where('layout_id', $layoutId)
+            ->with('components')
+            ->get();
+    }
 }

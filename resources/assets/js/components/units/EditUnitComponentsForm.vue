@@ -51,7 +51,7 @@
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
                         <label :for="component.slug">{{ component.name }}</label>
-                        <color-picker v-model="form.components[component.id]['_value']" />
+                        <color-picker v-model="form.components[component.id]['_value']" :color="form.components[component.id]['_value']"/>
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>                   
                 </div>
@@ -92,7 +92,15 @@ export default {
         },
         redirectTo: {
             type: String,
-            required: true
+            required: false
+        },
+        movingFrom: {
+            type: String,
+            required: false
+        },
+        moveTo: {
+            type: String,
+            required: false
         }
     },
 
@@ -157,7 +165,7 @@ export default {
                 .then(response => {
                     this.disable.previewing = false;
 
-                    var frameElement = document.getElementById("renderer-iframe");
+                    var frameElement = document.getElementById("renderer-iframe-" + this.unit.id);
                     if(frameElement) frameElement.contentWindow.location.href = frameElement.src + '&is_preview=y';
                 })
                 .catch(error => {
@@ -185,7 +193,12 @@ export default {
                     // Fixing the optimism.
                     this.disable.saving = false;
 
-                    window.location = this.redirectTo;
+                    if(this.moveTo !== undefined) {
+                        $('#' + this.movingFrom).collapse('hide');
+                        $('#' + this.moveTo).collapse('show');
+                    } else {
+                        window.location = this.redirectTo;
+                    }
                 })
                 .catch(error => {
                     // Fixing the optimism.

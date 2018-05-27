@@ -19,7 +19,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'parent_id', 'layout_id', 'redeemed_subscription_id'
+        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'is_holder', 'parent_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**
@@ -166,9 +166,14 @@ class Unit extends Model
         return $this->belongsTo(Unit::class);
     }
 
+    public function holdee()
+    {
+        return $this->hasMany(Unit::class, 'parent_id')->where('is_holder', false)->orderBy('id');
+    }
+
     public function child()
     {
-        return $this->hasOne(Unit::class, 'parent_id');
+        return $this->hasOne(Unit::class, 'parent_id')->where('is_holder', $this->is_holder);
     }
 
     public function category()

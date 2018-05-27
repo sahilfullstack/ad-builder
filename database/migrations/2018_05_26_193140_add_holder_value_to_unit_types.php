@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddExperimentalComponentsToUnitsTable extends Migration
+class AddHolderValueToUnitTypes extends Migration
 {
     /**
      * Run the migrations.
@@ -14,7 +14,7 @@ class AddExperimentalComponentsToUnitsTable extends Migration
     public function up()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->json('experimental_components')->after('components');
+            $table->boolean('is_holder')->after('type');
         });
     }
 
@@ -26,7 +26,7 @@ class AddExperimentalComponentsToUnitsTable extends Migration
     public function down()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->dropColumn('experimental_columns');
+            $table->dropColumn('is_holder');
         });
     }
 }

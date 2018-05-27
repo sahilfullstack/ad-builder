@@ -7,12 +7,11 @@ class Canvas
     protected $width;
     protected $height;
     protected $slots = [];
-    protected $elements = [];
 
     public function __construct($width, $height)
     {
-        $this->width = $width / 480;
-        $this->height = $height / 540;
+        $this->width = $width / Slot::WIDTH;
+        $this->height = $height / Slot::HEIGHT;
 
         for ($i = 0; $i < $this->height; $i++) {
             $this->slots[$i] = [];
@@ -47,6 +46,32 @@ class Canvas
         }
 
         return false;
+    }
+
+    public function getOrigins()
+    {
+        $traversed = [];
+        $origins = [];
+
+        for ($i = 0; $i < $this->height; $i++) // down
+        {
+            for ($j = 0; $j < $this->width; $j++) // across
+            {
+                $slot = $this->slots[$i][$j];
+                
+                if ( ! $slot->isConsumed()) continue;
+                
+                if( ! in_array($slot, $traversed)) {
+                    $origins[] = $slot;
+                    
+                    for ($x = $i; $x < $i + $slot->getElement()->getHeight(); $x++)
+                        for ($y = $j; $y < $j + $slot->getElement()->getWidth(); $y++)
+                            $traversed[] = $this->slots[$x][$y];
+                }
+            }
+        }
+
+        return $origins;
     }
 
     public function slotsLeft()
