@@ -17,8 +17,36 @@
         </div>
         <div class="col-md-9">
             
-            <iframe id="renderer-iframe-{{ $unit->id }}" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
-            
+            @if( ! $unit->is_holder)
+                <iframe id="renderer-iframe-{{ $unit->id }}" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
+            @else
+                <div style="position:relative;width:960px;height:540px;">
+                    @php
+                        $canvas = new App\Services\SlideMaker\Canvas(1920, 1080);
+                        foreach($unit->holdee as $index => $held)
+                        {
+                            $canvas->fitElement(new App\Services\SlideMaker\Element($held->layout->width, $held->layout->height, $held));
+                        }
+                    @endphp
+                        
+                    @foreach($canvas->getOrigins() as $origin)
+                        <iframe 
+                        id="renderer-iframe-{{ $origin->getElement()->getContent()->id }}"
+                        frameborder="0"
+                        width="{{ $origin->getElement()->getPixelWidth() / 2 }}"
+                        height="{{ $origin->getElement()->getPixelHeight() / 2 }}"
+                        src="{{ route('units.render', array_merge(
+                            ['unit' => $origin->getElement()->getContent()->id], request()->query()
+                        ))}}"
+                        data-meta="{{ $origin->getPositionTop() }} - {{ $origin->getPositionLeft() }}"
+                        style="
+                            position: absolute;
+                            top: {{ $origin->getPositionTop() / 2 }}px;
+                            left: {{ $origin->getPositionLeft() / 2 }}px;
+                        "></iframe>
+                    @endforeach
+                </div>
+            @endif
             <hr>
 
             <div class="panel panel-default">
