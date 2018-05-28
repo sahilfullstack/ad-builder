@@ -52,13 +52,17 @@ class UnitController extends Controller
         }
         else
         {
-            throw new InvalidInputException('Copy this element is not supported right now.');
-//             $holdees = $unit->holdee();
-// dd($holdee);
-//             foreach ($holdees as $key => $holdee) 
-//             {
-//                 dd($holdee);
-//             }
+            // throw new InvalidInputException('Copy this element is not supported right now.');
+            $parentHolder = $this->creatingACopy($unit);
+
+            $holdees = $unit->holdee();
+
+            foreach ($holdees->get() as $key => $holdee) 
+            {
+                $this->creatingACopy($holdee, $parentHolder->id);
+            }
+
+            return $parentHolder;
         }
     }  
 
@@ -82,6 +86,12 @@ class UnitController extends Controller
 
         $unitCopy->save();
 
+        $childHolderId = null;
+        if(! is_null($holderId))
+        {
+            $childHolderId = Unit::where('parent_id', $holderId)->first()->id;
+        }
+
         $child = Unit::where('parent_id', $unit->id)->first();
         $unitCopyChild = new Unit;
         $unitCopyChild->name = $child->name;
@@ -93,7 +103,7 @@ class UnitController extends Controller
         $unitCopyChild->type = $child->type;
         $unitCopyChild->parent_id = $unitCopy->id;
         $unitCopyChild->is_holder = $unitCopy->is_holder;
-        $unitCopyChild->holder_id =  $holderId;
+        $unitCopyChild->holder_id =  $childHolderId;
         $unitCopyChild->thumbnail = $child->thumbnail;
         $unitCopyChild->hover_image = $child->hover_image;
         $unitCopyChild->category_id = $child->category_id;
