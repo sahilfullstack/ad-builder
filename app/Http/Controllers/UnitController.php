@@ -276,7 +276,8 @@ class UnitController extends Controller
                         'type' => 'page',
                         'is_holder' => false,
                         'layout_id' => $layout->id,
-                        'parent_id' => $child->id,
+                        'parent_id' => $held->id,
+                        'holder_id' => $child->id,
                         'components' => [],
                         'experimental_components' => [],
                     ]);

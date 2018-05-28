@@ -169,12 +169,12 @@ class Unit extends Model
 
     public function holdee()
     {
-        return $this->hasMany(Unit::class, 'parent_id')->where('is_holder', false)->orderBy('id');
+        return $this->hasMany(Unit::class, 'holder_id')->orderBy('id');
     }
 
     public function child()
     {
-        return $this->hasOne(Unit::class, 'parent_id')->where('is_holder', $this->is_holder);
+        return $this->hasOne(Unit::class, 'parent_id');
     }
 
     public function category()

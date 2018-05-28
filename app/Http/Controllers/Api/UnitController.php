@@ -411,7 +411,7 @@ class UnitController extends Controller
                         foreach(str_split($unit->layout->contents) as $layoutId) {
                             Unit::create([
                                 'user_id'    => auth()->user()->id,
-                                'parent_id'  => $unit->id,
+                                'holder_id'  => $unit->id,
                                 'layout_id'  => $layoutId,
                                 'type'       => $unit->type,
                                 'components' => [],
