@@ -79390,6 +79390,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -79405,6 +79408,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     data: function data() {
         return {
+            errors: [],
             disable: {
                 copying: false
             }
@@ -79415,6 +79419,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         create: function create() {
             var thiz = this;
+            this.errors = [];
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
                     message: 'Do you really want to make a copy of this ad?',
@@ -79428,7 +79433,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                     window.location = thiz.redirectTo.replace("units", "units/" + response.data.id + "/edit?section=layout");
                 }).catch(function (error) {
                     thiz.disable.copying = false;
-                    console.log(error);
+                    _.forEach(error.response.data.errors, function (error, index) {
+                        console.log(thiz.errors);
+                        var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                        thiz.errors[errorIndex] = error[0];
+                    });
                 });
             });
         }
@@ -79599,20 +79609,32 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c(
-    "a",
-    {
-      staticClass: "btn btn-sm btn-success",
-      attrs: { href: "", disabled: _vm.disable.copying },
-      on: {
-        click: function($event) {
-          $event.preventDefault()
-          return _vm.create($event)
+  return _c("div", [
+    _c(
+      "a",
+      {
+        staticClass: "btn btn-sm btn-success",
+        attrs: { href: "", disabled: _vm.disable.copying },
+        on: {
+          click: function($event) {
+            $event.preventDefault()
+            return _vm.create($event)
+          }
         }
-      }
-    },
-    [_vm._v("Make a Copy")]
-  )
+      },
+      [_vm._v("Make a Copy")]
+    ),
+    _vm._v(" "),
+    _c(
+      "span",
+      {
+        staticClass: "text-danger",
+        class: { hidden: _vm.errors["general"] == undefined },
+        staticStyle: { "margin-right": "10px" }
+      },
+      [_vm._v(_vm._s(_vm.errors["general"]))]
+    )
+  ])
 }
 var staticRenderFns = []
 render._withStripped = true

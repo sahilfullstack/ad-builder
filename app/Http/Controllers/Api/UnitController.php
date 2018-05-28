@@ -46,7 +46,24 @@ class UnitController extends Controller
 
     public function storeCopy(StoreCopyUnitRequest $request, Unit $unit)
     {
+        if( ! $unit->is_holder)
+        {
+            return $this->creatingACopy($unit);
+        }
+        else
+        {
+            throw new InvalidInputException('Copy this element is not supported right now.');
+//             $holdees = $unit->holdee();
+// dd($holdee);
+//             foreach ($holdees as $key => $holdee) 
+//             {
+//                 dd($holdee);
+//             }
+        }
+    }  
 
+    private function creatingACopy($unit, $holderId =  null)
+    {
         // creating a unit
         $unitCopy = new Unit;
         $unitCopy->name = "Copy of ".$unit->name;
@@ -57,6 +74,8 @@ class UnitController extends Controller
         $unitCopy->user_id = $unit->user_id;
         $unitCopy->type = $unit->type;
         $unitCopy->parent_id = null;
+        $unitCopy->is_holder = $unit->is_holder;
+        $unitCopy->holder_id = $holderId;
         $unitCopy->thumbnail = $unit->thumbnail;
         $unitCopy->hover_image = $unit->hover_image;
         $unitCopy->category_id = $unit->category_id;
@@ -73,14 +92,16 @@ class UnitController extends Controller
         $unitCopyChild->user_id = $child->user_id;
         $unitCopyChild->type = $child->type;
         $unitCopyChild->parent_id = $unitCopy->id;
+        $unitCopyChild->is_holder = $unitCopy->is_holder;
+        $unitCopyChild->holder_id =  $holderId;
         $unitCopyChild->thumbnail = $child->thumbnail;
         $unitCopyChild->hover_image = $child->hover_image;
         $unitCopyChild->category_id = $child->category_id;
-        
+
         $unitCopyChild->save();
 
         return $unitCopy->fresh();
-    }  
+    }
 
     public function list(ListUnitRequest $request)
     {
