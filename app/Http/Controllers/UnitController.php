@@ -33,7 +33,7 @@ class UnitController extends Controller
             return redirect(route('units.list', array_merge(['type' => 'ad'], request()->query())));
         }
 
-        $units = Unit::notDeleted()->with(['template', 'template.components']);
+        $units = Unit::notDeleted()->noHolders()->with(['template', 'template.components']);
 
         if( ! auth()->user()->can('unit.manage'))
         {

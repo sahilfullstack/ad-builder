@@ -20,7 +20,7 @@ class Unit extends Model
      * @var array
      */
     protected $fillable = [
-        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'is_holder', 'parent_id', 'layout_id', 'redeemed_subscription_id'
+        'name', 'template_id', 'category_id', 'components', 'experimental_components', 'user_id', 'type', 'is_holder', 'parent_id', 'holder_id', 'layout_id', 'redeemed_subscription_id'
     ];
 
     /**
@@ -132,6 +132,11 @@ class Unit extends Model
     public function scopeAd($query)
     {
         return $query->where('type', 'ad');
+    }
+
+    public function scopeNoHolders($query)
+    {
+        return $query->where('is_holder', false);
     }
 
     public function scopeForCurrentUser($query)
