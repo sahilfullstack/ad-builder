@@ -14,7 +14,7 @@ class AddHolderValueToUnitTypes extends Migration
     public function up()
     {
         Schema::table('units', function (Blueprint $table) {
-            $table->boolean('is_holder')->after('type');
+            $table->boolean('is_holder')->nullable()->after('type');
         });
     }
 

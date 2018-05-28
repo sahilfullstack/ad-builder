@@ -6,6 +6,10 @@
             <select v-if="layouts.length > 0" name="layout_id" id="layout_id" class="form-control" v-model="form.layout_id">    
                 <option v-for="layout in layouts" :key="layout.id" :value="layout.id">{{ layout.name }}</option>
             </select>
+            <br>
+            <select v-if="children[form.layout_id] != undefined && children[form.layout_id].length > 0" name="child_id" id="child_id" class="form-control" v-model="form.child_id">    
+                <option v-for="(child, key) in children[form.layout_id]" :key="key" :value="child.id">{{ child.name }}</option>
+            </select>
             <span class="text-danger" :class="{'hidden': errors['layout_id'] == undefined}" style="margin-right:10px;">{{errors['layout_id']}}</span>
         </div>
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
@@ -18,6 +22,10 @@
 export default {
     props: {
         layouts: {
+            type: Array,
+            required: true
+        },
+        children: {
             type: Array,
             required: true
         },
@@ -34,7 +42,8 @@ export default {
     data() {
         return {
             form: {
-                layout_id: this.unit.layout_id == null ? (this.layouts.length > 0 ? this.layouts[0].id :0) : this.unit.layout_id
+                layout_id: this.unit.layout_id == null ? (this.layouts.length > 0 ? this.layouts[0].id :0) : this.unit.layout_id,
+                child_id: 0
             },
             errors: [],
             disable: {
@@ -43,6 +52,20 @@ export default {
         }
     },
 
+    watch: {
+       'form.layout_id': function() {
+
+            if(this.children[this.form.layout_id] != undefined) {
+                this.form.child_id = 0;
+            }
+
+           if((this.children[this.form.layout_id] != undefined) && (this.children[this.form.layout_id].length >0)) {
+                this.form.child_id = this.children[this.form.layout_id][0].id;
+            }
+        } 
+    },
+
+
     methods: {
         update() {
             this.disable.saving = true;
@@ -50,7 +73,18 @@ export default {
             
             this.errors = [];
 
-            axios.put('/api/units/' + this.unit.id, this.form)
+            if(this.form.child_id != 0)
+            {
+                var formToBeSubmitted = _.cloneDeep(this.form);
+
+                formToBeSubmitted.layout_id = this.form.child_id;            
+            } else {
+                formToBeSubmitted = _.cloneDeep(this.form);
+            } 
+
+            delete formToBeSubmitted['child_id'];
+
+            axios.put('/api/units/' + this.unit.id, formToBeSubmitted)
                 .then(response => {
                     // Fixing the optimism.
                     this.disable.saving = false;
@@ -71,7 +105,13 @@ export default {
                     });
                 });
         }
-    }
+    },
+    mounted(){  
+           if((this.children[this.form.layout_id] != undefined) && (this.children[this.form.layout_id].length >0)) {
+                this.form.child_id = this.children[this.form.layout_id][0].id;
+            }
+      }
+                
 }
 </script>
 

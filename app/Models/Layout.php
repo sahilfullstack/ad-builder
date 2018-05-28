@@ -45,6 +45,11 @@ class Layout extends Model
         return $this->hasMany(Template::class);
     }
 
+    public function children()
+    {
+        return $this->hasMany(Layout::class, 'parent_id')->orderBy('id');
+    }
+
     public function hasParent()
     {
         return ! is_null($this->parent_id);

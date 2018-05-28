@@ -216,7 +216,6 @@
             width: 638.318px;
             height: 332.065px;
             background: #C6E5F3;
->>>>>>> f872b4898a2b2a2276913302ec4d51384e427c9a:resources/views/templates/renderers/sahil_mesa_cec-landing-pages_1920_1080-02.blade.php
         }
 
         div.timeline {

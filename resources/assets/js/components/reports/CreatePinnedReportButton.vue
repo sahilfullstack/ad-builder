@@ -1,6 +1,6 @@
 <template>
-    <div>
-      <a href @click.prevent="create" class="btn btn-sm btn-success" :disabled="disable.copying">Make a Copy</a>
+    <div>    
+        <a href @click.prevent="create" class="btn btn-sm btn-success" :disabled="disable.pinning">Pin</a>
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
     </div>
 </template>
@@ -9,9 +9,13 @@
 import ConfirmModal from './../ConfirmModal';
 export default {
     props: {    
-       unit: {
-            type: Object,
-            required: true
+        filters: {
+            type: Array,
+            required: false,
+        },
+        report: {
+            type: String,
+            required: true,
         },
         redirectTo: {
             type: String,
@@ -20,10 +24,10 @@ export default {
     },
     data() {
         return {
-           errors: [],
             disable: {
-                copying: false
-            }
+                pinning: false
+            },
+            errors: []
         }
     },
 
@@ -33,29 +37,31 @@ export default {
             this.errors = [];
             Modal.show(ConfirmModal, {
                 propsData: {
-                        message:'Do you really want to make a copy of this ad?',
-                        unit: this.unit
+                        message:'Do you really want to pin this report?'
                     }
                 })
-                .then(function(url) {
-                    thiz.disable.copying = true;
-                    axios.post('/api/units/' + thiz.unit.id + '/copy',  {})
+                .then(function() {
+                    console.log({filters: thiz.filters, report: thiz.report});
+                    thiz.disable.pinning = true;
+                    axios.post('/api/reports/pin',  {filters: thiz.filters, report: thiz.report})
                     .then(function (response) {
-                        thiz.disable.copying = false;
-                        // go to edit unit
-                        window.location =  thiz.redirectTo.replace("units", "units/"+response.data.id+"/edit?section=layout");
+                        thiz.disable.pinning = false;
+
+                        // reloading the page
+                        window.location =  thiz.redirectTo                  
                     })
                     .catch(function (error) {
-                        thiz.disable.copying = false;
+                        thiz.disable.pinning = false;
+                                                
                         _.forEach(error.response.data.errors, function(error, index) {
-                            console.log(thiz.errors);
                             var errorIndex = _.startsWith(index, '_')
                                                 ? _.trim(index, '_')
                                                 : index;
-                            
+                                                
                             thiz.errors[errorIndex] = error[0];
                         });
-                    });                    
+                    });
+                    
                 });
         }
     }

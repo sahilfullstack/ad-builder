@@ -146,7 +146,8 @@ class UnitController extends Controller
         $userId = $unit->user->id;
 
         // $layouts = DB::select(DB::raw("select sum(allowed_quantity - redeemed_quantity) as available_quantity, layouts.* from subscriptions join layouts on subscriptions.layout_id = layouts.id where subscriptions.user_id = $userId and subscriptions.expiring_at >= now() group by subscriptions.layout_id having available_quantity > 0;"));
-        $layouts = Layout::all();
+
+        $layouts = Layout::where('parent_id', null)->get()->toArray();
 
         // this is done so that unit could be edited, 
         // the layout cant be changed though from the backend.
@@ -156,11 +157,15 @@ class UnitController extends Controller
         }
         else
         {
-            $layouts  = array_pluck($layouts, 'id');
-        }
+            $layouts = array_pluck($layouts, 'id');
 
-        $layouts = Layout::whereIn('id', $layouts)->notDeleted()->get();
+            if(! is_null($unit->layout))
+            {
+                $layouts = array_merge($layouts, [$unit->layout_id]); 
+            }
+        }   
 
+        $layouts = Layout::whereIn('id', $layouts)->with('children')->notDeleted()->get();
         return ['layouts' => $layouts];
     }
 
