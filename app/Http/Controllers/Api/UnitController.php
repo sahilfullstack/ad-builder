@@ -46,25 +46,50 @@ class UnitController extends Controller
 
     public function storeCopy(StoreCopyUnitRequest $request, Unit $unit)
     {
-        if( ! $unit->is_holder)
-        {
-            return $this->creatingACopy($unit);
-        }
-        else
-        {
-            // throw new InvalidInputException('Copy this element is not supported right now.');
-            $parentHolder = $this->creatingACopy($unit);
-
-            $holdees = $unit->holdee();
-
-            foreach ($holdees->get() as $key => $holdee) 
+        try
+        { 
+            DB::beginTransaction();           
+    
+            if( ! $unit->is_holder)
             {
-                $this->creatingACopy($holdee, $parentHolder->id);
+                return $this->creatingACopy($unit);
             }
+            else
+            {
+                // throw new InvalidInputException('Copy this element is not supported right now.');
+                $parentHolder = $this->creatingACopy($unit);
 
-            return $parentHolder;
+                $holdees = $unit->holdee();
+
+                foreach ($holdees->get() as $key => $holdee) 
+                {
+                    $this->creatingACopy($holdee, $parentHolder->id);
+                }
+
+                DB::commit();   
+                
+                return $parentHolder;
+            }
         }
-    }  
+        catch(Exception $e)
+        {
+
+        }
+    } 
+
+     DB::commit();   
+            return $unit->fresh();
+        }
+        catch(CustomInvalidInputException $e)
+        {
+            throw $e;
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+            throw $e;
+
+        } 
 
     private function creatingACopy($unit, $holderId =  null)
     {
