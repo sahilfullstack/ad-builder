@@ -259,43 +259,48 @@ class UnitController extends Controller
     public function publish(PublishUnitRequest $request, Unit $unit)
     {        
         // Validating that the selected template has the selected components.
-        if(is_null($unit->name))
-        {
-            throw new CustomInvalidInputException('parent_name', 'Name is empty.');
-        }        
+        // if(is_null($unit->name))
+        // {
+        //     throw new CustomInvalidInputException('parent_name', 'Name is empty.');
+        // }        
 
-        if(is_null($unit->template_id))
-        {
-            throw new CustomInvalidInputException('parent_template', 'Template is empty.');
-        }
+        // if(is_null($unit->template_id))
+        // {
+        //     throw new CustomInvalidInputException('parent_template', 'Template is empty.');
+        // }
 
-        if(is_null($unit->layout_id))
-        {
-            throw new CustomInvalidInputException('parent_layout', 'Layout is empty.');
-        }
+        // if(is_null($unit->layout_id))
+        // {
+        //     throw new CustomInvalidInputException('parent_layout', 'Layout is empty.');
+        // }
 
-        $template = Template::find($unit->template_id);
+        // $template = Template::find($unit->template_id);
 
-        // Validating that the selected template has the selected components.
-        if($template->components->count() != count($unit->components))
-        {
-            throw new CustomInvalidInputException('parent_components', 'Components are missing.');
-        }
+        // // Validating that the selected template has the selected components.
+        // if($template->components->count() != count($unit->components))
+        // {
+        //     throw new CustomInvalidInputException('parent_components', 'Components are missing.');
+        // }
 
-        foreach ($unit->components as $key => $component) 
-        {
-            if(empty($component))
-            {                     
-                throw new CustomInvalidInputException('parent_components', 'Components are missing.');
+        // foreach ($unit->components as $key => $component) 
+        // {
+        //     if(empty($component))
+        //     {                     
+        //         throw new CustomInvalidInputException('parent_components', 'Components are missing.');
+        //     }
+        // }
+        
+        if($unit->is_holder) {
+            foreach ($unit->holdee as $held) {
+                $this->validateChildUnit($held);
+                $this->validateChildUnit($held->child);
             }
+        } else {
+            $this->validateChildUnit($unit);
+            $this->validateChildUnit($unit->child);
         }
-
-        $childUnit = Unit::where('parent_id', $unit->id)->first();
-
-        $this->validateChildUnit($childUnit);
 
         $subscription = $this->getRedeemedSubscription($unit);
-
         $unit->redeemed_subscription_id = $subscription->id;
         $unit->published_at = Carbon::now();
         $unit->save();
@@ -309,9 +314,10 @@ class UnitController extends Controller
         $layoutId   = $unit->layout_id;
         $templateId = $unit->template_id;
 
+        if($unit->layout->hasParent()) $layoutId = $unit->layout->parent->id;
+
         $layouts = DB::select(
-            DB::raw(
-                "select 
+                DB::raw("select 
                     sum(allowed_quantity - redeemed_quantity) 
                         as available_quantity, 
                     layouts.* 
@@ -335,7 +341,7 @@ class UnitController extends Controller
 
         if(count($layouts) < 1 )
         {
-            throw new CustomInvalidInputException('general', 'Subscription Doesnot exist. Please contact the admin at admin@mesa.com');
+            throw new CustomInvalidInputException('general', 'Subscription does not exist. Please contact the admin.');
         }
 
         $componentsWithVideo = Component::where('template_id', $templateId)
@@ -355,6 +361,13 @@ class UnitController extends Controller
             {
                 throw new CustomInvalidInputException('general', 'Cannot use video element of this subscription. Please contact the admin at admin@mesa.com');
             }
+        }
+        else {
+            $subscription = Subscription::where('user_id', $userId)
+                            ->where('layout_id', $layoutId)
+                            ->whereRaw('allowed_quantity > redeemed_quantity')
+                            ->whereRaw('expiring_at >= now()')
+                            ->orderBy('expiring_at', 'DESC')->first();
         }
 
         $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
