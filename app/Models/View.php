@@ -12,7 +12,7 @@ class View extends Model
      * @var array
      */
     protected $fillable = [
-        'unit_id', 'viewed_at', 'duration', 'category_id', 'landing_from'
+        'unit_id', 'kiosk_id', 'viewed_at', 'duration', 'category_id', 'landing_from'
     ];
 
     /**
