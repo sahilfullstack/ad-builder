@@ -29,6 +29,8 @@ class CreateSubscriptionRequest extends FormRequest
             'expiring_at'      => 'required',
             'allowed_quantity' => 'required',
             'allow_videos'     => 'required',
+            'allow_hover'      => 'required',
+            'allow_popout'     => 'required',
         ];
     }
 }

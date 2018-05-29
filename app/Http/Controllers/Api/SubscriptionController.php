@@ -34,6 +34,9 @@ class SubscriptionController extends Controller
                 'layout_id'        => $request->layout_id,
                 'allowed_quantity' => $request->allowed_quantity,
                 'allow_videos'     => $request->allow_videos,
+                'allow_hover'      => $request->allow_hover,
+                'allow_popout'     => $request->allow_popout,
+                'days'             => $request->days,
                 'expiring_at'      => Carbon::parse($request->expiring_at),
                 'created_at'       => Carbon::now(),
                 'updated_at'       => Carbon::now()
