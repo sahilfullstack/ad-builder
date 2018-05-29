@@ -15,10 +15,18 @@ class Subscription extends Model
         'expiring_at',
         'allowed_quantity',
         'allow_videos',
+        'allow_hover',
+        'allow_popout',
         'redeemed_quantity'
     ];
     
     protected $dates = ['expiring_at'];
+
+    protected $casts = [
+        'allow_videos' => 'boolean',
+        'allow_hover' => 'boolean',
+        'allow_popout' => 'boolean',
+    ];
 
     public function layout()
     {

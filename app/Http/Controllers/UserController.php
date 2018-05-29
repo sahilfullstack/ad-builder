@@ -44,9 +44,9 @@ class UserController extends Controller
 
     public function manageSubscription(User $user)
     {
-        $subscriptions = $user->subscriptions()->get();
+        $subscriptions = $user->subscriptions;
 
-        $layouts = Layout::all();
+        $layouts = Layout::whereNull('parent_id')->get();
 
         return view('users.manage_subscription', compact('user', 'subscriptions', 'layouts'));
     }
