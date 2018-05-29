@@ -35,22 +35,62 @@
                         <th class="text-center">Name</th>
                         <th class="text-center">Expiry</th>
                         <th class="text-center">Allowed Quantity</th>
+                        <th class="text-center">Days</th>
                         <th class="text-center">Allowed Videos</th>
+                        <th class="text-center">Allowed Hover</th>
+                        <th class="text-center">Allowed Popout</th>
                         <!-- <th class="text-center">Update</th> -->
                         <!-- <th class="text-center">Reject</th> -->
                         </tr>
-                    @foreach($user->subscriptions as $subscription)
+                    @foreach($layouts as $layout)
                             <tr>
-                            <td>{{$subscription->layout->name}}</td>
-                            <td>{{\Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()}}</td>
-                            <td>{{$subscription->allowed_quantity}}</td>
-                            <td>{{$subscription->allow_videos}}</td>
-                            <!-- <td><update-user-subscription-button :user="{{ $user->toJson() }}" :subscription="{{ $subscription->toJson() }}" ></update-user-subscription-button></td> -->
+                            <td>{{$layout->name}}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA' 
+                                : \Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()
+                            }}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : $subscription->allowed_quantity
+                            }}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : $subscription->days
+                            }}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_videos ? 'Yes' : 'No')
+                            }}</td>
+
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_hover ? 'Yes' : 'No')
+                            }}</td>
+
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_popout ? 'Yes' : 'No')
+                            }}</td>
+
+                            <td>
+                                <update-user-subscription-button
+                                    :user="{{ $user->toJson() }}"
+                                    :subscription="{{ $layout->toJson() }}" >
+
+                                </update-user-subscription-button></td>
+                            </td>
+                            
                             </tr>
                     @endforeach
                     </table>               
                 @else
-                    <span>No subscriptions yet</span>
+                    <span>No subscriptions yet.</span>
                 @endif
                  </div>
             </div>

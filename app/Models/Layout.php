@@ -54,4 +54,9 @@ class Layout extends Model
     {
         return ! is_null($this->parent_id);
     }
+
+    public function parent()
+    {
+        return $this->belongsTo(Layout::class);
+    }
 }

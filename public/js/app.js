@@ -83941,9 +83941,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             type: Object,
             required: true
         },
-        subscription: {
+        layout: {
             type: Object,
             required: true
+        },
+        subscription: {
+            type: Object,
+            required: false
         }
     },
     data: function data() {
@@ -83958,10 +83962,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         create: function create() {
             var thiz = this;
-            console.log(this.defaultdate);
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__DatePickerModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to update the subscription?',
+                    message: 'Are you sure you want to update the subscription?',
                     defaultDate: this.subscription.expiring_at,
                     defaultQuantity: this.subscription.allowed_quantity
                 }

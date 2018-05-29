@@ -14,6 +14,7 @@ class ViewController extends Controller
     {
         $view = new View([
             'unit_id' => $request->input('unit_id'),
+            'kiosk_id' => $request->input('kiosk_id'),
             'viewed_at' => Carbon::createFromTimestamp($request->input('viewed_at')),
             'duration' => $request->input('duration'),
             'category_id' => $request->input('category_id'),

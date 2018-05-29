@@ -4,15 +4,20 @@
 
 <script>
 import DatePickerModal from './../DatePickerModal';
+import UpdateSubscriptionModal from './../UpdateSubscriptionModal';
 export default {
     props: {    
        user: {
             type: Object,
             required: true
         },
+        layout: {
+            type: Object,
+            required: true,
+        },
         subscription: {
             type: Object,
-            required: true
+            required: false
         }
     },
     data() {
@@ -26,12 +31,13 @@ export default {
     methods: {
         create() {
             let thiz = this;
-            console.log(this.defaultdate);
-            Modal.show(DatePickerModal, {
+            Modal.show(UpdateSubscriptionModal, {
                 propsData: {
-                        message:'Do you really want to update the subscription?',
-                        defaultDate: this.subscription.expiring_at,
-                        defaultQuantity: this.subscription.allowed_quantity
+                        layout: this.layout,
+                        expiring_at: this.subscription.expiring_at !== undefined ? this.subscription.expiring_at : null,
+                        allowed_quantity: this.subscription.allowed_quantity !== undefined ? this.subscription.allowed_quantity : null,
+                        days: this.subscription.days !== undefined ? this.subscription.days : null,
+                        allow_videos: this.subscription.allow_videos !== undefined ? this.subscription.allow_videos : null,
                     }
                 })
                 .then(function(data) {
