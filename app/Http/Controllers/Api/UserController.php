@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest, StoreUserRequest, UpdateUserPasswordRequest};
+use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest, StoreUserRequest, UpdateUserPasswordRequest, DeleteUserRequest};
 use Mail, DB;
 use App\Models\{Layout, Role};
 use Illuminate\Http\Request;
@@ -90,5 +90,12 @@ class UserController extends Controller
         $user->save();
         
         return $user;
+    }
+
+    public function delete(User $user, DeleteUserRequest $request)
+    {
+        $user->delete();
+
+        return $user->fresh();       
     }
 }

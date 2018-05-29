@@ -33,6 +33,7 @@ Route::post('/users/create', ['as' => 'users.create', 'uses' => 'UserController@
 
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
 Route::put('/users/password', ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
+Route::delete('/users/{user}', ['as' => 'users.delete', 'uses' => 'UserController@delete']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();
