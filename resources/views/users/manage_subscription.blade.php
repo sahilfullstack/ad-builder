@@ -25,6 +25,9 @@
                         </tr>
                     </table>
                 </div>
+                <div class="panel-footer">
+                    <delete-user-button :user="{{ $user->toJson() }}"></delete-user-button>
+                </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">

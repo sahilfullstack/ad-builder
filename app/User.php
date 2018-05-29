@@ -7,10 +7,14 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laravel\Passport\HasApiTokens;
 use App\Models\{Role, Subscription};
 use App\Models\Unit;
+use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Models\Traits\ContainsSoftDeletableUniques;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable, HasApiTokens, SoftDeletes, ContainsSoftDeletableUniques;
+
+    const SOFT_DELETION_TOKEN = 'deleted_at_millis';
 
     /**
      * The attributes that are mass assignable.

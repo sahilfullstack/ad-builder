@@ -20177,7 +20177,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
-module.exports = __webpack_require__(329);
+module.exports = __webpack_require__(332);
 
 
 /***/ }),
@@ -20244,6 +20244,7 @@ Vue.component('create-user-form', __webpack_require__(320));
 
 Vue.component('edit-multiple-unit-template-form', __webpack_require__(323));
 Vue.component('update-user-password-form', __webpack_require__(326));
+Vue.component('delete-user-button', __webpack_require__(329));
 
 var app = new Vue({
   el: '#app'
@@ -87274,6 +87275,134 @@ if (false) {
 
 /***/ }),
 /* 329 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(330)
+/* template */
+var __vue_template__ = __webpack_require__(331)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/DeleteUserButton.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-4a523786", Component.options)
+  } else {
+    hotAPI.reload("data-v-4a523786", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 330 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal__);
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        user: {
+            type: Object,
+            required: true
+        }
+    },
+    data: function data() {
+        return {
+            disable: {
+                deleting: false
+            }
+        };
+    },
+
+
+    methods: {
+        create: function create() {
+            var thiz = this;
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
+                propsData: {
+                    message: 'Are you sure you want to delete the user? This action cannot be undone.'
+                }
+            }).then(function (data) {
+                axios.delete('/api/users/' + thiz.user.id).then(function (response) {
+                    thiz.disable.deleting = true;
+
+                    location.href = '/users';
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 331 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "a",
+    {
+      staticClass: "btn btn-sm btn-danger",
+      attrs: { href: "", disabled: _vm.disable.deleting },
+      on: {
+        click: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [_vm._v("Delete")]
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-4a523786", module.exports)
+  }
+}
+
+/***/ }),
+/* 332 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

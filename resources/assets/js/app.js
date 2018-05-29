@@ -51,6 +51,7 @@ Vue.component('create-user-form', require('./components/users/CreateUserForm.vue
 
 Vue.component('edit-multiple-unit-template-form', require('./components/units/EditMultipleUnitTemplateForm.vue'));
 Vue.component('update-user-password-form', require('./components/users/UpdateUserPasswordForm.vue'));
+Vue.component('delete-user-button', require('./components/users/DeleteUserButton.vue'));
 
 const app = new Vue({
     el: '#app'
