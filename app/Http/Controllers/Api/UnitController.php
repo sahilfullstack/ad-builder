@@ -48,11 +48,13 @@ class UnitController extends Controller
     {
         try
         { 
+            $copiedUnit = null;
+
             DB::beginTransaction();           
     
             if( ! $unit->is_holder)
             {
-                return $this->creatingACopy($unit);
+                $copiedUnit = $this->creatingACopy($unit);
             }
             else
             {
@@ -66,30 +68,20 @@ class UnitController extends Controller
                     $this->creatingACopy($holdee, $parentHolder->id);
                 }
 
-                DB::commit();   
-                
-                return $parentHolder;
+
+                $copiedUnit = $parentHolder;
             }
-        }
-        catch(Exception $e)
-        {
 
-        }
-    } 
+            DB::commit();   
 
-     DB::commit();   
-            return $unit->fresh();
-        }
-        catch(CustomInvalidInputException $e)
-        {
-            throw $e;
+            return $copiedUnit;
         }
         catch(\Exception $e)
         {
             DB::rollBack();
             throw $e;
-
-        } 
+        }
+    } 
 
     private function creatingACopy($unit, $holderId =  null)
     {
