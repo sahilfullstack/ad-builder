@@ -20,6 +20,17 @@ class UserPolicy
     }
 
     /**
+     * Determine whether the user can create user.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function create(User $user)
+    {
+        return $user->can('user.manage');
+    }    
+
+    /**
      * Determine whether the user can list users.
      *
      * @param  \App\User  $user

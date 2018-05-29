@@ -20177,7 +20177,7 @@ function applyToTag (styleElement, obj) {
 /***/ (function(module, exports, __webpack_require__) {
 
 __webpack_require__(151);
-module.exports = __webpack_require__(323);
+module.exports = __webpack_require__(329);
 
 
 /***/ }),
@@ -20240,8 +20240,10 @@ Vue.component('update-user-profile-form', __webpack_require__(308));
 Vue.component('edit-unit-category-form', __webpack_require__(311));
 Vue.component('create-pinned-report-button', __webpack_require__(314));
 Vue.component('create-unpinned-report-button', __webpack_require__(317));
+Vue.component('create-user-form', __webpack_require__(320));
 
-Vue.component('edit-multiple-unit-template-form', __webpack_require__(320));
+Vue.component('edit-multiple-unit-template-form', __webpack_require__(323));
+Vue.component('update-user-password-form', __webpack_require__(326));
 
 var app = new Vue({
   el: '#app'
@@ -86143,6 +86145,432 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
+Component.options.__file = "resources/assets/js/components/users/CreateUserForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-0125a62e", Component.options)
+  } else {
+    hotAPI.reload("data-v-0125a62e", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 321 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        afterCreatePath: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            form: {
+                name: '',
+                company: '',
+                phone: '',
+                email: '',
+                username: ''
+            },
+            errors: [],
+            disable: {
+                creating: false
+            }
+        };
+    },
+
+    methods: {
+        create: function create() {
+            var _this = this;
+
+            this.disable.creating = true;
+            var self = this;
+
+            this.errors = [];
+
+            axios.post('/api/users/create', this.form).then(function (response) {
+                // Fixing the optimism.
+                _this.disable.creating = false;
+                console.log("after creating");
+                window.location = _this.afterCreatePath;
+            }).catch(function (error) {
+                // Fixing the optimism.
+                _this.disable.creating = false;
+
+                _.forEach(error.response.data.errors, function (error, index) {
+                    console.log(self.errors);
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 322 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.name,
+              expression: "form.name"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "name", placeholder: "John Doe" },
+          domProps: { value: _vm.form.name },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "name", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["name"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["name"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.company,
+              expression: "form.company"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "company", placeholder: "Specal 26" },
+          domProps: { value: _vm.form.company },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "company", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["company"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["company"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(2),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.phone,
+              expression: "form.phone"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "phone", placeholder: "9999999999" },
+          domProps: { value: _vm.form.phone },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "phone", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["phone"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["phone"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(3),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.email,
+              expression: "form.email"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "email",
+            id: "email",
+            placeholder: "something@something.com"
+          },
+          domProps: { value: _vm.form.email },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "email", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["email"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["email"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(4),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.username,
+              expression: "form.username"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", id: "username", placeholder: "username" },
+          domProps: { value: _vm.form.username },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "username", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["username"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["username"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.disable.creating }
+        },
+        [_vm._v("Create")]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "name" } }, [
+      _vm._v("Full Name "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "company" } }, [
+      _vm._v("Company "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "phone" } }, [
+      _vm._v("Phone"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "email" } }, [
+      _vm._v("Email "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "username" } }, [
+      _vm._v("Username "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-0125a62e", module.exports)
+  }
+}
+
+/***/ }),
+/* 323 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(324)
+/* template */
+var __vue_template__ = __webpack_require__(325)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
 Component.options.__file = "resources/assets/js/components/units/EditMultipleUnitTemplateForm.vue"
 
 /* hot reload */
@@ -86165,7 +86593,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 321 */
+/* 324 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -86251,7 +86679,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 322 */
+/* 325 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -86369,7 +86797,276 @@ if (false) {
 }
 
 /***/ }),
-/* 323 */
+/* 326 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(2)
+/* script */
+var __vue_script__ = __webpack_require__(327)
+/* template */
+var __vue_template__ = __webpack_require__(328)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/users/UpdateUserPasswordForm.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-419e52f1", Component.options)
+  } else {
+    hotAPI.reload("data-v-419e52f1", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 327 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: {
+        afterCreatePath: {
+            type: String,
+            required: true
+        }
+    },
+
+    data: function data() {
+        return {
+            form: {
+                password: '',
+                password_confirmation: ''
+            },
+            errors: [],
+            disable: {
+                creating: false
+            }
+        };
+    },
+
+    methods: {
+        create: function create() {
+            var _this = this;
+
+            this.disable.creating = true;
+            var self = this;
+
+            this.errors = [];
+            axios.put('/api/users/password', this.form).then(function (response) {
+                // Fixing the optimism.
+                _this.disable.creating = false;
+                console.log("after creating");
+                window.location = _this.afterCreatePath;
+            }).catch(function (error) {
+                // Fixing the optimism.
+                _this.disable.creating = false;
+
+                _.forEach(error.response.data.errors, function (error, index) {
+                    console.log(self.errors);
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    self.errors[errorIndex] = error[0];
+                });
+            });
+        }
+    }
+});
+
+/***/ }),
+/* 328 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "form",
+    {
+      on: {
+        submit: function($event) {
+          $event.preventDefault()
+          return _vm.create($event)
+        }
+      }
+    },
+    [
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.password,
+              expression: "form.password"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "password", id: "password", placeholder: "password" },
+          domProps: { value: _vm.form.password },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "password", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["password"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["password"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(1),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
+              value: _vm.form.password_confirmation,
+              expression: "form.password_confirmation"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: {
+            type: "password",
+            id: "password_confirmation",
+            placeholder: "password"
+          },
+          domProps: { value: _vm.form.password_confirmation },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "password_confirmation", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["password_confirmation"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["password_confirmation"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "span",
+        {
+          staticClass: "text-danger",
+          class: { hidden: _vm.errors["general"] == undefined },
+          staticStyle: { "margin-right": "10px" }
+        },
+        [_vm._v(_vm._s(_vm.errors["general"]))]
+      ),
+      _vm._v(" "),
+      _c(
+        "button",
+        {
+          staticClass: "btn btn-primary",
+          attrs: { type: "submit", disabled: _vm.disable.creating }
+        },
+        [_vm._v("Update Password")]
+      )
+    ]
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "password" } }, [
+      _vm._v("Password "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "password_confirmation" } }, [
+      _vm._v("Confirm Password"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-419e52f1", module.exports)
+  }
+}
+
+/***/ }),
+/* 329 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

@@ -14,6 +14,8 @@ class DashboardController extends Controller
 
     public function dashboard(Request $request)
     {
+        if(auth()->user()->temp_password) return redirect()->route('users.change_password');
+
     	$today = Carbon::today();
         $needToRedirect = false;
 

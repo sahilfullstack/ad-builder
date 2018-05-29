@@ -29,8 +29,10 @@ Route::put('/units/{unit}/approve', ['as' => 'units.approve', 'uses' => 'UnitCon
 Route::put('/users/{user}/approve', ['as' => 'users.approve', 'uses' => 'UserController@approve']);
 // Route::put('/users/{user}/subscriptions/{subscription}', ['as' => 'users.subscription.update', 'uses' => 'SubscriptionController@update']);
 Route::post('/users/{user}/subscriptions', ['as' => 'users.subscription.create', 'uses' => 'SubscriptionController@create']);
+Route::post('/users/create', ['as' => 'users.create', 'uses' => 'UserController@create']);
 
 Route::post('/templates', ['as' => 'templates.store', 'uses' => 'TemplateController@store']);
+Route::put('/users/password', ['as' => 'users.password.update', 'uses' => 'UserController@updatePassword']);
 
 Route::get('/user', function (Request $request) {
     return $request->user();

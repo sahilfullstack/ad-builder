@@ -5,12 +5,39 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
-use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest};
+use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest, StoreUserRequest, UpdateUserPasswordRequest};
 use Mail, DB;
-use App\Models\{Layout};
+use App\Models\{Layout, Role};
+use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
+
+    public function create(StoreUserRequest $request)
+    {
+        $role = Role::findBySlug('advertiser');          
+
+        $password = str_random(6);
+
+        $user = User::create([
+            'name'          => $request->get('name'),
+            'email'         => $request->get('email'),
+            'company'       => $request->get('company'),
+            'phone'         => $request->get('phone'),
+            'username'      => $request->get('username'),
+            'password'      => bcrypt($password),
+            'role_id'       => $role->id,
+            'approved_at'   => Carbon::now(),
+            'active'        => 1,
+            'temp_password' => 1
+        ]);
+
+        // mail user the username and password
+        Mail::to($user->email)->send(new \App\Mail\AccountCreatedMailToUser($user, $password));             
+
+        return $user;
+    }
+
     public function approve($userId, ApproveUserRequest $request)
     {
         try
@@ -53,5 +80,15 @@ class UserController extends Controller
         $user->company = $request->get('company');
         $user->phone = $request->get('phone');
         $user->save();
+    }    
+
+    public function updatePassword(UpdateUserPasswordRequest $request)
+    {
+        $user                = auth()->user();
+        $user->password      = bcrypt($request->get('password'));
+        $user->temp_password = 0;
+        $user->save();
+        
+        return $user;
     }
 }

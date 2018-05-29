@@ -47,8 +47,10 @@ Vue.component('update-user-profile-form', require('./components/users/UpdateUser
 Vue.component('edit-unit-category-form', require('./components/units/EditUnitCategoryForm.vue'));
 Vue.component('create-pinned-report-button', require('./components/reports/CreatePinnedReportButton.vue'));
 Vue.component('create-unpinned-report-button', require('./components/reports/CreateUnPinnedReportButton.vue'));
+Vue.component('create-user-form', require('./components/users/CreateUserForm.vue'));
 
 Vue.component('edit-multiple-unit-template-form', require('./components/units/EditMultipleUnitTemplateForm.vue'));
+Vue.component('update-user-password-form', require('./components/users/UpdateUserPasswordForm.vue'));
 
 const app = new Vue({
     el: '#app'

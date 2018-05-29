@@ -125,6 +125,11 @@
                                             Profile
                                         </a>
                                     </li>
+                                    <li>
+                                        <a href="{{ route('users.change_password') }}">
+                                            Change Password
+                                        </a>
+                                    </li>
                                     @can('create', Laravel\Passport\Token::class)
                                     <li>
                                         <a href="{{ route('users.access-tokens') }}">
