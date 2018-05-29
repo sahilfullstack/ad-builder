@@ -15,18 +15,21 @@
                             <th class="text-center">Name</th>
                             <th class="text-center">Email</th>
                             <th class="text-center">Registered at</th>
+                            <th class="text-center">Is Active?</th>
                         </tr>
                         <tr>
                             <td>{{$user->name}}</td>
                             <td>{{$user->email}}</td>
                             <td>{{$user->created_at->toDayDateTimeString()}}</td>
+                            <td>{{ $user->active ? 'Yes' : 'No' }}</td>
                         </tr>
                     </table>
                 </div>
             </div>
             <div class="panel panel-default">
                 <div class="panel-heading">
-                    <span class="h3">Subscriptions</span> <add-subscription-button :user="{{ $user->toJson() }}" :layouts="{{ $layouts->toJson() }}"></add-subscription-button>
+                    <span class="h3">Subscriptions</span>
+                    {{-- <add-subscription-button :user="{{ $user->toJson() }}" :layouts="{{ $layouts->toJson() }}"></add-subscription-button> --}}
                 </div>
                 <div class="panel-body">
                 @if($subscriptions->count() > 0)
@@ -81,7 +84,9 @@
                             <td>
                                 <update-user-subscription-button
                                     :user="{{ $user->toJson() }}"
-                                    :subscription="{{ $layout->toJson() }}" >
+                                    :subscription="{{ is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first()) ? '{}' : $subscription->toJson() }}" 
+                                    :layout="{{ $layout->toJson() }}"    
+                                >
 
                                 </update-user-subscription-button></td>
                             </td>

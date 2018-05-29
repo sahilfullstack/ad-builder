@@ -83925,8 +83925,8 @@ module.exports = Component.exports
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DatePickerModal__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__DatePickerModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__DatePickerModal__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UpdateSubscriptionModal__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__UpdateSubscriptionModal___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__UpdateSubscriptionModal__);
 //
 //
 //
@@ -83960,25 +83960,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     methods: {
         create: function create() {
             var thiz = this;
-            Modal.show(__WEBPACK_IMPORTED_MODULE_0__DatePickerModal___default.a, {
+            Modal.show(__WEBPACK_IMPORTED_MODULE_0__UpdateSubscriptionModal___default.a, {
                 propsData: {
-                    message: 'Are you sure you want to update the subscription?',
-                    defaultDate: this.subscription.expiring_at,
-                    defaultQuantity: this.subscription.allowed_quantity
+                    userId: this.user.id,
+                    layout: this.layout,
+                    currentExpiringAt: this.subscription.expiring_at !== undefined ? this.subscription.expiring_at : null,
+                    currentAllowedQuantity: this.subscription.allowed_quantity !== undefined ? this.subscription.allowed_quantity : null,
+                    currentDays: this.subscription.days !== undefined ? this.subscription.days : null,
+                    currentAllowVideos: this.subscription.allow_videos !== undefined ? this.subscription.allow_videos : null,
+                    currentAllowHover: this.subscription.allow_hover !== undefined ? this.subscription.allow_hover : null,
+                    currentAllowPopout: this.subscription.allow_popout !== undefined ? this.subscription.allow_popout : null
                 }
             }).then(function (data) {
-
                 thiz.disable.updating = true;
 
-                axios.put('/api/users/' + thiz.user.id + '/subscriptions/' + thiz.subscription.id, { expiry_date: data.date, allowed_quantity: data.quantity }).then(function (response) {
-                    thiz.disable.updating = false;
-
-                    // reloading the page
-                    location.reload();
-                }).catch(function (error) {
-                    thiz.disable.updating = false;
-                    console.log(error);
-                });
+                location.reload();
             });
         }
     }
@@ -84010,7 +84006,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/DatePickerModal.vue"
+Component.options.__file = "resources/assets/js/components/users/UpdateSubscriptionModal.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -84019,9 +84015,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-6865166c", Component.options)
+    hotAPI.createRecord("data-v-84f787ce", Component.options)
   } else {
-    hotAPI.reload("data-v-6865166c", Component.options)
+    hotAPI.reload("data-v-84f787ce", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -84073,64 +84069,102 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
-
-  props: {
-    message: {
-      type: String,
-      required: true
+    props: {
+        userId: {
+            type: Number,
+            required: true
+        },
+        layout: {
+            type: Object,
+            required: true
+        },
+        currentExpiringAt: {
+            type: String,
+            required: true
+        },
+        currentAllowedQuantity: {
+            type: Number,
+            required: true
+        },
+        currentDays: {
+            type: Number,
+            required: true
+        },
+        currentAllowVideos: {
+            type: Boolean,
+            required: true
+        },
+        currentAllowHover: {
+            type: Boolean,
+            required: true
+        },
+        currentAllowPopout: {
+            type: Boolean,
+            required: true
+        }
     },
-    defaultDate: {
-      type: String,
-      required: true
+
+    data: function data() {
+        return {
+            expiring_at: moment(this.currentExpiringAt).add(30, 'days')._d,
+            allowedQuantity: this.currentAllowedQuantity,
+            days: this.currentDays,
+            layout_id: this.layout.id,
+            allowVideos: this.currentAllowVideos,
+            allowHover: this.currentAllowHover,
+            allowPopout: this.currentAllowPopout,
+            errors: [],
+            disable: {
+                updating: false
+            }
+        };
     },
-    defaultQuantity: {
-      type: Number,
-      required: true
+
+
+    methods: {
+        update: function update() {
+            this.disable.updating = true;
+            var thiz = this;
+            axios.put('/api/users/' + this.userId + '/subscriptions', {
+                layout_id: this.layout_id,
+                expiring_at: this.expiring_at.toISOString().substring(0, 10),
+                allowed_quantity: this.allowedQuantity,
+                days: this.days,
+                allow_videos: this.allowVideos,
+                allow_hover: this.allowHover,
+                allow_popout: this.allowPopout
+            }).then(function (response) {
+                thiz.disable.updating = false;
+
+                thiz.$emit('resolve');
+            }).catch(function (error) {
+                thiz.disable.updating = false;
+
+                _.forEach(error.response.data.errors, function (error, index) {
+                    var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
+
+                    thiz.errors[errorIndex] = error[0];
+                });
+            });
+        }
     }
-  },
-
-  data: function data() {
-
-    return {
-      date: moment(this.defaultDate).format('YYYY-MM-DD'),
-      allowedQuantity: this.defaultQuantity,
-      displayMessage: this.message,
-      errors: [],
-      disable: {
-        yes: false
-      }
-    };
-  },
-  watch: {
-    permission: function permission(_permission) {
-      this.errors = [];
-      this.disable.yes = false;
-    }
-  },
-  methods: {
-    onClick: function onClick(event) {
-      event.preventDefault();
-      var self = this;
-
-      var finalQuantity = self.allowedQuantity;
-      var allowedQuantity = Number(self.allowedQuantity);
-
-      this.errors = [];
-      if (self.date == "") {
-        self.errors["general"] = "Expiry Date should not be empty";
-      } else if (typeof allowedQuantity != 'number') {
-        self.errors["general"] = "allowed quantity should be a valid number.";
-      } else if (allowedQuantity == '') {
-        self.errors["general"] = "Allowed Quantity should not be empty.";
-      } else {
-        var finalDate = self.date;
-        var finalQuantity = allowedQuantity;
-        self.$emit('resolve', { date: finalDate, quantity: finalQuantity });
-      }
-    }
-  }
 });
 
 /***/ }),
@@ -84150,71 +84184,237 @@ var render = function() {
           _vm._m(0),
           _vm._v(" "),
           _c("div", { staticClass: "modal-body" }, [
-            _c("div", { staticClass: "col-xs-12 text-left" }, [
-              _vm._v(_vm._s(_vm.displayMessage))
-            ]),
-            _vm._v(" "),
             _c("form", [
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12 form-group" }, [
+              _c("div", { staticClass: "form-group" }, [
+                _c("label", [
+                  _vm._v("Layout: "),
+                  _c("strong", [_vm._v(_vm._s(this.layout.name))])
+                ])
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "form-group" },
+                [
                   _c(
                     "label",
                     { staticClass: "control-label h5", attrs: { for: "date" } },
                     [_vm._v("Expiry Date")]
                   ),
                   _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.date,
-                        expression: "date"
-                      }
-                    ],
-                    attrs: { type: "date" },
-                    domProps: { value: _vm.date },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
-                        }
-                        _vm.date = $event.target.value
-                      }
+                  _c("date-picker", {
+                    attrs: { lang: "en" },
+                    model: {
+                      value: _vm.expiring_at,
+                      callback: function($$v) {
+                        _vm.expiring_at = $$v
+                      },
+                      expression: "expiring_at"
                     }
                   })
-                ])
+                ],
+                1
+              ),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allowed Quantity")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowedQuantity,
+                      expression: "allowedQuantity"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.allowedQuantity },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.allowedQuantity = $event.target.value
+                    }
+                  }
+                })
               ]),
               _vm._v(" "),
-              _c("div", { staticClass: "row" }, [
-                _c("div", { staticClass: "col-md-12 form-group" }, [
-                  _c(
-                    "label",
-                    { staticClass: "control-label h5", attrs: { for: "date" } },
-                    [_vm._v("Allowed Quantity")]
-                  ),
-                  _vm._v(" "),
-                  _c("input", {
-                    directives: [
-                      {
-                        name: "model",
-                        rawName: "v-model",
-                        value: _vm.allowedQuantity,
-                        expression: "allowedQuantity"
+              _c("div", { staticClass: "form-group" }, [
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Days")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.days,
+                      expression: "days"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: { type: "number" },
+                  domProps: { value: _vm.days },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
                       }
-                    ],
-                    attrs: { type: "number" },
-                    domProps: { value: _vm.allowedQuantity },
-                    on: {
-                      input: function($event) {
-                        if ($event.target.composing) {
-                          return
+                      _vm.days = $event.target.value
+                    }
+                  }
+                })
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowVideos,
+                      expression: "allowVideos"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.allowVideos)
+                      ? _vm._i(_vm.allowVideos, null) > -1
+                      : _vm.allowVideos
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.allowVideos,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.allowVideos = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.allowVideos = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
                         }
-                        _vm.allowedQuantity = $event.target.value
+                      } else {
+                        _vm.allowVideos = $$c
                       }
                     }
-                  })
-                ])
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allow Videos")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowHover,
+                      expression: "allowHover"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.allowHover)
+                      ? _vm._i(_vm.allowHover, null) > -1
+                      : _vm.allowHover
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.allowHover,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.allowHover = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.allowHover = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.allowHover = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allow Hover")]
+                )
+              ]),
+              _vm._v(" "),
+              _c("div", { staticClass: "form-group" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.allowPopout,
+                      expression: "allowPopout"
+                    }
+                  ],
+                  staticClass: "form-check-input",
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.allowPopout)
+                      ? _vm._i(_vm.allowPopout, null) > -1
+                      : _vm.allowPopout
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.allowPopout,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.allowPopout = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.allowPopout = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.allowPopout = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  { staticClass: "control-label h5", attrs: { for: "date" } },
+                  [_vm._v("Allow Popout")]
+                )
               ])
             ])
           ]),
@@ -84236,17 +84436,17 @@ var render = function() {
                 staticClass: "btn btn-default",
                 attrs: { type: "button", "data-dismiss": "modal" }
               },
-              [_vm._v("No")]
+              [_vm._v("Cancel")]
             ),
             _vm._v(" "),
             _c(
               "button",
               {
                 staticClass: "btn btn-primary",
-                attrs: { type: "button", disabled: _vm.disable.yes },
-                on: { click: _vm.onClick }
+                attrs: { type: "button", disabled: _vm.disable.updating },
+                on: { click: _vm.update }
               },
-              [_vm._v("Yes")]
+              [_vm._v("Update")]
             )
           ])
         ])
@@ -84260,6 +84460,10 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "modal-header" }, [
+      _c("h5", { staticClass: "modal-title" }, [
+        _vm._v("Update A Subscription")
+      ]),
+      _vm._v(" "),
       _c(
         "button",
         {
@@ -84280,7 +84484,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-6865166c", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-84f787ce", module.exports)
   }
 }
 

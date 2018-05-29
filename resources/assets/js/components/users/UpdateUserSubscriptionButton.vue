@@ -3,8 +3,7 @@
 </template>
 
 <script>
-import DatePickerModal from './../DatePickerModal';
-import UpdateSubscriptionModal from './../UpdateSubscriptionModal';
+import UpdateSubscriptionModal from './UpdateSubscriptionModal';
 export default {
     props: {    
        user: {
@@ -33,28 +32,20 @@ export default {
             let thiz = this;
             Modal.show(UpdateSubscriptionModal, {
                 propsData: {
+                        userId: this.user.id,
                         layout: this.layout,
-                        expiring_at: this.subscription.expiring_at !== undefined ? this.subscription.expiring_at : null,
-                        allowed_quantity: this.subscription.allowed_quantity !== undefined ? this.subscription.allowed_quantity : null,
-                        days: this.subscription.days !== undefined ? this.subscription.days : null,
-                        allow_videos: this.subscription.allow_videos !== undefined ? this.subscription.allow_videos : null,
+                        currentExpiringAt: this.subscription.expiring_at !== undefined ? this.subscription.expiring_at : null,
+                        currentAllowedQuantity: this.subscription.allowed_quantity !== undefined ? this.subscription.allowed_quantity : null,
+                        currentDays: this.subscription.days !== undefined ? this.subscription.days : null,
+                        currentAllowVideos: this.subscription.allow_videos !== undefined ? this.subscription.allow_videos : null,
+                        currentAllowHover: this.subscription.allow_hover !== undefined ? this.subscription.allow_hover : null,
+                        currentAllowPopout: this.subscription.allow_popout !== undefined ? this.subscription.allow_popout : null,
                     }
                 })
                 .then(function(data) {
-
                     thiz.disable.updating = true;
                     
-                    axios.put('/api/users/' + thiz.user.id + '/subscriptions/'+ thiz.subscription.id,  {expiry_date: data.date, allowed_quantity: data.quantity})
-                    .then(function (response) {
-                        thiz.disable.updating = false;
-
-                        // reloading the page
-                        location.reload();                        
-                    })
-                    .catch(function (error) {
-                        thiz.disable.updating = false;
-                        console.log(error);
-                    });                    
+                    location.reload();
 
                 });
         }
