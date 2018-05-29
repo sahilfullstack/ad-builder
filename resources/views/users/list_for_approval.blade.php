@@ -6,6 +6,9 @@
         <div class="col-md-12">
             <h1>
                 Users
+                @if(Auth::user()->can('user.manage'))
+                   <a href="{{ route('users.create') }}" class="btn btn-primary btn-sm">Add New</a>
+                @endif 
             </h1>
             <hr>
 

@@ -14,6 +14,7 @@ class Subscription extends Model
         'layout_id',
         'expiring_at',
         'allowed_quantity',
+        'days',
         'allow_videos',
         'allow_hover',
         'allow_popout',

@@ -29,15 +29,32 @@ class SubscriptionController extends Controller
 
     public function create(CreateSubscriptionRequest $request, User $user)
     {
-         $subscription = new Subscription([
-                'user_id'          => $user->id,
-                'layout_id'        => $request->layout_id,
-                'allowed_quantity' => $request->allowed_quantity,
-                'allow_videos'     => $request->allow_videos,
-                'expiring_at'      => Carbon::parse($request->expiring_at),
-                'created_at'       => Carbon::now(),
-                'updated_at'       => Carbon::now()
-            ]);
+        $subscription = Subscription::where([
+                'user_id'   => $user->id,
+                'layout_id' => $request->layout_id,
+            ])->first();
+
+        if(is_null($subscription))
+        {
+             $subscription = new Subscription([
+                    'user_id'          => $user->id,
+                    'layout_id'        => $request->layout_id,
+                    'allowed_quantity' => $request->allowed_quantity,
+                    'allow_videos'     => $request->allow_videos,
+                    'allow_hover'      => $request->allow_hover,
+                    'allow_popout'     => $request->allow_popout,
+                    'days'             => $request->days,
+                    'expiring_at'      => Carbon::parse($request->expiring_at),
+                ]);
+        }
+        else {
+            $subscription->allowed_quantity =  $request->allowed_quantity;
+            $subscription->allow_videos     =  $request->allow_videos;
+            $subscription->allow_hover      =  $request->allow_hover;
+            $subscription->allow_popout     =  $request->allow_popout;
+            $subscription->days             =  $request->days;
+            $subscription->expiring_at      =  Carbon::parse($request->expiring_at);
+        }
 
         $subscription->save();
 

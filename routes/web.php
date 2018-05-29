@@ -25,6 +25,7 @@ Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
+Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
 
 Route::get('/units', 'UnitController@list')->name('units.list')->middleware('auth');
@@ -35,6 +36,7 @@ Route::get('/units/{unit}/render', 'UnitController@render')->name('units.render'
 Route::get('/units/{unit}/edit/page', 'UnitController@editLandingPage')->name('units.edit-landing-page')->middleware('auth');
 Route::get('/units/approval', 'UnitController@listUnitsForApproval')->name('units.approval.list')->middleware('auth');
 Route::get('/users', 'UserController@list')->name('users.list')->middleware('auth');
+Route::get('/users/change-password', 'UserController@changePassword')->name('users.change_password')->middleware('auth');
 Route::post('/units/{unit}/components/{component}/responses', 'UnitController@recordResponse')->name('units.respond');
 
 Route::get('/units/{unit}', 'UnitController@show')->name('units.show')->middleware('auth');

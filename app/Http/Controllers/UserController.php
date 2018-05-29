@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\{Layout};
-use App\Http\Requests\{ListUserRequest};
+use App\Http\Requests\{ListUserRequest, CreateUserRequest};
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -18,6 +18,11 @@ class UserController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+    }
+
+    public function create(CreateUserRequest $request)
+    {
+        return view('users.create');
     }
 
     public function list(ListUserRequest $request)
@@ -49,5 +54,10 @@ class UserController extends Controller
         $layouts = Layout::whereNull('parent_id')->get();
 
         return view('users.manage_subscription', compact('user', 'subscriptions', 'layouts'));
+    }
+
+    public function changePassword()
+    {
+        return view('users.change_password');        
     }
 }
