@@ -62,4 +62,9 @@ class UserPolicy
     {
         return ($user->id === $userToUpdate->id || $user->canOverride($userToUpdate));
     }
+
+    public function delete(User $user, User $userToUpdate)
+    {
+        return ($user->id === $userToUpdate->id || $user->canOverride($userToUpdate));
+    }
 }
