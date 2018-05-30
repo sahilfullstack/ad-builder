@@ -178,7 +178,7 @@ class UnitController extends Controller
 
         if($unit->is_holder) {
             $templates = Template::notDeleted()
-                ->whereType('ad')
+                ->whereType($unit->type)
                 ->whereIn('layout_id', $unit->holdee->pluck('layout_id')->unique())
                 ->with('components')
                 ->get()->groupBy('layout_id');
