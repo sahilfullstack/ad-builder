@@ -13,7 +13,6 @@ class Subscription extends Model
         'user_id',
         'layout_id',
         'expiring_at',
-        'allowed_quantity',
         'days',
         'allow_videos',
         'allow_hover',
