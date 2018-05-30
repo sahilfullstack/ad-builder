@@ -59,11 +59,6 @@
                             <td>{{
                                 is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
                                 ? 'NA'
-                                : $subscription->allowed_quantity
-                            }}</td>
-                            <td>{{
-                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
-                                ? 'NA'
                                 : $subscription->days
                             }}</td>
                             <td>{{
