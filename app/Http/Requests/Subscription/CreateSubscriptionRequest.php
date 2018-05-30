@@ -27,7 +27,6 @@ class CreateSubscriptionRequest extends FormRequest
         return [
             'layout_id'        => 'required|exists:layouts,id',
             'expiring_at'      => 'required',
-            'allowed_quantity' => 'required',
             'allow_videos'     => 'required',
             'allow_hover'      => 'required',
             'allow_popout'     => 'required',

@@ -12,20 +12,20 @@ use App\Http\Requests\Subscription\CreateSubscriptionRequest;
 
 class SubscriptionController extends Controller
 {
-    public function update(User $user, Subscription $subscription, Request $request)
-    {
-        $subscription = Subscription::where([
-            'id'      => $subscription->id,
-            'user_id' => $user->id
-        ])->first();
+    // public function update(User $user, Subscription $subscription, Request $request)
+    // {
+    //     $subscription = Subscription::where([
+    //         'id'      => $subscription->id,
+    //         'user_id' => $user->id
+    //     ])->first();
 
-        $subscription->expiring_at      = Carbon::parse($request->expiry_date);
-        $subscription->allowed_quantity = $request->allowed_quantity;
+    //     $subscription->expiring_at      = Carbon::parse($request->expiry_date);
+    //     $subscription->allowed_quantity = $request->allowed_quantity;
 
-        $subscription->save();
+    //     $subscription->save();
 
-        return $subscription->fresh();
-    }
+    //     return $subscription->fresh();
+    // }
 
     public function create(CreateSubscriptionRequest $request, User $user)
     {
@@ -39,7 +39,6 @@ class SubscriptionController extends Controller
              $subscription = new Subscription([
                     'user_id'          => $user->id,
                     'layout_id'        => $request->layout_id,
-                    'allowed_quantity' => $request->allowed_quantity,
                     'allow_videos'     => $request->allow_videos,
                     'allow_hover'      => $request->allow_hover,
                     'allow_popout'     => $request->allow_popout,
@@ -48,7 +47,6 @@ class SubscriptionController extends Controller
                 ]);
         }
         else {
-            $subscription->allowed_quantity =  $request->allowed_quantity;
             $subscription->allow_videos     =  $request->allow_videos;
             $subscription->allow_hover      =  $request->allow_hover;
             $subscription->allow_popout     =  $request->allow_popout;

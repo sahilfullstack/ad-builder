@@ -14,11 +14,11 @@ class LayoutsSeeder extends Seeder
     public function run()
     {
         $layouts = [
-            'Full Page' => [1920, 1080, null, null], // 1
-            'Half Page (Landscape)' => [1920, 540, null, null], // 2
-            'Half Page (Portrait)' => [960, 1080, null, null], // 3
-            'Quarter Page' => [960, 540, null, null], // 4
-            '1/8th Page' => [480, 540, null, null], // 5
+            'Full Page' => [1920, 1080, null, ''], // 1
+            'Half Page (Landscape)' => [1920, 540, null, ''], // 2
+            'Half Page (Portrait)' => [960, 1080, null, ''], // 3
+            'Quarter Page' => [960, 540, null, ''], // 4
+            '1/8th Page' => [480, 540, null, ''], // 5
             
             // Sub-layouts
             '1/2(P) - 1/2(P)' => [1920, 1080, 1, '33'],
