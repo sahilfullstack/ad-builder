@@ -78,7 +78,7 @@
         }
         div.body {
             width: 240px;
-            height: 265px;
+            height: 260px;
             background: #fff;
             overflow: auto;
         }
