@@ -8,7 +8,8 @@
             </select>
             <br>
             <select v-if="children[form.layout_id] != undefined && children[form.layout_id].length > 0" name="child_id" id="child_id" class="form-control" v-model="form.child_id">    
-                <option v-for="(child, key) in children[form.layout_id]" :key="key" :value="child.id">{{ child.name }}</option>
+                <option value="0">Full Page</option>
+                <option v-for="(child, key) in children[form.layout_id]" :value="child.id">{{ child.name }}</option>
             </select>
             <span class="text-danger" :class="{'hidden': errors['layout_id'] == undefined}" style="margin-right:10px;">{{errors['layout_id']}}</span>
         </div>
@@ -73,7 +74,7 @@ export default {
             
             this.errors = [];
 
-            if(this.form.child_id != 0)
+            if(this.form.child_id != 0 )
             {
                 var formToBeSubmitted = _.cloneDeep(this.form);
 
@@ -107,9 +108,8 @@ export default {
         }
     },
     mounted(){  
-           if((this.children[this.form.layout_id] != undefined) && (this.children[this.form.layout_id].length >0)) {
-                this.form.child_id = this.children[this.form.layout_id][0].id;
-            }
+
+            this.form.child_id = 0;
       }
                 
 }

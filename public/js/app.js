@@ -79931,6 +79931,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -80017,9 +80018,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         }
     },
     mounted: function mounted() {
-        if (this.children[this.form.layout_id] != undefined && this.children[this.form.layout_id].length > 0) {
-            this.form.child_id = this.children[this.form.layout_id][0].id;
-        }
+
+        this.form.child_id = 0;
     }
 });
 
@@ -80126,13 +80126,16 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.children[_vm.form.layout_id], function(child, key) {
-                return _c(
-                  "option",
-                  { key: key, domProps: { value: child.id } },
-                  [_vm._v(_vm._s(child.name))]
-                )
-              })
+              [
+                _c("option", { attrs: { value: "0" } }, [_vm._v("Full Page")]),
+                _vm._v(" "),
+                _vm._l(_vm.children[_vm.form.layout_id], function(child, key) {
+                  return _c("option", { domProps: { value: child.id } }, [
+                    _vm._v(_vm._s(child.name))
+                  ])
+                })
+              ],
+              2
             )
           : _vm._e(),
         _vm._v(" "),

@@ -35,7 +35,6 @@
                     {{-- <add-subscription-button :user="{{ $user->toJson() }}" :layouts="{{ $layouts->toJson() }}"></add-subscription-button> --}}
                 </div>
                 <div class="panel-body">
-                @if($subscriptions->count() > 0)
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                         <th class="text-center">Name</th>
@@ -97,9 +96,6 @@
                             </tr>
                     @endforeach
                     </table>               
-                @else
-                    <span>No subscriptions yet.</span>
-                @endif
                  </div>
             </div>
         </div>
