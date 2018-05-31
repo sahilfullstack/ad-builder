@@ -23,9 +23,9 @@ class ValidComponents implements Rule
             'invalid' => 'Image link is not valid',
         ],
         'images' => [
-            'height'  => 'Height of :attribute  image with :key index must be :ruleValue',
-            'width'   => 'Width of :attribute image with :key index must be :ruleValue',
-            'invalid' => 'Image with :key index link is not valid',
+            'height'  => 'Height of :attribute image at #:key must be :ruleValue',
+            'width'   => 'Width of :attribute image at #:key must be :ruleValue',
+            'invalid' => 'The :attribute image  at #:key link is not valid',
         ],
         'video' => [
             'height'       => 'Height of :attribute must be :ruleValue',
@@ -83,14 +83,14 @@ class ValidComponents implements Rule
 
     private function validateImages($attribute, $values)
     {
-        foreach ($values as $key => $value) {
-            $result = $this->validateImage($attribute, $value);
+        $result = $this->validateImage($attribute, $values);
 
-            if($result == false)
-            {
-                $this->index = $key+1;
-                return $result;                
-            }
+        if($result == false)
+        {
+            $explodedAttribute = explode('.', $attribute);
+            $this->index = $explodedAttribute[count($explodedAttribute) - 2] + 1;
+            $this->attribute = $explodedAttribute[0];
+            return $result;                
         }
 
         return true;
@@ -211,7 +211,7 @@ class ValidComponents implements Rule
     {
         if($this->type == 'images')
         {
-            return str_replace(':key', $this->index,str_replace(':ruleValue',  $this->ruleValue, $this->ruleBook[$this->type][$this->ruleKey]));
+            return str_replace(':attribute', $this->attribute, str_replace(':key', $this->index,str_replace(':ruleValue',  $this->ruleValue, $this->ruleBook[$this->type][$this->ruleKey])));
         }
 
         return str_replace(':ruleValue',  $this->ruleValue, $this->ruleBook[$this->type][$this->ruleKey]);

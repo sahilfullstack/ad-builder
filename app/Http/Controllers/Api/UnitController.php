@@ -16,6 +16,7 @@ use App\Services\Formatter\Formatter;
 use Illuminate\Support\Str;
 use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
+use Illuminate\Support\Facades\Log;
 
 class UnitController extends Controller
 {
@@ -681,6 +682,9 @@ class UnitController extends Controller
                      $component->name . '.*._value' => [
                         'required',
                     ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '.*._value.required' => 'All the images in ' . $component->name . ' are required.'
                 ]);
             }
             else if($component->type == "color")

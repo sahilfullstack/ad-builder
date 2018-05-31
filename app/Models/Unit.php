@@ -139,6 +139,11 @@ class Unit extends Model
         return $query->where('is_holder', false);
     }
 
+    public function scopeNoHoldees($query)
+    {
+        return $query->whereNull('holder_id');
+    }
+
     public function scopeForCurrentUser($query)
     {
         $user = auth()->user();
@@ -185,6 +190,19 @@ class Unit extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function getNameAttribute($value)
+    {
+        if($this->is_holder)
+            return $this->layout->name
+                . ' - including '
+                . $this->holdee->first()->name 
+                . ', and '
+                . ($this->holdee->count() - 1)
+                . ' others';
+
+        return $value;
     }
 
     public function getTypeHumanAttribute()
