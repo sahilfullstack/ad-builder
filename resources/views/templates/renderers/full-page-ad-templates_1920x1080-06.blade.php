@@ -175,7 +175,7 @@
 
         <div class="body">
             <div class="sidebar">
-                <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
+                <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
 
                 <div class="logo">
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])

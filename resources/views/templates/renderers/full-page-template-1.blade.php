@@ -177,7 +177,7 @@
 
             <div class="body">
                 <div class="sidebar">
-                    <p class="category-header">HEALTH</p>
+                    <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">HEALTH</p>
 
                     <div class="logo">
                         @if(empty($unit->components['logo']))

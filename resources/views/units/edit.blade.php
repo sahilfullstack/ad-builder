@@ -29,14 +29,14 @@
                         }
                     @endphp
                         
-                    @foreach($canvas->getOrigins() as $origin)
+                    @foreach($canvas->getOrigins() as $index => $origin)
                         <iframe 
                         id="renderer-iframe-{{ $origin->getElement()->getContent()->id }}"
                         frameborder="0"
                         width="{{ $origin->getElement()->getPixelWidth() / 2 }}"
                         height="{{ $origin->getElement()->getPixelHeight() / 2 }}"
                         src="{{ route('units.render', array_merge(
-                            ['unit' => $origin->getElement()->getContent()->id, 'nullable' => 'y', 'color' => 'y'], request()->query()
+                            ['unit' => $origin->getElement()->getContent()->id, 'nullable' => 'y', 'color' => 'y', 'index' => $index + 1], request()->query()
                         ))}}"
                         data-meta="{{ $origin->getPositionTop() }} - {{ $origin->getPositionLeft() }}"
                         style="
@@ -72,7 +72,7 @@
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
-                                            {{ $child->layout->name }}
+                                            <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
@@ -112,7 +112,7 @@
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
-                                            {{ $child->layout->name }}
+                                            <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
@@ -152,7 +152,7 @@
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
-                                            {{ $child->layout->name }}
+                                                <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
@@ -192,7 +192,7 @@
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
                                             <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
-                                            {{ $child->layout->name }}
+                                                <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>

@@ -75,12 +75,14 @@
         }
 
         p.null-state {
-            padding-top: 230px;
             text-transform: uppercase;
             font-weight: bold;
-            font-size: 18px;
-            color: #aaa;
-            text-align: center;
+            font-size: 40px;
+            color: #555;
+            background: #ffffff;
+            float: left;
+            padding: 25px 40px;
+            border-radius: 0px 0px 10px;
         }
     </style>
     
@@ -89,7 +91,7 @@
     
     <div id="workspace" style="background: {{ request()->input('color', 'y') == 'y' ? sprintf('#%06X', mt_rand(0, 0xFFFFFF)) : ''}}">
         <!-- Empty -->
-        <p class="null-state"></p>
+        <p class="null-state">{{ request()->input('index', 'workspace') }}</p>
     </div>
 </body>
 </html>
