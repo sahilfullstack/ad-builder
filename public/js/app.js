@@ -78860,20 +78860,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
       return data;
     },
     upload: function upload(event) {
-
       event.preventDefault();
       var self = this;
 
       this.errors = [];
       this.disable.upload = true;
+      $(event.target).button('loading');
 
       axios.post(this.apiPath, this.getPreparedData()).then(function (response) {
 
         self.disable.upload = false;
+        $(event.target).button('reset');
         self.$emit('resolve', response.data.data.url);
       }).catch(function (error) {
 
         self.disable.upload = false;
+        $(event.target).button('reset');
 
         _.forEach(error.response.data.errors, function (error, index) {
           var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
@@ -78961,7 +78963,12 @@ var render = function() {
               "button",
               {
                 staticClass: "btn btn-primary",
-                attrs: { type: "button", disabled: _vm.disable.upload },
+                attrs: {
+                  type: "button",
+                  disabled: _vm.disable.upload,
+                  "data-loading-text":
+                    "<i class='fa fa-spinner fa-spin'></i> Uploading..."
+                },
                 on: { click: _vm.upload }
               },
               [_vm._v("Upload")]
