@@ -161,5 +161,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('#holdee-form').on('shown.bs.collapse', function(event) {
+            var panels = $(event.currentTarget).find('.collapse');
+            panels.each((index, panel) => {
+                $('#renderer-iframe-' + $(panel).data('unit')).css({
+                    visibility: $(panel).hasClass('in') ? 'visible' : 'hidden'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

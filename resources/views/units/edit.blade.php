@@ -20,31 +20,49 @@
             @if( ! $unit->is_holder)
                 <iframe id="renderer-iframe-{{ $unit->id }}" src="{{ route('units.render', ['unit' => $unit, 'nullable' => 'y']) }}" frameborder="0" width="960" height="540"></iframe>
             @else
-                <div style="position:relative;width:960px;height:540px;">
-                    @php
-                        $canvas = new App\Services\SlideMaker\Canvas(1920, 1080);
-                        foreach($unit->holdee as $index => $held)
-                        {
-                            $canvas->fitElement(new App\Services\SlideMaker\Element($held->layout->width, $held->layout->height, $held));
-                        }
-                    @endphp
-                        
-                    @foreach($canvas->getOrigins() as $index => $origin)
-                        <iframe 
-                        id="renderer-iframe-{{ $origin->getElement()->getContent()->id }}"
-                        frameborder="0"
-                        width="{{ $origin->getElement()->getPixelWidth() / 2 }}"
-                        height="{{ $origin->getElement()->getPixelHeight() / 2 }}"
-                        src="{{ route('units.render', array_merge(
-                            ['unit' => $origin->getElement()->getContent()->id, 'nullable' => 'y', 'color' => 'y', 'index' => $index + 1], request()->query()
-                        ))}}"
-                        data-meta="{{ $origin->getPositionTop() }} - {{ $origin->getPositionLeft() }}"
-                        style="
-                            position: absolute;
-                            top: {{ $origin->getPositionTop() / 2 }}px;
-                            left: {{ $origin->getPositionLeft() / 2 }}px;
-                        "></iframe>
-                    @endforeach
+                <div style="position:relative;width:960px;height:540px;overflow:hidden;">
+                    @if($unit->type == 'ad')
+                        @php
+                            $canvas = new App\Services\SlideMaker\Canvas(1920, 1080);
+                            foreach($unit->holdee as $index => $held)
+                            {
+                                $canvas->fitElement(new App\Services\SlideMaker\Element($held->layout->width, $held->layout->height, $held));
+                            }
+                        @endphp
+                            
+                        @foreach($canvas->getOrigins() as $index => $origin)
+                            <iframe 
+                            id="renderer-iframe-{{ $origin->getElement()->getContent()->id }}"
+                            frameborder="0"
+                            width="{{ $origin->getElement()->getPixelWidth() / 2 }}"
+                            height="{{ $origin->getElement()->getPixelHeight() / 2 }}"
+                            src="{{ route('units.render', array_merge(
+                                ['unit' => $origin->getElement()->getContent()->id, 'nullable' => 'y', 'color' => 'y', 'index' => $index + 1], request()->query()
+                            ))}}" 
+                            style="
+                                position: absolute;
+                                top: {{ $origin->getPositionTop() / 2 }}px;
+                                left: {{ $origin->getPositionLeft() / 2 }}px;
+                            "></iframe>
+                        @endforeach
+                    @elseif($unit->type == 'page')
+                        @foreach($unit->holdee as $index => $held)
+                            <iframe 
+                            id="renderer-iframe-{{ $held->id }}"
+                            frameborder="0"
+                            width="960"
+                            height="540"
+                            src="{{ route('units.render', array_merge(
+                                ['unit' => $held->id, 'nullable' => 'y', 'color' => 'y', 'index' => $index + 1], request()->query()
+                            ))}}"
+                            style="
+                                position: absolute;
+                                top: 0px;
+                                left: 0px;
+                                visibility: {{ $index == 0 ? 'visible' : 'hidden'}}
+                            "></iframe>
+                        @endforeach
+                    @endif
                 </div>
             @endif
             <hr>
@@ -66,17 +84,17 @@
                         </edit-unit-layout-form>
                     @elseif($section == 'template')
                         @if($unit->is_holder)
-                            <div class="panel-group" id="accordion" role="tablist" >
+                            <div class="panel-group" id="holdee-form" role="tablist" >
                             @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            <a role="button" data-toggle="collapse" data-parent="#holdee-form" href="#collapse-{{ $child->id }}">
                                             <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-template-form
@@ -106,17 +124,17 @@
                         @endif
                     @elseif($section == 'components')
                         @if($unit->is_holder)
-                            <div class="panel-group" id="accordion" role="tablist" >
+                            <div class="panel-group" id="holdee-form" role="tablist" >
                             @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            <a role="button" data-toggle="collapse" data-parent="#holdee-form" href="#collapse-{{ $child->id }}">
                                             <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-components-form
@@ -146,17 +164,17 @@
                         @endif
                     @elseif($section == 'category')
                         @if($unit->is_holder)
-                            <div class="panel-group" id="accordion" role="tablist" >
+                            <div class="panel-group" id="holdee-form" role="tablist" >
                             @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            <a role="button" data-toggle="collapse" data-parent="#holdee-form" href="#collapse-{{ $child->id }}">
                                                 <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-category-form
@@ -186,17 +204,17 @@
                         @endif
                     @elseif($section == 'basic')
                         @if($unit->is_holder)
-                            <div class="panel-group" id="accordion" role="tablist" >
+                            <div class="panel-group" id="holdee-form" role="tablist" >
                             @foreach($unit->holdee as $index => $child)
                                 <div class="panel panel-default">
                                     <div class="panel-heading" role="tab">
                                         <h4 class="panel-title">
-                                            <a role="button" data-toggle="collapse" data-parent="#accordion" href="#collapse-{{ $child->id }}">
+                                            <a role="button" data-toggle="collapse" data-parent="#holdee-form" href="#collapse-{{ $child->id }}">
                                                 <strong>{{ $index + 1 }}</strong> <em>({{ $child->layout->name }})</em>
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-basic-form
@@ -238,8 +256,4 @@
     </div>
 </div>
 
-<script>
-    var frameElement = document.getElementById("renderer-iframe");
-    if(frameElement) frameElement.contentWindow.location.href = frameElement.src;
-</script>
 @endsection
