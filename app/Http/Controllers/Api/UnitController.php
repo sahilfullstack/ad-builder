@@ -421,6 +421,16 @@ class UnitController extends Controller
                             ->orderBy('expiring_at', 'DESC')->first();
         }
 
+        // if hover image is set 
+        // allow 
+        if(! is_null($unit->hover_image))
+        {
+            if( $subscription->allow_hover == 0 && $subscription->allow_popout == 0) 
+            {
+                throw new CustomInvalidInputException('general', 'Cannot use hover image of this subscription. Please contact the admin at admin@mesa.com');
+            }
+        }
+
         $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
         $subscription->save();
             

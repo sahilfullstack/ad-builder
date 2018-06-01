@@ -22,12 +22,21 @@
                             <br>
                             @if($report[0] == 'daterange')
                                 @foreach($report[5] as $filter)
-                                    {{ucwords(str_replace(['-', '_', 'id'], ' ', $filter['slug']))}} - 
-                                    @if($filter['selected'] == null)
-                                    Not Selected
+                                    @if($filter['slug'] == 'unit_id')
+                                        Ad -
+                                        @if($filter['selected'] == null)
+                                        Not Selected
+                                        @else
+                                        {{\App\Models\Unit::find($filter['selected'])->name}}
+                                        @endif      
                                     @else
-                                    {{$filter['selected']}}
-                                    @endif                                
+                                        {{ucwords(str_replace(['-', '_', 'id'], ' ', $filter['slug']))}} - 
+                                        @if($filter['selected'] == null)
+                                            Not Selected
+                                        @else
+                                            {{$filter['selected']}}
+                                        @endif                   
+                                    @endif                                                
                                     <br>
                                 @endforeach                           
                             @endif
