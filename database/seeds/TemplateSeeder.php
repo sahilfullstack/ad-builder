@@ -1830,7 +1830,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Amount 1',
+                        'name' => 'Amount 2',
                         'type' => 'text',
                         'rules' => []
                     ],
@@ -1944,30 +1944,30 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
-                        'type' => 'video',
-                        'rules' => []
-                    ],     
-                    [
                         'name' => 'Image 1',
                         'type' => 'image',
                         'rules' => []
                     ],     
                     [
-                        'name' => 'Image 2',
-                        'type' => 'image',
+                        'name' => 'Photo Gallery',
+                        'type' => 'images',
                         'rules' => []
-                    ],
+                    ], 
+                    [
+                        'name' => 'Video',
+                        'type' => 'video',
+                        'rules' => []
+                    ],     
                     [
                         'name' => 'Text',
                         'type' => 'text',
                         'rules' => []
                     ], 
                     [
-                        'name' => 'Photo Gallery',
-                        'type' => 'images',
+                        'name' => 'Image 2',
+                        'type' => 'image',
                         'rules' => []
-                    ], 
+                    ],
                     [
                         'name' => 'QR Code Title 1',
                         'type' => 'text',
