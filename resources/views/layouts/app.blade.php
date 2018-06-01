@@ -12,6 +12,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.13/css/all.css" integrity="sha384-DNOHZ68U8hZfKXOrtjWvjxusGo9WQnrNx2sqG0tfsghAvtVlRW3tvkXWZh58N9jp" crossorigin="anonymous">
 </head>
 <body>
     <div id="app">
@@ -161,5 +162,15 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}"></script>
+    <script>
+        $('#holdee-form').on('shown.bs.collapse', function(event) {
+            var panels = $(event.currentTarget).find('.collapse');
+            panels.each((index, panel) => {
+                $('#renderer-iframe-' + $(panel).data('unit')).css({
+                    visibility: $(panel).hasClass('in') ? 'visible' : 'hidden'
+                });
+            });
+        });
+    </script>
 </body>
 </html>

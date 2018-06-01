@@ -33,7 +33,7 @@ class UnitController extends Controller
             return redirect(route('units.list', array_merge(['type' => 'ad'], request()->query())));
         }
 
-        $units = Unit::notDeleted()->noHolders()->with(['template', 'template.components']);
+        $units = Unit::notDeleted()->noHoldees()->with(['template', 'template.components']);
 
         if( ! auth()->user()->can('unit.manage'))
         {
@@ -297,13 +297,13 @@ class UnitController extends Controller
     
     public function listUnitsForApproval(ListUnitRequestForApproval $request)
     {
-      $units = Unit::notDeleted()->with(['template', 'template.components'])
-        ->whereNotNull('published_at')
-        ->whereNull('approved_at')
-        ->whereNull('rejected_at')
-        ->whereHas('template')
-        ->where('type', 'ad')
-        ->latest()->paginate();
+      $units = Unit::notDeleted()->noHoldees()
+            ->with(['template', 'template.components'])
+            ->whereNotNull('published_at')
+            ->whereNull('approved_at')
+            ->whereNull('rejected_at')
+            ->where('type', 'ad')
+            ->latest()->paginate();
 
         return view('units.list_for_approval', compact('units'));
     }

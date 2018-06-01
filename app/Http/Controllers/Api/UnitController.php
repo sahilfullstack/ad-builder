@@ -16,6 +16,7 @@ use App\Services\Formatter\Formatter;
 use Illuminate\Support\Str;
 use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
+use Illuminate\Support\Facades\Log;
 
 class UnitController extends Controller
 {
@@ -132,7 +133,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::published()->approved()->with(['holdee', 'category', 'layout', 'child', 'holdee.holdee', 'holdee.category', 'holdee.layout', 'holdee.child'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
+        $units = Unit::published()->approved()->with(['holdee', 'category', 'layout', 'template', 'child', 'holdee.holdee', 'holdee.category', 'holdee.layout', 'holdee.template', 'holdee.child'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
         
         if( ! is_null($request->get('type')))
         {
@@ -180,7 +181,9 @@ class UnitController extends Controller
         foreach($units as $unit)
         {
             $transformed[]['product'] = [
-                'hash' => md5($unit['updated_at'] . $unit['child']['updated_at']),
+                'hash' => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
+                        . $unit['updated_at']
+                        . $unit['child']['updated_at']),
                 'prid' => $unit['id'],
                 'category_id' => $unit['category']['id'],
                 'category' => $unit['category']['name'],
@@ -679,6 +682,9 @@ class UnitController extends Controller
                      $component->name . '.*._value' => [
                         'required',
                     ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '.*._value.required' => 'All the images in ' . $component->name . ' are required.'
                 ]);
             }
             else if($component->type == "color")

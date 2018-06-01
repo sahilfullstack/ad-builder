@@ -14,24 +14,47 @@
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                         <th class="text-center">Name</th>
-                        <th class="text-center">Status</th>
-                        <th class="text-center">Expiring At</th>
-                        <th class="text-center">Allowed Quantity</th>
-                        <th class="text-center">Redeemed Quantity</th>
+                        <th class="text-center">Expiry</th>
+                        <th class="text-center">Days</th>
+                        <th class="text-center">Allowed Videos</th>
+                        <th class="text-center">Allowed Hover</th>
+                        <th class="text-center">Allowed Popout</th>
+                        <!-- <th class="text-center">Update</th> -->
+                        <!-- <th class="text-center">Reject</th> -->
                         </tr>
-                    @foreach($subscriptions as $subscription)
+                        @foreach($layouts as $layout)
                             <tr>
-                            <td>{{$subscription->layout->name}}</td>
-                            @if($subscription->redeemed_quantity >= $subscription->allowed_quantity or \Carbon\Carbon::parse($subscription->expiring_at)->lt(\Carbon\Carbon::now()))
-                            <td>Inactive</td>
-                            @else
-                            <td>Active</td>
-                            @endif
-                            <td>{{\Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()}}</td>
-                            <td>{{$subscription->allowed_quantity}}</td>
-                            <td>{{$subscription->redeemed_quantity}}</td>
+                            <td>{{$layout->name}}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA' 
+                                : \Carbon\Carbon::parse($subscription->expiring_at)->toDayDateTimeString()
+                            }}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : $subscription->days
+                            }}</td>
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_videos ? 'Yes' : 'No')
+                            }}</td>
+
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_hover ? 'Yes' : 'No')
+                            }}</td>
+
+                            <td>{{
+                                is_null($subscription = $subscriptions->where('layout_id', $layout->id)->first())
+                                ? 'NA'
+                                : ($subscription->allow_popout ? 'Yes' : 'No')
+                            }}</td>
+                            
                             </tr>
-                    @endforeach
+                        @endforeach
                     </table>
                 </div>
             </div>

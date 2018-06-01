@@ -36,6 +36,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -50,6 +55,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -77,6 +87,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -96,6 +111,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -123,6 +143,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -146,6 +171,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -164,6 +194,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -178,6 +213,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -210,6 +250,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -238,6 +283,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -256,6 +306,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -270,6 +325,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -302,6 +362,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -326,6 +391,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -358,6 +428,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -382,6 +457,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -414,6 +494,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -438,6 +523,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -470,6 +560,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -494,6 +589,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -526,6 +626,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -550,6 +655,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -587,6 +697,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -616,6 +731,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -653,6 +773,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -686,6 +811,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -704,6 +834,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -718,6 +853,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],   
@@ -743,6 +883,11 @@ class TemplateSeeder extends Seeder
                         'name' => 'Theme',
                         'type' => 'color',
                         'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
                     ],   
                     [
                         'name' => 'Logo',
@@ -764,6 +909,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],   
@@ -794,6 +944,11 @@ class TemplateSeeder extends Seeder
                         'name' => 'Theme',
                         'type' => 'color',
                         'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
                     ],                   
                     [
                         'name' => 'Logo',
@@ -822,6 +977,11 @@ class TemplateSeeder extends Seeder
                         'name' => 'Theme',
                         'type' => 'color',
                         'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
                     ],   
                     [
                         'name' => 'Image',
@@ -840,6 +1000,11 @@ class TemplateSeeder extends Seeder
                         'name' => 'Theme',
                         'type' => 'color',
                         'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
                     ],   
                     [
                         'name' => 'Video',
@@ -856,6 +1021,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ], 
@@ -881,6 +1051,11 @@ class TemplateSeeder extends Seeder
                         'name' => 'Theme',
                         'type' => 'color',
                         'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
                     ], 
                     [
                         'name' => 'Video',
@@ -902,6 +1077,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ], 
@@ -930,6 +1110,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ], 
@@ -962,6 +1147,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -986,6 +1176,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1018,6 +1213,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -1036,6 +1236,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -1050,6 +1255,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1082,6 +1292,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -1110,6 +1325,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Logo',
                         'type' => 'image',
                         'rules' => []
@@ -1134,6 +1354,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1171,6 +1396,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Image',
                         'type' => 'image',
                         'rules' => []
@@ -1200,6 +1430,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1237,6 +1472,11 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
+                        'name' => 'Category Header Color',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
                         'name' => 'Video',
                         'type' => 'video',
                         'rules' => []
@@ -1266,6 +1506,11 @@ class TemplateSeeder extends Seeder
                 'components' => [
                     [
                         'name' => 'Theme',
+                        'type' => 'color',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Category Header Color',
                         'type' => 'color',
                         'rules' => []
                     ],

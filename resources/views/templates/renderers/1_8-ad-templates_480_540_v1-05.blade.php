@@ -161,7 +161,7 @@
         @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
 
         <div class="body">
-            <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
+            <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
             
             <div class="hero-video">
                 @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])

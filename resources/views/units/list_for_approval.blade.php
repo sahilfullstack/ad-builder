@@ -16,39 +16,31 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">Name</th>
-                            <th class="text-center">Template</th>
-                            <th class="text-center">Components</th>
+                            <th class="text-center">Landing Page</th>
                             <th class="text-center">Created at</th>
                             <th class="text-center">Action</th>
                         </tr>
 
                         @foreach($units as $index => $unit)
                             <tr>
-                                <td>{{ $index +1 }}</td>
-                                <td><h5>{{ $unit->name }} <span class="badge badge-dark">{{ $unit->template->type_human }}</span></h5></td>
+                                <td>{{ $index + 1 }}</td>
                                 <td>
-                                    @if(is_null($unit->template))
-                                        <p>No template selected yet.</p>
-                                    @else
-                                        <p><strong>Template:</strong> {{ $unit->template->name }}</p>
-                                    @endif
-                                </td>
+                                    <a href="{{ route('units.show', $unit) }}">
+                                        @if(! is_null($unit->name))
+                                            <strong>{{ $unit-> name }}</strong>
+                                        @else
+                                            <em>Untitled</em>
+                                        @endif
+                                    </a></td>
                                 <td>
-                                    @if( ! is_null($unit->template) > 0 and $unit->template->components->count() > 0)
-                                        <ul class="list-group">
-                                            @foreach($unit->template->components as $component)
-                                                <li class="list-group-item">
-                                                    <h5><strong>{{ $component->name }}</strong></h5>
-                                                    @if(isset($unit->components[$component->id]))
-                                                        <p>{{ $unit->components[$component->id]["_value"] }}</p>
-                                                    @else
-                                                        <p><em>Not defined yet.</em></p>
-                                                    @endif
-                                                </li>
-                                            @endforeach
-                                        </ul>
+                                    @if(! is_null($unit->child))
+                                        @if(! is_null($unit->child->name))
+                                            <strong>{{ $unit->child->name }}</strong>
+                                        @else
+                                            <em>Untitled</em>
+                                        @endif
                                     @else
-                                        <em>No components contained.</em>
+                                        <em>None yet.</em>
                                     @endif
                                 </td>
                                 <td>

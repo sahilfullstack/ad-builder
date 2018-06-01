@@ -36,8 +36,10 @@ class UserController extends Controller
     {
         $user = User::find(auth()->user()->id);
         $subscriptions = $user->subscriptions()->where('expiring_at', '>', Carbon::now())->get();
+
+        $layouts = Layout::whereNull('parent_id')->get();
        
-        return view('users.list_subscriptions', compact('subscriptions'));        
+        return view('users.list_subscriptions', compact('subscriptions', 'layouts'));
     }
 
     public function getProfile()

@@ -24,7 +24,7 @@
 				<div class="modal-footer">
 
 					<span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
-					<button type="button" class="btn btn-primary" v-on:click="upload" :disabled="disable.upload">Upload</button>
+					<button type="button" class="btn btn-primary" v-on:click="upload" :disabled="disable.upload" data-loading-text="<i class='fa fa-spinner fa-spin'></i> Uploading...">Upload</button>
 				</div>
 			</div>
 		</div>
@@ -60,22 +60,24 @@
 				return data;
 			},			
 			upload: function(event) {
-
 				event.preventDefault();
                 var self = this;
                 
                 this.errors = [];
-                this.disable.upload = true;
+				this.disable.upload = true;
+				$(event.target).button('loading');
 
 				axios.post(this.apiPath, this.getPreparedData())
                     .then(function (response) {
 
 						self.disable.upload = false;
+						$(event.target).button('reset');
                         self.$emit('resolve', response.data.data.url);
                     })
                     .catch(function (error) {
 
-                        self.disable.upload = false;
+						self.disable.upload = false;
+						$(event.target).button('reset');
 
                         _.forEach(error.response.data.errors, function(error, index) {
                             var errorIndex = _.startsWith(index, '_')

@@ -60,7 +60,8 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                 'category_id' => Category::inRandomOrder()->first()->id,
                 'template_id' => $template->id,
                 'components'  => $this->makeComponents($template),
-                'experimental_components'  => [],
+                'experimental_components'  => $this->makeComponents($template),
+                'is_holder'   => false,
                 'layout_id'   => $template->layout_id,
                 'type'        => $template->type,
                 'parent_id'   => null
@@ -72,7 +73,8 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                 'user_id'     => $user->id,
                 'template_id' => $pageTemplate->id,
                 'components'  => $this->makeComponents($pageTemplate),
-                'experimental_components'  => [],
+                'experimental_components'  => $this->makeComponents($pageTemplate),
+                'is_holder'   => false,
                 'layout_id'   => $pageTemplate->layout_id,
                 'type'        => $pageTemplate->type,
                 'parent_id'   => $ad->id

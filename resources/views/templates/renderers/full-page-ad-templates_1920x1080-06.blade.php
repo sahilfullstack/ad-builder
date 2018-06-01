@@ -124,6 +124,12 @@
             text-align: center;
             padding-top: 105px;
         }
+
+        div.sidebar div.quote-holder {
+            position: relative;
+            width: 257.7px;
+            margin: 0 auto 30px;
+        }
         
         div.sidebar div.quote {
             width: 257.5px;
@@ -175,15 +181,17 @@
 
         <div class="body">
             <div class="sidebar">
-                <p class="category-header">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
+                <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
 
                 <div class="logo">
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
-                <div class="quote" style="background-color: {{ array_get($readableComponents, 'text.background_color') }}">
+                <div class="quote-holder">
                     <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text.background_color') }}"></div>
-                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
+                    <div class="quote" style="background-color: {{ array_get($readableComponents, 'text.background_color') }};overflow:hidden;">
+                        @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
+                    </div>
                 </div>
             </div>
     
