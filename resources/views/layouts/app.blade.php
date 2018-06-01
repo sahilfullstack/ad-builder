@@ -166,9 +166,11 @@
         $('#holdee-form').on('shown.bs.collapse', function(event) {
             var panels = $(event.currentTarget).find('.collapse');
             panels.each((index, panel) => {
-                $('#renderer-iframe-' + $(panel).data('unit')).css({
-                    visibility: $(panel).hasClass('in') ? 'visible' : 'hidden'
-                });
+                if($(panel).data('unittype') == 'page') {
+                    $('#renderer-iframe-' + $(panel).data('unit')).css({
+                        visibility: $(panel).hasClass('in') ? 'visible' : 'hidden'
+                    });
+                }
             });
         });
     </script>

@@ -94,7 +94,7 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unittype="{{ $child->type }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-template-form
@@ -134,7 +134,7 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unittype="{{ $child->type }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-components-form
@@ -174,7 +174,7 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unittype="{{ $child->type }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-category-form
@@ -214,7 +214,7 @@
                                             </a>
                                         </h4>
                                     </div>
-                                    <div id="collapse-{{ $child->id }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
+                                    <div id="collapse-{{ $child->id }}" data-unittype="{{ $child->type }}" data-unit="{{ $child->id }}" class="panel-collapse collapse {{ $index == 0 ? 'in' : ''}}" role="tabpanel">
                                         <div class="panel-body">
                                             @if($unit->holdee->get($index + 1) == null)
                                                 <edit-unit-basic-form
