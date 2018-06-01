@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\{ProcessAudioToOggFormatJob, ProcessVideoToOgvFormatJob};
 
 class UnitController extends Controller
 {
@@ -353,10 +354,27 @@ class UnitController extends Controller
 
         $subscription = $this->getRedeemedSubscription($unit);
         $unit->redeemed_subscription_id = $subscription->id;
+
+        // if want to perform some actions
+        $this->dispatchRequiredJobsBeforePublishing($unit);
+
         $unit->published_at = Carbon::now();
         $unit->save();
 
         return $unit->fresh();
+    }
+
+    private function dispatchRequiredJobsBeforePublishing($unit)
+    {
+        if($unit->is_holder) {
+            foreach ($unit->holdee as $held) {
+                $this->dispatchJobForVideoAndAudioConversion($held);
+                $this->dispatchJobForVideoAndAudioConversion($held->child);
+            }
+        } else {
+            $this->dispatchJobForVideoAndAudioConversion($unit);
+            $this->dispatchJobForVideoAndAudioConversion($unit->child);
+        } 
     }
 
     private function getRedeemedSubscription($unit)
@@ -464,12 +482,30 @@ class UnitController extends Controller
         }
 
         foreach ($unit->components as $key => $component) 
-        {
-            if(empty($component))
+        {            
+            if(empty($component["_value"]))
             {                     
                 throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
             }
         }
+    }
+
+    private function dispatchJobForVideoAndAudioConversion($unit)
+    {
+        foreach ($unit->components as $key => $component)
+        {            
+            $componentFound = Component::find($key);
+
+            if($componentFound->type == "audio")
+            {
+                ProcessAudioToOggFormatJob::dispatch($unit, $key);
+            }
+
+            if($componentFound->type == "video")
+            {
+                ProcessVideoToOgvFormatJob::dispatch($unit, $key);
+            }
+        }        
     }
 
     public function update(UpdateUnitRequest $request, Unit $unit)

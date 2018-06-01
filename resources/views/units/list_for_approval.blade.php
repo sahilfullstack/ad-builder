@@ -54,6 +54,9 @@
                         @endforeach
                     </table>
                 </div>
+                <div class="panel-footer">
+                    {{ $units->links() }}
+                </div>
             </div>
 
             {{-- @foreach($units as $unit)
@@ -96,8 +99,7 @@
                                 <em>No components contained.</em>
                             @endif
                         @endif
-                    </div>
-
+                    </div>                   
                 </div>
             @endforeach --}}
             @else
