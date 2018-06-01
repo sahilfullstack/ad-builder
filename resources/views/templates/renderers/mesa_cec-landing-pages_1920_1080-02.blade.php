@@ -338,7 +338,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
-            <div class="hero-text">
+            <div class="hero-text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 

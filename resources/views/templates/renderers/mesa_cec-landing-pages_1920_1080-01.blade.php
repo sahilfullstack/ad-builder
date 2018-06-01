@@ -244,15 +244,15 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
-            <div id="text-1">
+            <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
-            <div id="text-2">
+            <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             
-            <div id="map-title">
+            <div id="map-title" style="background-color: {{ ! empty(array_get($readableComponents, 'map-title')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
 

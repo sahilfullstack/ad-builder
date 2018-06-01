@@ -367,7 +367,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr', 'size' => 92])
             </div>
             
-            <div class="heading-1">
+            <div class="heading-1" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-1')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-1'), 'default' => 'Heading 1'])</p>
             </div>
 
@@ -375,13 +375,13 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
             </div>
 
-            <div id="text-1">
+            <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'text-1'])</p>
             </div>
 
             <!-- Amount 1 is pending. -->
 
-            <div class="heading-2">
+            <div class="heading-2" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-2')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-2'), 'default' => 'Heading 2'])</p>
             </div>
 
@@ -389,7 +389,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
             </div>
 
-            <div id="text-2">
+            <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'text-2'])</p>
             </div>
 
