@@ -137,6 +137,7 @@
             background: #199FD4;
             margin: 0 auto 30px;
             position: relative;
+            overflow: hidden;
         }
         
         div.flag {
