@@ -9,6 +9,7 @@
             </h1>
             <div class="panel panel-default">
                 <div class="panel-body">
+                    
                 <filter-form path="{{ $path }}" from="{{ $from }}" to="{{ $to }}" :filters="{{ json_encode($filters) }}"></filter-form>
                 </div>
             </div>

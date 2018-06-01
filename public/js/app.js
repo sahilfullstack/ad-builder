@@ -85644,7 +85644,10 @@ var render = function() {
                   _vm._l(filter.options, function(option_value, option_key) {
                     return _c(
                       "option",
-                      { key: option_key, domProps: { value: option_key } },
+                      {
+                        key: option_key,
+                        domProps: { value: option_key.slice(1) }
+                      },
                       [_vm._v(_vm._s(option_value))]
                     )
                   })

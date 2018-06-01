@@ -13,7 +13,7 @@
                     <!-- <label for="filter.slug">{{ filter.name }}</label> -->
                     <select :name="filter.slug" id="filter.slug" class="form-control" v-model="form.filters[filter.slug]">
                         <option :value="null">Select {{ filter.name }}</option>
-                        <option v-for="(option_value, option_key) in filter.options" :key="option_key" :value="option_key">{{ option_value }}</option>
+                        <option v-for="(option_value, option_key) in filter.options" :key="option_key" :value="option_key.slice(1)">{{ option_value }}</option>
                     </select>
                 </div>
             </div>

@@ -318,7 +318,9 @@ trait StatisticsTrait
         return [
             'name' => 'Ad',
             'slug' => 'unit_id',
-            'options' => Unit::ad()->published()->forCurrentUser()->get()->pluck('name', 'id'),
+            'options' => Unit::ad()->published()->forCurrentUser()->latest()->get()->pluck('name', 'id')->mapWithKeys(function($name, $id) {
+                return ['-'.$id => $name];
+            }),
             'selected' => $selected,
         ];
     }
