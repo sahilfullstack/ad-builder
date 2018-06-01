@@ -22,6 +22,7 @@ class Kernel extends ConsoleKernel
         Commands\MakeDummyUnitCommand::class,
         Commands\MakeLocalCopiesOfRemoteAssetsInUnits::class,
         Commands\MakeDummyUnitForAllTemplatesCommand::class,
+        Commands\ConvertMp4VideoToOgvCommand::class,
     ];
 
     /**

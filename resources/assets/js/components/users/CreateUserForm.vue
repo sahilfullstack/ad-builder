@@ -31,6 +31,14 @@
             <span class="text-danger" :class="{'hidden': errors['username'] == undefined}" style="margin-right:10px;">{{errors['username']}}</span>
         </div>
 
+        <div class="form-group">
+            <label for="role">Role <span class="text-danger">*</span></label>
+            <select name="role" id="role" class="form-control" v-model="form.role">
+                <option value="admin">Admin</option>
+                <option value="advertiser">Advertiser</option>
+            </select>
+        </div>
+
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
 
         <button type="submit" class="btn btn-primary" :disabled="disable.creating">Create</button>
@@ -49,11 +57,12 @@ export default {
     data() {
         return {
             form: {                
-                name            : '',
-                company         : '',
-                phone           : '',
-                email           : '',
-                username        : ''
+                name    : '',
+                company : '',
+                phone   : '',
+                email   : '',
+                username: '',
+                role    : 'advertiser',
             },
             errors: [],
             disable: {

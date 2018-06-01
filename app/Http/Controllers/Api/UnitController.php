@@ -17,6 +17,7 @@ use Illuminate\Support\Str;
 use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
 use Illuminate\Support\Facades\Log;
+use App\Jobs\{ProcessAudioToOggFormatJob, ProcessVideoToOgvFormatJob};
 
 class UnitController extends Controller
 {
@@ -343,20 +344,37 @@ class UnitController extends Controller
         
         if($unit->is_holder) {
             foreach ($unit->holdee as $held) {
-                $this->validateChildUnit($held);
+                $this->validateChildUnit($held, 'parent_');
                 $this->validateChildUnit($held->child);
             }
         } else {
-            $this->validateChildUnit($unit);
+            $this->validateChildUnit($unit, 'parent_');
             $this->validateChildUnit($unit->child);
         }
 
         $subscription = $this->getRedeemedSubscription($unit);
         $unit->redeemed_subscription_id = $subscription->id;
+
+        // if want to perform some actions
+        $this->dispatchRequiredJobsBeforePublishing($unit);
+
         $unit->published_at = Carbon::now();
         $unit->save();
 
         return $unit->fresh();
+    }
+
+    private function dispatchRequiredJobsBeforePublishing($unit)
+    {
+        if($unit->is_holder) {
+            foreach ($unit->holdee as $held) {
+                $this->dispatchJobForVideoAndAudioConversion($held);
+                $this->dispatchJobForVideoAndAudioConversion($held->child);
+            }
+        } else {
+            $this->dispatchJobForVideoAndAudioConversion($unit);
+            $this->dispatchJobForVideoAndAudioConversion($unit->child);
+        } 
     }
 
     private function getRedeemedSubscription($unit)
@@ -421,23 +439,38 @@ class UnitController extends Controller
                             ->orderBy('expiring_at', 'DESC')->first();
         }
 
+        // if hover image is set 
+        // allow 
+        if(! is_null($unit->hover_image))
+        {
+            if( $subscription->allow_hover == 0 && $subscription->allow_popout == 0) 
+            {
+                throw new CustomInvalidInputException('general', 'Cannot use hover image of this subscription. Please contact the admin at admin@mesa.com');
+            }
+        }
+
         $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
         $subscription->save();
             
         return $subscription;
     }
 
-    private function validateChildUnit($unit)
+    private function validateChildUnit($unit, $prefix = '')
     {
         // Validating that the selected template has the selected components.
         if(is_null($unit->name))
         {
-            throw new CustomInvalidInputException('name', 'Name is empty.');
+            throw new CustomInvalidInputException($prefix.'name', 'Name is empty.');
         }        
+
+        if(is_null($unit->layout_id))
+        {
+            throw new CustomInvalidInputException($prefix.'layout', 'Layout is empty.');
+        }
 
         if(is_null($unit->template_id))
         {
-            throw new CustomInvalidInputException('template', 'Template is empty.');
+            throw new CustomInvalidInputException($prefix.'template', 'Template is empty.');
         }
 
         $template = Template::find($unit->template_id);
@@ -445,16 +478,34 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if($template->components->count() != count($unit->components))
         {
-            throw new CustomInvalidInputException('components', 'Components are missing.');
+            throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
         }
 
         foreach ($unit->components as $key => $component) 
-        {
-            if(empty($component))
+        {            
+            if(empty($component["_value"]))
             {                     
-                throw new CustomInvalidInputException('components', 'Components are missing.');
+                throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
             }
         }
+    }
+
+    private function dispatchJobForVideoAndAudioConversion($unit)
+    {
+        foreach ($unit->components as $key => $component)
+        {            
+            $componentFound = Component::find($key);
+
+            if($componentFound->type == "audio")
+            {
+                ProcessAudioToOggFormatJob::dispatch($unit, $key);
+            }
+
+            if($componentFound->type == "video")
+            {
+                ProcessVideoToOgvFormatJob::dispatch($unit, $key);
+            }
+        }        
     }
 
     public function update(UpdateUnitRequest $request, Unit $unit)

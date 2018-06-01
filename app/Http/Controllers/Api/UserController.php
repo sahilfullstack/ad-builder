@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\User;
 use Carbon\Carbon;
 use App\Http\Requests\{ApproveUserRequest, UpdateUserRequest, StoreUserRequest, UpdateUserPasswordRequest, DeleteUserRequest};
+use App\Exceptions\{CustomInvalidInputException};
 use Mail, DB;
 use App\Models\{Layout, Role};
 use Illuminate\Http\Request;
@@ -15,7 +16,12 @@ class UserController extends Controller
 
     public function create(StoreUserRequest $request)
     {
-        $role = Role::findBySlug('advertiser');          
+        $role = Role::findBySlug($request->role);          
+
+        if(is_null($role))
+        {
+             throw new CustomInvalidInputException('role', 'Role is invaid.');
+        }
 
         $password = str_random(6);
 

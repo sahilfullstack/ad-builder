@@ -31,7 +31,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -54,7 +54,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -82,7 +82,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -110,7 +110,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -138,7 +138,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -166,7 +166,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -189,7 +189,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -212,7 +212,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -245,7 +245,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -278,7 +278,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -301,7 +301,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -324,7 +324,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -357,7 +357,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -390,7 +390,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -423,7 +423,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-08',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -456,7 +456,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-09',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -489,7 +489,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-10',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -522,7 +522,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -555,7 +555,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -588,7 +588,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -621,7 +621,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -654,7 +654,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -692,7 +692,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -730,7 +730,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -768,7 +768,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-08',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -806,7 +806,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-10',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -829,7 +829,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-landscape-ad-templates_1920_540-11',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -852,7 +852,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -880,7 +880,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -908,7 +908,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -941,7 +941,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -974,7 +974,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -997,7 +997,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1020,7 +1020,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1048,7 +1048,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-08',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1076,7 +1076,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-09',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1109,7 +1109,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.half-page-portrait-ad-templates_960_1080_v1-10',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1142,7 +1142,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1175,7 +1175,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1208,7 +1208,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1231,7 +1231,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1254,7 +1254,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1287,7 +1287,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1320,7 +1320,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1353,7 +1353,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-08',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1391,7 +1391,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-09',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1429,7 +1429,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-10',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1467,7 +1467,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-11',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1505,7 +1505,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.full-page-ad-templates_1920x1080-12',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1548,7 +1548,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-01',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1601,7 +1601,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-02',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1659,7 +1659,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-03',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1717,7 +1717,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-04',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1775,7 +1775,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-05',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1830,7 +1830,7 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Amount 1',
+                        'name' => 'Amount 2',
                         'type' => 'text',
                         'rules' => []
                     ],
@@ -1858,7 +1858,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-06',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1911,7 +1911,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-07',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1929,7 +1929,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-08',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -1944,30 +1944,30 @@ class TemplateSeeder extends Seeder
                         'rules' => []
                     ],
                     [
-                        'name' => 'Video',
-                        'type' => 'video',
-                        'rules' => []
-                    ],     
-                    [
                         'name' => 'Image 1',
                         'type' => 'image',
                         'rules' => []
                     ],     
                     [
-                        'name' => 'Image 2',
-                        'type' => 'image',
+                        'name' => 'Photo Gallery',
+                        'type' => 'images',
                         'rules' => []
-                    ],
+                    ], 
+                    [
+                        'name' => 'Video',
+                        'type' => 'video',
+                        'rules' => []
+                    ],     
                     [
                         'name' => 'Text',
                         'type' => 'text',
                         'rules' => []
                     ], 
                     [
-                        'name' => 'Photo Gallery',
-                        'type' => 'images',
+                        'name' => 'Image 2',
+                        'type' => 'image',
                         'rules' => []
-                    ], 
+                    ],
                     [
                         'name' => 'QR Code Title 1',
                         'type' => 'text',
@@ -2008,7 +2008,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-09',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],
@@ -2076,7 +2076,7 @@ class TemplateSeeder extends Seeder
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-10',
                 'components' => [
                     [
-                        'name' => 'Theme',
+                        'name' => 'Top Border Bar',
                         'type' => 'color',
                         'rules' => []
                     ],

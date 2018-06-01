@@ -86816,6 +86816,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -86832,7 +86840,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 company: '',
                 phone: '',
                 email: '',
-                username: ''
+                username: '',
+                role: 'advertiser'
             },
             errors: [],
             disable: {
@@ -87073,6 +87082,50 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(5),
+        _vm._v(" "),
+        _c(
+          "select",
+          {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.form.role,
+                expression: "form.role"
+              }
+            ],
+            staticClass: "form-control",
+            attrs: { name: "role", id: "role" },
+            on: {
+              change: function($event) {
+                var $$selectedVal = Array.prototype.filter
+                  .call($event.target.options, function(o) {
+                    return o.selected
+                  })
+                  .map(function(o) {
+                    var val = "_value" in o ? o._value : o.value
+                    return val
+                  })
+                _vm.$set(
+                  _vm.form,
+                  "role",
+                  $event.target.multiple ? $$selectedVal : $$selectedVal[0]
+                )
+              }
+            }
+          },
+          [
+            _c("option", { attrs: { value: "admin" } }, [_vm._v("Admin")]),
+            _vm._v(" "),
+            _c("option", { attrs: { value: "advertiser" } }, [
+              _vm._v("Advertiser")
+            ])
+          ]
+        )
+      ]),
+      _vm._v(" "),
       _c(
         "span",
         {
@@ -87137,6 +87190,15 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "username" } }, [
       _vm._v("Username "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "role" } }, [
+      _vm._v("Role "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }

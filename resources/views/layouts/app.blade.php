@@ -47,7 +47,7 @@
                             <li><a href="{{ route('units.list') }}">Ads</a></li>
                             <!-- <li><a href="{{ route('units.list', ['type' => 'page']) }}">Landing Pages</a></li> -->
                             @can('unit.approve')
-                                <li><a href="{{ route('units.approval.list') }}">Approve/Reject Unit</a></li>
+                                <li><a href="{{ route('units.approval.list') }}">Moderate Ads</a></li>
                             @endcan
                             @can('user.manage')
                                 <li><a href="{{ route('users.list') }}">Users</a></li>

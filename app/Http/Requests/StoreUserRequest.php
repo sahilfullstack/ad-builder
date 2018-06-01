@@ -30,7 +30,8 @@ class StoreUserRequest extends FormRequest
             'email'    => 'required|string|email|max:255|unique:users',
             'username' => 'required|string|min:3|unique:users',
             'company'  => 'required',
-            'phone'    => 'required'
+            'phone'    => 'required',
+            'role'     => 'required'
         ];
     }
 }
