@@ -527,7 +527,7 @@ class UnitController extends Controller
                         throw new InvalidInputException('Bad components sent.');
                     }
                     
-                    $this->validateComponents($inputComponents, $template->id);
+                    $this->validateComponents($inputComponents, $template->id, true);
                     
 
                     $preparedComponents = $this->preparedComponents($inputComponents, $components);
@@ -670,7 +670,7 @@ class UnitController extends Controller
         return $unitFound->fresh();
     }
 
-    private function validateComponents($components, $templateId)
+    private function validateComponents($components, $templateId, $skipRequiredCheck = false)
     {
         foreach ($components as $componentId => $value) 
         {
@@ -680,7 +680,7 @@ class UnitController extends Controller
             {
                 $validator = \Validator::make([$component->name => $value], [
                      $component->name . '.*._value' => [
-                        'required',
+                        $skipRequiredCheck ? 'nullable' : 'required',
                     ]
                 ]);
                 $validator->setCustomMessages([
@@ -691,6 +691,7 @@ class UnitController extends Controller
             {
                 $validator = \Validator::make([$component->name => $value['_value']], [
                      $component->name => [
+                         $skipRequiredCheck ? 'nullable' : 'required',
                         'regex:/^(\#[\da-f]{3}|\#[\da-f]{6}|rgba\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)(,\s*(0\.\d+|1))\)|hsla\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)(,\s*(0\.\d+|1))\)|rgb\(((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*,\s*){2}((\d{1,2}|1\d\d|2([0-4]\d|5[0-5]))\s*)|hsl\(\s*((\d{1,2}|[1-2]\d{2}|3([0-5]\d|60)))\s*,\s*((\d{1,2}|100)\s*%)\s*,\s*((\d{1,2}|100)\s*%)\))$/i',
                     ]
                 ]);
@@ -699,7 +700,7 @@ class UnitController extends Controller
             {
                 $validator = \Validator::make([$component->name => $value['_value']], [
                     $component->name => [
-                        'required',
+                        $skipRequiredCheck ? 'nullable' : 'required',
                     ]
                 ]);
             }
