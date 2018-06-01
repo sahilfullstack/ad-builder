@@ -343,11 +343,11 @@ class UnitController extends Controller
         
         if($unit->is_holder) {
             foreach ($unit->holdee as $held) {
-                $this->validateChildUnit($held);
+                $this->validateChildUnit($held, 'parent_');
                 $this->validateChildUnit($held->child);
             }
         } else {
-            $this->validateChildUnit($unit);
+            $this->validateChildUnit($unit, 'parent_');
             $this->validateChildUnit($unit->child);
         }
 
@@ -437,17 +437,22 @@ class UnitController extends Controller
         return $subscription;
     }
 
-    private function validateChildUnit($unit)
+    private function validateChildUnit($unit, $prefix = '')
     {
         // Validating that the selected template has the selected components.
         if(is_null($unit->name))
         {
-            throw new CustomInvalidInputException('name', 'Name is empty.');
+            throw new CustomInvalidInputException($prefix.'name', 'Name is empty.');
         }        
+
+        if(is_null($unit->layout_id))
+        {
+            throw new CustomInvalidInputException($prefix.'layout', 'Layout is empty.');
+        }
 
         if(is_null($unit->template_id))
         {
-            throw new CustomInvalidInputException('template', 'Template is empty.');
+            throw new CustomInvalidInputException($prefix.'template', 'Template is empty.');
         }
 
         $template = Template::find($unit->template_id);
@@ -455,14 +460,14 @@ class UnitController extends Controller
         // Validating that the selected template has the selected components.
         if($template->components->count() != count($unit->components))
         {
-            throw new CustomInvalidInputException('components', 'Components are missing.');
+            throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
         }
 
         foreach ($unit->components as $key => $component) 
         {
             if(empty($component))
             {                     
-                throw new CustomInvalidInputException('components', 'Components are missing.');
+                throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
             }
         }
     }
