@@ -25,6 +25,7 @@ Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
+Route::get('/templates/{template}/render', 'TemplateController@render')->name('templates.render');
 Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
 

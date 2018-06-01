@@ -80310,6 +80310,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
 
 
+    watch: {
+        selectedTemplate: function selectedTemplate(templateId) {
+            var frameElement = document.getElementById("renderer-iframe-" + this.unit.id);
+            if (frameElement) frameElement.contentWindow.location.href = '/templates/' + templateId + '/render';
+        }
+    },
+
     computed: {
         selectedTemplate: function selectedTemplate() {
             return this.form.template_id;
