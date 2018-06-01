@@ -81136,8 +81136,11 @@ var render = function() {
                                 _vm._s(component.name) +
                                 " #" +
                                 _vm._s(formComponentIndex + 1) +
-                                "\n                    "
-                            )
+                                " "
+                            ),
+                            _c("span", { staticClass: "text-danger" }, [
+                              _vm._v("*")
+                            ])
                           ]
                         ),
                         _vm._v(" "),
@@ -81250,7 +81253,10 @@ var render = function() {
                     [
                       _c("div", { staticClass: "col-md-6" }, [
                         _c("label", { attrs: { for: component.slug } }, [
-                          _vm._v(_vm._s(component.name))
+                          _vm._v(_vm._s(component.name) + " "),
+                          _c("span", { staticClass: "text-danger" }, [
+                            _vm._v("*")
+                          ])
                         ]),
                         _vm._v(" "),
                         _c("input", {
@@ -81304,7 +81310,12 @@ var render = function() {
                         _c(
                           "label",
                           { attrs: { for: component.slug + "_size" } },
-                          [_vm._v("Size")]
+                          [
+                            _vm._v("Size "),
+                            _c("span", { staticClass: "text-danger" }, [
+                              _vm._v("*")
+                            ])
+                          ]
                         ),
                         _vm._v(" "),
                         _c("input", {
@@ -81352,7 +81363,12 @@ var render = function() {
                                 for: component.slug + "_background_color"
                               }
                             },
-                            [_vm._v("Background Color")]
+                            [
+                              _vm._v("Background Color "),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]
                           ),
                           _vm._v(" "),
                           _c("color-picker", {
@@ -81393,7 +81409,12 @@ var render = function() {
                                 for: component.slug + "_foreground_color"
                               }
                             },
-                            [_vm._v("Text Color")]
+                            [
+                              _vm._v("Text Color "),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]
                           ),
                           _vm._v(" "),
                           _c("color-picker", {
@@ -81436,7 +81457,10 @@ var render = function() {
                       [
                         _c("div", { staticClass: "col-md-12" }, [
                           _c("label", { attrs: { for: component.slug } }, [
-                            _vm._v(_vm._s(component.name))
+                            _vm._v(_vm._s(component.name) + " "),
+                            _c("span", { staticClass: "text-danger" }, [
+                              _vm._v("*")
+                            ])
                           ]),
                           _vm._v(" "),
                           _c("input", {
@@ -81503,7 +81527,10 @@ var render = function() {
                             { staticClass: "col-md-12" },
                             [
                               _c("label", { attrs: { for: component.slug } }, [
-                                _vm._v(_vm._s(component.name))
+                                _vm._v(_vm._s(component.name) + " "),
+                                _c("span", { staticClass: "text-danger" }, [
+                                  _vm._v("*")
+                                ])
                               ]),
                               _vm._v(" "),
                               _c("color-picker", {
@@ -81573,7 +81600,10 @@ var render = function() {
                               : _vm._e(),
                             _vm._v(" "),
                             _c("label", { attrs: { for: component.slug } }, [
-                              _vm._v(_vm._s(component.name))
+                              _vm._v(_vm._s(component.name) + " "),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
                             ]),
                             _vm._v(" "),
                             _c("input", {
