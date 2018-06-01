@@ -80,6 +80,10 @@
             background-size: 1920px 1080px;*/
         }
 
+        #workspace div {
+            overflow: hidden;
+        }
+
         div.banner {
             width: 1920px;
             height: 26.775px;
@@ -92,16 +96,24 @@
             background: #fff;
 
             position: relative;
-            overflow: auto;
+            overflow: hidden;
         }
 
-        div#hero-text-1 {
+        div#custom-image {
             width: 1920px;
             height: 1053.225px;
-            background: #C6E5F3;
             position: absolute;
             top: 0px;
             left: 0px;
+        }
+        div#custom-image img {
+            width: 1920px;
+            height: 1053.225px;
+        }
+        div#custom-image div.placeholder {
+            width: 1920px;
+            height: 1053.225px;
+            background: #C6E5F3;
         }
     </style>
     
@@ -112,8 +124,8 @@
         @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
 
         <div class="body">
-            <div id="hero-text-1">
-                <p>Hero Text 1</p>
+            <div id="custom-image">
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'custom-image'), 'default' => 'custom-image'])
             </div>
          </div>
     </div>
