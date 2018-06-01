@@ -126,6 +126,7 @@
             height: 90px;
             background: #C6E5F3;
             margin: 0 auto 10px;
+            overflow: hidden;
         }
 
         div.hero-video {
@@ -169,7 +170,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
 
-            <div class="text">
+            <div class="text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
                 @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
             </div>
     

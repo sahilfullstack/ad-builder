@@ -161,6 +161,7 @@
             height: 42.5px;
             background: #C6E5F3;
             margin-left: 10px;
+            overflow: hidden;
         }
 
         div.hero-image {
@@ -209,7 +210,7 @@
                     </div>
                 </div>
 
-                <div class="text">
+                <div class="text" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])
                 </div>
             </div>
