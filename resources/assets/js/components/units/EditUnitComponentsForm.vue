@@ -6,7 +6,7 @@
             <div v-if="component.type == 'images'">
                 <div v-for="(formComponent, formComponentIndex) in form.components[component.id]" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
-                        <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex)">Upload</a>
+                        <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg')">Upload</a>
                         <label :for="component.slug + '_' + formComponentIndex">
                             {{ component.name }} #{{ formComponentIndex + 1 }} <span class="text-danger">*</span>
                         </label>
@@ -56,10 +56,40 @@
                     </div>                   
                 </div>
             </div>
+            <div v-else-if="component.type =='image'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <a href class="pull-right" v-if="component.type == 'image'" @click.prevent="upload(component.id, undefined, 'image/png,image/jpg,image/gif,image/jpeg')">Upload</a>
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="component.type =='video'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <a href class="pull-right" v-if="component.type == 'video'" @click.prevent="upload(component.id, undefined, 'video/mp4')">Upload</a>
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="component.type =='audio'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <a href class="pull-right" v-if="component.type == 'audio'" @click.prevent="upload(component.id, undefined, 'audio/mp3')">Upload</a>
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
-                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video' || component.type == 'audio'" @click.prevent="upload(component.id)">Upload</a>
+                        <a href class="pull-right" v-if="component.type == 'image' || component.type == 'video' || component.type == 'audio'" @click.prevent="upload(component.id, undefined)">Upload</a>
                         <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
@@ -214,11 +244,12 @@ export default {
                 });
         },
 
-        upload(componentId, index = null) {
+        upload(componentId, index = null, accept = '') {
             let thiz = this;
             Modal.show(FileUpload, {
                 propsData: {
-                        apiPath: '/api/upload'
+                        apiPath: '/api/upload',
+                        accept: accept
                     }
                 })
                 .then(function(url) {
