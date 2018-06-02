@@ -8,7 +8,6 @@
                 Subscriptions
             </h1>
             <hr>
-            @if($subscriptions->count() > 0)
             <div class="panel panel-default">
                 <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover">
@@ -58,9 +57,6 @@
                     </table>
                 </div>
             </div>
-            @else
-                <span>No subscriptions yet</span>
-            @endif
         </div>
     </div>
 </div>

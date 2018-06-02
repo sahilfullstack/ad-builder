@@ -193,7 +193,7 @@
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
-        @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
+        @include('templates.components.banner', ['value' => array_get($readableComponents, 'top-border-bar') ])
 
         <div class="body">
             <div class="sidebar">

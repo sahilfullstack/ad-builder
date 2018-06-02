@@ -137,6 +137,29 @@
             padding-left: 7px;
             color: #29aae2;
         }
+
+         div#qr-title-1 {
+            width: 114.5px;
+            height: 50.734px;
+            position: absolute;
+            top: 800px;
+            left: 1560px;
+        }
+         div#qr-title-2 {
+            width: 114.5px;
+            height: 50.734px;
+            position: absolute;
+            top: 800px;
+            left: 1680px;
+        }
+
+         div#qr-title-3 {
+            width: 114.5px;
+            height: 50.734px;
+            position: absolute;
+            top: 800px;
+            left: 1800px;
+        }
     
         div.social-qrs-1 {
             width: 114.5px;
@@ -275,7 +298,7 @@
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
-        @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
+        @include('templates.components.banner', ['value' => array_get($readableComponents, 'top-border-bar') ])
 
         <div class="body">
             <div class="logo">
@@ -285,19 +308,25 @@
                 <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
-            <!-- QR Code Title 1 pending. -->
+            <div id="qr-title-1">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-1'), 'default' => 'Text'])</p>
+            </div>
             
             <div class="social-qrs-1">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
-            <!-- QR Code Title 2 pending. -->
+            <div id="qr-title-2">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-2'), 'default' => 'Text'])</p>
+            </div>
             
             <div class="social-qrs-2">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr', 'size' => 115])
             </div>
 
-            <!-- QR Code Title 3 pending. -->
+            <div id="qr-title-3">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-3'), 'default' => 'Text'])</p>
+            </div>
 
             <div class="social-qrs-3">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'social-qr', 'size' => 115])
