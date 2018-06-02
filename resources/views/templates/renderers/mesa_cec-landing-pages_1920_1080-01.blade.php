@@ -104,7 +104,7 @@
             height: 149px;
             position: absolute;
             top: 68px;
-            left: 35px
+            left: 35px;
         }
 
         div.logo img {
@@ -116,6 +116,7 @@
             width: 387px;
             height: 149px;
             outline: 3px dotted #CC337A;
+            outline-offset: -3px;
         }
 
         div.logo div.placeholder p {

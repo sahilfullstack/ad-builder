@@ -113,6 +113,7 @@
             width: 200px;
             height: 64px;
             outline: 3px dotted #CC337A;
+            outline-offset: -3px;
         }
 
         div.logo div.placeholder p {
