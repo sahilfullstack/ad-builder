@@ -123,6 +123,11 @@
             text-align: center;
             padding-top: 75px;
         }
+        div.sidebar div.quote-holder {
+            width: 257.5px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
         
         div.sidebar div.quote {
             width: 257.5px;
@@ -130,6 +135,7 @@
             background: #199FD4;
             margin: 0 auto 30px;
             position: relative;
+            overflow: hidden;
         }
 
         div.flag {
@@ -147,6 +153,7 @@
             height: 122.5px;
             background: #C6E5F3;
             margin: 0 auto;
+            overflow: hidden;
         }
 
         div.hero-image {
@@ -187,12 +194,14 @@
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
-                <div class="quote" style="background-color: {{ array_get($readableComponents, 'text-1.background_color') }}">
+                <div class="quote-holder">
                     <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text-1.background_color') }}"></div>
-                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])
+                    <div class="quote" style="background-color: {{ array_get($readableComponents, 'text-1.background_color') }}">
+                        @include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])
+                    </div>
                 </div>
 
-                <div class="text">
+                <div class="text" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])
                 </div>
             </div>

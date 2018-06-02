@@ -80,6 +80,10 @@
             /*background-size: 1920px 1080px;*/
         }
 
+        #workspace div {
+            overflow: hidden;
+        }
+        
         div.banner {
             width: 1920px;
             height: 26.775px;

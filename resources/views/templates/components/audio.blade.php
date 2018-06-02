@@ -1,5 +1,5 @@
 @php
-    if(is_array($value) && isset($value['_value'])) $value = $value['_value'];
+    if(is_array($value) && array_key_exists('_value', $value)) $value = $value['_value'];
 @endphp
 
 @if(empty($value))

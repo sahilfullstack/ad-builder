@@ -13,7 +13,7 @@
 							<div class="col-xs-12">
 								<div class="form-group">
 									<label for="file" class="control-label h5">File</label>
-									<input type="file" @change="onFileChange">
+									<input type="file" @change="onFileChange" :accept="this.accept">
 
 									<span class="text-danger" :class="{'hidden': errors['file'] == undefined}" style="margin-right:10px;">{{errors['file']}}</span>
 								</div>
@@ -34,7 +34,7 @@
 <script>
     export default {
 
-    	props: ['modalIdentifier', 'apiPath', 'prefilled'],
+    	props: ['modalIdentifier', 'apiPath', 'prefilled', 'accept'],
 
     	data: function() {
     		return {

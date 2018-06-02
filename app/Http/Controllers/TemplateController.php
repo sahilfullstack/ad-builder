@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\Template;
 use App\Models\Layout;
 use App\Http\Requests;
+use App\Models\Unit;
 
 class TemplateController extends Controller
 {
@@ -40,5 +41,14 @@ class TemplateController extends Controller
     public function show(Requests\ShowTemplateRequest $request, Template $template)
     {        
         return view('templates.show', compact('template'));
+    }
+
+    public function render(Template $template)
+    {
+        $bodyClass = '';
+        if(! is_null(request()->query('z'))) $bodyClass = 'two-x';
+        $unit = new Unit;
+        $readableComponents = [];
+        return view($template->renderer, compact('bodyClass', 'readableComponents', 'unit'));
     }
 }

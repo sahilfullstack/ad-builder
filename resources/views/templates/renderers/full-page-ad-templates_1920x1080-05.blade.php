@@ -126,6 +126,12 @@
             text-align: center;
             padding-top: 105px;
         }
+
+        div.sidebar div.quote-holder {
+            width: 257.5px;
+            margin: 0 auto 30px;
+            position: relative;
+        }
         
         div.sidebar div.quote {
             width: 257.5px;
@@ -133,6 +139,7 @@
             background: #199FD4;
             margin: 0 auto 30px;
             position: relative;
+            overflow: hidden;
         }
         
         div.flag {
@@ -185,9 +192,11 @@
                     @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
                 </div>
 
-                <div class="quote" style="background-color: {{ array_get($readableComponents, 'text.background_color') }}">
+                <div class="quote-holder">
                     <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text.background_color') }}"></div>
-                    @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
+                    <div class="quote" style="background-color: {{ array_get($readableComponents, 'text.background_color') }}">
+                        @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
+                    </div>
                 </div>
             </div>
     

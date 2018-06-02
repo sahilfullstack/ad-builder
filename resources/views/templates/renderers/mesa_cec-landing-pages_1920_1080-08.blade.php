@@ -80,6 +80,10 @@
             background-size: 1920px 1080px;*/
         }
 
+        #workspace div {
+            overflow: hidden;
+        }
+
         div.banner {
             width: 1920px;
             height: 26.775px;
@@ -197,7 +201,7 @@
             width: 769.062px;
             height: 493.332px;
         }
-        div.image-1 div.image-1-placeholder {
+        div.image-1 div.placeholder {
             width: 769.062px;
             height: 493.332px;
             background: #C6E5F3;
@@ -214,7 +218,7 @@
             width: 526.542px;
             height: 268.734px;
         }
-        div.image-2 div.image-2-placeholder {
+        div.image-2 div.placeholder {
             width: 526.542px;
             height: 268.734px;
             background: #C6E5F3;
@@ -240,7 +244,7 @@
             width: 684.684px;
             height: 493.074px;
         }
-        div.video div.video-placeholder {
+        div.video div.placeholder {
             width: 684.684px;
             height: 493.074px;
             background: #C6E5F3;
