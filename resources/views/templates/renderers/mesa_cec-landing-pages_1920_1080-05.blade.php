@@ -255,10 +255,19 @@
         }
         div#text-1 {
             width: 419.601px;
-            height: 350.585px;
+            height: 230.585px;
             background: #C6E5F3;
             position: absolute;
             top: 675px;
+            left: 151px;
+        } 
+
+        div#amount-1 {
+            width: 419.601px;
+            height: 120.585px;
+            background: #0000ff;
+            position: absolute;
+            top: 905.585px;
             left: 151px;
         }
 
@@ -301,10 +310,19 @@
 
         div#text-2 {
             width: 419.601px;
-            height: 350.585px;
+            height: 230.585px;
             background: #C6E5F3;
             position: absolute;
             top: 675px;
+            left: 602px;
+        }
+
+        div#amount-2 {
+            width: 419.601px;
+            height: 120.585px;
+            background: #0000ff;
+            position: absolute;
+            top: 905.585px;
             left: 602px;
         }
 
@@ -379,7 +397,9 @@
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'text-1'])</p>
             </div>
 
-            <!-- Amount 1 is pending. -->
+             <div id="amount-1" >
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-1'), 'default' => 'amount-1'])</p>
+            </div>
 
             <div class="heading-2" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-2')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-2'), 'default' => 'Heading 2'])</p>
@@ -392,12 +412,14 @@
             <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'text-2'])</p>
             </div>
+            
+            <div id="amount-2">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-2'), 'default' => 'amount-2'])</p>
+            </div>
 
             <div class="slideshow">
                 @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
-
-            <!-- Amount 2 is pending. -->
          </div>
     </div>
 </body>
