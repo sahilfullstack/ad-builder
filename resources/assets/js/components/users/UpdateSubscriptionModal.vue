@@ -17,10 +17,6 @@
                             <date-picker v-model="expiring_at" lang="en"></date-picker>
                         </div>
                         <div class="form-group">
-                            <label for="date" class="control-label h5">Allowed Quantity</label>
-                            <input class="form-control" type="number" v-model="allowedQuantity" >
-                        </div>
-                        <div class="form-group">
                             <label for="date" class="control-label h5">Days</label>
                             <input class="form-control" type="number" v-model="days" >
                         </div>
@@ -64,10 +60,6 @@ export default {
             type: String,
             required: true,
         },
-        currentAllowedQuantity: {
-            type: Number,
-            required: true,
-        },
         currentDays: {
             type: Number,
             required: true,
@@ -88,13 +80,12 @@ export default {
 
     data() {
         return {
-            expiring_at: moment(this.currentExpiringAt).add(30, 'days')._d,
-            allowedQuantity: this.currentAllowedQuantity,
+            expiring_at: moment(this.currentExpiringAt)._d,
             days: this.currentDays,
             layout_id: this.layout.id,
-            allowVideos : this.currentAllowVideos,
-            allowHover : this.currentAllowHover,
-            allowPopout : this.currentAllowPopout,
+            allowVideos : this.currentAllowVideos == null ? false : true,
+            allowHover : this.currentAllowHover == null ? false : true,
+            allowPopout : this.currentAllowPopout == null ? false : true,
             errors: [],
             disable: {
                 updating: false
@@ -109,7 +100,6 @@ export default {
             axios.put('/api/users/' + this.userId + '/subscriptions',  {
                 layout_id: this.layout_id,
                 expiring_at: this.expiring_at.toISOString().substring(0, 10),
-                allowed_quantity: this.allowedQuantity,
                 days: this.days,
                 allow_videos: this.allowVideos,
                 allow_hover: this.allowHover,

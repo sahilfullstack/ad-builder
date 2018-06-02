@@ -7,6 +7,7 @@ use App\Models\Traits\Loggable;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use App\User;
 use App\Models\Traits\ContainsSoftDeletableUniques;
+use Illuminate\Support\Carbon;
 
 class Unit extends Model
 {
@@ -144,6 +145,11 @@ class Unit extends Model
         return $query->whereNull('holder_id');
     }
 
+    public function scopeUnexpired($query)
+    {
+        return $query->whereNull('expired_at');
+    }
+
     public function scopeForCurrentUser($query)
     {
         $user = auth()->user();
@@ -190,6 +196,18 @@ class Unit extends Model
     public function category()
     {
         return $this->belongsTo(Category::class);
+    }
+
+    public function expire()
+    {
+        $this->expired_at = Carbon::now();
+        $this->save();
+    }
+
+    public function restore()
+    {
+        $this->expired_at = null;
+        $this->save();
     }
 
     public function getNameAttribute($value)

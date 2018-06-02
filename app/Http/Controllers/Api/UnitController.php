@@ -134,7 +134,7 @@ class UnitController extends Controller
 
     public function list(ListUnitRequest $request)
     {
-        $units = Unit::published()->approved()->with(['holdee', 'category', 'layout', 'template', 'child', 'holdee.holdee', 'holdee.category', 'holdee.layout', 'holdee.template', 'holdee.child'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
+        $units = Unit::unexpired()->published()->approved()->noHoldees()->with(['holdee', 'category', 'layout', 'template', 'child', 'holdee.holdee', 'holdee.category', 'holdee.layout', 'holdee.template', 'holdee.child'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
         
         if( ! is_null($request->get('type')))
         {
@@ -353,7 +353,7 @@ class UnitController extends Controller
 
         if($unit->layout->hasParent()) $layoutId = $unit->layout->parent->id;
 
-        $subscription = Subscription::where('user_id', $userId)
+        $subscription = Subscription::active()->where('user_id', $userId)
             ->where('layout_id', $layoutId)
             ->first();
 

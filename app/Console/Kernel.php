@@ -23,6 +23,7 @@ class Kernel extends ConsoleKernel
         Commands\MakeLocalCopiesOfRemoteAssetsInUnits::class,
         Commands\MakeDummyUnitForAllTemplatesCommand::class,
         Commands\ConvertMp4VideoToOgvCommand::class,
+        Commands\DeductDaysInSubscriptions::class,
     ];
 
     /**
@@ -33,9 +34,7 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-
-        // $schedule->command('inspire')
-        //          ->hourly();
+        $schedule->command(Commands\DeductDaysInSubscriptions::class)->daily();
     }
 
     /**

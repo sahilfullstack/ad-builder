@@ -84477,10 +84477,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
-//
-//
-//
-//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -84494,10 +84490,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         currentExpiringAt: {
             type: String,
-            required: true
-        },
-        currentAllowedQuantity: {
-            type: Number,
             required: true
         },
         currentDays: {
@@ -84520,13 +84512,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
-            expiring_at: moment(this.currentExpiringAt).add(30, 'days')._d,
-            allowedQuantity: this.currentAllowedQuantity,
+            expiring_at: moment(this.currentExpiringAt)._d,
             days: this.currentDays,
             layout_id: this.layout.id,
-            allowVideos: this.currentAllowVideos,
-            allowHover: this.currentAllowHover,
-            allowPopout: this.currentAllowPopout,
+            allowVideos: this.currentAllowVideos == null ? false : true,
+            allowHover: this.currentAllowHover == null ? false : true,
+            allowPopout: this.currentAllowPopout == null ? false : true,
             errors: [],
             disable: {
                 updating: false
@@ -84542,7 +84533,6 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             axios.put('/api/users/' + this.userId + '/subscriptions', {
                 layout_id: this.layout_id,
                 expiring_at: this.expiring_at.toISOString().substring(0, 10),
-                allowed_quantity: this.allowedQuantity,
                 days: this.days,
                 allow_videos: this.allowVideos,
                 allow_hover: this.allowHover,
@@ -84612,36 +84602,6 @@ var render = function() {
                 ],
                 1
               ),
-              _vm._v(" "),
-              _c("div", { staticClass: "form-group" }, [
-                _c(
-                  "label",
-                  { staticClass: "control-label h5", attrs: { for: "date" } },
-                  [_vm._v("Allowed Quantity")]
-                ),
-                _vm._v(" "),
-                _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.allowedQuantity,
-                      expression: "allowedQuantity"
-                    }
-                  ],
-                  staticClass: "form-control",
-                  attrs: { type: "number" },
-                  domProps: { value: _vm.allowedQuantity },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.allowedQuantity = $event.target.value
-                    }
-                  }
-                })
-              ]),
               _vm._v(" "),
               _c("div", { staticClass: "form-group" }, [
                 _c(

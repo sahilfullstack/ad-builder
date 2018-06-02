@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Carbon;
 
 class Subscription extends Model
 {
@@ -27,6 +28,11 @@ class Subscription extends Model
         'allow_hover' => 'boolean',
         'allow_popout' => 'boolean',
     ];
+
+    public function scopeActive($query)
+    {
+        return $query->where('expiring_at', '>', Carbon::now());
+    }
 
     public function layout()
     {
