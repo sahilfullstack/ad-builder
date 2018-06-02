@@ -258,7 +258,7 @@
             background: rgba(255,0,0,0.2);
         }  
         div.social-qrs-2 div.social-qr {
-           width: 91.414px;
+            width: 91.414px;
             height: 88.534px;
             background: rgba(255,0,0,0.2);
         }  
