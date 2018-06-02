@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+	return redirect('/dashboard');
 });
 
 Auth::routes();
@@ -21,7 +21,7 @@ Route::get('/post-registration', function () {
     return view('auth.post-registration');
 })->name('post-registration');
 
-Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard');
+Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard')->middleware('auth');
 
 Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
