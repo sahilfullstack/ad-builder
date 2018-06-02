@@ -316,24 +316,24 @@
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-1'), 'default' => 'QR Title 1'])</p>
             </div>
             
-            <div class="social-qrs-1">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'QR Value 1', 'size' => 115])
+            <div class="social-qrs-1" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-value-1')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'QR Value 1'])
             </div>
 
             <div id="qr-title-2">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-2'), 'default' => 'QR Title 2'])</p>
             </div>
             
-            <div class="social-qrs-2">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'QR Value 2', 'size' => 115])
+            <div class="social-qrs-2" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-value-2')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'QR Value 2'])
             </div>
 
             <div id="qr-title-3">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-3'), 'default' => 'QR Title 3'])</p>
             </div>
 
-            <div class="social-qrs-3">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'QR Value 3', 'size' => 115])
+            <div class="social-qrs-3" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-value-3')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'QR Value 3'])
             </div>
 
             <div class="image-1">
