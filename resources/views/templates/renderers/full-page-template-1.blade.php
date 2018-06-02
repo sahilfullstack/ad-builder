@@ -173,7 +173,7 @@
             <p class="null-state">Workspace. Choose a template to begin.</p>
         @else
 
-            @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
+            @include('templates.components.banner', ['value' => array_get($readableComponents, 'top-border-bar') ])
 
             <div class="body">
                 <div class="sidebar">

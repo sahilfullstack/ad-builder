@@ -122,7 +122,7 @@
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
     
     <div id="workspace">
-        @include('templates.components.banner', ['value' => array_get($readableComponents, 'theme') ])
+        @include('templates.components.banner', ['value' => array_get($readableComponents, 'top-border-bar') ])
 
         <div class="body">
             <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
