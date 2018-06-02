@@ -124,7 +124,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 95px;
         }
 
         div.title {
@@ -201,6 +201,7 @@
         div.social-logo-image1 svg {
             width: 50.63px;
             height: 34.94px;
+            fill: #199FD4;
         }
         div.social-logo-image1 div.social-logo-image1-placeholder {
             width: 50.63px;
@@ -218,6 +219,7 @@
         div.social-logo-image2 svg {
             width: 50.53px;
             height: 34.94px;
+            fill: #199FD4;
         }
         div.social-logo-image2 div.social-logo-image2-placeholder {
             width: 50.53px;
@@ -235,6 +237,8 @@
         div.social-logo-image3 svg {
             width: 50.53px;
             height: 34.94px;
+            fill: #199FD4;
+
         }
         div.social-logo-image3 div.social-logo-image3-placeholder {
             width: 50.53px;
@@ -253,7 +257,7 @@
             width: 420px;
             height: 183px;
         }
-        div.image-1 div.image-1-placeholder {
+        div.image-1 div.placeholder {
             width: 420px;
             height: 183px;
             background: #C6E5F3;
@@ -270,7 +274,7 @@
         div#amount-1 {
             width: 419.601px;
             height: 120.585px;
-            background: #0000ff;
+            background: #199FD4;
             position: absolute;
             top: 905.585px;
             left: 151px;
@@ -307,7 +311,7 @@
             height: 183px;
         }
 
-        div.image-2 div.image-2-placeholder {
+        div.image-2 div.placeholder {
             width: 420px;
             height: 183px;
             background: #C6E5F3;
@@ -325,7 +329,7 @@
         div#amount-2 {
             width: 419.601px;
             height: 120.585px;
-            background: #0000ff;
+            background: #199FD4;
             position: absolute;
             top: 905.585px;
             left: 602px;
@@ -373,15 +377,15 @@
             </div>
 
             <div class="social-qrs-1">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'Twitter', 'size' => 115])
             </div>
 
             <div class="social-qrs-2">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'Instagram', 'size' => 115])
             </div>
 
             <div class="social-qrs-3">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook', 'size' => 115])
             </div>
             
             <div class="heading-1" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-1')['_value']) ? 'transparent' : '' }};">
@@ -389,15 +393,15 @@
             </div>
 
             <div class="image-1">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
 
             <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'text-1'])</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
-             <div id="amount-1" >
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-1'), 'default' => 'amount-1'])</p>
+             <div id="amount-1" style="background-color: {{ array_get($readableComponents, 'top-border-bar._value') }}">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-1'), 'default' => 'Amount 1'])</p>
             </div>
 
             <div class="heading-2" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-2')['_value']) ? 'transparent' : '' }};">
@@ -405,15 +409,15 @@
             </div>
 
             <div class="image-2">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
 
             <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'text-2'])</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             
-            <div id="amount-2">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-2'), 'default' => 'amount-2'])</p>
+            <div id="amount-2" style="background-color: {{ array_get($readableComponents, 'top-border-bar._value') }}">
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-2'), 'default' => 'Amount 2'])</p>
             </div>
 
             <div class="slideshow">

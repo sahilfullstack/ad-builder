@@ -1,6 +1,6 @@
 @if(empty($value[0]['_value']))
     <div class="{{ $default }}-placeholder">
-        <p>{{ Illuminate\Support\Str::upper($default) }}</p>
+        <p>{{ Illuminate\Support\Str::title($default) }}</p>
     </div>
 @else
     @if(is_null(request()->input('relative')))

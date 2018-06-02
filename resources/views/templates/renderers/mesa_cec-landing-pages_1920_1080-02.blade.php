@@ -124,7 +124,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 95px;
         }
 
         div.title {
@@ -207,6 +207,7 @@
         div.social-logo-image1 svg {
             width: 63.361px;
             height: 43.552px;
+            fill: #199FD4;
         }
 
         div.hero-video video {
@@ -230,6 +231,7 @@
         div.social-logo-image2 svg {
             width: 63.361px;
             height: 43.552px;
+            fill: #199FD4;
         }
         div.social-logo-image2 div.social-logo-image2-placeholder {
             width: 63.361px;
@@ -247,6 +249,8 @@
         div.social-logo-image3 svg {
             width: 63.361px;
             height: 43.552px;
+            fill: #199FD4;
+
         }
         div.social-logo-image3 div.social-logo-image3-placeholder {
             width: 63.361px;

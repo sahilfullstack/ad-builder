@@ -123,7 +123,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 95px;
         }
 
         div.title {
@@ -213,7 +213,7 @@
             width: 372.395px;
             height: 157.127px;
         }
-        div.map div.map-placeholder {
+        div.map div.placeholder {
             width: 372.395px;
             height: 157.127px;
             background: #C6E5F3;

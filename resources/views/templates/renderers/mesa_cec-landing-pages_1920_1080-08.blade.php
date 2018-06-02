@@ -124,7 +124,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 65px;
         }
 
         div.title {
@@ -145,6 +145,7 @@
             position: absolute;
             top: 800px;
             left: 1560px;
+            text-align: center;
         }
          div#qr-title-2 {
             width: 114.5px;
@@ -152,6 +153,7 @@
             position: absolute;
             top: 800px;
             left: 1680px;
+            text-align: center;
         }
 
          div#qr-title-3 {
@@ -160,6 +162,7 @@
             position: absolute;
             top: 800px;
             left: 1800px;
+            text-align: center;
         }
     
         div.social-qrs-1 {
@@ -310,31 +313,31 @@
             </div>
 
             <div id="qr-title-1">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-1'), 'default' => 'Text'])</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-1'), 'default' => 'QR Title 1'])</p>
             </div>
             
             <div class="social-qrs-1">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'QR Value 1', 'size' => 115])
             </div>
 
             <div id="qr-title-2">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-2'), 'default' => 'Text'])</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-2'), 'default' => 'QR Title 2'])</p>
             </div>
             
             <div class="social-qrs-2">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'QR Value 2', 'size' => 115])
             </div>
 
             <div id="qr-title-3">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-3'), 'default' => 'Text'])</p>
+                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-3'), 'default' => 'QR Title 3'])</p>
             </div>
 
             <div class="social-qrs-3">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-3'), 'default' => 'QR Value 3', 'size' => 115])
             </div>
 
             <div class="image-1">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
 
             <div id="hero-text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
@@ -346,7 +349,7 @@
             </div>
 
             <div class="image-2">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
 
             <div class="photogallery">

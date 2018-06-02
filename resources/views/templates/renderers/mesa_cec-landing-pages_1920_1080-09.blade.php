@@ -124,7 +124,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 65px;
         }
 
         div.title {
@@ -327,17 +327,17 @@
         <div class="body">
             <div class="image-1">
                 <div class="image-1-placeholder">
-                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image-1'])
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
                 </div>
             </div>
             <div class="image-2">
                 <div class="image-2-placeholder">
-                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image-2'])
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
                 </div>                
             </div>            
             <div class="image-3">
                 <div class="image-3-placeholder">
-                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image-3'])
+                    @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image 3'])
                 </div>
             </div>
 
@@ -369,15 +369,15 @@
             </div>
 
             <div class="social-qrs-1">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'Twitter', 'size' => 92])
             </div>
 
             <div class="social-qrs-2">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'Instagram', 'size' => 92])
             </div>
 
             <div class="social-qrs-3">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr', 'size' => 92])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook', 'size' => 92])
             </div>
     </div>
 </body>

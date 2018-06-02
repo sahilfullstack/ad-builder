@@ -110,7 +110,7 @@
             width: 658.308px;
             height: 319.18px;
         }
-        div.hero-image1 div.hero-image1-placeholder {
+        div.hero-image1 div.placeholder {
             width: 658.308px;
             height: 319.18px;
             background: #C6E5F3;
@@ -127,7 +127,7 @@
             width: 658.308px;
             height: 319.18px;
         }
-        div.hero-image2 div.hero-image2-placeholder {
+        div.hero-image2 div.placeholder {
             width: 658.308px;
             height: 319.18px;
             background: #C6E5F3;
@@ -144,7 +144,7 @@
             width: 658.308px;
             height: 319.18px;
         }
-        div.hero-image3 div.hero-image3-placeholder {
+        div.hero-image3 div.placeholder {
             width: 658.308px;
             height: 319.18px;
             background: #C6E5F3;
@@ -175,7 +175,7 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 15px;
+            padding-top: 95px;
         }
 
         div.title {
@@ -312,13 +312,13 @@
 
         <div class="body">
             <div class="hero-image1">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'hero-image1'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
             <div class="hero-image2">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'hero-image2'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>            
             <div class="hero-image3">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'hero-image3'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image 3'])
             </div>
 
             <div class="logo">
@@ -341,15 +341,15 @@
             </div>
 
             <div class="social-qrs-1">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'Twitter', 'size' => 115])
             </div>
 
             <div class="social-qrs-2">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'Instagram', 'size' => 115])
             </div>
 
             <div class="social-qrs-3">
-                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'social-qr', 'size' => 115])
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook', 'size' => 115])
             </div>
     </div>
 </body>

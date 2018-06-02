@@ -125,7 +125,7 @@
 
         <div class="body">
             <div id="custom-image">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'custom-image'), 'default' => 'custom-image'])
+                @include('templates.components.image', ['value' => array_get($readableComponents, 'custom-image'), 'default' => 'custom image'])
             </div>
          </div>
     </div>
