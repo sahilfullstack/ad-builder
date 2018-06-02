@@ -310,38 +310,6 @@ class UnitController extends Controller
 
     public function publish(PublishUnitRequest $request, Unit $unit)
     {        
-        // Validating that the selected template has the selected components.
-        // if(is_null($unit->name))
-        // {
-        //     throw new CustomInvalidInputException('parent_name', 'Name is empty.');
-        // }        
-
-        // if(is_null($unit->template_id))
-        // {
-        //     throw new CustomInvalidInputException('parent_template', 'Template is empty.');
-        // }
-
-        // if(is_null($unit->layout_id))
-        // {
-        //     throw new CustomInvalidInputException('parent_layout', 'Layout is empty.');
-        // }
-
-        // $template = Template::find($unit->template_id);
-
-        // // Validating that the selected template has the selected components.
-        // if($template->components->count() != count($unit->components))
-        // {
-        //     throw new CustomInvalidInputException('parent_components', 'Components are missing.');
-        // }
-
-        // foreach ($unit->components as $key => $component) 
-        // {
-        //     if(empty($component))
-        //     {                     
-        //         throw new CustomInvalidInputException('parent_components', 'Components are missing.');
-        //     }
-        // }
-        
         if($unit->is_holder) {
             foreach ($unit->holdee as $held) {
                 $this->validateChildUnit($held, 'parent_');
@@ -385,73 +353,32 @@ class UnitController extends Controller
 
         if($unit->layout->hasParent()) $layoutId = $unit->layout->parent->id;
 
-        $layouts = DB::select(
-                DB::raw("select 
-                    sum(allowed_quantity - redeemed_quantity) 
-                        as available_quantity, 
-                    layouts.* 
+        $subscription = Subscription::where('user_id', $userId)
+            ->where('layout_id', $layoutId)
+            ->first();
 
-                    from subscriptions 
-
-                    join layouts on 
-                        subscriptions.layout_id = layouts.id 
-
-                    where subscriptions.user_id = $userId 
-                    and 
-                    subscriptions.expiring_at >= now() 
-                    and 
-                    layouts.id=$layoutId
-
-                    group by 
-                        subscriptions.layout_id 
-                    having available_quantity > 0;
-                ")
-            );
-
-        if(count($layouts) < 1 )
+        if(is_null($subscription) || $subscription->days == 0)
         {
-            throw new CustomInvalidInputException('general', 'Subscription does not exist. Please contact the admin.');
+            throw new CustomInvalidInputException('general', 'You do not have a subscription to publish this ad. Please contact the admin.');
         }
 
-        $componentsWithVideo = Component::where('template_id', $templateId)
-                            ->where('type', 'video')
-                            ->get();
+        $componentsWithVideoCount = Component::where('template_id', $templateId)
+            ->where('type', 'video')
+            ->count();
 
-        if(count($componentsWithVideo) > 0)
+        if($componentsWithVideoCount > 0 && ! $subscription->allow_videos)
         {
-            $subscription = Subscription::where('user_id', $userId)
-                            ->where('layout_id', $layoutId)
-                            ->whereRaw('allowed_quantity > redeemed_quantity')
-                            ->whereRaw('expiring_at >= now()')
-                            ->where('allow_videos', 1)
-                            ->orderBy('expiring_at', 'DESC')->first();
-
-            if(is_null($subscription))
-            {
-                throw new CustomInvalidInputException('general', 'Cannot use video element of this subscription. Please contact the admin at admin@mesa.com');
-            }
-        }
-        else {
-            $subscription = Subscription::where('user_id', $userId)
-                            ->where('layout_id', $layoutId)
-                            ->whereRaw('allowed_quantity > redeemed_quantity')
-                            ->whereRaw('expiring_at >= now()')
-                            ->orderBy('expiring_at', 'DESC')->first();
+            throw new CustomInvalidInputException('general', 'You do not have a subscription to use video components. Please contact the admin.');
         }
 
-        // if hover image is set 
-        // allow 
-        if(! is_null($unit->hover_image))
+        if( ! is_null($unit->hover_image) // user has entered the hover image
+            &&
+            ! ($subscription->allow_hover || $subscription->allow_popout) // but has neither of these two features
+        )
         {
-            if( $subscription->allow_hover == 0 && $subscription->allow_popout == 0) 
-            {
-                throw new CustomInvalidInputException('general', 'Cannot use hover image of this subscription. Please contact the admin at admin@mesa.com');
-            }
+            throw new CustomInvalidInputException('general', 'You do not have a subscription to use hover image. Please contact the admin.');
         }
-
-        $subscription->redeemed_quantity = $subscription->redeemed_quantity+1;            
-        $subscription->save();
-            
+    
         return $subscription;
     }
 
