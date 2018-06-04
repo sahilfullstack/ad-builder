@@ -2,6 +2,10 @@
     <form @submit.prevent="update">
         <h4>SUBMIT FOR APPROVAL</h4>
         <p>Make sure that you've completed all the fields before submitting it for approval.</p>            
+         <div class="form-group">
+            <label for="date" class="control-label h5">Scheduled Date</label>
+            <date-picker v-model="scheduled_at" lang="en"></date-picker>
+        </div>
 
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:30px;">{{errors['general']}}</span>
         <a v-bind:href="errors['url']" class="btn btn-danger" :class="{'hidden': errors['url'] == undefined}">Fix It</a>
@@ -25,6 +29,7 @@ export default {
 
     data() {
         return {
+            scheduled_at: moment(new Date())._d,
             form: {
                 
             },
@@ -42,7 +47,9 @@ export default {
             
             this.errors = [];
 
-            axios.put('/api/units/' + this.unit.parent_id + '/publish', {})
+            axios.put('/api/units/' + this.unit.parent_id + '/publish', {
+                scheduled_at: new Date(this.scheduled_at.getTime() - (this.scheduled_at.getTimezoneOffset() * 60000)).toISOString().substring(0, 10)
+            })
                 .then(response => {  
                     window.location.href = '/units?type=ad';                  
                 })

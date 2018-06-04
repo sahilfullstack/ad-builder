@@ -26,6 +26,7 @@ class PublishUnitRequest extends FormRequest
     public function rules()
     {
         return [
+            'scheduled_at' => 'required'
         ];
     }
 }

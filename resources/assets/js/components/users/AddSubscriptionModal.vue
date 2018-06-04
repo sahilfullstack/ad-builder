@@ -71,7 +71,7 @@ export default {
         add() {
             this.disable.adding = true;
                    let thiz = this; 
-            axios.post('/api/users/' + this.userId + '/subscriptions',  {layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos})
+            axios.post('/api/users/' + this.userId + '/subscriptions',  {layout_id: this.layout_id, expiring_at: new Date(this.expiring_at.getTime() - (this.expiring_at.getTimezoneOffset() * 60000)).toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos})
             .then(function (response) {
                 thiz.disable.adding = false;
 

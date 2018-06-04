@@ -321,8 +321,9 @@ class UnitController extends Controller
         }
 
         $subscription = $this->getRedeemedSubscription($unit);
-        $unit->redeemed_subscription_id = $subscription->id;
 
+        $unit->redeemed_subscription_id = $subscription->id;
+        $unit->scheduled_at = Carbon::parse($request->scheduled_at);
         // if want to perform some actions
         $this->dispatchRequiredJobsBeforePublishing($unit);
 

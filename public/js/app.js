@@ -82538,6 +82538,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -82553,6 +82557,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
     data: function data() {
         return {
+            scheduled_at: moment(new Date())._d,
             form: {},
             errors: [],
             disable: {
@@ -82571,7 +82576,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
             this.errors = [];
 
-            axios.put('/api/units/' + this.unit.parent_id + '/publish', {}).then(function (response) {
+            axios.put('/api/units/' + this.unit.parent_id + '/publish', {
+                scheduled_at: new Date(this.scheduled_at.getTime() - this.scheduled_at.getTimezoneOffset() * 60000).toISOString().substring(0, 10)
+            }).then(function (response) {
                 window.location.href = '/units?type=ad';
             }).catch(function (error) {
                 // Fixing the optimism.
@@ -82648,6 +82655,30 @@ var render = function() {
           "Make sure that you've completed all the fields before submitting it for approval."
         )
       ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "form-group" },
+        [
+          _c(
+            "label",
+            { staticClass: "control-label h5", attrs: { for: "date" } },
+            [_vm._v("Scheduled Date")]
+          ),
+          _vm._v(" "),
+          _c("date-picker", {
+            attrs: { lang: "en" },
+            model: {
+              value: _vm.scheduled_at,
+              callback: function($$v) {
+                _vm.scheduled_at = $$v
+              },
+              expression: "scheduled_at"
+            }
+          })
+        ],
+        1
+      ),
       _vm._v(" "),
       _c(
         "span",
