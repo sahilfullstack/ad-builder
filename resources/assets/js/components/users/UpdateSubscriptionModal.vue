@@ -99,7 +99,7 @@ export default {
                    let thiz = this; 
             axios.put('/api/users/' + this.userId + '/subscriptions',  {
                 layout_id: this.layout_id,
-                expiring_at: this.expiring_at.toISOString().substring(0, 10),
+                expiring_at: new Date(this.expiring_at.getTime() - (this.expiring_at.getTimezoneOffset() * 60000)).toISOString().substring(0, 10),
                 days: this.days,
                 allow_videos: this.allowVideos,
                 allow_hover: this.allowHover,
