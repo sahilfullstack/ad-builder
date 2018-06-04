@@ -29,7 +29,7 @@ class Unit extends Model
      *
      * @var array
      */
-    protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at', 'scheduled_at'];
 
     /**
      * The attributes that should be cast to native types.
