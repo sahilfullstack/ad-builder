@@ -27,6 +27,7 @@
                     <create-unit-copy-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></create-unit-copy-button>
                     <hr>
 
+                    <p><strong>Scheduled at:</strong> {{ $unit->scheduled_at->toDayDateTimeString() }}</p>
                     <p><strong>Created at:</strong> {{ $unit->created_at->toDayDateTimeString() }}</p>
                     <p><strong>Last updated at:</strong> {{ $unit->updated_at->toDayDateTimeString() }}</p>
                     
