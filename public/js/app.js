@@ -82157,6 +82157,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -82184,6 +82189,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             form: {
                 name: this.unit.name,
                 hover_image: this.unit.hover_image,
+                is_popup: this.unit.is_popup,
                 thumbnail: this.unit.thumbnail,
                 section: 'name'
             },
@@ -82315,7 +82321,9 @@ var render = function() {
               [_vm._v("Upload")]
             ),
             _vm._v(" "),
-            _vm._m(1),
+            _c("label", { attrs: { for: "hover_image" } }, [
+              _vm._v("Scroll Over Image")
+            ]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -82357,6 +82365,64 @@ var render = function() {
       _vm._v(" "),
       _vm.unit.type == "ad"
         ? _c("div", { staticClass: "form-group" }, [
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.is_popup,
+                  expression: "form.is_popup"
+                }
+              ],
+              staticClass: "form-check-input",
+              attrs: { id: "is_popup", type: "checkbox" },
+              domProps: {
+                checked: Array.isArray(_vm.form.is_popup)
+                  ? _vm._i(_vm.form.is_popup, null) > -1
+                  : _vm.form.is_popup
+              },
+              on: {
+                change: function($event) {
+                  var $$a = _vm.form.is_popup,
+                    $$el = $event.target,
+                    $$c = $$el.checked ? true : false
+                  if (Array.isArray($$a)) {
+                    var $$v = null,
+                      $$i = _vm._i($$a, $$v)
+                    if ($$el.checked) {
+                      $$i < 0 &&
+                        _vm.$set(_vm.form, "is_popup", $$a.concat([$$v]))
+                    } else {
+                      $$i > -1 &&
+                        _vm.$set(
+                          _vm.form,
+                          "is_popup",
+                          $$a.slice(0, $$i).concat($$a.slice($$i + 1))
+                        )
+                    }
+                  } else {
+                    _vm.$set(_vm.form, "is_popup", $$c)
+                  }
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c("label", { attrs: { for: "is_popup" } }, [_vm._v("Is Popup?")]),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["is_popup"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["is_popup"]))]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.unit.type == "ad"
+        ? _c("div", { staticClass: "form-group" }, [
             _c(
               "a",
               {
@@ -82372,7 +82438,7 @@ var render = function() {
               [_vm._v("Upload")]
             ),
             _vm._v(" "),
-            _vm._m(2),
+            _c("label", { attrs: { for: "thumbnail" } }, [_vm._v("Thumbnail")]),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -82442,24 +82508,6 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "name" } }, [
       _vm._v("NAME "),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "hover_image" } }, [
-      _vm._v("Hover Image"),
-      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("label", { attrs: { for: "thumbnail" } }, [
-      _vm._v("Thumbnail"),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   }
