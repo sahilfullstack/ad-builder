@@ -8,15 +8,20 @@
         </div>
         <div v-if="unit.type == 'ad'" class="form-group">
             <a href class="pull-right" @click.prevent="upload('hover_image')">Upload</a>
-            <label for="hover_image">Hover Image<span class="text-danger">*</span></label>
+            <label for="hover_image">Scroll Over Image</label>
             <input type="text" class="form-control" id="hover_image" placeholder="Example: http://something.png" v-model="form.hover_image">
              <span class="text-danger" :class="{'hidden': errors['hover_image'] == undefined}" style="margin-right:10px;">{{errors['hover_image']}}</span>
         </div>
+        <div v-if="unit.type == 'ad'" class="form-group">
+            <input id="is_popup" class="form-check-input" type="checkbox" v-model="form.is_popup" >
+            <label for="is_popup">Is Popup?</label>
+            <span class="text-danger" :class="{'hidden': errors['is_popup'] == undefined}" style="margin-right:10px;">{{errors['is_popup']}}</span>
+        </div>
         <div  v-if="unit.type == 'ad'" class="form-group">
             <a href class="pull-right" @click.prevent="upload('thumbnail')">Upload</a>
-            <label for="thumbnail">Thumbnail<span class="text-danger">*</span></label>
+            <label for="thumbnail">Thumbnail</label>
             <input type="text" class="form-control" id="thumbnail" placeholder="Example: http://something.png" v-model="form.thumbnail">
-             <span class="text-danger" :class="{'hidden': errors['thumbnail'] == undefined}" style="margin-right:10px;">{{errors['thumbnail']}}</span>
+            <span class="text-danger" :class="{'hidden': errors['thumbnail'] == undefined}" style="margin-right:10px;">{{errors['thumbnail']}}</span>
         </div>
         <span class="text-danger" :class="{'hidden': errors['general'] == undefined}" style="margin-right:10px;">{{errors['general']}}</span>
         <br>
@@ -52,6 +57,7 @@ export default {
             form: {
                 name: this.unit.name,
                 hover_image: this.unit.hover_image,
+                is_popup: this.unit.is_popup,
                 thumbnail: this.unit.thumbnail,
                 section: 'name',
             },

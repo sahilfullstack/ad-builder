@@ -569,6 +569,12 @@ class UnitController extends Controller
                 $unit->hover_image = $request->hover_image;
             } 
 
+            // if is_popup is sent
+            if(! is_null($request->is_popup))
+            {
+                $unit->is_popup = $request->is_popup;
+            } 
+
             // if thumbnail is sent
             if(! is_null($request->thumbnail))
             {
