@@ -81,10 +81,15 @@ class UserController extends Controller
 
     public function updateProfile(User $user, UpdateUserRequest $request)
     {
-        $user->name = $request->get('name');
-        $user->email = $request->get('email');
+        $user->name    = $request->get('name');
+        $user->city    = $request->get('city');
+        $user->email   = $request->get('email');
+        $user->phone   = $request->get('phone');
+        $user->state   = $request->get('state');
         $user->company = $request->get('company');
-        $user->phone = $request->get('phone');
+        $user->address = $request->get('address');
+        $user->pin     = $request->get('pin');
+        
         $user->save();
     }    
 

@@ -84611,7 +84611,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var thiz = this;
             axios.put('/api/users/' + this.userId + '/subscriptions', {
                 layout_id: this.layout_id,
-                expiring_at: this.expiring_at.toISOString().substring(0, 10),
+                expiring_at: new Date(this.expiring_at.getTime() - this.expiring_at.getTimezoneOffset() * 60000).toISOString().substring(0, 10),
                 days: this.days,
                 allow_videos: this.allowVideos,
                 allow_hover: this.allowHover,
@@ -85182,7 +85182,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         add: function add() {
             this.disable.adding = true;
             var thiz = this;
-            axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: this.expiring_at.toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos }).then(function (response) {
+            axios.post('/api/users/' + this.userId + '/subscriptions', { layout_id: this.layout_id, expiring_at: new Date(this.expiring_at.getTime() - this.expiring_at.getTimezoneOffset() * 60000).toISOString().substring(0, 10), allowed_quantity: this.allowedQuantity, allow_videos: this.allowVideos }).then(function (response) {
                 thiz.disable.adding = false;
 
                 thiz.$emit('resolve');
@@ -85826,6 +85826,34 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -85842,7 +85870,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 company: this.user.company,
                 email: this.user.email,
                 phone: this.user.phone,
-                username: this.user.username
+                username: this.user.username,
+                address: this.user.address,
+                city: this.user.city,
+                state: this.user.state,
+                pin: this.user.pin
             },
             errors: [],
             disable: {
@@ -86028,6 +86060,158 @@ var render = function() {
             {
               name: "model",
               rawName: "v-model",
+              value: _vm.form.address,
+              expression: "form.address"
+            }
+          ],
+          staticClass: "form-control",
+          attrs: { type: "text", placeholder: "Address" },
+          domProps: { value: _vm.form.address },
+          on: {
+            input: function($event) {
+              if ($event.target.composing) {
+                return
+              }
+              _vm.$set(_vm.form, "address", $event.target.value)
+            }
+          }
+        }),
+        _vm._v(" "),
+        _c(
+          "span",
+          {
+            staticClass: "text-danger",
+            class: { hidden: _vm.errors["address"] == undefined },
+            staticStyle: { "margin-right": "10px" }
+          },
+          [_vm._v(_vm._s(_vm.errors["address"]))]
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _vm._m(4),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.city,
+                  expression: "form.city"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "City" },
+              domProps: { value: _vm.form.city },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "city", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["city"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["city"]))]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _vm._m(5),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.state,
+                  expression: "form.state"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "State" },
+              domProps: { value: _vm.form.state },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "state", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["state"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["state"]))]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "col-md-4" }, [
+          _c("div", { staticClass: "form-group" }, [
+            _vm._m(6),
+            _vm._v(" "),
+            _c("input", {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.form.pin,
+                  expression: "form.pin"
+                }
+              ],
+              staticClass: "form-control",
+              attrs: { type: "text", placeholder: "Pin" },
+              domProps: { value: _vm.form.pin },
+              on: {
+                input: function($event) {
+                  if ($event.target.composing) {
+                    return
+                  }
+                  _vm.$set(_vm.form, "pin", $event.target.value)
+                }
+              }
+            }),
+            _vm._v(" "),
+            _c(
+              "span",
+              {
+                staticClass: "text-danger",
+                class: { hidden: _vm.errors["pin"] == undefined },
+                staticStyle: { "margin-right": "10px" }
+              },
+              [_vm._v(_vm._s(_vm.errors["pin"]))]
+            )
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "form-group" }, [
+        _vm._m(7),
+        _vm._v(" "),
+        _c("input", {
+          directives: [
+            {
+              name: "model",
+              rawName: "v-model",
               value: _vm.form.phone,
               expression: "form.phone"
             }
@@ -86057,7 +86241,7 @@ var render = function() {
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "form-group" }, [
-        _vm._m(4),
+        _vm._m(8),
         _vm._v(" "),
         _c("input", {
           directives: [
@@ -86140,6 +86324,42 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("label", { attrs: { for: "email" } }, [
       _vm._v("Email "),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Address"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("City"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("State"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", [
+      _vm._v("Pin"),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
     ])
   },

@@ -29,7 +29,11 @@
                     @foreach($users as $key => $user)
                         <tr>
                         <td>{{$key + 1}}</td>
-                        <td><span class="badge">{{ $user->role->name }}</span> {{$user->name}}</td>
+                        <td>
+                            <a href="{{ route('users.show', $user) }}">
+                                <span class="badge">{{ $user->role->name }}</span> {{$user->name}}
+                            </a>
+                        </td>
                         <td>{{$user->email}}</td>
                         <td>{{$user->company}}</td>
                         <td>{{$user->phone}}</td>

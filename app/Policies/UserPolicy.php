@@ -36,6 +36,17 @@ class UserPolicy
      * @param  \App\User  $user
      * @return mixed
      */
+    public function show(User $user)
+    {
+        return $user->can('user.manage');
+    }
+
+    /**
+     * Determine whether the user can list users.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
     public function list(User $user)
     {
         return $user->can('user.manage');

@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\User;
 use App\Models\{Layout};
-use App\Http\Requests\{ListUserRequest, CreateUserRequest};
+use App\Http\Requests\{ListUserRequest, CreateUserRequest, ShowUserRequest};
 use Carbon\Carbon;
 
 class UserController extends Controller
@@ -23,6 +23,13 @@ class UserController extends Controller
     public function create(CreateUserRequest $request)
     {
         return view('users.create');
+    }
+
+    public function show(User $user, ShowUserRequest $request)
+    {
+        $user = User::find($user->id);       
+
+        return view('users.show', compact('user'));
     }
 
     public function list(ListUserRequest $request)

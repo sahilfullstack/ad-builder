@@ -6,7 +6,7 @@ use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Validation\Rule;
 use App\User;
 
-class UpdateUserRequest extends FormRequest
+class ShowUserRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -15,7 +15,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function authorize()
     {
-        return auth()->user()->can('update', $this->instance()->route('user'));
+        return auth()->user()->can('show', User::class);
     }
 
     /**
@@ -25,15 +25,7 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            'name'    => 'required',
-            'company' => 'required',
-            'email'   => 'required',
-            'phone'   => 'required',
-            'address' => 'required',
-            'city'    => 'required',
-            'state'   => 'required',
-            'pin'     => 'required',
+        return [            
         ];
     }
 }
