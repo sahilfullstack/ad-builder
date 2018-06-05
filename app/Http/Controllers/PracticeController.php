@@ -20,8 +20,8 @@ class PracticeController extends Controller
     {
         $bodyClass = '';
         if(! is_null($request->query('z'))) $bodyClass = 'two-x';
-        $unit = Unit::find(580);
-        $readableComponents = $unit->readable_components;
+        $unit = new Unit;
+        $readableComponents = [];
         return view("templates.renderers.$template", compact('bodyClass', 'readableComponents', 'unit'));
     }
 
