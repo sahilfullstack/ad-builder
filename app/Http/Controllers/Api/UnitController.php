@@ -309,7 +309,8 @@ class UnitController extends Controller
     }
 
     public function publish(PublishUnitRequest $request, Unit $unit)
-    {        
+    {      
+    \Log::info("here 1q");  
         if($unit->is_holder) {
             foreach ($unit->holdee as $held) {
                 $this->validateChildUnit($held, 'parent_');

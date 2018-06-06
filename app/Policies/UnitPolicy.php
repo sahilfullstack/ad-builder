@@ -54,7 +54,7 @@ class UnitPolicy
     public function publish(User $user, Unit $unit)
     {
 
-        return($user->id === $unit->user_id);
+        return(($user->id === $unit->user_id)|| $user->canOverride($unit->user));
     }    
 
     /**
