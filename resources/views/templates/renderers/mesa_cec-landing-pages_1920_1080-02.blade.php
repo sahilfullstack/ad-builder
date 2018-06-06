@@ -292,10 +292,6 @@
             top: 800px;
             left: 32px;
         }
-        div.timeline img {
-            width: 1866px;
-            height: 268.812px;
-        }
         div.timeline div.timeline-placeholder {
             width: 1866px;
             height: 268.812px;
@@ -406,15 +402,15 @@
                 <svg xmlns="http://www.w3.org/2000/svg" style="fill: {{ array_get($readableComponents, 'top-border-bar._value') }}" aria-labelledby="simpleicons-facebook-icon" role="img" viewBox="0 0 30 30"><title id="simpleicons-facebook-icon">Facebook icon</title><path d="M22.676 0H1.324C.593 0 0 .593 0 1.324v21.352C0 23.408.593 24 1.324 24h11.494v-9.294H9.689v-3.621h3.129V8.41c0-3.099 1.894-4.785 4.659-4.785 1.325 0 2.464.097 2.796.141v3.24h-1.921c-1.5 0-1.792.721-1.792 1.771v2.311h3.584l-.465 3.63H16.56V24h6.115c.733 0 1.325-.592 1.325-1.324V1.324C24 .593 23.408 0 22.676 0"/></svg>
             </div>
 
-            <div class="social-qrs-1" style="background-color: {{ empty(array_get($readableComponents, 'twitter-url')) ?: 'transparent' }}">
+            <div class="social-qrs-1" style="background-color: {{ empty(array_get($readableComponents, 'twitter-url._value')) ?: 'transparent' }}">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'twitter-url'), 'default' => 'Twitter'])
             </div>
 
-            <div class="social-qrs-2" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+            <div class="social-qrs-2" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url._value')) ?: 'transparent' }}">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'instagram-url'), 'default' => 'Instagram'])
             </div>
 
-            <div class="social-qrs-3" style="background-color: {{ empty(array_get($readableComponents, 'facebook-url')) ?: 'transparent' }}">
+            <div class="social-qrs-3" style="background-color: {{ empty(array_get($readableComponents, 'facebook-url._value')) ?: 'transparent' }}">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook'])
             </div>
 
@@ -429,7 +425,7 @@
             <div class="hero-video">
                 @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
-            <div class="timeline">
+            <div class="timeline" style="background-color:{{ empty(array_get($readableComponents, 'timeline._value.title')) ?: 'transparent' }};">
                 @include('templates.components.timeline', ['value' => array_get($readableComponents, 'timeline'), 'default' => 'timeline'])
             </div>
          </div>
