@@ -1632,7 +1632,7 @@ class TemplateSeeder extends Seeder
                     ],
                     [
                         'name' => 'Timeline',
-                        'type' => 'image',
+                        'type' => 'timeline',
                         'rules' => []
                     ],
                     [

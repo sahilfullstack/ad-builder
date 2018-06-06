@@ -628,6 +628,38 @@ class UnitController extends Controller
             {
                 $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12];
             }
+            else if($component->type == 'timeline')
+            {
+                $preparedComponents[$component->id] = ['_value' => [
+                    'title' => '',
+                    'values' => [
+                        [
+                            'month' => '',
+                            'year' => '',
+                            'description' => '',
+                            'image' => ''
+                        ],
+                        [
+                            'month' => '',
+                            'year' => '',
+                            'description' => '',
+                            'image' => ''
+                        ],
+                        [
+                            'month' => '',
+                            'year' => '',
+                            'description' => '',
+                            'image' => ''
+                        ],
+                        [
+                            'month' => '',
+                            'year' => '',
+                            'description' => '',
+                            'image' => ''
+                        ],
+                    ]
+                ]];
+            }
             else
             {                  
                 $preparedComponents[$component->id] = ['_value' => ''];
@@ -671,6 +703,39 @@ class UnitController extends Controller
                 $validator->setCustomMessages([
                     $component->name . '.*._value.required' => 'All the images in ' . $component->name . ' are required.'
                 ]);
+            }
+            else if($component->type == "timeline")
+            {
+
+                $validator = \Validator::make([$component->name => $value], [
+                     $component->name . '._value.title' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.month' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.year' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.description' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.image' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                        'url',
+                        'regex:/^' . preg_quote(url()->to('/'), '/') . '/'
+                    ]
+                ]);
+
+                $validator->setCustomMessages([
+                    $component->name . '._value.title.required'                => 'Timeline title is required.',
+                    $component->name . '._value.values.*.month.required'       => 'All the month in timeline are required.',
+                    $component->name . '._value.values.*.year.required'        => 'All the year in timeline are required.',
+                    $component->name . '._value.values.*.description.required' => 'All the description in timeline are required.',
+                    $component->name . '._value.values.*.image.required'       => 'All the image in timeline are required.',
+                    $component->name . '._value.values.*.image.url'            => 'All the images must be a valid url.',
+                    $component->name . '._value.values.*.image.regex'          => 'All the image in timeline must be uploaded here.'
+                ]);   
             }
             else if($component->type == "color")
             {
@@ -733,6 +798,7 @@ class UnitController extends Controller
             }
 
             if ($validator->fails()) {
+
                 throw new InvalidInputException($validator->errors()->first());
             }
         }

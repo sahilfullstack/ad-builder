@@ -29,7 +29,7 @@
                         <input type="text" class="form-control" :id="component.slug + '_size'" :placeholder="component.type" v-model="form.components[component.id]['size']">
                     </div>
                     <div class="col-md-2">
-                        <label :for="component.slug + '_background_color'">Background Color <span class="text-danger">*</span></label>
+                        <label :for="component.slug + '_background_color'">Background<span class="text-danger">*</span></label>
                         <color-picker v-model="form.components[component.id]['background_color']" :color="form.components[component.id]['background_color']" />
                     </div>
                     <div class="col-md-2">
@@ -83,6 +83,56 @@
                         <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="component.type =='timeline'">
+              <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <label :for="component.slug + '_title'">Timeline Title<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']['title']">                        
+                    </div>
+                </div>
+
+                <div v-for="(formComponent, formComponentIndex) in form.components[component.id]['_value']['values']" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">                     
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Timeline Component #{{formComponentIndex+1}}</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-6">
+                                <label :for="component.slug + '_'+formComponentIndex+'_month'">Month<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_month'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['month']">
+                                
+                            </div>                           
+                         <div class="col-md-6">
+                                <label :for="component.slug + '_'+formComponentIndex+'_year'">Year<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_year'" placeholder="2018" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['year']">
+                                
+                            </div>
+                        </div>
+                       <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-12">
+                                <label :for="component.slug + '_'+formComponentIndex+'description'">Description<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'description'" placeholder="description" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['description']">
+                               
+                            </div>                   
+                        </div> 
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-12">
+                                <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg', true)">Upload</a>
+                                <label :for="component.slug + '_'+formComponentIndex+'image'">Image<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'image'" placeholder="image" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['image']">
+                                                            
+                                <a href @click.prevent="pushAnotherTimelineElementInComponent(component.id)" v-if="form.components[component.id]['_value']['values'].length <= 5"><span class="text-success">Add Another</span></a>
+                                <a href @click.prevent="removeTimelineElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id]['_value']['values'].length > 4"><span class="text-danger">Remove</span></a>
+                            </div>
+                        </div>                        
                     </div>
                 </div>
             </div>
@@ -172,6 +222,7 @@ export default {
                 images: {_value: ['']},
                 survey: {_value: '', _yes: 0, _no: 0},
                 audio: {_value: ''},
+                timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }}
             }
 
             return defaults[dataType];
@@ -181,6 +232,12 @@ export default {
         },
         removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
+        },
+        pushAnotherTimelineElementInComponent(componentId) {
+            this.form.components[componentId]['_value']['values'].push({month: '', year: '', description: '', image: ''});
+        },
+        removeTimelineElementAtPositionFromComponent(componentId, index) {
+            this.form.components[componentId]['_value']['values'].splice(index, 1);
         },
         reloadPreview() {
             this.disable.previewing = true;
@@ -244,7 +301,7 @@ export default {
                 });
         },
 
-        upload(componentId, index = null, accept = '') {
+        upload(componentId, index = null, accept = '', is_timeline=false) {
             let thiz = this;
             Modal.show(FileUpload, {
                 propsData: {
@@ -255,9 +312,17 @@ export default {
                 .then(function(url) {
                     if(index !== null)
                     {
-                        // let currentArray = thiz.form.components[componentId];
-                        // currentArray[index] = url;
-                        Vue.set(thiz.form.components[componentId], index, {_value: url});
+                        if(is_timeline)
+                        {
+                            Vue.set(thiz.form.components[componentId]['_value']['values'], index, {image: url});
+                        } 
+                        else 
+                        {                        
+                            // let currentArray = thiz.form.components[componentId];
+                            // currentArray[index] = url;
+                            Vue.set(thiz.form.components[componentId], index, {_value: url});
+                        }
+
                     } else {
                         Vue.set(thiz.form.components, componentId, {_value: url});
                     }

@@ -301,6 +301,87 @@
             height: 268.812px;
             background: #C6E5F3;
         }
+
+         .timeline {
+                    position: relative;
+                }
+                .timeline-title {
+                    position: absolute;
+                    top: 20px;
+                    left: 30px;
+                    text-transform: uppercase;
+                    font-size: 24px;
+                }
+                .timeline hr {
+                    position: absolute;
+                    top: 134.39px;
+                    border: 0;
+                    height: 2px;
+                    width: 100%;
+                    background: #199FD4;
+                }
+                .timeline-entry-holder {
+                    display: flex;
+                    justify-content: space-evenly;
+                }
+                .timeline-entry {
+                    display: flex;
+                    width: 247px;
+                    height: 73px;
+                    position: relative;
+                    overflow: visible !important;
+                }
+                .timeline-pin {
+                    display: block;
+                    height: 43px;
+                    width: 2px;
+                    position: absolute;
+                    background: #199FD4;
+                    left: 43px;
+                }
+                .timeline-month,.timeline-year {
+                    position: absolute;
+                    text-transform: uppercase;
+                    font-size: 20px;
+                }
+                .timeline-entry.direction-d {
+                    margin-top: 170px;
+                }
+                .timeline-entry.direction-d .timeline-pin {
+                    top: -43px;
+                }
+                .timeline-entry.direction-d .timeline-month {
+                    top: -90px;
+                }
+                .timeline-entry.direction-d .timeline-year {
+                    top: -70px;
+                }
+                .timeline-entry.direction-u {
+                    margin-top: 45px;
+                }
+                .timeline-entry.direction-u .timeline-pin {
+                    bottom: -43px;
+                }
+                .timeline-entry.direction-u .timeline-month {
+                    bottom: -90px;
+                }
+                .timeline-entry.direction-u .timeline-year {
+                    bottom: -70px;
+                }
+                .timeline-entry-description {
+                    width: 160.5px;
+                    height: 73px;
+                    margin-right: 10px;
+                    overflow: hidden;
+                }
+                .timeline-entry-image {
+                    width: 77px;
+                    height: 73px;
+                }
+                .timeline-entry-image img {
+                    width: 77px;
+                    height: 73px;
+                }
     </style>
     
 </head>
@@ -348,10 +429,8 @@
             <div class="hero-video">
                 @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
-
-
             <div class="timeline">
-                @include('templates.components.image', ['value' => array_get($readableComponents, 'timeline'), 'default' => 'timeline'])
+                @include('templates.components.timeline', ['value' => array_get($readableComponents, 'timeline'), 'default' => 'timeline'])
             </div>
          </div>
     </div>
