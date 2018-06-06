@@ -37,8 +37,8 @@ Route::get('/units/{unit}/render', 'UnitController@render')->name('units.render'
 Route::get('/units/{unit}/edit/page', 'UnitController@editLandingPage')->name('units.edit-landing-page')->middleware('auth');
 Route::get('/units/approval', 'UnitController@listUnitsForApproval')->name('units.approval.list')->middleware('auth');
 Route::get('/users', 'UserController@list')->name('users.list')->middleware('auth');
+Route::get('/users/change_password', 'UserController@changePassword')->name('users.change_password')->middleware('auth');
 Route::get('/users/{user}', 'UserController@show')->name('users.show')->middleware('auth');
-Route::get('/users/change-password', 'UserController@changePassword')->name('users.change_password')->middleware('auth');
 Route::post('/units/{unit}/components/{component}/responses', 'UnitController@recordResponse')->name('units.respond');
 
 Route::get('/units/{unit}', 'UnitController@show')->name('units.show')->middleware('auth');
