@@ -243,7 +243,7 @@ class UnitController extends Controller
             }
             
             // only user's own ads can have pages
-            if ($unit->user->id != auth()->user()->id) {
+            if (($unit->user->id != auth()->user()->id) and ( ! auth()->user()->canOverride($unit->user))) {
                 return redirect(route('units.list'));
             }
 
