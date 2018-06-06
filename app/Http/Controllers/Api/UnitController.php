@@ -309,30 +309,27 @@ class UnitController extends Controller
     }
 
     public function publish(PublishUnitRequest $request, Unit $unit)
-    {      
-    \Log::info("here 1q");  
+    {        
         if($unit->is_holder) {
             foreach ($unit->holdee as $held) {
                 $this->validateChildUnit($held, 'parent_');
                 $this->validateChildUnit($held->child);
             }
         } else {
-            \Log::info("here 5");
             $this->validateChildUnit($unit, 'parent_');
-            \Log::info("here 6");
             $this->validateChildUnit($unit->child);
         }
-\Log::info("here 1");
+
         $subscription = $this->getRedeemedSubscription($unit);
-\Log::info("here 2");
+
         $unit->redeemed_subscription_id = $subscription->id;
         $unit->scheduled_at = Carbon::parse($request->scheduled_at);
         // if want to perform some actions
         $this->dispatchRequiredJobsBeforePublishing($unit);
-\Log::info("here 3");
+
         $unit->published_at = Carbon::now();
         $unit->save();
-\Log::info("here 4");
+
         return $unit->fresh();
     }
 
