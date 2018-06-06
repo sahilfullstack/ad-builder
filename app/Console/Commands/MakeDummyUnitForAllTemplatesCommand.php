@@ -138,6 +138,35 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
         if(in_array($component->type, ["survey"])) return [ "_value" => $this->faker->sentence(6), "_yes"=> 0, "_no" => 0];
 
         if($component->type == 'color') return ["_value" => sprintf('#%06X', mt_rand(0, 0xFFFFFF))];
+        
+        if($component->type == 'timeline') return ['_value' => [
+                    'title' => $this->faker->sentence(10),
+                    'values' => [
+                        [
+                            'month' => 'June',
+                            'year' => '2018',
+                            'description' => $this->faker->sentence(10),
+                            'image' => $this->dummyImage()
+                        ],
+                      [
+                            'month' => 'July',
+                            'year' => '2018',
+                            'description' => $this->faker->sentence(10),
+                            'image' => $this->dummyImage()
+                        ],
+                        [
+                            'month' => 'August',
+                            'year' => '2018',
+                            'description' => $this->faker->sentence(10),
+                            'image' => $this->dummyImage()
+                        ],[
+                            'month' => 'September',
+                            'year' => '2018',
+                            'description' => $this->faker->sentence(10),
+                            'image' => $this->dummyImage()
+                        ],
+                    ]
+                ]];
 
         return ["_value" => $this->faker->sentence(6)];
     }
