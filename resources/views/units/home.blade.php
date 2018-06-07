@@ -16,6 +16,7 @@
                         <tr>
                             <th class="text-center">#</th>
                             <th class="text-center">Name</th>
+                            <th class="text-center">User</th>
                             <th class="text-center">Landing Page</th>
                             <th class="text-center">Created at</th>
                         </tr>
@@ -31,7 +32,17 @@
                                         @else
                                             <em>Untitled</em>
                                         @endif
-                                    </a></td>
+                                    </a>
+                                </td>
+                                <td>
+                                    <a href="{{ route('users.show', $unit->user()->first()) }}">
+                                        @if(! is_null($unit->user()->first()->name))
+                                            <strong>{{ $unit->user()->first()->name }}</strong>
+                                        @else
+                                            <em>Untitled</em>
+                                        @endif
+                                    </a>
+                                </td>
                                 <td>
                                     @if(! is_null($unit->child))
                                         @if(! is_null($unit->child->name))

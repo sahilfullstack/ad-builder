@@ -24,6 +24,8 @@ class Kernel extends ConsoleKernel
         Commands\MakeDummyUnitForAllTemplatesCommand::class,
         Commands\ConvertMp4VideoToOgvCommand::class,
         Commands\DeductDaysInSubscriptions::class,
+        Commands\AddRulesToTemplatesCommand::class,
+        Commands\TestMailCommand::class,
     ];
 
     /**
