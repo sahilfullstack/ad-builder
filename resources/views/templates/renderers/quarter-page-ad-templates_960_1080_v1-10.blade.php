@@ -76,7 +76,7 @@
 
         div.body {
             width: 480px;
-            height: 260px;
+            height: 273px;
             position: relative;
             background: #fff;
         }
@@ -90,7 +90,7 @@
         div.sidebar {
             width: 155px;
             float: left;
-            height: 260px;
+            height: 273px;
             background: #FFFFFF;
             padding-left: 15px;
         }

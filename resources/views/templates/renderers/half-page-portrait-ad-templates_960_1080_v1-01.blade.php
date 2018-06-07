@@ -97,7 +97,7 @@
         div.logo {
             width: 204px;
             height: 100px;
-            margin: 20px auto 30px;
+            margin: 52px auto 55px;
         }
 
         div.logo img {

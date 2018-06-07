@@ -166,7 +166,7 @@
         }
 
         div.hero-image {
-            margin-left: 310px;
+            margin-left: 384px;
             height: 260px;
         }
 
