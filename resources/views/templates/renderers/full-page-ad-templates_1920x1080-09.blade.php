@@ -100,19 +100,19 @@
         }
 
         div.sidebar div.logo {
-            width: 207.5px;
-            height: 182.5px;
+            width: 204.5px;
+            height: 181px;
             margin: 70px auto 30px;
         }
 
         div.sidebar div.logo img {
-            width: 207.5px;
-            height: 182.5px;
+            width: 204.5px;
+            height: 181px;
         }
 
         div.sidebar div.logo div.placeholder {
-            width: 207.5px;
-            height: 182.5px;
+            width: 204.5px;
+            height: 181px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -125,14 +125,14 @@
             padding-top: 75px;
         }
         div.sidebar div.quote-holder {
-            width: 257.5px;
+            width: 246px;
             margin: 0 auto 30px;
             position: relative;
         }
         
         div.sidebar div.quote {
-            width: 257.5px;
-            height: 50px;
+            width: 246px;
+            height: 37px;
             background: #199FD4;
             margin: 0 auto 30px;
             position: relative;

@@ -93,19 +93,20 @@
         }
 
         div.logo {
-            width: 500px;
-            height: 90px;
+            width: 485px;
+            height: 98px;
             margin-left: 15px;
+            background: #C6E5F3;
         }
 
         div.logo img {
-            width: 500px;
-            height: 90px;
+            width: 485px;
+            height: 98px;
         }
 
         div.logo div.placeholder {
-            width: 500px;
-            height: 90px;
+            width: 485px;
+            height: 98px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -116,14 +117,16 @@
             font-weight: bold;
             text-align: center;
             padding-top: 35px;
+
         }
         
         div.text {
-            width: 500px;
-            height: 90px;
+            width: 611px;
+            height: 46px;
             background: #C6E5F3;
             float: right;
             overflow: hidden;
+            margin-right: 20px;
         }
 
         div.images {
@@ -135,18 +138,19 @@
 
         div.image {
             float: left;
-            margin-right: 20px;
-            width: 262px;
-            height: 262px;
+            margin-right: 5px;
+            width: 303px;
+            height: 295px;
+            background: #C6E5F3;
         }
 
         div.image img {
-            width: 262px;
-            height: 262px;
+            width: 303px;
+            height: 295px;
         }
 
         div.image div.image-placeholder {
-            height: 262px;
+            height: 295px;
             background: #C6E5F3;
         }
 

@@ -97,19 +97,19 @@
         }
 
         div.logo {
-            width: 260px;
-            height: 130px;
-            margin: 20px auto 10px;
+            width: 204px;
+            height: 100px;
+            margin: 40px auto 30px;
         }
 
         div.logo img {
-            width: 260px;
-            height: 130px;
+            width: 204px;
+            height: 100px;
         }
 
         div.logo div.placeholder {
-            width: 260px;
-            height: 130px;
+            width: 204px;
+            height: 100px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -119,28 +119,28 @@
             text-transform: uppercase;
             font-weight: bold;
             text-align: center;
-            padding-top: 55px;
+            padding-top: 40px;
         }
         
         div.text {
-            width: 280px;
-            height: 90px;
+            width: 249px;
+            height: 46px;
             background: #C6E5F3;
             margin: 0 auto 10px;
             overflow: hidden;
         }
 
         div.hero-image {
-            height: 242px;
+            height: 295px;
         }
 
         div.hero-image img {
             width: 480px;
-            height: 242px;
+            height: 295px;
         }
 
         div.hero-image div.placeholder {
-            height: 242px;
+            height: 295px;
             background: #C6E5F3;
         }
 

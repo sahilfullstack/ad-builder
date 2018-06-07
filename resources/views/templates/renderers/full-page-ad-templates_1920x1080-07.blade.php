@@ -93,19 +93,19 @@
         }
 
         div.logo {
-            width: 500px;
-            height: 130px;
+            width: 485px;
+            height: 110px;
             margin: 20px auto 10px;
         }
 
         div.logo img {
-            width: 500px;
-            height: 130px;
+            width: 485px;
+            height: 110px;
         }
 
         div.logo div.placeholder {
-            width: 500px;
-            height: 130px;
+            width: 485px;
+            height: 110px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -119,24 +119,24 @@
         }
         
         div.text {
-            width: 500px;
-            height: 90px;
+            width: 485px;
+            height: 57px;
             background: #C6E5F3;
             margin: 0 auto 10px;
             overflow: hidden;
         }
 
         div.hero-image {
-            height: 242px;
+            height: 295px;
         }
 
         div.hero-image img {
             width: 960px;
-            height: 242px;
+            height: 295px;
         }
 
         div.hero-image div.placeholder {
-            height: 242px;
+            height: 295px;
             background: #C6E5F3;
         }
 
