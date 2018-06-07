@@ -2582,24 +2582,19 @@ class AddRulesToTemplatesCommand extends Command
         // here we will seed the rules of the templates in the database
         foreach ($templates as $template) {
             try {
-                $template = Template::notDeleted()->whereSlug(str_slug($template['name']))->first();
+                $t = Template::notDeleted()->whereSlug(str_slug($template['name']))->first();
 
-                if($template)
+                if($t)
                 {                
                     foreach($template['components'] as $index => $component) {
                         try {
                             $c = Component::where([
-                                'template_id' => $template->id,
+                                'template_id' => $t->id,
                                 'order'       => $index + 1,
                                 'name'        => $component['name'],
                                 'slug'        => str_slug($component['name']),
                                 'type'        => $component['type']
-                            ])->first();
-dd($component);
-                            if(! empty($component['rules']))
-                            {
-                                dd($component['rules']);
-                            }
+                            ])->first();                           
                            
                             $c->rules = $component['rules'];
                             $c->save();
