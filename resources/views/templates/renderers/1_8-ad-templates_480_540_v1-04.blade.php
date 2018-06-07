@@ -99,19 +99,19 @@
         }
 
         div.logo {
-            width: 200px;
-            height: 64px;
+            width: 153px;
+            height: 57px;
             margin: 30px auto 30px;
         }
 
         div.logo img {
-            width: 200px;
-            height: 64px;
+            width: 153px;
+            height: 57px;
         }
 
         div.logo div.placeholder {
-            width: 200px;
-            height: 64px;
+            width: 153px;
+            height: 57px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -132,16 +132,16 @@
         }
 
         div.hero-image {
-            height: 132px;
+            height: 144px;
         }
 
         div.hero-image img {
             width: 240px;
-            height: 132px;
+            height: 144px;
         }
 
         div.hero-image div.placeholder {
-            height: 132px;
+            height: 144px;
             background: #C6E5F3;
         }
 

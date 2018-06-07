@@ -76,7 +76,7 @@
 
         div.body {
             width: 240px;
-            height: 265px;
+            height: 259px;
             background: #fff;
             position: relative;
             overflow: hidden;
@@ -84,7 +84,7 @@
 
         div.banner {
             width: 240px;
-            height: 10px;
+            height: 11px;
             background: #199FD4;
         }
 
@@ -101,7 +101,7 @@
         div.logo {
             width: 150px;
             height: 150px;
-            margin: 40px auto 10px;
+            margin: 40px auto 11px;
         }
 
         div.logo img {
@@ -151,16 +151,16 @@
         }
 
         div.hero-image {
-            height: 265px;
+            height: 259px;
         }
 
         div.hero-image img {
             width: 240px;
-            height: 265px;
+            height: 259px;
         }
 
         div.hero-image div.placeholder {
-            height: 265px;
+            height: 259px;
             background: #C6E5F3;
         }
 

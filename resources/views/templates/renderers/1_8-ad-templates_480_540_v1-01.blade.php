@@ -99,19 +99,19 @@
         }
 
         div.logo {
-            width: 150px;
-            height: 150px;
+            width: 153px;
+            height: 166px;
             margin: 40px auto 10px;
         }
 
         div.logo img {
-            width: 150px;
-            height: 150px;
+            width: 153px;
+            height: 166px;
         }
 
         div.logo div.placeholder {
-            width: 150px;
-            height: 150px;
+            width: 153px;
+            height: 166px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
