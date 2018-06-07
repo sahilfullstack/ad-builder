@@ -81245,7 +81245,19 @@ var render = function() {
                             ),
                             _c("span", { staticClass: "text-danger" }, [
                               _vm._v("*")
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            component.rules.width && component.rules.height
+                              ? _c("em", [
+                                  _vm._v(
+                                    "(" +
+                                      _vm._s(component.rules.width) +
+                                      "px x " +
+                                      _vm._s(component.rules.height) +
+                                      "px)"
+                                  )
+                                ])
+                              : _vm._e()
                           ]
                         ),
                         _vm._v(" "),
@@ -81711,7 +81723,19 @@ var render = function() {
                                 _vm._v(_vm._s(component.name) + " "),
                                 _c("span", { staticClass: "text-danger" }, [
                                   _vm._v("*")
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                component.rules.width && component.rules.height
+                                  ? _c("em", [
+                                      _vm._v(
+                                        "(" +
+                                          _vm._s(component.rules.width) +
+                                          "px x " +
+                                          _vm._s(component.rules.height) +
+                                          "px)"
+                                      )
+                                    ])
+                                  : _vm._e()
                               ]),
                               _vm._v(" "),
                               _c("input", {
@@ -81805,7 +81829,20 @@ var render = function() {
                                     _vm._v(_vm._s(component.name) + " "),
                                     _c("span", { staticClass: "text-danger" }, [
                                       _vm._v("*")
-                                    ])
+                                    ]),
+                                    _vm._v(" "),
+                                    component.rules.width &&
+                                    component.rules.height
+                                      ? _c("em", [
+                                          _vm._v(
+                                            "(" +
+                                              _vm._s(component.rules.width) +
+                                              "px x " +
+                                              _vm._s(component.rules.height) +
+                                              "px)"
+                                          )
+                                        ])
+                                      : _vm._e()
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -82431,7 +82468,13 @@ var render = function() {
                                                               "text-danger"
                                                           },
                                                           [_vm._v("*")]
-                                                        )
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("em", [
+                                                          _vm._v(
+                                                            "(77px x 73px)"
+                                                          )
+                                                        ])
                                                       ]
                                                     ),
                                                     _vm._v(" "),
@@ -85264,9 +85307,9 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             expiring_at: moment(this.currentExpiringAt)._d,
             days: this.currentDays,
             layout_id: this.layout.id,
-            allowVideos: this.currentAllowVideos == null ? false : true,
-            allowHover: this.currentAllowHover == null ? false : true,
-            allowPopout: this.currentAllowPopout == null ? false : true,
+            allowVideos: this.currentAllowVideos ? true : false,
+            allowHover: this.currentAllowHover ? true : false,
+            allowPopout: this.currentAllowPopout ? true : false,
             errors: [],
             disable: {
                 updating: false
