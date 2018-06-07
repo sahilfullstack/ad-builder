@@ -83,9 +83,9 @@ export default {
             expiring_at: moment(this.currentExpiringAt)._d,
             days: this.currentDays,
             layout_id: this.layout.id,
-            allowVideos : this.currentAllowVideos == null ? false : true,
-            allowHover : this.currentAllowHover == null ? false : true,
-            allowPopout : this.currentAllowPopout == null ? false : true,
+            allowVideos : this.currentAllowVideos ? true : false,
+            allowHover : this.currentAllowHover ? true : false,
+            allowPopout : this.currentAllowPopout ? true : false,
             errors: [],
             disable: {
                 updating: false
