@@ -86,7 +86,7 @@
         }
 
         div.sidebar {
-            width: 155px;
+            width: 205px;
             float: left;
             height: 260px;
             background: #FFFFFF;
@@ -102,19 +102,19 @@
         }
 
         div.sidebar div.logo {
-            width: 125px;
-            height: 125px;
+            width: 164px;
+            height: 147px;
             margin: 10px auto 10px;
         }
 
         div.sidebar div.logo img {
-            width: 125px;
-            height: 125px;
+            width: 164px;
+            height: 147px;
         }
 
         div.sidebar div.logo div.placeholder {
-            width: 125px;
-            height: 125px;
+            width: 164px;
+            height: 147px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
         }
@@ -147,21 +147,21 @@
         }
         
         div.sidebar div.text {
-            width: 125px;
-            height: 80px;
+            width: 164px;
+            height: 46px;
             background: #C6E5F3;
             margin: 0 auto;
             overflow: hidden;
         }
 
         div.hero-video {
-            margin-left: 155px;
+            margin-left: 205px;
             height: 260px;
             background: #ffffff;
         }
 
         div.hero-video video {
-            width: 325px;
+            width: 275px;
             height: 260px;
         }
 

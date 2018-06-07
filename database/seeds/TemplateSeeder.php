@@ -257,12 +257,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '294'
+                        ]
                     ],
                     [
                         'name' => 'Image',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '550',
+                            'height' => '518'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -290,12 +296,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '294'
+                        ]
                     ],
                     [
                         'name' => 'Video',
                         'type' => 'video',
-                        'rules' => []
+                         'rules' => [
+                            'width'  => '550',
+                            'height' => '518'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -323,7 +335,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Image',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '519'
+                        ]
                     ]
                 ]
             ],
@@ -346,7 +361,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Video',
                         'type' => 'video',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '519'
+                        ]
                     ]
                 ]   
             ],
@@ -369,12 +387,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Image',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '289'
+                        ]
                     ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '394',
+                            'height' => '124'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -402,12 +426,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Video',
                         'type' => 'video',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '289'
+                        ]
                     ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '394',
+                            'height' => '124'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -435,12 +465,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Image',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '550',
+                            'height' => '519'
+                        ]
                     ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '294'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -468,12 +504,18 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Video',
                         'type' => 'video',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '550',
+                            'height' => '519'
+                        ]
                     ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '294'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -501,7 +543,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '118'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -511,7 +556,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Image',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '289'
+                        ]
                     ],
                 ]
             ],
@@ -534,7 +582,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Logo',
                         'type' => 'image',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '328',
+                            'height' => '118'
+                        ]
                     ],
                     [
                         'name' => 'Text',
@@ -544,7 +595,10 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Video',
                         'type' => 'video',
-                        'rules' => []
+                        'rules' => [
+                            'width'  => '960',
+                            'height' => '289'
+                        ]
                     ],
                 ]
             ],

@@ -107,13 +107,12 @@
             border-top: 20px solid #199FD4;
         }
         
-
         div.hero-video {
             height: 260px;
         }
 
         div.hero-video video {
-            width: 325;
+            width: 480px;
             height: 260px;
         }
 
