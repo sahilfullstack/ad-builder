@@ -190,7 +190,7 @@ class UnitController extends Controller
                 ->with('components')
                 ->get();
         }
-        
+
         return ['templates' => $templates];
     }    
 

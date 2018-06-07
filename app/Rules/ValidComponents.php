@@ -18,18 +18,18 @@ class ValidComponents implements Rule
             'max_length' => ":attribute must be less than :ruleValue"
         ],
         'image' => [
-            'height'  => 'Height of :attribute must be :ruleValue',
-            'width'   => 'Width of :attribute must be :ruleValue',
+            'height'  => 'Height of :attribute must be :ruleValue px',
+            'width'   => 'Width of :attribute must be :ruleValue px',
             'invalid' => 'Image link is not valid',
         ],
         'images' => [
-            'height'  => 'Height of :attribute image at #:key must be :ruleValue',
-            'width'   => 'Width of :attribute image at #:key must be :ruleValue',
+            'height'  => 'Height of :attribute image at #:key must be :ruleValue px',
+            'width'   => 'Width of :attribute image at #:key must be :ruleValue px',
             'invalid' => 'The :attribute image  at #:key link is not valid',
         ],
         'video' => [
-            'height'       => 'Height of :attribute must be :ruleValue',
-            'width'        => 'Width of :attribute must be :ruleValue',
+            'height'       => 'Height of :attribute must be :ruleValue px',
+            'width'        => 'Width of :attribute must be :ruleValue px',
             'max_duration' => 'Maximum duration of :attribute must be :ruleValue',            
             'min_duration' => 'Minimum duration of :attribute must be :ruleValue',  
             'invalid'      => 'Video link is not valid',          

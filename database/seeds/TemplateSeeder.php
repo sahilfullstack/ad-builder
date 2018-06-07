@@ -703,6 +703,7 @@ class TemplateSeeder extends Seeder
                             'width'  => 680,
                             'height' => 184
                         ],
+                    ],
                     [
                         'name' => 'Video',
                         'type' => 'video',
@@ -715,7 +716,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Text',
                         'type' => 'text',
                         'rules' => []
-                    ],
+                    ]
                 ]
             ],            
             [
@@ -754,7 +755,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Text',
                         'type' => 'text',
                         'rules' => []
-                    ],
+                    ]
                 ]
             ],            
             [
@@ -798,7 +799,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Text 2',
                         'type' => 'text',
                         'rules' => []
-                    ],
+                    ]
                 ]
             ],            
             [
@@ -842,7 +843,7 @@ class TemplateSeeder extends Seeder
                         'name' => 'Text 2',
                         'type' => 'text',
                         'rules' => []
-                    ],
+                    ]
                 ]
             ],            
             [
@@ -2227,7 +2228,7 @@ class TemplateSeeder extends Seeder
                             'width' => 396,
                             'height' => 412
                         ]
-                    ],
+                    ]
                 ]
             ],
             [
@@ -2544,9 +2545,9 @@ class TemplateSeeder extends Seeder
                         'name' => 'Hours Of Operation',
                         'type' => 'text',
                         'rules' => []
-                    ],       
+                    ]     
                 ]
-            ],
+            ]
         ];
 
         foreach ($templates as $template) {
