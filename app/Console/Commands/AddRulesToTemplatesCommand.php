@@ -2600,7 +2600,7 @@ class AddRulesToTemplatesCommand extends Command
                             $c->save();
                         }
                         catch(PDOException $e) {
-
+                            $this->info($e->getMessage());
                         }
                     }
                 }
