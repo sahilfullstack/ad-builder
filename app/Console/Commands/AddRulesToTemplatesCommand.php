@@ -59,16 +59,16 @@ class AddRulesToTemplatesCommand extends Command
                 'name' => '1/8th Template #1',
                 'renderer' => 'templates.renderers.1_8-ad-templates_480_540_v1-01',
                 'components' => [
-                    [
-                        'name' => 'Top Border Bar',
-                        'type' => 'color',
-                        'rules' => []
-                    ],
-                    [
-                        'name' => 'Category Header Color',
-                        'type' => 'color',
-                        'rules' => []
-                    ],
+                    // [
+                    //     'name' => 'Top Border Bar',
+                    //     'type' => 'color',
+                    //     'rules' => []
+                    // ],
+                    // [
+                    //     'name' => 'Category Header Color',
+                    //     'type' => 'color',
+                    //     'rules' => []
+                    // ],
                     [
                         'name' => 'Logo',
                         'type' => 'image',
@@ -2595,15 +2595,12 @@ class AddRulesToTemplatesCommand extends Command
                                 'slug'        => str_slug($component['name']),
                                 'type'        => $component['type']
                             ])->first();
-
+dd($component);
                             if(! empty($component['rules']))
                             {
                                 dd($component['rules']);
                             }
-                            else
-                            {
-                                dd($component['rules']);
-                            }
+                           
                             $c->rules = $component['rules'];
                             $c->save();
                         }
