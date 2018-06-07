@@ -8,7 +8,7 @@
                     <div class="col-md-12">
                         <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg')">Upload</a>
                         <label :for="component.slug + '_' + formComponentIndex">
-                            {{ component.name }} #{{ formComponentIndex + 1 }} <span class="text-danger">*</span>
+                            {{ component.name }} #{{ formComponentIndex + 1 }} <span class="text-danger">*</span> <em v-if="component.rules.width && component.rules.height">({{ component.rules.width }}px x {{ component.rules.height }}px)</em>
                         </label>
                         <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id][formComponentIndex]['_value']">
                         <a href @click.prevent="pushAnotherElementInComponent(component.id)"><span class="text-success">Add Another</span></a>
@@ -60,7 +60,7 @@
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
                         <a href class="pull-right" v-if="component.type == 'image'" @click.prevent="upload(component.id, undefined, 'image/png,image/jpg,image/gif,image/jpeg')">Upload</a>
-                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span> <em v-if="component.rules.width && component.rules.height">({{ component.rules.width }}px x {{ component.rules.height }}px)</em></label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
@@ -70,7 +70,7 @@
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
                         <a href class="pull-right" v-if="component.type == 'video'" @click.prevent="upload(component.id, undefined, 'video/mp4')">Upload</a>
-                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span> <em v-if="component.rules.width && component.rules.height">({{ component.rules.width }}px x {{ component.rules.height }}px)</em></label>
                         <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
@@ -126,7 +126,7 @@
                         <div class="row" style="margin-bottom: 15px;">
                             <div class="col-md-12">
                                 <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg', true)">Upload</a>
-                                <label :for="component.slug + '_'+formComponentIndex+'image'">Image<span class="text-danger">*</span></label>
+                                <label :for="component.slug + '_'+formComponentIndex+'image'">Image<span class="text-danger">*</span> <em>(77px x 73px)</em></label>
                                 <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'image'" placeholder="image" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['image']">
                                                             
                                 <a href @click.prevent="pushAnotherTimelineElementInComponent(component.id)" v-if="form.components[component.id]['_value']['values'].length <= 5"><span class="text-success">Add Another</span></a>

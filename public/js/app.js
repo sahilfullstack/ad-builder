@@ -81245,7 +81245,19 @@ var render = function() {
                             ),
                             _c("span", { staticClass: "text-danger" }, [
                               _vm._v("*")
-                            ])
+                            ]),
+                            _vm._v(" "),
+                            component.rules.width && component.rules.height
+                              ? _c("em", [
+                                  _vm._v(
+                                    "(" +
+                                      _vm._s(component.rules.width) +
+                                      "px x " +
+                                      _vm._s(component.rules.height) +
+                                      "px)"
+                                  )
+                                ])
+                              : _vm._e()
                           ]
                         ),
                         _vm._v(" "),
@@ -81711,7 +81723,19 @@ var render = function() {
                                 _vm._v(_vm._s(component.name) + " "),
                                 _c("span", { staticClass: "text-danger" }, [
                                   _vm._v("*")
-                                ])
+                                ]),
+                                _vm._v(" "),
+                                component.rules.width && component.rules.height
+                                  ? _c("em", [
+                                      _vm._v(
+                                        "(" +
+                                          _vm._s(component.rules.width) +
+                                          "px x " +
+                                          _vm._s(component.rules.height) +
+                                          "px)"
+                                      )
+                                    ])
+                                  : _vm._e()
                               ]),
                               _vm._v(" "),
                               _c("input", {
@@ -81805,7 +81829,20 @@ var render = function() {
                                     _vm._v(_vm._s(component.name) + " "),
                                     _c("span", { staticClass: "text-danger" }, [
                                       _vm._v("*")
-                                    ])
+                                    ]),
+                                    _vm._v(" "),
+                                    component.rules.width &&
+                                    component.rules.height
+                                      ? _c("em", [
+                                          _vm._v(
+                                            "(" +
+                                              _vm._s(component.rules.width) +
+                                              "px x " +
+                                              _vm._s(component.rules.height) +
+                                              "px)"
+                                          )
+                                        ])
+                                      : _vm._e()
                                   ]
                                 ),
                                 _vm._v(" "),
@@ -82431,7 +82468,13 @@ var render = function() {
                                                               "text-danger"
                                                           },
                                                           [_vm._v("*")]
-                                                        )
+                                                        ),
+                                                        _vm._v(" "),
+                                                        _c("em", [
+                                                          _vm._v(
+                                                            "(77px x 73px)"
+                                                          )
+                                                        ])
                                                       ]
                                                     ),
                                                     _vm._v(" "),
