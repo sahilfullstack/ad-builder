@@ -2595,7 +2595,10 @@ class AddRulesToTemplatesCommand extends Command
                                 'slug'        => str_slug($component['name']),
                                 'type'        => $component['type']
                             ])->first();
-
+                            if(! empty($component['rules']))
+                            {
+                                dd($component['rules']);
+                            }
                             $c->rules = $component['rules'];
                             $c->save();
                         }
