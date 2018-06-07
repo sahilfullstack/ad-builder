@@ -90,7 +90,7 @@
         }
 
         div.sidebar {
-            width: 310px;
+            width: 384px;
             float: left;
             height: 260px;
             background: #FFFFFF;
@@ -106,18 +106,18 @@
         }
 
         div.sidebar div.logo {
-            width: 270px;
+            width: 340px;
             height: 60px;
             margin: 20px auto 20px;
         }
 
         div.sidebar div.logo img {
-            width: 270px;
+            width: 340px;
             height: 60px;
         }
 
         div.sidebar div.logo div.placeholder {
-            width: 270px;
+            width: 340px;
             height: 60px;
             outline: 3px dotted #CC337A;
             outline-offset: -3px;
@@ -132,14 +132,14 @@
         }
 
         div.sidebar div.quote-holder {
-            width: 270px;
+            width: 328px;
             margin: 0 auto 30px;
             position: relative;
         }
         
         div.sidebar div.quote {
-            width: 270px;
-            height: 50px;
+            width: 328px;
+            height: 46px;
             background: #199FD4;
             margin: 0 auto 30px;
             position: relative;
@@ -158,10 +158,10 @@
         }
 
         div.sidebar div.text {
-            width: 200px;
-            height: 42.5px;
+            width: 249px;
+            height: 46px;
             background: #C6E5F3;
-            margin-left: 10px;
+            margin-left: 20px;
             overflow: hidden;
         }
 
@@ -171,7 +171,7 @@
         }
 
         div.hero-image img {
-            width: 650px;
+            width: 580px;
             height: 260px;
         }
 
