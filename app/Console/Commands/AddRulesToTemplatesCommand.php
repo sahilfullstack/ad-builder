@@ -2583,7 +2583,7 @@ class AddRulesToTemplatesCommand extends Command
         foreach ($templates as $template) {
             try {
                 $template = Template::notDeleted()->whereSlug(str_slug($template['name']))->first();
-\Log::info($template);
+
                 if($template)
                 {                
                     foreach($template['components'] as $index => $component) {
@@ -2595,8 +2595,12 @@ class AddRulesToTemplatesCommand extends Command
                                 'slug'        => str_slug($component['name']),
                                 'type'        => $component['type']
                             ])->first();
-                            \Log::info($c);
+
                             if(! empty($component['rules']))
+                            {
+                                dd($component['rules']);
+                            }
+                            else
                             {
                                 dd($component['rules']);
                             }
