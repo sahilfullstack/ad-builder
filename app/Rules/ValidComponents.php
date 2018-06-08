@@ -127,21 +127,24 @@ class ValidComponents implements Rule
             return false;
         }
 
+        return true;
+
         // index 1 for height
         // index 0 for width
-        switch ($this->ruleKey) {
-            case 'height':
-               return $dimension[1] == $this->ruleValue;
-                break;
+        // removing validation of height
+        // switch ($this->ruleKey) {
+        //     case 'height':
+        //        return $dimension[1] == $this->ruleValue;
+        //         break;
 
-            case 'width':
-               return $dimension[0] == $this->ruleValue;
-                break;
+        //     case 'width':
+        //        return $dimension[0] == $this->ruleValue;
+        //         break;
 
-            default:
-                # code...
-                break;
-        }
+        //     default:
+        //         # code...
+        //         break;
+        // }
     }    
 
     private function validateVideo($attribute, $value)
@@ -167,38 +170,40 @@ class ValidComponents implements Rule
             return false;
         }
 
-        $dimension = $ffmpeg->open($value)
-            ->getStreams()
-            ->videos()
-            ->first()
-            ->getDimensions();    
+        return true;
+        // commenting validation of video for now
+        // $dimension = $ffmpeg->open($value)
+        //     ->getStreams()
+        //     ->videos()
+        //     ->first()
+        //     ->getDimensions();    
 
-        // code gets duration of a video
-        $duration = $ffprobe
-            ->format($value) // extracts file informations
-            ->get('duration');             // returns the duration property
+        // // code gets duration of a video
+        // $duration = $ffprobe
+        //     ->format($value) // extracts file informations
+        //     ->get('duration');             // returns the duration property
 
-        switch ($this->ruleKey) {
-            case 'height':
-               return $dimension->getHeight() == $this->ruleValue;
-                break;
+        // switch ($this->ruleKey) {
+        //     case 'height':
+        //        return $dimension->getHeight() == $this->ruleValue;
+        //         break;
 
-            case 'width':
-               return $dimension->getWidth() == $this->ruleValue;
-                break;
+        //     case 'width':
+        //        return $dimension->getWidth() == $this->ruleValue;
+        //         break;
 
-            case 'max_duration':
-               return $duration <= $this->ruleValue;
-                break;
+        //     case 'max_duration':
+        //        return $duration <= $this->ruleValue;
+        //         break;
 
-            case 'min_duration':
-               return $duration >= $this->ruleValue;
-                break;
+        //     case 'min_duration':
+        //        return $duration >= $this->ruleValue;
+        //         break;
 
-            default:
-                # code...
-                break;
-        }
+        //     default:
+        //         # code...
+        //         break;
+        // }
     }
 
 
