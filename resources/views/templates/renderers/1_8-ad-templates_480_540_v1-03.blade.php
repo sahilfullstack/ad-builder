@@ -98,14 +98,21 @@
         }
 
         div.logo {
+            position:relative;
             width: 153px;
             height: 57px;
             margin: 20px auto 30px;
         }
 
         div.logo img {
-            width: 153px;
-            height: 57px;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto;
+            max-width: 153px;
+            max-height: 57px;
         }
 
         div.logo div.placeholder {
