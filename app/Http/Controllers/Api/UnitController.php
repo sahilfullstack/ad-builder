@@ -8,7 +8,7 @@ use App\Models\{Template, Component, Unit};
 use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest, StoreCopyUnitRequest};
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
-use Carbon\Carbon, DB;
+use Carbon\Carbon, DB, Mail;
 use App\Models\{Layout, Subscription};
 
 use App\Rules\ValidComponents;
@@ -329,6 +329,9 @@ class UnitController extends Controller
 
         $unit->published_at = Carbon::now();
         $unit->save();
+
+        // mailing the admin for publishing new unit
+        Mail::to(env('ADMIN_EMAIL'))->send(new \App\Mail\NewUnitCreationMailToAdmin($unit->user->first()));             
 
         return $unit->fresh();
     }
@@ -680,9 +683,21 @@ class UnitController extends Controller
         else 
         {
             $unitFound->rejected_at = Carbon::now();
-        }
 
+        }
+        
         $unitFound->save();
+
+        if($request->action == 'approve') 
+        {
+            // mailing the user for ad approval
+            Mail::to($unitFound->user->first()->email)->send(new \App\Mail\AdApprovalMailToUser($unitFound->user->first(), $unitFound));             
+        }
+        else 
+        {
+            // mailing the user for ad rejection
+            Mail::to($unitFound->user->first()->email)->send(new \App\Mail\AdRejectedMailToUser($unitFound->user->first(), $unitFound));             
+        }
 
         return $unitFound->fresh();
     }

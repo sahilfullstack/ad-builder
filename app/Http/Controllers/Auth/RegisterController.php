@@ -8,10 +8,11 @@ use Illuminate\Auth\Events\Registered;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
-use App\User;
+use App\User, Mail;
 use Carbon\Carbon;
 use App\Models\Role;
 use App\Http\Controllers\Controller;
+use App\Mail\{NewRegistrationMailToUser, NewRegistrationMailToAdmin};
 
 class RegisterController extends Controller
 {
@@ -104,7 +105,7 @@ class RegisterController extends Controller
             $active = 0;
         }
 
-        return User::create([
+        $user =  User::create([
             'name'        => $data['name'],
             'email'       => $data['email'],
             'company'     => $data['company'],
@@ -115,5 +116,13 @@ class RegisterController extends Controller
             'approved_at' => $approvedAt,
             'active'      => $active
         ]);
+
+        // mailing to the user for registering new account
+        Mail::to($user->email)->send(new \App\Mail\NewRegistrationMailToUser($user));             
+
+        // mailing to the admin for new registration
+        Mail::to(env('ADMIN_EMAIL'))->send(new \App\Mail\NewRegistrationMailToAdmin($user));             
+
+        return $user;
     }
 }
