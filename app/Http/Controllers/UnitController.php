@@ -137,7 +137,7 @@ class UnitController extends Controller
         } else {
             $readableComponents = $unit->readable_components;
         }
-
+\Log::info($unit);
         return view($unit->template->renderer, compact('unit', 'readableComponents', 'bodyClass'));
     }
 
