@@ -13,7 +13,7 @@
         >
     @else
         <video autoplay loop preload="auto" muted
-            src="{{ absolute_to_relative_url($value) }}"
+            src="{{ $value }}"
         >
     @endif
 @endif

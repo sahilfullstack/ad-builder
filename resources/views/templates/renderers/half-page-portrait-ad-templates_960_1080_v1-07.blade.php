@@ -99,19 +99,12 @@
         div.logo {
             width: 204px;
             height: 100px;
-            margin: 70px auto 40px;
-            position: relative;
+            margin: 70px auto 40px;            
         }
 
-        div.logo img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;
-            max-width: 204px;
-            max-height: 100px;
+        div.logo img {           
+            width: 204px;
+            height: 100px;
         }
 
         div.logo div.placeholder {
