@@ -105,11 +105,18 @@
             position: absolute;
             top: 68px;
             left: 32px;
+            position: relative;
         }
 
         div.logo img {
-            width: 416px;
-            height: 208px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto; 
+            max-width: 416px;
+            max-height: 208px;
         }
 
         div.logo div.placeholder {

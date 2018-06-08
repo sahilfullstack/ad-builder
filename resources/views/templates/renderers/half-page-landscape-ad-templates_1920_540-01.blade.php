@@ -109,11 +109,18 @@
             width: 340px;
             height: 92px;
             margin: 20px auto 30px;
+            position: relative;
         }
 
         div.sidebar div.logo img {
-            width: 340px;
-            height: 92px;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto;
+            max-width: 340px;
+            max-height: 92px;
         }
 
         div.sidebar div.logo div.placeholder {
@@ -158,13 +165,20 @@
         }
 
         div.hero-image {
+            position:relative;
             margin-left: 381px;
             height: 260px;
         }
 
         div.hero-image img {
-            width: 579px;
-            height: 260px;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto; 
+            max-width: 579px;
+            max-height: 260px;
         }
 
         div.hero-image div.placeholder {

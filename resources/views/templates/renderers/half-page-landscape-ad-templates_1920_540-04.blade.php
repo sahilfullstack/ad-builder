@@ -109,11 +109,18 @@
             width: 340px;
             height: 92px;
             margin: 20px auto 30px;
+            position:relative;
         }
 
         div.sidebar div.logo img {
-            width: 340px;
-            height: 92px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto;
+            max-width: 340px;
+            max-height: 92px;
         }
 
         div.sidebar div.logo div.placeholder {

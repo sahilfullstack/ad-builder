@@ -96,11 +96,18 @@
 
         div.hero-image {
             height: 530px;
+            position: relative;
         }
 
         div.hero-image img {
-            width: 960px;
-            height: 530px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto; 
+            max-width: 960px;
+            max-height: 530px;
         }
 
         div.hero-image div.placeholder {

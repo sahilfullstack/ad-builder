@@ -100,11 +100,18 @@
             width: 260px;
             height: 130px;
             margin: 20px auto 10px;
+            position: relative;
         }
 
         div.logo img {
-            width: 260px;
-            height: 130px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto;
+            max-width: 260px;
+            max-height: 130px;
         }
 
         div.logo div.placeholder {

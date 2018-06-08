@@ -110,11 +110,18 @@
 
         div.hero-image {
             height: 260px;
+            position:relative;
         }
 
         div.hero-image img {
-            width: 480px;
-            height: 260px;
+            position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto;
+            max-width: 480px;
+            max-height: 260px;
         }
 
         div.hero-image div.placeholder {

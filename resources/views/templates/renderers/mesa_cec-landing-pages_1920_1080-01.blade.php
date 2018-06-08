@@ -189,10 +189,17 @@
             position: absolute;
             top: 886px;
             left: 821.799px;
+            position: relative;
         }
         div.map img {
-            width: 373.268px;
-            height: 154px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto; 
+            max-width: 373.268px;
+            max-height: 154px;
         }
         div.map div.map-placeholder {
             width: 373.268px;

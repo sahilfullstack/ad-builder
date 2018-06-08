@@ -97,11 +97,18 @@
             height: 98px;
             margin-left: 15px;
             background: #C6E5F3;
+            position: relative;
         }
 
         div.logo img {
-            width: 485px;
-            height: 98px;
+             position:absolute;
+            top:0;
+            bottom:0;
+            left:0;
+            right:0; 
+            margin: auto; 
+            max-width: 485px;
+            max-height: 98px;
         }
 
         div.logo div.placeholder {
