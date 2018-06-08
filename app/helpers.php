@@ -26,5 +26,8 @@ function unit_next_section($type, $sectionSlug)
 
 function absolute_to_relative_url($url)
 {
+    \Log::info(url()->to('/'));
+    \Log::info($url);
+    \Log::info(str_replace(url()->to('/') . '/', '', $url));
     return str_replace(url()->to('/') . '/', '', $url);
 }
