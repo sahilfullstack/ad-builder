@@ -34,7 +34,14 @@ class ProcessVideoToOgvFormatJob implements ShouldQueue
      */
     public function handle()
     {
-        $ffmpeg = FFMpeg\FFMpeg::create();
+        \Log::info("inside video conversion");
+        $ffmpeg = FFMpeg\FFMpeg::create(
+         [
+            'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
+            'ffprobe.binaries' => '/usr/bin/ffprobe',
+            'timeout'          => 3600, // the timeout for the underlying process
+            'ffmpeg.threads'   => 1,   // the number of threads that FFMpeg should use
+        ]);
         
         $components = $this->unit->components;
 
