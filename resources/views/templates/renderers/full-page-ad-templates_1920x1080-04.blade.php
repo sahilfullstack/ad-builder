@@ -89,6 +89,7 @@
             position: absolute;
             top: 20px;
             color: #199FD4;
+            left: 20px;
             font-size: 16px;
             font-weight: bold;
             text-transform: uppercase;
