@@ -3,7 +3,7 @@
 namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
-use App\User;
+use App\User, Mail;
 use App\Models\{Template, Unit, Component};
 use Carbon\Carbon, Storage;
 
@@ -63,19 +63,16 @@ class MailAdminForProcessedUnits extends Command
                         $processed = false;
                     }
                 }
-            }        
-
+            }
 
             if($processed)
             {
-                // $unit->processed_at = Carbon::now();
-                // $unit->save();
-                \Log::info("mail the admin about the completion of process about unit with id : ". $unit->id);
+                $unit->processed_at = Carbon::now();
+                $unit->save();
+        
+                // mailing the admin for publishing new unit
+                Mail::to(env('ADMIN_EMAIL'))->send(new \App\Mail\NewUnitCreationMailToAdmin($unit->user->first()));             
             }
         }
-
-        // mailing the admin for publishing new unit
-        // Mail::to(env('ADMIN_EMAIL'))->send(new \App\Mail\NewUnitCreationMailToAdmin($unit->user->first()));             
-
     }
 }
