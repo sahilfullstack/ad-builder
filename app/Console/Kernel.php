@@ -38,6 +38,7 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command(Commands\DeductDaysInSubscriptions::class)->daily();
+        $schedule->command(Commands\MailAdminForProcessedUnits::class)->everyFiveMinutes();
     }
 
     /**

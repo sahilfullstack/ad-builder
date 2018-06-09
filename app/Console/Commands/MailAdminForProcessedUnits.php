@@ -46,7 +46,7 @@ class MailAdminForProcessedUnits extends Command
             ])
             ->whereNotNull('published_at')
             ->get();
-
+        \Log::info("m here");
         foreach ($units as $unit) 
         {
             $processed = true;
