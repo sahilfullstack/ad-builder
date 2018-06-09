@@ -40,9 +40,9 @@ class ConvertMp4VideoToOgvCommand extends Command
     public function handle()
     {
         \Log::info("before starting the job");
-        ProcessAudioToOggFormatJob::dispatch();
+        // ProcessAudioToOggFormatJob::dispatch();
         \Log::info("after starting the job");
-        // $this->goForVideo();
+        $this->goForVideo();
         // $this->goForAudio();
     }
 
@@ -59,7 +59,8 @@ class ConvertMp4VideoToOgvCommand extends Command
     {
         $ffmpeg = FFMpeg\FFMpeg::create();
 
-        $dimension = $ffmpeg->open(config('app.url') .'/storage/dummy/dummy-video.mp4')
-            ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/prograam.ogv');
+        $dimension = $ffmpeg->open("http://mesa.metaworthy.com/storage/uploads/Me4HdrtyTtAaPcEbAOSpYJtEv8mZ4pZ7K7wixrJi.mp4")
+        // $dimension = $ffmpeg->open(config('app.url') .'/storage/dummy/dummy-video.mp4')
+            ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/sahil.ogv');
     }
 }
