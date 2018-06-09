@@ -383,10 +383,7 @@ class UnitController extends Controller
 
         $unit->published_at = Carbon::now();
         $unit->save();
-
-        // mailing the admin for publishing new unit
-        Mail::to(env('ADMIN_EMAIL'))->send(new \App\Mail\NewUnitCreationMailToAdmin($unit->user->first()));             
-
+        
         return $unit->fresh();
     }
 

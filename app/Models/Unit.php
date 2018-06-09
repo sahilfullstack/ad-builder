@@ -234,6 +234,8 @@ class Unit extends Model
         
         if(! is_null($this->rejected_at)) return 'Rejected';
         
+        if(! is_null($this->published_at) and is_null($this->processed_at) ) return 'Processing';
+
         if(! is_null($this->published_at)) return 'Published (awaiting approval)';
 
         return 'Draft';

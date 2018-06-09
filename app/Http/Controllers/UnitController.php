@@ -300,6 +300,7 @@ class UnitController extends Controller
       $units = Unit::notDeleted()->noHoldees()
             ->with(['template', 'template.components'])
             ->whereNotNull('published_at')
+            ->whereNotNull('processed_at')
             ->whereNull('approved_at')
             ->whereNull('rejected_at')
             ->where('type', 'ad')

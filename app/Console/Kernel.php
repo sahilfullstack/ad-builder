@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
         Commands\DeductDaysInSubscriptions::class,
         Commands\AddRulesToTemplatesCommand::class,
         Commands\TestMailCommand::class,
+        Commands\MailAdminForProcessedUnits::class,
     ];
 
     /**
