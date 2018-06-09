@@ -270,6 +270,7 @@
         div.video video {
             width: 684.684px;
             height: 493.074px;
+            object-fit: fill;
         }
         div.video div.placeholder {
             width: 684.684px;

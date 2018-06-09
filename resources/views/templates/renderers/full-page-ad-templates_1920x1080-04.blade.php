@@ -88,7 +88,6 @@
         p.category-header {
             position: absolute;
             top: 20px;
-            left: 20px;
             color: #199FD4;
             font-size: 16px;
             font-weight: bold;
@@ -102,6 +101,7 @@
         div.hero-video video {
             width: 960px;
             height: 530px;
+            object-fit: fill;
         }
 
         div.hero-video div.placeholder {
@@ -126,7 +126,7 @@
         @include('templates.components.banner', ['value' => array_get($readableComponents, 'top-border-bar') ])
 
         <div class="body">
-            <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p>
+            <!-- <p class="category-header" style="color:{{ array_get($readableComponents, 'category-header-color._value') }};">@include('templates.components.text', ['value' => array_get($unit->category, 'name'), 'default' => 'Category Header'])</p> -->
     
             <div class="hero-video">
                 @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])

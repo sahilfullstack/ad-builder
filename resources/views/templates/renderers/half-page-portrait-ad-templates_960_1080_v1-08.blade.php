@@ -143,6 +143,7 @@
         div.hero-video video {
             width: 480px;
             height: 290px;
+            object-fit: fill;
         }
 
         div.hero-video div.placeholder {

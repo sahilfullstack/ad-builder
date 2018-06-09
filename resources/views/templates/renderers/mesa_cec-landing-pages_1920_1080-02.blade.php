@@ -210,11 +210,6 @@
             fill: #199FD4;
         }
 
-        div.hero-video video {
-            width: 308px;
-            height: 246px;
-
-        }
         div.social-logo-image1 div.social-logo-image1-placeholder {
             width: 63.361px;
             height: 43.552px;
@@ -277,6 +272,7 @@
         div.hero-video video {
             width: 638.318px;
             height: 332.065px;
+            object-fit: fill;
         }
         div.hero-video div.placeholder {
             width: 638.318px;
