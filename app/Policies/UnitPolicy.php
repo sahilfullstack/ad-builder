@@ -33,6 +33,18 @@ class UnitPolicy
     }
 
     /**
+     * Determine whether the user can delete the unit.
+     *
+     * @param  \App\User  $user
+     * @param  \App\Template  $unit
+     * @return mixed
+     */
+    public function delete(User $user, Unit $unit)
+    {
+        return ($user->id === $unit->user_id || $user->canOverride($unit->user));
+    }
+
+    /**
      * Determine whether the user can list unit.
      *
      * @param  \App\User  $user

@@ -21,10 +21,13 @@
                         @endif
                         <span class="badge badge-dark">{{ $unit->state }}</span>
                     </h2>
-                    @if(is_null($unit->approved_at))
-                    <a href="{{ route('units.edit', ['unit' => $unit]) }}">Edit</a>&nbsp;
-                    @endif
+                    
                     <create-unit-copy-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></create-unit-copy-button>
+                    <hr>
+                    @if(is_null($unit->approved_at))
+                    <a href="{{ route('units.edit', ['unit' => $unit]) }}" class="btn btn-sm btn-info">Edit</a>&nbsp;
+                    @endif
+                    <delete-unit-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></delete-unit-button>
                     <hr>
 
                     @if( ! is_null($unit->scheduled_at))

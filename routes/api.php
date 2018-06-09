@@ -23,6 +23,7 @@ Route::post('/upload', ['as' => 'upload', 'uses' => 'UploadController@upload']);
 Route::post('/units', ['as' => 'units.store', 'uses' => 'UnitController@store']);
 Route::post('/units/{unit}/copy', ['as' => 'units.store', 'uses' => 'UnitController@storeCopy']);
 Route::put('/units/{unit}', ['as' => 'units.update', 'uses' => 'UnitController@update']);
+Route::delete('/units/{unit}', ['as' => 'units.update', 'uses' => 'UnitController@delete']);
 Route::put('/units/{unit}/publish', ['as' => 'units.update', 'uses' => 'UnitController@publish']);
 
 Route::put('/units/{unit}/approve', ['as' => 'units.approve', 'uses' => 'UnitController@approve']);

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\{Template, Component, Unit};
-use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest, StoreCopyUnitRequest};
+use App\Http\Requests\{ListUnitRequest, StoreUnitRequest, UpdateUnitRequest, PublishUnitRequest, ApproveUnitRequest, StoreCopyUnitRequest, DeleteUnitRequest};
 
 use App\Exceptions\{InvalidInputException, CustomInvalidInputException};
 use Carbon\Carbon, DB, Mail;
@@ -44,7 +44,48 @@ class UnitController extends Controller
         $unit->save();
 
         return $unit->fresh();
-    }      
+    } 
+
+    public function delete(Unit $unit, DeleteUnitRequest $request)
+    {
+        try
+        {
+            DB::beginTransaction();           
+            $deletedUnit = $this->deletingAUnit($unit);
+            
+            // if( ! $unit->is_holder)
+            // {
+            //     $deletedUnit = $this->deletingAUnit($unit);
+            // }
+            // else
+            // {
+            //     // throw new InvalidInputException('Copy this element is not supported right now.');
+            //     $parentHolder = $this->deletingAUnit($unit);
+
+            //     $holdees = $unit->holdee();
+
+            //     foreach ($holdees->get() as $key => $holdee) 
+            //     {
+            //         $this->deletingAUnit($holdee, $parentHolder->id);
+            //     }
+
+
+            //     $deletedUnit = $parentHolder;
+            // }
+
+            DB::commit();   
+
+            return $deletedUnit;
+        }
+        catch(\Exception $e)
+        {
+            DB::rollBack();
+
+            dd($e);
+            throw $e;
+        }
+    } 
+
 
     public function storeCopy(StoreCopyUnitRequest $request, Unit $unit)
     {
@@ -130,6 +171,20 @@ class UnitController extends Controller
         $unitCopyChild->save();
 
         return $unitCopy->fresh();
+    }
+
+    private function deletingAUnit($unit, $holderId =  null)
+    {
+        // deleting a unit
+        $unit->delete();
+
+        $child = Unit::where('parent_id', $unit->id)->first();
+        if($child)
+        {
+            $child->delete();
+        }
+
+        return $unit->fresh();
     }
 
     public function list(ListUnitRequest $request)
