@@ -80,8 +80,7 @@ class UnitController extends Controller
         catch(\Exception $e)
         {
             DB::rollBack();
-
-            dd($e);
+            
             throw $e;
         }
     } 

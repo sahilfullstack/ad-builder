@@ -242,7 +242,7 @@ class Unit extends Model
     public function getReadableComponentsAttribute()
     {
         $components = Component::notDeleted()->find(array_keys($this->components));
-        
+
         $readableComponents = [];
         foreach($this->components as $id => $component)
         {
