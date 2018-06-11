@@ -34,6 +34,7 @@ class ProcessVideoToOgvFormatJob implements ShouldQueue
      */
     public function handle()
     {
+        \Log::info("Insdie Video Conversion");
         $ffmpeg = FFMpeg\FFMpeg::create(
          [
             'ffmpeg.binaries'  => '/usr/bin/ffmpeg',
