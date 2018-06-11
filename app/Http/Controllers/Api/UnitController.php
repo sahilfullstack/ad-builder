@@ -18,6 +18,7 @@ use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\{ProcessAudioToOggFormatJob, ProcessVideoToOgvFormatJob};
+use App\User;
 
 class UnitController extends Controller
 {
@@ -235,6 +236,7 @@ class UnitController extends Controller
         
         foreach($units as $unit)
         {
+            $user = User::find($unit['user_id']);
             $transformed[]['product'] = [
                 'hash' => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
                         . $unit['updated_at']
@@ -243,6 +245,7 @@ class UnitController extends Controller
                 'category_id' => $unit['category']['id'],
                 'category' => $unit['category']['name'],
                 'title' => $unit['name'],
+                'company_name' => $user->company,
                 'render_url' => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
                 'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
                 'layout_id' => $unit['layout_id'] - 1,
@@ -355,7 +358,16 @@ class UnitController extends Controller
                     'type'=> 'ad',
                     'id' => $unit->id
                     ])
-                ->first()->toArray();
+                ->first();
+
+        if( ! is_null($units))
+        {
+            $units = $units->toArray();            
+        }
+        else
+        {
+            $units = [];
+        }
 
         $formatter = Formatter::make($units, Formatter::ARR);
     
