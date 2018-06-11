@@ -61,6 +61,9 @@ class ConvertMp4VideoToOgvCommand extends Command
 
         $dimension = $ffmpeg->open("http://mesa.metaworthy.com/storage/uploads/Me4HdrtyTtAaPcEbAOSpYJtEv8mZ4pZ7K7wixrJi.mp4")
         // $dimension = $ffmpeg->open(config('app.url') .'/storage/dummy/dummy-video.mp4')
-            ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/sahil.ogv');
+            ->save(new \FFMpeg\Format\Video\Ogg(),'/1.ogv');
+            // ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/sahil.ogv');
     }
 }
+
+//ffmpeg -i test.mp4 -c:v libtheora -q:v 7 -c:a libvorbis -q:a 4 output.ogv

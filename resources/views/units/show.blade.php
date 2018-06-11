@@ -33,6 +33,17 @@
                     @if( ! is_null($unit->scheduled_at))
                     <p><strong>Scheduled at:</strong> {{ $unit->scheduled_at->toDayDateTimeString() }}</p>
                     @endif
+                    @if( ! is_null($unit->thumbnail))
+                    <p><strong>Thumbnail:</strong> <a href="{{ $unit->thumbnail }}">{{ $unit->thumbnail }}</a></p>
+                    @endif
+                    @if( ! is_null($unit->hover_image))
+                    <p><strong>Hover Image:</strong> <a href="{{ $unit->hover_image }}">{{ $unit->hover_image }}</a></p>
+                    @endif
+                    @if($unit->is_popup == 0)
+                    <p><strong>Popup:</strong>Disabled</p>
+                    @else
+                    <p><strong>Popup:</strong>Enabled</p>
+                    @endif
                     <p><strong>Created at:</strong> {{ $unit->created_at->toDayDateTimeString() }}</p>
                     <p><strong>Last updated at:</strong> {{ $unit->updated_at->toDayDateTimeString() }}</p>
                     
