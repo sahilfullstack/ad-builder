@@ -60,10 +60,27 @@ class ConvertMp4VideoToOgvCommand extends Command
         $ffmpeg = FFMpeg\FFMpeg::create();
 
         $dimension = $ffmpeg->open("http://mesa.metaworthy.com/storage/uploads/Me4HdrtyTtAaPcEbAOSpYJtEv8mZ4pZ7K7wixrJi.mp4")
+            ->addFilter(new FFMpeg\Filters\Audio\SimpleFilter(['-c:v', 'libtheora','-q:v', '7','-c:a', 'libvorbis','-q:a', '4']))
+            // ->addFilter('-c:v', 'libtheora')
+            // ->addFilter('-q:v', '7')
+            // ->addFilter('-c:a', 'libvorbis')
+            // ->addFilter('-q:a', '4')
         // $dimension = $ffmpeg->open(config('app.url') .'/storage/dummy/dummy-video.mp4')
-            ->save(new \FFMpeg\Format\Video\Ogg(),'/1.ogv');
+            ->save(new \FFMpeg\Format\Video\Ogg(),'3.ogv');
             // ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/sahil.ogv');
     }
 }
 
 //ffmpeg -i test.mp4 -c:v libtheora -q:v 7 -c:a libvorbis -q:a 4 output.ogv
+// $ffmpeg = FFMpeg\FFMpeg::create();
+        // $pp = new \FFMpeg\Format\Video\Ogg();
+        //     dd($pp);
+        //  $pp =  $pp->addFilters('-c:v', 'libtheora')
+        //     ->addFilters('-q:v', '7')
+        //     ->addFilters('-c:a', 'libvorbis')
+        //     ->addFilters('-q:a', '4');
+
+        // $dimension = $ffmpeg->open("http://mesa.metaworthy.com/storage/uploads/Me4HdrtyTtAaPcEbAOSpYJtEv8mZ4pZ7K7wixrJi.mp4")            
+        // // $dimension = $ffmpeg->open(config('app.url') .'/storage/dummy/dummy-video.mp4')
+        //     ->save($pp,'/1.ogv');
+        //     // ->save(new \FFMpeg\Format\Video\Ogg(), storage_path() .'/app/uploads/sahil.ogv');

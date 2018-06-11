@@ -51,6 +51,7 @@ class ProcessVideoToOgvFormatJob implements ShouldQueue
                 $videoName = md5(microtime());
                 $path = public_path() .'/storage/uploads/'. $videoName .'.ogv';
                 $ffmpeg->open($component['_value'])
+                    ->addFilter(new FFMpeg\Filters\Audio\SimpleFilter(['-c:v', 'libtheora','-q:v', '7','-c:a', 'libvorbis','-q:a', '4']))
                     ->save(new \FFMpeg\Format\Video\Ogg(), $path);
                 $components[$key]["converted_value"] = config('app.url').'/storage/uploads/'. $videoName .'.ogv';
             }  
