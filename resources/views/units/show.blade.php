@@ -112,7 +112,9 @@
                                             @if($component->type == 'images')
                                                 <p>{{ $unit->child->components[$component->id][0]["_value"] }}</p>
                                             @elseif($component->type == 'hours_of_operation')
-                                                <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                @if(is_null($unit->child->components[$component->id]["_value"]["title"]))
+                                                    <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                @endif
                                                 <table style=" font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
                                                     <tr>
                                                         <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Day</th>
@@ -128,7 +130,9 @@
                                                         @endforeach
                                                 </table> 
                                             @elseif($component->type == 'timeline')
-                                                <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                @if(is_null($unit->child->components[$component->id]["_value"]["title"]))
+                                                    <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                @endif
                                                 <table style=" font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
                                                     <tr>
                                                         <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Year</th>

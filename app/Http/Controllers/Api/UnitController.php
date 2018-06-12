@@ -847,7 +847,7 @@ class UnitController extends Controller
                 ]);
 
                 $validator->setCustomMessages([
-                    $component->name . '._value.title.required'          => 'Timeline title is required.',
+                    $component->name . '._value.title.required'          => 'Hours Of Operation title is required.',
                     $component->name . '._value.values.*.day.required'   => 'All the day in timeline are required.',
                     $component->name . '._value.values.*.open.required'  => 'All the open in timeline are required.',
                     $component->name . '._value.values.*.close.required' => 'All the close in timeline are required.',
