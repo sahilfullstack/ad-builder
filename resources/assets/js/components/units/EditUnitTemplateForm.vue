@@ -3,7 +3,8 @@
         <div class="form-group">
             <label for="template_id">TEMPLATE <span class="text-danger">*</span></label>
             <span v-if="templates.length== 0">No Subscriptions Yet.</span>
-            <select v-if="templates.length > 0" name="template_id" id="template_id" class="form-control" v-model="form.template_id">    
+            <select v-if="templates.length > 0" name="template_id" id="template_id" class="form-control" v-model="form.template_id">  
+                <option value="0">Select template</option>  
                 <option v-for="template in templates" :key="template.id" :value="template.id">{{ template.name }}</option>
             </select>
             <span class="text-danger" :class="{'hidden': errors['template_id'] == undefined}" style="margin-right:10px;">{{errors['template_id']}}</span>
@@ -43,7 +44,8 @@ export default {
     data() {
         return {
             form: {
-                template_id: this.unit.template_id == null ? (this.templates.length > 0 ? this.templates[0].id :0) : this.unit.template_id
+                template_id: this.unit.template_id == null ? 0 : this.unit.template_id
+             //   template_id: this.unit.template_id == null ? (this.templates.length > 0 ? this.templates[0].id :0) : this.unit.template_id
             },
             errors: [],
             disable: {
@@ -55,7 +57,17 @@ export default {
     watch: {
         selectedTemplate: function(templateId) {
             var frameElement = document.getElementById("renderer-iframe-" + this.unit.id);
-            if(frameElement) frameElement.contentWindow.location.href = '/templates/' + templateId + '/render';
+            if(frameElement) 
+            {
+                if(templateId != 0)
+                {
+                    frameElement.contentWindow.location.href = '/templates/' + templateId + '/render';                
+                }
+                else
+                {
+                     frameElement.contentWindow.location.href = '/units/' + this.unit.id + '/render?nullable=y';   
+                }
+            }
         }
     },
 

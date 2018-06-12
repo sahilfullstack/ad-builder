@@ -80273,6 +80273,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: {
@@ -80301,7 +80302,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     data: function data() {
         return {
             form: {
-                template_id: this.unit.template_id == null ? this.templates.length > 0 ? this.templates[0].id : 0 : this.unit.template_id
+                template_id: this.unit.template_id == null ? 0 : this.unit.template_id
+                //   template_id: this.unit.template_id == null ? (this.templates.length > 0 ? this.templates[0].id :0) : this.unit.template_id
             },
             errors: [],
             disable: {
@@ -80314,7 +80316,13 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     watch: {
         selectedTemplate: function selectedTemplate(templateId) {
             var frameElement = document.getElementById("renderer-iframe-" + this.unit.id);
-            if (frameElement) frameElement.contentWindow.location.href = '/templates/' + templateId + '/render';
+            if (frameElement) {
+                if (templateId != 0) {
+                    frameElement.contentWindow.location.href = '/templates/' + templateId + '/render';
+                } else {
+                    frameElement.contentWindow.location.href = '/units/' + this.unit.id + '/render?nullable=y';
+                }
+            }
         }
     },
 
@@ -80415,13 +80423,20 @@ var render = function() {
                   }
                 }
               },
-              _vm._l(_vm.templates, function(template) {
-                return _c(
-                  "option",
-                  { key: template.id, domProps: { value: template.id } },
-                  [_vm._v(_vm._s(template.name))]
-                )
-              })
+              [
+                _c("option", { attrs: { value: "0" } }, [
+                  _vm._v("Select template")
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.templates, function(template) {
+                  return _c(
+                    "option",
+                    { key: template.id, domProps: { value: template.id } },
+                    [_vm._v(_vm._s(template.name))]
+                  )
+                })
+              ],
+              2
             )
           : _vm._e(),
         _vm._v(" "),
