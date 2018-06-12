@@ -136,6 +136,45 @@
                     </div>
                 </div>
             </div>
+            <div v-else-if="component.type =='hours_of_operation'">
+              <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <label :for="component.slug + '_title'">Hours Of Operation Title<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" placeholder="Hours Of Operation" v-model="form.components[component.id]['_value']['title']">                        
+                    </div>
+                </div>
+
+                <div v-for="(formComponent, formComponentIndex) in form.components[component.id]['_value']['values']" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">                     
+                    <div class="col-md-12">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Hours Of Operation Component #{{formComponentIndex+1}}</label>
+                            </div>
+                        </div>
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-4">
+                                <label :for="component.slug + '_'+formComponentIndex+'_day'">Day<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_day'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['day']">
+                                  <a href @click.prevent="pushAnotherHoursOfOperationElementInComponent(component.id)" v-if="form.components[component.id]['_value']['values'].length <= 9"><span class="text-success">Add Another</span></a>
+                                <a href @click.prevent="removeHoursOfOperationElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id]['_value']['values'].length > 1"><span class="text-danger">Remove</span></a>             
+                            </div> 
+                         <div class="col-md-4">
+                                <label :for="component.slug + '_'+formComponentIndex+'_open'">Open<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_open'" placeholder="2018" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['open']">
+                                
+                            </div>
+                            <div class="col-md-4">
+                                <label :for="component.slug + '_'+formComponentIndex+'_close'">Close<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_close'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']">
+                                                 
+                            </div>                           
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div v-else>
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-12">
@@ -222,7 +261,8 @@ export default {
                 images: {_value: ['']},
                 survey: {_value: '', _yes: 0, _no: 0},
                 audio: {_value: ''},
-                timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }}
+                timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }},
+                hours_of_operation: {_value: {'title': '', values : {day: '', open: '', close: ''} }}
             }
 
             return defaults[dataType];
@@ -237,6 +277,12 @@ export default {
             this.form.components[componentId]['_value']['values'].push({month: '', year: '', description: '', image: ''});
         },
         removeTimelineElementAtPositionFromComponent(componentId, index) {
+            this.form.components[componentId]['_value']['values'].splice(index, 1);
+        }, 
+        pushAnotherHoursOfOperationElementInComponent(componentId) {
+            this.form.components[componentId]['_value']['values'].push({day: '', open: '', close: ''});
+        },
+        removeHoursOfOperationElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId]['_value']['values'].splice(index, 1);
         },
         reloadPreview() {

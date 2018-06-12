@@ -101,7 +101,7 @@
                         @else
                             <p><strong>Template:</strong> {{ $unit->child->template->name }}</p>
                             <p><strong>Components contained:</strong></p>
-                            
+   
                             <!-- Components -->
                             @if($unit->child->template->components->count() > 0)
                             <ul class="list-group">
@@ -111,6 +111,39 @@
                                         @if(! empty($unit->child->components[$component->id]))
                                             @if($component->type == 'images')
                                                 <p>{{ $unit->child->components[$component->id][0]["_value"] }}</p>
+                                            @elseif($component->type == 'hours_of_operation')
+                                                <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                <table style=" font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+                                                    <tr>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Day</th>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Open</th>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Close</th>
+                                                    </tr>
+                                                        @foreach($unit->child->components[$component->id]["_value"]["values"] as $key => $values)
+                                                        <tr>
+                                                            @foreach($values as $key => $value)
+                                                                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;"><strong>{{$value}}</strong></td>
+                                                            @endforeach
+                                                        </tr>
+                                                        @endforeach
+                                                </table> 
+                                            @elseif($component->type == 'timeline')
+                                                <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
+                                                <table style=" font-family: arial, sans-serif; border-collapse: collapse; width: 100%;">
+                                                    <tr>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Year</th>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Image</th>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Month</th>
+                                                        <th style="border: 1px solid #dddddd; text-align: left; padding: 8px;">Description</th>
+                                                    </tr>
+                                                        @foreach($unit->child->components[$component->id]["_value"]["values"] as $key => $values)
+                                                        <tr>
+                                                            @foreach($values as $key => $value)
+                                                                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;"><strong>{{$value}}</strong></td>
+                                                            @endforeach
+                                                        </tr>
+                                                        @endforeach
+                                                </table>
                                             @else
                                                 <p>{{ $unit->child->components[$component->id]["_value"] }}</p>
                                             @endif

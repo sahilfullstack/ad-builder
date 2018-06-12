@@ -168,6 +168,17 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                     ]
                 ]];
 
+        if($component->type == 'hours_of_operation') return ['_value' => [
+                    'title' => $this->faker->sentence(10),
+                    'values' => [
+                        [
+                            'day' => 'Day 1',
+                            'open' => 'Day OT',
+                            'close' => 'Day CT'
+                        ]
+                    ]
+                ]];
+
         return ["_value" => $this->faker->sentence(6)];
     }
 

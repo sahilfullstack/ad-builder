@@ -2572,7 +2572,7 @@ class AddRulesToTemplatesCommand extends Command
                     ], 
                     [
                         'name' => 'Hours Of Operation',
-                        'type' => 'text',
+                        'type' => 'hours_of_operation',
                         'rules' => []
                     ]     
                 ]

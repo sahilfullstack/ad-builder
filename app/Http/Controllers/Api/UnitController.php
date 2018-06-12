@@ -726,6 +726,19 @@ class UnitController extends Controller
                     ]
                 ]];
             }
+            else if($component->type == 'hours_of_operation')
+            {
+                $preparedComponents[$component->id] = ['_value' => [
+                    'title' => '',
+                    'values' => [
+                        [
+                            'day' => '',
+                            'open' => '',
+                            'close' => ''
+                        ]
+                    ]
+                ]];
+            }
             else
             {                  
                 $preparedComponents[$component->id] = ['_value' => ''];
@@ -813,6 +826,31 @@ class UnitController extends Controller
                     $component->name . '._value.values.*.image.required'       => 'All the image in timeline are required.',
                     $component->name . '._value.values.*.image.url'            => 'All the images must be a valid url.',
                     $component->name . '._value.values.*.image.regex'          => 'All the image in timeline must be uploaded here.'
+                ]);   
+            }
+            else if($component->type == "hours_of_operation")
+            {
+
+                $validator = \Validator::make([$component->name => $value], [
+                     $component->name . '._value.title' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.day' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.open' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.values.*.close' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],                  
+                ]);
+
+                $validator->setCustomMessages([
+                    $component->name . '._value.title.required'          => 'Timeline title is required.',
+                    $component->name . '._value.values.*.day.required'   => 'All the day in timeline are required.',
+                    $component->name . '._value.values.*.open.required'  => 'All the open in timeline are required.',
+                    $component->name . '._value.values.*.close.required' => 'All the close in timeline are required.',
                 ]);   
             }
             else if($component->type == "color")

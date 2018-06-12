@@ -320,6 +320,38 @@
             top: 650px;
             left: 1402px;
         }
+
+         #hours-of-operation {
+            position: relative;
+        }
+
+        .operation-title {
+            position: absolute;
+            top: 20px;
+            left: 30px;
+            text-transform: uppercase;
+            font-size: 24px;
+        }
+        table.operation-table {
+            /*position: absolute;*/
+            width: 461px;
+            font-size: 25px;
+            margin-top: 70px;            
+            border-spacing: 5px;
+            padding: 10px;
+        }   
+
+        table.operation-table tr th,td {
+            text-align: center;
+        }  
+
+        .firstcol {
+            border-right: 4px solid #6dc2e8;
+        }        
+
+        .lastcol {
+            border-left: 4px solid #6dc2e8;
+        }
     </style>
     
 </head>
@@ -378,8 +410,8 @@
                 <p>@include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])</p>
             </div>
             <div id="hours-of-operation" style="background-color: {{ ! empty(array_get($readableComponents, 'hours-of-operation')['_value']) ? 'transparent' : '' }};">
-                <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])</p>
-            </div> 
+                @include('templates.components.hours_of_operation', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])
+            </div>
          </div>
     </div>
 </body>
