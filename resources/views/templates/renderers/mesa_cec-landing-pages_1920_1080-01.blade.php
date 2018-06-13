@@ -209,7 +209,7 @@
 
         div.survey {
             width: 669.258px;
-            height: 478.319px;
+            height: 138.319px;
             background: #C6E5F3; 
             position: absolute;
             top: 558.784px;
@@ -234,6 +234,18 @@
             opacity: .4;
             cursor: not-allowed;
             pointer-events: none;
+        }
+
+        div.website-qr {
+            width: 91.414px;
+            height: 88.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 886px;
+            left: 1213.709px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
     </style>
@@ -271,6 +283,11 @@
             <div class="map">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
+
+            <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
+            </div>
+
             
             <div class="survey">
                 @include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>

@@ -27,6 +27,7 @@ class Kernel extends ConsoleKernel
         Commands\AddRulesToTemplatesCommand::class,
         Commands\TestMailCommand::class,
         Commands\MailAdminForProcessedUnits::class,
+        Commands\AddWebsiteQRInLandingPages::class,
     ];
 
     /**

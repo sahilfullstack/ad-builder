@@ -312,6 +312,18 @@
             background: #C6E5F3;
         }
 
+        div.website-qr {
+            width: 91.414px;
+            height: 88.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 868px;
+            left: 1140px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
+        }
+
         div#hours-of-operation {
             background: #C6E5F3;
             width: 461px;
@@ -409,6 +421,11 @@
             <div class="map">
                 <p>@include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])</p>
             </div>
+
+            <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
+            </div>
+
             <div id="hours-of-operation" style="background-color: {{ ! empty(array_get($readableComponents, 'hours-of-operation')['_value']) ? 'transparent' : '' }};">
                 @include('templates.components.hours_of_operation', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])
             </div>

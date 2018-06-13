@@ -204,7 +204,7 @@
             height: 202.139px;
             position: absolute;
             top: 827px;
-            left: 1065.65px;
+            left: 1177.65px;
         }
         div.audio img {
             width: 188.839px;
@@ -221,7 +221,7 @@
             height: 42.316px;
             position: absolute;
             top: 827px;
-            left: 1305.65px;
+            left: 1416.65px;
 
         }
         div.blog-logo svg {
@@ -236,7 +236,7 @@
             background: #C6E5F3;
             position: absolute;
             top: 885.253px;
-            left: 1274.65px;
+            left: 1385px;
             display: flex;
             justify-content: space-evenly;
             align-items: center;
@@ -246,6 +246,18 @@
             width: 114.5px;
             height: 110.796px;
             background: rgba(255,0,0,0.2);
+        }
+
+        div.website-qr {
+            width: 91.414px;
+            height: 88.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 875.253px;
+            left: 1065.65px;
+            display: flex;
+            justify-content: space-evenly;
+            align-items: center;
         }
 
     </style>
@@ -287,6 +299,10 @@
             </div>
              <div class="blog-qrs" style="background-color: {{ empty(array_get($readableComponents, 'blog-feed-url')) ?: 'transparent' }}">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'blog-feed-url'), 'default' => 'blog qr'])
+            </div>
+
+             <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+                @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
     </div>
 </body>

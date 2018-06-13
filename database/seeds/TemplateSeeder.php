@@ -1862,7 +1862,12 @@ class TemplateSeeder extends Seeder
                             'width' => 373,
                             'height' => 41
                         ]
-                    ],               
+                    ], 
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ],                
                     [
                         'name' => 'Survey',
                         'type' => 'survey',
@@ -1989,6 +1994,11 @@ class TemplateSeeder extends Seeder
                             'height' => 157
                         ]
                     ],
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ],  
                     [
                         'name' => 'Audio',
                         'type' => 'audio',
@@ -2215,7 +2225,12 @@ class TemplateSeeder extends Seeder
                             'width' => 372,
                             'height' => 157
                         ]
-                    ],               
+                    ],       
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ],          
                     [
                         'name' => 'Survey',
                         'type' => 'survey',
@@ -2542,8 +2557,13 @@ class TemplateSeeder extends Seeder
                         ]
                     ], 
                     [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ],  
+                    [
                         'name' => 'Hours Of Operation',
-                        'type' => 'text',
+                        'type' => 'hours-of-operation',
                         'rules' => []
                     ]     
                 ]
