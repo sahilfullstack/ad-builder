@@ -250,8 +250,8 @@ class UnitController extends Controller
                 'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
                 'layout_id' => $unit['layout_id'] - 1,
                 'startchar' => Str::upper(substr($user->company, 0, 1)),
-                'thumbnail' => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : $unit['thumbnail'],
-                'hoverimage' => is_null($unit['hover_image']) ? 'Transparent.png' : $unit['hover_image'],
+                'thumbnail' => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
+                'hoverimage' => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
             ];
         }
         return $transformed;
