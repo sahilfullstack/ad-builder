@@ -687,7 +687,7 @@ class UnitController extends Controller
                 $preparedComponents[$component->id] = [
                     '_value' => [ 
                         'title'            => [ '_value' => '',  'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 30 ], 
-                        'question'         => [ '_value' => '', 'foreground_color' => '#000000', 'size' => 20 ], 
+                        'question'         => [ '_value' => '', 'foreground_color' => '#000000', 'size' => 30 ], 
                         'box_color'        => '#0FE7D3', 
                         'yes_button_color' => '#59E519', 
                         'no_button_color'  => '#D30A0A'
