@@ -99,17 +99,15 @@
         div.logo {
             width: 204px;
             height: 100px;
-            margin: 40px auto 30px;
-            position: relative;
+            margin: 40px auto 30px;            
         }
 
         div.logo img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 204px;
             max-height: 100px;
         }
@@ -138,17 +136,15 @@
         }
 
         div.hero-image {
-            height: 295px;
-            position: relative;
+            height: 295px;            
         }
 
         div.hero-image img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 480px;
             max-height: 295px;
         }

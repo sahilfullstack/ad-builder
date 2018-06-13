@@ -104,17 +104,15 @@
         div.sidebar div.logo {
             width: 164px;
             height: 147px;
-            margin: 10px auto 10px;
-            position:relative;
+            margin: 10px auto 10px;            
         }
 
         div.sidebar div.logo img {
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 164px;
             max-height: 147px;
         }
@@ -161,19 +159,17 @@
             overflow: hidden;
         }
 
-        div.hero-image {
-            position:relative;
+        div.hero-image {            
             margin-left: 205px;
             height: 260px;
         }
 
         div.hero-image img {
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;  
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle; 
             max-width: 275px;
             max-height: 260px;
         }

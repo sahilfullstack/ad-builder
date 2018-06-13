@@ -188,16 +188,15 @@
             background: #C6E5F3;
             position: absolute;
             top: 886px;
-            left: 821.799px;
-            position: relative;
+            left: 821.799px;            
         }
+        
         div.map img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto; 
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle; 
             max-width: 373.268px;
             max-height: 154px;
         }

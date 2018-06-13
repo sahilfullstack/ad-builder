@@ -99,19 +99,17 @@
         }
 
         div.logo {
-            position:relative;
             width: 153px;
             height: 166px;
             margin: 40px auto 10px;
         }
 
         div.logo img {
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto; 
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 153px;
             max-height: 166px;
         }

@@ -98,19 +98,17 @@
         }
 
         div.logo {
-            position:relative;
             width: 153px;
             height: 57px;
             margin: 20px auto 30px;
         }
 
         div.logo img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;          
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;          
             max-width: 153px;
             max-height: 57px;
         }
@@ -137,18 +135,16 @@
             margin: 0 auto 10px;
         }
 
-        div.hero-image {
-            position:relative;
+        div.hero-image {            
             height: 139px;
         }
 
         div.hero-image img {
-            position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;  
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 240px;
             max-height: 139px;
         }

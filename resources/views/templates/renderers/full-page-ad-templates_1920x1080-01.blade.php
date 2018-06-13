@@ -103,16 +103,14 @@
             width: 204.5px;
             height: 270px;
             margin: 70px auto 70px;
-            position: relative;
         }
 
         div.sidebar div.logo img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;
             max-width: 204.5px;
             max-height: 270px;
         }
@@ -161,16 +159,14 @@
         div.hero-image {
             margin-left: 309px;
             height: 530px;
-            position: relative;
         }
 
         div.hero-image img {
-             position:absolute;
-            top:0;
-            bottom:0;
-            left:0;
-            right:0; 
-            margin: auto;  
+            margin-left: auto;
+            margin-right: auto;
+            text-align: center;
+            display: table-cell;
+            vertical-align: middle;  
             max-width: 650px;
             max-height: 530px;
         }
