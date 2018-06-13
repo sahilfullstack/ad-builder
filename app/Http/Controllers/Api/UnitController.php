@@ -18,7 +18,7 @@ use App\Services\SlideMaker\Element;
 use App\Services\SlideMaker\Canvas;
 use Illuminate\Support\Facades\Log;
 use App\Jobs\{ProcessAudioToOggFormatJob, ProcessVideoToOgvFormatJob};
-use App\User;
+use App\User, Storage;
 
 class UnitController extends Controller
 {
