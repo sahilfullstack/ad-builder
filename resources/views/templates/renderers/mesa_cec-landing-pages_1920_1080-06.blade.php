@@ -252,6 +252,11 @@
             justify-content: space-evenly;
             align-items: center;
         }
+
+         div.survey-question {
+             border: 5px solid red;
+             padding: 10px;
+        }
     </style>
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
@@ -279,7 +284,7 @@
                 @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
 
-            <div class="survey">
+            <div class="survey"  style="background-color: {{ ! empty(array_get($readableComponents, 'survey')['_value']) ? 'transparent' : '' }};">
                 <p>@include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>
             </div>
 

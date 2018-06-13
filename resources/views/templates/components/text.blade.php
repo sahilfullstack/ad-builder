@@ -12,7 +12,6 @@
 @if(empty($stringValue))
 {{ $default }}
 @else
-
     @if(is_string($value))
         {{ $value }}
     @else

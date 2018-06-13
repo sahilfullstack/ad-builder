@@ -135,7 +135,17 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
         if(in_array($component->type, ["video"])) return ["_value" => $this->dummyVideo()];
         
         if(in_array($component->type, ["images"])) return [ ["_value" => $this->dummyImage()], ["_value" => $this->dummyImage2()]];
-        if(in_array($component->type, ["survey"])) return [ "_value" => $this->faker->sentence(6), "_yes"=> 0, "_no" => 0];
+        if(in_array($component->type, ["survey"])) return [
+                    '_value' => [ 
+                        'title'            => [ '_value' => '',  'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ], 
+                        'question'         => [ '_value' => '', 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ], 
+                        'box_color'        => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'yes_button_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'no_button_color'  => sprintf('#%06X', mt_rand(0, 0xFFFFFF))
+                    ], 
+                    '_yes' => 0, 
+                    '_no' => 0 
+                ];
 
         if($component->type == 'color') return ["_value" => sprintf('#%06X', mt_rand(0, 0xFFFFFF))];
         

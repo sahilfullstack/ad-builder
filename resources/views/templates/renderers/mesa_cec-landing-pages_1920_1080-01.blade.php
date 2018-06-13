@@ -209,7 +209,7 @@
 
         div.survey {
             width: 669.258px;
-            height: 138.319px;
+            height: 198.319px;
             background: #C6E5F3; 
             position: absolute;
             top: 558.784px;
@@ -248,6 +248,11 @@
             align-items: center;
         }
 
+        div.survey-question {
+             border: 5px solid red;
+             padding: 10px;
+        }
+
     </style>
 </head>
 <body class="{{ isset($bodyClass) ? $bodyClass : '' }}">    
@@ -264,6 +269,7 @@
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])
                 </h1>
             </div>
+
             <div class="hero-image">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
@@ -289,7 +295,7 @@
             </div>
 
             
-            <div class="survey">
+            <div class="survey" style="background-color: {{ ! empty(array_get($readableComponents, 'survey')['_value']) ? 'transparent' : '' }};">
                 @include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>
             </div>
         </div>

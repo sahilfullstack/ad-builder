@@ -129,6 +129,14 @@
                                                         </tr>
                                                         @endforeach
                                                 </table> 
+                                            @elseif($component->type == 'survey')
+                                                @if(! is_null($unit->child->components[$component->id]["_value"]["title"]["_value"]))
+                                                    <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]["_value"]}}</strong></p>
+                                                @endif
+
+                                                @if(! is_null($unit->child->components[$component->id]["_value"]["question"]["_value"]))
+                                                    <p>Question: <strong>{{$unit->child->components[$component->id]["_value"]["question"]["_value"]}}</strong></p>
+                                                @endif
                                             @elseif($component->type == 'timeline')
                                                 @if(is_null($unit->child->components[$component->id]["_value"]["title"]))
                                                     <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>

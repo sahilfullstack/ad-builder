@@ -684,7 +684,17 @@ class UnitController extends Controller
         {
             if($component->type == "survey")
             {
-                $preparedComponents[$component->id] = ['_value' => '', '_yes' => 0, '_no' => 0 ];
+                $preparedComponents[$component->id] = [
+                    '_value' => [ 
+                        'title'            => [ '_value' => '',  'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12 ], 
+                        'question'         => [ '_value' => '', 'foreground_color' => '#000000', 'size' => 12 ], 
+                        'box_color'        => '#ffffff', 
+                        'yes_button_color' => '#ffffff', 
+                        'no_button_color'  => '#ffffff'
+                    ], 
+                    '_yes' => 0, 
+                    '_no' => 0 
+                ];
             }
             else if($component->type == 'images')
             {
@@ -826,6 +836,24 @@ class UnitController extends Controller
                     $component->name . '._value.values.*.image.required'       => 'All the image in timeline are required.',
                     $component->name . '._value.values.*.image.url'            => 'All the images must be a valid url.',
                     $component->name . '._value.values.*.image.regex'          => 'All the image in timeline must be uploaded here.'
+                ]);   
+            }            
+            else if($component->type == "survey")
+            {
+                $validator = \Validator::make([$component->name => $value], [
+                     $component->name . '._value.title._value' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],  
+                    $component->name . '._value.question._value' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                   
+                ]);
+
+                $validator->setCustomMessages([
+                    $component->name . '._value.title._value.required' => 'Survey title is required.',
+                    $component->name . '._value.question._value.required' => 'Survey question is required.',
+                  
                 ]);   
             }
             else if($component->type == "hours_of_operation")

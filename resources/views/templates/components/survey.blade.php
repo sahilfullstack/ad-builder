@@ -31,9 +31,25 @@
             }
         }
     </script>
-    <p>@include('templates.components.text', ['value' => $value['_value'], 'default' => 'Survey'])</p>
-    <div class="survey-buttons">
-        <button onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
-        <button onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
+    <p>@include('templates.components.text', ['value' => $value['_value']['title'], 'default' => 'Survey Title'])</p>
+        @php
+            $boxStyle = '';
+        
+            if(isset($value['_value']['box_color'])) $boxStyle .= 'border-color: ' . $value['_value']['box_color'] . ';';
+        @endphp
+
+    <div style="{{ $boxStyle }};"  class="survey-question">
+        <p>@include('templates.components.text', ['value' => $value['_value']['question'], 'default' => 'Survey Question'])</p>    
+        <div class="survey-buttons">
+            @php
+                $yesButtonStyle = '';
+                $noButtonStyle = '';
+
+                if(isset($value['_value']['yes_button_color'])) $yesButtonStyle .= 'background-color: ' . $value['_value']['yes_button_color'] . ';';
+                if(isset($value['_value']['no_button_color'])) $noButtonStyle .= 'background-color: ' . $value['_value']['no_button_color'] . ';';
+            @endphp
+            <button style="{{ $yesButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
+            <button style="{{ $noButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
+        </div>
     </div>
 @endif

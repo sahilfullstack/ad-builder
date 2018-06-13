@@ -40,10 +40,51 @@
             </div>
             <div v-else-if="component.type =='survey'">
                 <div class="row" style="margin-bottom: 15px;">
-                    <div class="col-md-12">
-                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
-                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                    <div class="col-md-6">
+                        <label :for="component.slug+'_title_value'">Survey Title <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug+'_title_value'" :placeholder="component.type" v-model="form.components[component.id]['_value']['title']['_value']">
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                    <div class="col-md-2">
+                        <label :for="component.slug + '_title_size'">Size <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug + '_title_size'" :placeholder="component.type" v-model="form.components[component.id]['_value']['title']['size']">
+                    </div> 
+                     <div class="col-md-2">
+                        <label :for="component.slug + '_title_background_color'">Background<span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['title']['background_color']" :color="form.components[component.id]['_value']['title']['background_color']" />
+                    </div>                   
+                    <div class="col-md-2">
+                        <label :for="component.slug + '_title_foreground_color'">Text Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['title']['foreground_color']" :color="form.components[component.id]['_value']['title']['foreground_color']" />
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-6">
+                        <label :for="component.slug+ '_question_value'">Survey Question<span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug+ '_question_value'" placeholder="Question" v-model="form.components[component.id]['_value']['question']['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_question_size'">Size <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug + '_question_size'" :placeholder="component.type" v-model="form.components[component.id]['_value']['question']['size']">
+                    </div> 
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_question_foreground_color'">Text Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['question']['foreground_color']" :color="form.components[component.id]['_value']['question']['foreground_color']" />
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px;">                   
+                     <div class="col-md-4">
+                        <label :for="component.slug + '_box_color'">Box Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['box_color']" :color="form.components[component.id]['_value']['box_color']" />
+                    </div> 
+                     <div class="col-md-4">
+                        <label :for="component.slug + '_yes_button_color'">Yes Button Color<span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['yes_button_color']" :color="form.components[component.id]['_value']['yes_button_color']" />
+                    </div>                   
+                    <div class="col-md-4">
+                        <label :for="component.slug + '_no_button_color'">No Button Color<span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['no_button_color']" :color="form.components[component.id]['_value']['no_button_color']" />
                     </div>
                 </div>
             </div>
@@ -259,7 +300,7 @@ export default {
                 video: {_value: ''},
                 qr: {_value: ''},
                 images: {_value: ['']},
-                survey: {_value: '', _yes: 0, _no: 0},
+                survey: {_value: {title:{ _value:'',  background_color: '#ffffff', foreground_color: '#000000', size: 12}, question:{ _value:'', foreground_color: '#000000', size: 12}, box_color: '#ffffff', yes_button_color: '#ffffff', no_button_color: '#ffffff'}, _yes: 0, _no: 0},
                 audio: {_value: ''},
                 timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }},
                 hours_of_operation: {_value: {'title': '', values : {day: '', open: '', close: ''} }}
