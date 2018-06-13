@@ -196,7 +196,7 @@
                 </div>
             </div>
 
-            <div class="text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
+            <div class="text" style="background-color: {{ empty(array_get($readableComponents, 'text')['background_color']) ? 'transparent' : array_get($readableComponents, 'text')['background_color'] }};">
                 @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
             </div>
     

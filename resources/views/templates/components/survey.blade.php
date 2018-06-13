@@ -31,7 +31,7 @@
             }
         }
     </script>
-    <p>@include('templates.components.text', ['value' => $value['_value']['title'], 'default' => 'Survey Title'])</p>
+    <p class="survey-title">@include('templates.components.text', ['value' => $value['_value']['title'], 'default' => 'Survey Title'])</p>
         @php
             $boxStyle = '';
         

@@ -309,11 +309,11 @@
             <div class="logo">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
-             <div class="title">
+             <div class="title" style="background-color: {{ empty(array_get($readableComponents, 'landing-page-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'landing-page-title')['background_color'] }};">
                 <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
-            <div id="qr-title-1">
+            <div id="qr-title-1" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-title-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'qr-code-title-1')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-1'), 'default' => 'QR Title 1'])</p>
             </div>
             
@@ -321,7 +321,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-1'), 'default' => 'QR Value 1'])
             </div>
 
-            <div id="qr-title-2">
+            <div id="qr-title-2" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-title-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'qr-code-title-2')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-2'), 'default' => 'QR Title 2'])</p>
             </div>
             
@@ -329,7 +329,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'qr-code-value-2'), 'default' => 'QR Value 2'])
             </div>
 
-            <div id="qr-title-3">
+            <div id="qr-title-3" style="background-color: {{ empty(array_get($readableComponents, 'qr-code-title-3')['background_color']) ? 'transparent' : array_get($readableComponents, 'qr-code-title-3')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'qr-code-title-3'), 'default' => 'QR Title 3'])</p>
             </div>
 
@@ -341,7 +341,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
 
-            <div id="hero-text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
+            <div id="hero-text" style="background-color: {{ empty(array_get($readableComponents, 'text')['background_color']) ? 'transparent' : array_get($readableComponents, 'text')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 

@@ -376,46 +376,46 @@
             <div class="logo">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
-             <div class="title">
+             <div class="title" style="background-color: {{ empty(array_get($readableComponents, 'landing-page-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'landing-page-title')['background_color'] }};">
                 <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>            
             <div class="image-1">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
-             <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
+             <div id="text-1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
             <div class="image-2">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
-            <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
+            <div id="text-2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>            
             <div class="image-3">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-3'), 'default' => 'image 3'])
             </div>
-            <div id="text-3" style="background-color: {{ ! empty(array_get($readableComponents, 'text-3')['_value']) ? 'transparent' : '' }};">
+            <div id="text-3" style="background-color: {{ empty(array_get($readableComponents, 'text-3')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-3')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-3'), 'default' => 'Text 3'])</p>
             </div>
              <div class="image-4">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-4'), 'default' => 'image 4'])
             </div>
-            <div id="text-4" style="background-color: {{ ! empty(array_get($readableComponents, 'text-4')['_value']) ? 'transparent' : '' }};">
+            <div id="text-4" style="background-color: {{ empty(array_get($readableComponents, 'text-4')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-4')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-4'), 'default' => 'Text 4'])</p>
             </div>
             <div class="image-5">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-5'), 'default' => 'image 5'])
             </div>
-            <div id="text-5" style="background-color: {{ ! empty(array_get($readableComponents, 'text-5')['_value']) ? 'transparent' : '' }};">
+            <div id="text-5" style="background-color: {{ empty(array_get($readableComponents, 'text-5')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-5')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-5'), 'default' => 'Text 5'])</p>
             </div>
             <div class="image-6">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-6'), 'default' => 'image 6'])
             </div>
-            <div id="text-6" style="background-color: {{ ! empty(array_get($readableComponents, 'text-6')['_value']) ? 'transparent' : '' }};">
+            <div id="text-6" style="background-color: {{ empty(array_get($readableComponents, 'text-6')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-6')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-6'), 'default' => 'Text 6'])</p>
             </div>
-            <div id="address-text" style="background-color: {{ ! empty(array_get($readableComponents, 'map-title')['_value']) ? 'transparent' : '' }};">
+            <div id="address-text" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
             <div class="map">
@@ -426,7 +426,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
 
-            <div id="hours-of-operation" style="background-color: {{ ! empty(array_get($readableComponents, 'hours-of-operation')['_value']) ? 'transparent' : '' }};">
+            <div id="hours-of-operation" style="background-color: {{ empty(array_get($readableComponents, 'hours-of-operation')['background_color']) ? 'transparent' : array_get($readableComponents, 'hours-of-operation')['background_color'] }};">
                 @include('templates.components.hours_of_operation', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])
             </div>
          </div>

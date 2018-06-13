@@ -128,7 +128,7 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
 
     protected function getFakeComponentValue($component)
     {
-        if(in_array($component->type, ["text", "qr"])) return ["_value" => $this->faker->sentence(6)];
+        if(in_array($component->type, ["text", "qr"])) return ["_value" => $this->faker->sentence(6), 'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ];
 
         if(in_array($component->type, ["image"])) return ["_value" => $this->dummyImage()];
         if(in_array($component->type, ["audio"])) return ["_value" => $this->dummyAudio()];

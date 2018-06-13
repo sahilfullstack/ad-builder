@@ -249,8 +249,13 @@
         }
 
         div.survey-question {
-             border: 5px solid red;
-             padding: 10px;
+            margin: 24px;
+            border: 5px solid red;
+            padding: 10px;
+        } 
+
+        .survey-title span {
+            margin-left: 24px;
         }
 
     </style>
@@ -264,7 +269,7 @@
             <div class="logo">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
-             <div class="title">
+             <div class="title" style="background-color: {{ empty(array_get($readableComponents, 'landing-page-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'landing-page-title')['background_color'] }};">
                 <h1>
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])
                 </h1>
@@ -274,15 +279,15 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
-            <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
+            <div id="text-1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
-            <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
+            <div id="text-2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             
-            <div id="map-title" style="background-color: {{ ! empty(array_get($readableComponents, 'map-title')['_value']) ? 'transparent' : '' }};">
+            <div id="map-title" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
 
@@ -290,12 +295,11 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
             </div>
 
-            <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+            <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'website-url')['background_color']) ? 'transparent' : array_get($readableComponents, 'website-url')['background_color'] }};">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
 
-            
-            <div class="survey" style="background-color: {{ ! empty(array_get($readableComponents, 'survey')['_value']) ? 'transparent' : '' }};">
+            <div class="survey" style="background-color: {{ empty(array_get($readableComponents, 'survey')['_value']['title']['background_color']) ? 'transparent' : array_get($readableComponents, 'survey')['_value']['title']['background_color'] }};">
                 @include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>
             </div>
         </div>

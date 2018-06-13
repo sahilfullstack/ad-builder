@@ -364,7 +364,7 @@
             <div class="logo">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
-             <div class="title">
+             <div class="title" style="background-color: {{ empty(array_get($readableComponents, 'landing-page-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'landing-page-title')['background_color'] }};">
                 <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
 
@@ -388,7 +388,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook', 'size' => 2])
             </div>
             
-            <div class="heading-1" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-1')['_value']) ? 'transparent' : '' }};">
+            <div class="heading-1" style="background-color: {{ empty(array_get($readableComponents, 'heading-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-1')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-1'), 'default' => 'Heading 1'])</p>
             </div>
 
@@ -396,7 +396,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
 
-            <div id="text-1" style="background-color: {{ ! empty(array_get($readableComponents, 'text-1')['_value']) ? 'transparent' : '' }};">
+            <div id="text-1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
@@ -404,7 +404,7 @@
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-1'), 'default' => 'Amount 1'])</p>
             </div>
 
-            <div class="heading-2" style="background-color: {{ ! empty(array_get($readableComponents, 'heading-2')['_value']) ? 'transparent' : '' }};">
+            <div class="heading-2" style="background-color: {{ empty(array_get($readableComponents, 'heading-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-2')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-2'), 'default' => 'Heading 2'])</p>
             </div>
 
@@ -412,7 +412,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
 
-            <div id="text-2" style="background-color: {{ ! empty(array_get($readableComponents, 'text-2')['_value']) ? 'transparent' : '' }};">
+            <div id="text-2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             

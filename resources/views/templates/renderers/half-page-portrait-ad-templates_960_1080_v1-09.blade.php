@@ -185,7 +185,7 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'logo'), 'default' => 'logo'])
             </div>
 
-            <div class="text" style="background-color: {{ ! empty(array_get($readableComponents, 'text')['_value']) ? 'transparent' : '' }};">
+            <div class="text" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
                 @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
             </div>
     
