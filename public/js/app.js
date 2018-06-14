@@ -80857,7 +80857,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 video: { _value: '' },
                 qr: { _value: '' },
                 images: { _value: [''] },
-                survey: { _value: { title: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 12 }, question: { _value: '', foreground_color: '#000000', size: 12 }, box_color: '#ffffff', yes_button_color: '#ffffff', no_button_color: '#ffffff' }, _yes: 0, _no: 0 },
+                survey: { _value: { title: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 30 }, question: { _value: '', foreground_color: '#000000', size: 30 }, box_color: '#0FE7D3', yes_button_color: '#59E519', no_button_color: '#D30A0A' }, _yes: 0, _no: 0 },
                 audio: { _value: '' },
                 timeline: { _value: { 'title': '', values: { month: '', year: '', description: '', image: '' } } },
                 hours_of_operation: { _value: { 'title': '', values: { day: '', open: '', close: '' } } }
@@ -90021,7 +90021,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.errors = [];
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to make a copy of this ad?',
+                    message: 'Do you really want to delete this ad?',
                     unit: this.unit
                 }
             }).then(function (url) {

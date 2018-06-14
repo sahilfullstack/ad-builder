@@ -30,7 +30,7 @@ export default {
             this.errors = [];
             Modal.show(ConfirmModal, {
                 propsData: {
-                        message:'Do you really want to make a copy of this ad?',
+                        message:'Do you really want to delete this ad?',
                         unit: this.unit
                     }
                 })
