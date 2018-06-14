@@ -426,7 +426,7 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
 
-            <div id="hours-of-operation" style="background-color: {{ empty(array_get($readableComponents, 'hours-of-operation')['background_color']) ? 'transparent' : array_get($readableComponents, 'hours-of-operation')['background_color'] }};">
+            <div id="hours-of-operation" style="background-color: {{ empty(array_get($readableComponents, 'hours-of-operation')['_value']['background_color']) ? 'transparent' : array_get($readableComponents, 'hours-of-operation')['_value']['background_color'] }};">
                 @include('templates.components.hours_of_operation', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])
             </div>
          </div>

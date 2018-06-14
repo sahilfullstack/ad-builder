@@ -80791,6 +80791,57 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80857,10 +80908,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 video: { _value: '' },
                 qr: { _value: '' },
                 images: { _value: [''] },
-                survey: { _value: { title: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 12 }, question: { _value: '', foreground_color: '#000000', size: 12 }, box_color: '#ffffff', yes_button_color: '#ffffff', no_button_color: '#ffffff' }, _yes: 0, _no: 0 },
+                survey: { _value: { title: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 30 }, question: { _value: '', foreground_color: '#000000', size: 30 }, box_color: '#0FE7D3', yes_button_color: '#59E519', no_button_color: '#D30A0A' }, _yes: 0, _no: 0 },
                 audio: { _value: '' },
                 timeline: { _value: { 'title': '', values: { month: '', year: '', description: '', image: '' } } },
-                hours_of_operation: { _value: { 'title': '', values: { day: '', open: '', close: '' } } }
+                hours_of_operation: { _value: { 'title': '', background_color: '#ffffff', foreground_color: '#000000', open_box_color: '#000000', close_box_color: '#000000', size: 30, values: { day: { _value: '', foreground_color: '#000000', size: 30 }, open: '', close: '' } } }
             };
 
             return defaults[dataType];
@@ -83224,7 +83275,7 @@ var render = function() {
                                       staticStyle: { "margin-bottom": "15px" }
                                     },
                                     [
-                                      _c("div", { staticClass: "col-md-12" }, [
+                                      _c("div", { staticClass: "col-md-6" }, [
                                         _c(
                                           "label",
                                           {
@@ -83282,7 +83333,284 @@ var render = function() {
                                             }
                                           }
                                         })
-                                      ])
+                                      ]),
+                                      _vm._v(" "),
+                                      _c("div", { staticClass: "col-md-2" }, [
+                                        _c(
+                                          "label",
+                                          {
+                                            attrs: {
+                                              for: component.slug + "_size"
+                                            }
+                                          },
+                                          [
+                                            _vm._v("Size "),
+                                            _c(
+                                              "span",
+                                              { staticClass: "text-danger" },
+                                              [_vm._v("*")]
+                                            )
+                                          ]
+                                        ),
+                                        _vm._v(" "),
+                                        _c("input", {
+                                          directives: [
+                                            {
+                                              name: "model",
+                                              rawName: "v-model",
+                                              value:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["size"],
+                                              expression:
+                                                "form.components[component.id]['_value']['size']"
+                                            }
+                                          ],
+                                          staticClass: "form-control",
+                                          attrs: {
+                                            type: "text",
+                                            id: component.slug + "_size",
+                                            placeholder: component.type
+                                          },
+                                          domProps: {
+                                            value:
+                                              _vm.form.components[component.id][
+                                                "_value"
+                                              ]["size"]
+                                          },
+                                          on: {
+                                            input: function($event) {
+                                              if ($event.target.composing) {
+                                                return
+                                              }
+                                              _vm.$set(
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"],
+                                                "size",
+                                                $event.target.value
+                                              )
+                                            }
+                                          }
+                                        })
+                                      ]),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-2" },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              attrs: {
+                                                for:
+                                                  component.slug +
+                                                  "_background_color"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("Background"),
+                                              _c(
+                                                "span",
+                                                { staticClass: "text-danger" },
+                                                [_vm._v("*")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("color-picker", {
+                                            attrs: {
+                                              color:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["background_color"]
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["background_color"],
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form.components[
+                                                    component.id
+                                                  ]["_value"],
+                                                  "background_color",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "form.components[component.id]['_value']['background_color']"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-2" },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              attrs: {
+                                                for:
+                                                  component.slug +
+                                                  "_foreground_color"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("Text Color "),
+                                              _c(
+                                                "span",
+                                                { staticClass: "text-danger" },
+                                                [_vm._v("*")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("color-picker", {
+                                            attrs: {
+                                              color:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["foreground_color"]
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["foreground_color"],
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form.components[
+                                                    component.id
+                                                  ]["_value"],
+                                                  "foreground_color",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "form.components[component.id]['_value']['foreground_color']"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
+                                    ]
+                                  ),
+                                  _vm._v(" "),
+                                  _c(
+                                    "div",
+                                    {
+                                      staticClass: "row",
+                                      staticStyle: { "margin-bottom": "15px" }
+                                    },
+                                    [
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-6" },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              attrs: {
+                                                for:
+                                                  component.slug +
+                                                  "_open_box_color"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("Open Box Color"),
+                                              _c(
+                                                "span",
+                                                { staticClass: "text-danger" },
+                                                [_vm._v("*")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("color-picker", {
+                                            attrs: {
+                                              color:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["open_box_color"]
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["open_box_color"],
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form.components[
+                                                    component.id
+                                                  ]["_value"],
+                                                  "open_box_color",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "form.components[component.id]['_value']['open_box_color']"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      ),
+                                      _vm._v(" "),
+                                      _c(
+                                        "div",
+                                        { staticClass: "col-md-6" },
+                                        [
+                                          _c(
+                                            "label",
+                                            {
+                                              attrs: {
+                                                for:
+                                                  component.slug +
+                                                  "_close_box_color"
+                                              }
+                                            },
+                                            [
+                                              _vm._v("Close Box Color "),
+                                              _c(
+                                                "span",
+                                                { staticClass: "text-danger" },
+                                                [_vm._v("*")]
+                                              )
+                                            ]
+                                          ),
+                                          _vm._v(" "),
+                                          _c("color-picker", {
+                                            attrs: {
+                                              color:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["close_box_color"]
+                                            },
+                                            model: {
+                                              value:
+                                                _vm.form.components[
+                                                  component.id
+                                                ]["_value"]["close_box_color"],
+                                              callback: function($$v) {
+                                                _vm.$set(
+                                                  _vm.form.components[
+                                                    component.id
+                                                  ]["_value"],
+                                                  "close_box_color",
+                                                  $$v
+                                                )
+                                              },
+                                              expression:
+                                                "form.components[component.id]['_value']['close_box_color']"
+                                            }
+                                          })
+                                        ],
+                                        1
+                                      )
                                     ]
                                   ),
                                   _vm._v(" "),
@@ -83356,7 +83684,7 @@ var render = function() {
                                                               component.slug +
                                                               "_" +
                                                               formComponentIndex +
-                                                              "_day"
+                                                              "_day_value"
                                                           }
                                                         },
                                                         [
@@ -83385,9 +83713,11 @@ var render = function() {
                                                                 "values"
                                                               ][
                                                                 formComponentIndex
-                                                              ]["day"],
+                                                              ]["day"][
+                                                                "_value"
+                                                              ],
                                                             expression:
-                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['day']"
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['day']['_value']"
                                                           }
                                                         ],
                                                         staticClass:
@@ -83398,7 +83728,7 @@ var render = function() {
                                                             component.slug +
                                                             "_" +
                                                             formComponentIndex +
-                                                            "_day",
+                                                            "_day_value",
                                                           placeholder: "June"
                                                         },
                                                         domProps: {
@@ -83409,7 +83739,7 @@ var render = function() {
                                                               "values"
                                                             ][
                                                               formComponentIndex
-                                                            ]["day"]
+                                                            ]["day"]["_value"]
                                                         },
                                                         on: {
                                                           input: function(
@@ -83429,8 +83759,570 @@ var render = function() {
                                                                 "values"
                                                               ][
                                                                 formComponentIndex
+                                                              ]["day"],
+                                                              "_value",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_day_size"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Size"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["day"]["size"],
+                                                            expression:
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['day']['size']"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "form-control",
+                                                        attrs: {
+                                                          type: "text",
+                                                          id:
+                                                            component.slug +
+                                                            "_" +
+                                                            formComponentIndex +
+                                                            "_day_size",
+                                                          placeholder: "size"
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["day"]["size"]
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["day"],
+                                                              "size",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_day_foreground_color"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Text Color"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("color-picker", {
+                                                        attrs: {
+                                                          color:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["day"][
+                                                              "foreground_color"
+                                                            ]
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["day"][
+                                                              "foreground_color"
+                                                            ],
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["day"],
+                                                              "foreground_color",
+                                                              $$v
+                                                            )
+                                                          },
+                                                          expression:
+                                                            "form.components[component.id]['_value']['values'][formComponentIndex]['day']['foreground_color']"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "row",
+                                                  staticStyle: {
+                                                    "margin-bottom": "15px"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_open_value"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Open"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["open"][
+                                                                "_value"
                                                               ],
-                                                              "day",
+                                                            expression:
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['open']['_value']"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "form-control",
+                                                        attrs: {
+                                                          type: "text",
+                                                          id:
+                                                            component.slug +
+                                                            "_" +
+                                                            formComponentIndex +
+                                                            "_open_value",
+                                                          placeholder: "June"
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["open"]["_value"]
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["open"],
+                                                              "_value",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_open_size"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Size"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["open"]["size"],
+                                                            expression:
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['open']['size']"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "form-control",
+                                                        attrs: {
+                                                          type: "text",
+                                                          id:
+                                                            component.slug +
+                                                            "_" +
+                                                            formComponentIndex +
+                                                            "_open_size",
+                                                          placeholder: "size"
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["open"]["size"]
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["open"],
+                                                              "size",
+                                                              $event.target
+                                                                .value
+                                                            )
+                                                          }
+                                                        }
+                                                      })
+                                                    ]
+                                                  ),
+                                                  _vm._v(" "),
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_open_foreground_color"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Text Color"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("color-picker", {
+                                                        attrs: {
+                                                          color:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["open"][
+                                                              "foreground_color"
+                                                            ]
+                                                        },
+                                                        model: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["open"][
+                                                              "foreground_color"
+                                                            ],
+                                                          callback: function(
+                                                            $$v
+                                                          ) {
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["open"],
+                                                              "foreground_color",
+                                                              $$v
+                                                            )
+                                                          },
+                                                          expression:
+                                                            "form.components[component.id]['_value']['values'][formComponentIndex]['open']['foreground_color']"
+                                                        }
+                                                      })
+                                                    ],
+                                                    1
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c(
+                                                "div",
+                                                {
+                                                  staticClass: "row",
+                                                  staticStyle: {
+                                                    "margin-bottom": "15px"
+                                                  }
+                                                },
+                                                [
+                                                  _c(
+                                                    "div",
+                                                    { staticClass: "col-md-4" },
+                                                    [
+                                                      _c(
+                                                        "label",
+                                                        {
+                                                          attrs: {
+                                                            for:
+                                                              component.slug +
+                                                              "_" +
+                                                              formComponentIndex +
+                                                              "_close_value"
+                                                          }
+                                                        },
+                                                        [
+                                                          _vm._v("Close"),
+                                                          _c(
+                                                            "span",
+                                                            {
+                                                              staticClass:
+                                                                "text-danger"
+                                                            },
+                                                            [_vm._v("*")]
+                                                          )
+                                                        ]
+                                                      ),
+                                                      _vm._v(" "),
+                                                      _c("input", {
+                                                        directives: [
+                                                          {
+                                                            name: "model",
+                                                            rawName: "v-model",
+                                                            value:
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["close"][
+                                                                "_value"
+                                                              ],
+                                                            expression:
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['close']['_value']"
+                                                          }
+                                                        ],
+                                                        staticClass:
+                                                          "form-control",
+                                                        attrs: {
+                                                          type: "text",
+                                                          id:
+                                                            component.slug +
+                                                            "_" +
+                                                            formComponentIndex +
+                                                            "_close_value",
+                                                          placeholder: "June"
+                                                        },
+                                                        domProps: {
+                                                          value:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["close"]["_value"]
+                                                        },
+                                                        on: {
+                                                          input: function(
+                                                            $event
+                                                          ) {
+                                                            if (
+                                                              $event.target
+                                                                .composing
+                                                            ) {
+                                                              return
+                                                            }
+                                                            _vm.$set(
+                                                              _vm.form
+                                                                .components[
+                                                                component.id
+                                                              ]["_value"][
+                                                                "values"
+                                                              ][
+                                                                formComponentIndex
+                                                              ]["close"],
+                                                              "_value",
                                                               $event.target
                                                                 .value
                                                             )
@@ -83529,11 +84421,11 @@ var render = function() {
                                                               component.slug +
                                                               "_" +
                                                               formComponentIndex +
-                                                              "_open"
+                                                              "_close_size"
                                                           }
                                                         },
                                                         [
-                                                          _vm._v("Open"),
+                                                          _vm._v("Size"),
                                                           _c(
                                                             "span",
                                                             {
@@ -83558,9 +84450,11 @@ var render = function() {
                                                                 "values"
                                                               ][
                                                                 formComponentIndex
-                                                              ]["open"],
+                                                              ]["close"][
+                                                                "size"
+                                                              ],
                                                             expression:
-                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['open']"
+                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['close']['size']"
                                                           }
                                                         ],
                                                         staticClass:
@@ -83571,8 +84465,8 @@ var render = function() {
                                                             component.slug +
                                                             "_" +
                                                             formComponentIndex +
-                                                            "_open",
-                                                          placeholder: "2018"
+                                                            "_close_size",
+                                                          placeholder: "size"
                                                         },
                                                         domProps: {
                                                           value:
@@ -83582,7 +84476,7 @@ var render = function() {
                                                               "values"
                                                             ][
                                                               formComponentIndex
-                                                            ]["open"]
+                                                            ]["close"]["size"]
                                                         },
                                                         on: {
                                                           input: function(
@@ -83602,8 +84496,8 @@ var render = function() {
                                                                 "values"
                                                               ][
                                                                 formComponentIndex
-                                                              ],
-                                                              "open",
+                                                              ]["close"],
+                                                              "size",
                                                               $event.target
                                                                 .value
                                                             )
@@ -83625,11 +84519,11 @@ var render = function() {
                                                               component.slug +
                                                               "_" +
                                                               formComponentIndex +
-                                                              "_close"
+                                                              "_close_foreground_color"
                                                           }
                                                         },
                                                         [
-                                                          _vm._v("Close"),
+                                                          _vm._v("Text Color"),
                                                           _c(
                                                             "span",
                                                             {
@@ -83641,36 +84535,20 @@ var render = function() {
                                                         ]
                                                       ),
                                                       _vm._v(" "),
-                                                      _c("input", {
-                                                        directives: [
-                                                          {
-                                                            name: "model",
-                                                            rawName: "v-model",
-                                                            value:
-                                                              _vm.form
-                                                                .components[
-                                                                component.id
-                                                              ]["_value"][
-                                                                "values"
-                                                              ][
-                                                                formComponentIndex
-                                                              ]["close"],
-                                                            expression:
-                                                              "form.components[component.id]['_value']['values'][formComponentIndex]['close']"
-                                                          }
-                                                        ],
-                                                        staticClass:
-                                                          "form-control",
+                                                      _c("color-picker", {
                                                         attrs: {
-                                                          type: "text",
-                                                          id:
-                                                            component.slug +
-                                                            "_" +
-                                                            formComponentIndex +
-                                                            "_close",
-                                                          placeholder: "June"
+                                                          color:
+                                                            _vm.form.components[
+                                                              component.id
+                                                            ]["_value"][
+                                                              "values"
+                                                            ][
+                                                              formComponentIndex
+                                                            ]["close"][
+                                                              "foreground_color"
+                                                            ]
                                                         },
-                                                        domProps: {
+                                                        model: {
                                                           value:
                                                             _vm.form.components[
                                                               component.id
@@ -83678,18 +84556,12 @@ var render = function() {
                                                               "values"
                                                             ][
                                                               formComponentIndex
-                                                            ]["close"]
-                                                        },
-                                                        on: {
-                                                          input: function(
-                                                            $event
+                                                            ]["close"][
+                                                              "foreground_color"
+                                                            ],
+                                                          callback: function(
+                                                            $$v
                                                           ) {
-                                                            if (
-                                                              $event.target
-                                                                .composing
-                                                            ) {
-                                                              return
-                                                            }
                                                             _vm.$set(
                                                               _vm.form
                                                                 .components[
@@ -83698,15 +84570,17 @@ var render = function() {
                                                                 "values"
                                                               ][
                                                                 formComponentIndex
-                                                              ],
-                                                              "close",
-                                                              $event.target
-                                                                .value
+                                                              ]["close"],
+                                                              "foreground_color",
+                                                              $$v
                                                             )
-                                                          }
+                                                          },
+                                                          expression:
+                                                            "form.components[component.id]['_value']['values'][formComponentIndex]['close']['foreground_color']"
                                                         }
                                                       })
-                                                    ]
+                                                    ],
+                                                    1
                                                   )
                                                 ]
                                               )

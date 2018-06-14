@@ -740,11 +740,28 @@ class UnitController extends Controller
             {
                 $preparedComponents[$component->id] = ['_value' => [
                     'title' => '',
+                    'background_color' => '#ffffff', 
+                    'foreground_color' => '#000000', 
+                    'size' => 30,
+                    'open_box_color'=> '#ffffff',
+                    'close_box_color'=> '#ffffff',
                     'values' => [
                         [
-                            'day' => '',
-                            'open' => '',
-                            'close' => ''
+                            'day' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ],
+                            'open' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ],
+                            'close' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ]
                         ]
                     ]
                 ]];

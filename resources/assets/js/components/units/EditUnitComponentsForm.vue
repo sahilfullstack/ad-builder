@@ -179,9 +179,31 @@
             </div>
             <div v-else-if="component.type =='hours_of_operation'">
               <div class="row" style="margin-bottom: 15px;">
-                    <div class="col-md-12">
+                    <div class="col-md-6">
                         <label :for="component.slug + '_title'">Hours Of Operation Title<span class="text-danger">*</span></label>
                         <input type="text" class="form-control" :id="component.slug" placeholder="Hours Of Operation" v-model="form.components[component.id]['_value']['title']">                        
+                    </div>
+                     <div class="col-md-2">
+                        <label :for="component.slug + '_size'">Size <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug + '_size'" :placeholder="component.type" v-model="form.components[component.id]['_value']['size']">
+                    </div> 
+                     <div class="col-md-2">
+                        <label :for="component.slug + '_background_color'">Background<span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['background_color']" :color="form.components[component.id]['_value']['background_color']" />
+                    </div>                   
+                    <div class="col-md-2">
+                        <label :for="component.slug + '_foreground_color'">Text Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['foreground_color']" :color="form.components[component.id]['_value']['foreground_color']" />
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 15px;">
+                     <div class="col-md-6">
+                        <label :for="component.slug + '_open_box_color'">Open Box Color<span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['open_box_color']" :color="form.components[component.id]['_value']['open_box_color']" />
+                    </div>                   
+                    <div class="col-md-6">
+                        <label :for="component.slug + '_close_box_color'">Close Box Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['_value']['close_box_color']" :color="form.components[component.id]['_value']['close_box_color']" />
                     </div>
                 </div>
 
@@ -194,23 +216,52 @@
                         </div>
                         <div class="row" style="margin-bottom: 15px;">
                             <div class="col-md-4">
-                                <label :for="component.slug + '_'+formComponentIndex+'_day'">Day<span class="text-danger">*</span></label>
+                                <label :for="component.slug + '_'+formComponentIndex+'_day_value'">Day<span class="text-danger">*</span></label>
 
-                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_day'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['day']">
-                                  <a href @click.prevent="pushAnotherHoursOfOperationElementInComponent(component.id)" v-if="form.components[component.id]['_value']['values'].length <= 9"><span class="text-success">Add Another</span></a>
-                                <a href @click.prevent="removeHoursOfOperationElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id]['_value']['values'].length > 1"><span class="text-danger">Remove</span></a>             
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_day_value'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['day']['_value']">
+                                          
                             </div> 
                          <div class="col-md-4">
-                                <label :for="component.slug + '_'+formComponentIndex+'_open'">Open<span class="text-danger">*</span></label>
-
-                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_open'" placeholder="2018" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['open']">
-                                
+                                 <label :for="component.slug + '_'+formComponentIndex+'_day_size'">Size<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_day_size'" placeholder="size" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['day']['size']">                                
                             </div>
                             <div class="col-md-4">
-                                <label :for="component.slug + '_'+formComponentIndex+'_close'">Close<span class="text-danger">*</span></label>
+                                 <label :for="component.slug + '_'+formComponentIndex+'_day_foreground_color'">Text Color<span class="text-danger">*</span></label>
+                                <color-picker v-model="form.components[component.id]['_value']['values'][formComponentIndex]['day']['foreground_color']" :color="form.components[component.id]['_value']['values'][formComponentIndex]['day']['foreground_color']" />                                                 
+                            </div>                           
+                        </div>
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-4">
+                                <label :for="component.slug + '_'+formComponentIndex+'_open_value'">Open<span class="text-danger">*</span></label>
 
-                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_close'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']">
-                                                 
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_open_value'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['open']['_value']">
+                                          
+                            </div> 
+                         <div class="col-md-4">
+                                 <label :for="component.slug + '_'+formComponentIndex+'_open_size'">Size<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_open_size'" placeholder="size" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['open']['size']">                                
+                            </div>
+                            <div class="col-md-4">
+                                 <label :for="component.slug + '_'+formComponentIndex+'_open_foreground_color'">Text Color<span class="text-danger">*</span></label>
+                                <color-picker v-model="form.components[component.id]['_value']['values'][formComponentIndex]['open']['foreground_color']" :color="form.components[component.id]['_value']['values'][formComponentIndex]['open']['foreground_color']" />                                                 
+                            </div>                           
+                        </div>
+
+                        <div class="row" style="margin-bottom: 15px;">
+                            <div class="col-md-4">
+                                <label :for="component.slug + '_'+formComponentIndex+'_close_value'">Close<span class="text-danger">*</span></label>
+
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_close_value'" placeholder="June" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']['_value']">
+                                 <a href @click.prevent="pushAnotherHoursOfOperationElementInComponent(component.id)" v-if="form.components[component.id]['_value']['values'].length <= 9"><span class="text-success">Add Another</span></a>
+                                <a href @click.prevent="removeHoursOfOperationElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id]['_value']['values'].length > 1"><span class="text-danger">Remove</span></a>    
+                            </div> 
+                         <div class="col-md-4">
+                                 <label :for="component.slug + '_'+formComponentIndex+'_close_size'">Size<span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" :id="component.slug + '_'+formComponentIndex+'_close_size'" placeholder="size" v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']['size']">                                
+                            </div>
+                            <div class="col-md-4">
+                                 <label :for="component.slug + '_'+formComponentIndex+'_close_foreground_color'">Text Color<span class="text-danger">*</span></label>
+                                <color-picker v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']['foreground_color']" :color="form.components[component.id]['_value']['values'][formComponentIndex]['close']['foreground_color']" />                                                 
                             </div>                           
                         </div>
                     </div>
@@ -303,7 +354,7 @@ export default {
                 survey: {_value: {title:{ _value:'',  background_color: '#ffffff', foreground_color: '#000000', size: 30}, question:{ _value:'', foreground_color: '#000000', size: 30}, box_color: '#0FE7D3', yes_button_color: '#59E519', no_button_color: '#D30A0A'}, _yes: 0, _no: 0},
                 audio: {_value: ''},
                 timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }},
-                hours_of_operation: {_value: {'title': '', values : {day: '', open: '', close: ''} }}
+                hours_of_operation: {_value: {'title': '', background_color: '#ffffff', foreground_color: '#000000', open_box_color: '#000000', close_box_color: '#000000', size: 30, values : {day: { _value: '', foreground_color: '#000000', size: 30}, open: '', close: ''} }}
             }
 
             return defaults[dataType];
