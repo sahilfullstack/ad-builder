@@ -59,25 +59,25 @@
 			@if($i % 2 == 0)
 	        <div class="timeline-entry direction-d">
 	       		 <div class="timeline-pin"></div>
-	            <div class="timeline-month">{{$value['values'][$i]['month']}}</div>
-	            <div class="timeline-year">{{$value['values'][$i]['year']}}</div>
+	            <div class="timeline-month">{{array_get($value['values'][$i], 'month')}}</div>
+	            <div class="timeline-year">{{array_get($value['values'][$i], 'year')}}</div>
 	            <div class="timeline-entry-description">
-	                {{$value['values'][$i]['description']}}
+	                {{array_get($value['values'][$i], 'description')}}
 	            </div>
 	            <div class="timeline-entry-image">
-	                <img src="{{$value['values'][$i]['image']}}">
+	                <img src="{{array_get($value['values'][$i], 'image')}}">
 	            </div>
 	        </div>
 	        @else
 	        <div class="timeline-entry direction-u">
 	            <div class="timeline-pin"></div>
-	            <div class="timeline-month">{{$value['values'][$i]['month']}}</div>
-	            <div class="timeline-year">{{$value['values'][$i]['year']}}</div>
+	            <div class="timeline-month">{{array_get($value['values'][$i], 'month')}}</div>
+	            <div class="timeline-year">{{array_get($value['values'][$i], 'year')}}</div>
 	            <div class="timeline-entry-description">
-	                {{$value['values'][$i]['description']}}
+	                {{array_get($value['values'][$i], 'description')}}
 	            </div>
 	            <div class="timeline-entry-image">
-	                <img src="{{$value['values'][$i]['image']}}">
+	                <img src="{{array_get($value['values'][$i], 'image')}}">
 	            </div>
 	        </div>
 	        @endif

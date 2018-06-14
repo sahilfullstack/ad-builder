@@ -90895,7 +90895,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             this.errors = [];
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to make a copy of this ad?',
+                    message: 'Do you really want to delete this ad?',
                     unit: this.unit
                 }
             }).then(function (url) {

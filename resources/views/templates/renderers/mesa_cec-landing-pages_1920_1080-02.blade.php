@@ -306,7 +306,7 @@
                 }
                 .timeline hr {
                     position: absolute;
-                    top: 134.39px;
+                    top: 135.39px;
                     border: 0;
                     height: 2px;
                     width: 100%;
@@ -421,7 +421,7 @@
             <div class="hero-video">
                 @include('templates.components.video', ['value' => array_get($readableComponents, 'video'), 'default' => 'video'])
             </div>
-            <div class="timeline" style="background-color:{{ empty(array_get($readableComponents, 'timeline._value.title')) ?: 'transparent' }};">
+            <div class="timeline">
                 @include('templates.components.timeline', ['value' => array_get($readableComponents, 'timeline'), 'default' => 'timeline'])
             </div>
          </div>
