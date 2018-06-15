@@ -12,6 +12,16 @@
 
             <div class="panel panel-default">
                 <div class="panel-body">
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'draft']) }}" class="btn btn-sm btn-info">#Draft</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'published']) }}" class="btn btn-sm btn-info">#Published</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'approved']) }}" class="btn btn-sm btn-info">#Approved</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'rejected']) }}" class="btn btn-sm btn-info">#Rejected</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'processing']) }}" class="btn btn-sm btn-info">#Processing</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'all']) }}" class="btn btn-sm btn-info">#All</a>&nbsp;
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-body">
                     <table class="table table-striped table-bordered table-hover">
                         <tr>
                             <th class="text-center">#</th>

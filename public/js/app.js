@@ -20245,7 +20245,7 @@ Vue.component('create-user-form', __webpack_require__(320));
 Vue.component('edit-multiple-unit-template-form', __webpack_require__(323));
 Vue.component('update-user-password-form', __webpack_require__(326));
 Vue.component('delete-user-button', __webpack_require__(329));
-Vue.component('delete-unit-button', __webpack_require__(332));
+Vue.component('unsubscribe-unit-button', __webpack_require__(332));
 
 var app = new Vue({
   el: '#app'
@@ -80901,6 +80901,28 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -80968,6 +80990,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 video: { _value: '' },
                 qr: { _value: '' },
                 images: { _value: [''] },
+                photogallery: { _value: { _value: [''] }, background_color: '#ffffff' },
                 survey: { _value: { title: { _value: '', background_color: '#ffffff', foreground_color: '#000000', size: 30 }, question: { _value: '', foreground_color: '#000000', size: 30 }, box_color: '#0FE7D3', yes_button_color: '#59E519', no_button_color: '#D30A0A' }, _yes: 0, _no: 0 },
                 audio: { _value: '' },
                 timeline: { _value: { 'title': '', values: { month: '', year: '', description: '', image: '' } } },
@@ -80981,6 +81004,12 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         },
         removeElementAtPositionFromComponent: function removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
+        },
+        pushAnotherElementInPhotogalleryComponent: function pushAnotherElementInPhotogalleryComponent(componentId) {
+            this.form.components[componentId]['_value'].push({ _value: '' });
+        },
+        removeElementAtPositionFromInPhotogalleryComponent: function removeElementAtPositionFromInPhotogalleryComponent(componentId, index) {
+            this.form.components[componentId]['_value'].splice(index, 1);
         },
         pushAnotherTimelineElementInComponent: function pushAnotherTimelineElementInComponent(componentId) {
             this.form.components[componentId]['_value']['values'].push({ month: '', year: '', description: '', image: '' });
@@ -81055,6 +81084,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             var index = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
             var accept = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : '';
             var is_timeline = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : false;
+            var component_slug = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : undefined;
 
             var thiz = this;
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__FileUpload___default.a, {
@@ -81064,8 +81094,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
                 }
             }).then(function (url) {
                 if (index !== null) {
+                    console.log(component_slug);
                     if (is_timeline) {
                         Vue.set(thiz.form.components[componentId]['_value']['values'], index, { image: url });
+                    } else if (component_slug == 'photo-gallery') {
+                        Vue.set(thiz.form.components[componentId]['_value'], index, { _value: url });
                     } else {
                         // let currentArray = thiz.form.components[componentId];
                         // currentArray[index] = url;
@@ -81434,7 +81467,8 @@ var render = function() {
                                 _vm.upload(
                                   component.id,
                                   formComponentIndex,
-                                  "image/png,image/jpg,image/gif,image/jpeg"
+                                  "image/png,image/jpg,image/gif,image/jpeg",
+                                  ""
                                 )
                               }
                             }
@@ -81572,6 +81606,240 @@ var render = function() {
                     ]
                   )
                 })
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          component.type == "photogallery"
+            ? _c(
+                "div",
+                [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "row",
+                      staticStyle: { "margin-bottom": "15px" }
+                    },
+                    [
+                      _c(
+                        "div",
+                        { staticClass: "col-md-6" },
+                        [
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_background_color"
+                              }
+                            },
+                            [
+                              _vm._v("Photogallery Background Color"),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("color-picker", {
+                            attrs: {
+                              color:
+                                _vm.form.components[component.id][
+                                  "background_color"
+                                ]
+                            },
+                            model: {
+                              value:
+                                _vm.form.components[component.id][
+                                  "background_color"
+                                ],
+                              callback: function($$v) {
+                                _vm.$set(
+                                  _vm.form.components[component.id],
+                                  "background_color",
+                                  $$v
+                                )
+                              },
+                              expression:
+                                "form.components[component.id]['background_color']"
+                            }
+                          })
+                        ],
+                        1
+                      )
+                    ]
+                  ),
+                  _vm._v(" "),
+                  _vm._l(_vm.form.components[component.id]["_value"], function(
+                    formComponent,
+                    formComponentIndex
+                  ) {
+                    return _c(
+                      "div",
+                      {
+                        key: component.id + "-" + formComponentIndex,
+                        staticClass: "row",
+                        staticStyle: { "margin-bottom": "15px" }
+                      },
+                      [
+                        _c("div", { staticClass: "col-md-12" }, [
+                          _c(
+                            "a",
+                            {
+                              staticClass: "pull-right",
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.upload(
+                                    component.id,
+                                    formComponentIndex,
+                                    "image/png,image/jpg,image/gif,image/jpeg",
+                                    "",
+                                    component.slug
+                                  )
+                                }
+                              }
+                            },
+                            [_vm._v("Upload")]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "label",
+                            {
+                              attrs: {
+                                for: component.slug + "_" + formComponentIndex
+                              }
+                            },
+                            [
+                              _vm._v(
+                                "\n                        " +
+                                  _vm._s(component.name) +
+                                  " #" +
+                                  _vm._s(formComponentIndex + 1) +
+                                  " "
+                              ),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ]),
+                              _vm._v(" "),
+                              component.rules.width && component.rules.height
+                                ? _c("em", [
+                                    _vm._v(
+                                      "(" +
+                                        _vm._s(component.rules.width) +
+                                        "px x " +
+                                        _vm._s(component.rules.height) +
+                                        "px)"
+                                    )
+                                  ])
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value:
+                                  _vm.form.components[component.id]["_value"][
+                                    formComponentIndex
+                                  ]["_value"],
+                                expression:
+                                  "form.components[component.id]['_value'][formComponentIndex]['_value']"
+                              }
+                            ],
+                            staticClass: "form-control",
+                            attrs: {
+                              type: "text",
+                              id: component.slug + "_" + formComponentIndex,
+                              placeholder: component.type
+                            },
+                            domProps: {
+                              value:
+                                _vm.form.components[component.id]["_value"][
+                                  formComponentIndex
+                                ]["_value"]
+                            },
+                            on: {
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.$set(
+                                  _vm.form.components[component.id]["_value"][
+                                    formComponentIndex
+                                  ],
+                                  "_value",
+                                  $event.target.value
+                                )
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              attrs: { href: "" },
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  _vm.pushAnotherElementInPhotogalleryComponent(
+                                    component.id
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _vm.form.components[component.id]["_value"]
+                                .length <= 5
+                                ? _c("span", { staticClass: "text-success" }, [
+                                    _vm._v("Add Another")
+                                  ])
+                                : _vm._e()
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _vm.form.components[component.id]["_value"].length > 1
+                            ? _c(
+                                "a",
+                                {
+                                  attrs: { href: "" },
+                                  on: {
+                                    click: function($event) {
+                                      $event.preventDefault()
+                                      _vm.removeElementAtPositionFromPhotogalleryComponent(
+                                        component.id,
+                                        formComponentIndex
+                                      )
+                                    }
+                                  }
+                                },
+                                [
+                                  _c("span", { staticClass: "text-danger" }, [
+                                    _vm._v("Remove")
+                                  ])
+                                ]
+                              )
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "span",
+                            {
+                              staticClass: "text-danger",
+                              class: {
+                                hidden:
+                                  _vm.errors["component.slug"] == undefined
+                              },
+                              staticStyle: { "margin-right": "10px" }
+                            },
+                            [_vm._v(_vm._s(_vm.errors["component.slug"]))]
+                          )
+                        ])
+                      ]
+                    )
+                  })
+                ],
+                2
               )
             : component.type == "text"
               ? _c("div", [
@@ -91659,7 +91927,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/units/DeleteUnitButton.vue"
+Component.options.__file = "resources/assets/js/components/units/UnsubscribeUnitButton.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -91668,9 +91936,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-4c6a0210", Component.options)
+    hotAPI.createRecord("data-v-59f0eb00", Component.options)
   } else {
-    hotAPI.reload("data-v-4c6a0210", Component.options)
+    hotAPI.reload("data-v-59f0eb00", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -91709,29 +91977,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             errors: [],
             disable: {
-                deleting: false
+                unsubscribe: false
             }
         };
     },
 
 
     methods: {
-        deleting: function deleting() {
+        unsubscribe: function unsubscribe() {
             var thiz = this;
             this.errors = [];
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to delete this ad?',
+                    message: 'Do you really want to unsubscribe this ad?',
                     unit: this.unit
                 }
             }).then(function (url) {
-                thiz.disable.deleting = true;
+                thiz.disable.unsubscribe = true;
                 axios.delete('/api/units/' + thiz.unit.id, {}).then(function (response) {
-                    thiz.disable.deleting = false;
+                    thiz.disable.unsubscribe = false;
                     // go to edit unit
                     window.location = thiz.redirectTo;
                 }).catch(function (error) {
-                    thiz.disable.deleting = false;
+                    thiz.disable.unsubscribe = false;
                     _.forEach(error.response.data.errors, function (error, index) {
                         console.log(thiz.errors);
                         var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
@@ -91756,15 +92024,15 @@ var render = function() {
     "a",
     {
       staticClass: "btn btn-sm btn-danger",
-      attrs: { href: "", disabled: _vm.disable.deleting },
+      attrs: { href: "", disabled: _vm.disable.unsubscribe },
       on: {
         click: function($event) {
           $event.preventDefault()
-          return _vm.deleting($event)
+          return _vm.unsubscribe($event)
         }
       }
     },
-    [_vm._v("Delete")]
+    [_vm._v("Unsubscribe")]
   )
 }
 var staticRenderFns = []
@@ -91773,7 +92041,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-4c6a0210", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-59f0eb00", module.exports)
   }
 }
 

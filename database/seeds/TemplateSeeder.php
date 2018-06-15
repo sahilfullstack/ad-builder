@@ -2301,7 +2301,7 @@ class TemplateSeeder extends Seeder
                     ],     
                     [
                         'name' => 'Photo Gallery',
-                        'type' => 'images',
+                        'type' => 'photogallery',
                         'rules' => [
                             'width' => 142,
                             'height' => 123

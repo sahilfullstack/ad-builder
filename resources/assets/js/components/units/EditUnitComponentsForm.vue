@@ -3,16 +3,38 @@
         <p><strong>COMPONENTS <span class="text-danger">*</span></strong></p>
         <p v-if="components.length == 0"><em>No components in the selected template.</em></p>
         <div class="form-group" v-for="component in components" :key="component.id">
-            <div v-if="component.type == 'images'">
+            <div v-if="component.type == 'images'">                
                 <div v-for="(formComponent, formComponentIndex) in form.components[component.id]" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">
+
                     <div class="col-md-12">
-                        <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg')">Upload</a>
+                        <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg', '')">Upload</a>
                         <label :for="component.slug + '_' + formComponentIndex">
                             {{ component.name }} #{{ formComponentIndex + 1 }} <span class="text-danger">*</span> <em v-if="component.rules.width && component.rules.height">({{ component.rules.width }}px x {{ component.rules.height }}px)</em>
                         </label>
                         <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id][formComponentIndex]['_value']">
-                        <a href @click.prevent="pushAnotherElementInComponent(component.id)"><span class="text-success">Add Another</span></a>
+                        <a href @click.prevent="pushAnotherElementInComponent(component.id)"><span class="text-success" >Add Another</span></a>                        
                         <a href @click.prevent="removeElementAtPositionFromComponent(component.id, formComponentIndex)" v-if="form.components[component.id].length > 1"><span class="text-danger">Remove</span></a>
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                </div>
+            </div>
+            <div v-if="component.type == 'photogallery'">   
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-6">
+                        <label :for="component.slug + '_background_color'">Photogallery Background Color<span class="text-danger">*</span></label>                                         
+                       <color-picker v-model="form.components[component.id]['background_color']" :color="form.components[component.id]['background_color']" />                   
+                    </div>
+                </div>            
+                <div v-for="(formComponent, formComponentIndex) in form.components[component.id]['_value']" :key="component.id + '-' + formComponentIndex" class="row" style="margin-bottom: 15px;">
+
+                    <div class="col-md-12">
+                        <a href class="pull-right" @click.prevent="upload(component.id, formComponentIndex, 'image/png,image/jpg,image/gif,image/jpeg', '', component.slug)">Upload</a>
+                        <label :for="component.slug + '_' + formComponentIndex">
+                            {{ component.name }} #{{ formComponentIndex + 1 }} <span class="text-danger">*</span> <em v-if="component.rules.width && component.rules.height">({{ component.rules.width }}px x {{ component.rules.height }}px)</em>
+                        </label>
+                        <input type="text" class="form-control" :id="component.slug + '_' + formComponentIndex" :placeholder="component.type" v-model="form.components[component.id]['_value'][formComponentIndex]['_value']">
+                        <a href @click.prevent="pushAnotherElementInPhotogalleryComponent(component.id)"><span class="text-success" v-if="form.components[component.id]['_value'].length <= 5">Add Another</span></a>
+                        <a href @click.prevent="removeElementAtPositionFromPhotogalleryComponent(component.id, formComponentIndex)" v-if="form.components[component.id]['_value'].length > 1"><span class="text-danger">Remove</span></a>
                         <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
                 </div>
@@ -410,7 +432,8 @@ export default {
                 image: {_value: ''},
                 video: {_value: ''},
                 qr: {_value: ''},
-                images: {_value: ['']},
+                images: { _value: [''] },
+                photogallery: {_value:{_value: ['']}, background_color: '#ffffff'},
                 survey: {_value: {title:{ _value:'',  background_color: '#ffffff', foreground_color: '#000000', size: 30}, question:{ _value:'', foreground_color: '#000000', size: 30}, box_color: '#0FE7D3', yes_button_color: '#59E519', no_button_color: '#D30A0A'}, _yes: 0, _no: 0},
                 audio: {_value: ''},
                 timeline: {_value: {'title': '', values : {month: '', year: '', description: '', image: ''} }},
@@ -424,6 +447,12 @@ export default {
         },
         removeElementAtPositionFromComponent(componentId, index) {
             this.form.components[componentId].splice(index, 1);
+        },
+        pushAnotherElementInPhotogalleryComponent(componentId) {
+            this.form.components[componentId]['_value'].push({_value: ''});
+        },
+        removeElementAtPositionFromInPhotogalleryComponent(componentId, index) {
+            this.form.components[componentId]['_value'].splice(index, 1);
         },
         pushAnotherTimelineElementInComponent(componentId) {
             this.form.components[componentId]['_value']['values'].push({month: '', year: '', description: '', image: ''});
@@ -499,7 +528,7 @@ export default {
                 });
         },
 
-        upload(componentId, index = null, accept = '', is_timeline=false) {
+        upload(componentId, index = null, accept = '', is_timeline=false, component_slug=undefined) {
             let thiz = this;
             Modal.show(FileUpload, {
                 propsData: {
@@ -510,10 +539,15 @@ export default {
                 .then(function(url) {
                     if(index !== null)
                     {
+                    console.log(component_slug);
                         if(is_timeline)
                         {
                             Vue.set(thiz.form.components[componentId]['_value']['values'], index, {image: url});
                         } 
+                        else if(component_slug == 'photo-gallery')
+                        {
+                            Vue.set(thiz.form.components[componentId]['_value'], index, {_value: url});   
+                        }
                         else 
                         {                        
                             // let currentArray = thiz.form.components[componentId];

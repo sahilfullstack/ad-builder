@@ -25,7 +25,12 @@ class ValidComponents implements Rule
         'images' => [
             'height'  => 'Height of :attribute image at #:key must be :ruleValue px',
             'width'   => 'Width of :attribute image at #:key must be :ruleValue px',
-            'invalid' => 'The :attribute image  at #:key link is not valid',
+            'invalid' => 'All the images link must be valid',
+        ],
+        'photogallery' => [
+            'height'  => 'Height of :attribute image at #:key must be :ruleValue px',
+            'width'   => 'Width of :attribute image at #:key must be :ruleValue px',
+            'invalid' => 'All the links in Photo Gallery must be valid.',
         ],
         'video' => [
             'height'       => 'Height of :attribute must be :ruleValue px',
@@ -73,6 +78,10 @@ class ValidComponents implements Rule
             case 'images':
                 return $this->validateImages($attribute, $value);
                 break;
+
+            case 'photogallery':
+                return $this->validatePhotogallery($attribute, $value);
+                break;
             
             default:
                 # code...
@@ -82,6 +91,21 @@ class ValidComponents implements Rule
     }
 
     private function validateImages($attribute, $values)
+    {
+        $result = $this->validateImage($attribute, $values);
+
+        if($result == false)
+        {
+            $explodedAttribute = explode('.', $attribute);
+            $this->index = $explodedAttribute[count($explodedAttribute) - 2] + 1;
+            $this->attribute = $explodedAttribute[0];
+            return $result;                
+        }
+
+        return true;
+    } 
+
+    private function validatePhotogallery($attribute, $values)
     {
         $result = $this->validateImage($attribute, $values);
 

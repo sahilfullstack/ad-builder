@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container">
+       
     <div class="panel panel-default">
         <div class="panel-body">
             <!-- Nav tabs -->
@@ -26,8 +27,9 @@
                     <hr>
                     @if(is_null($unit->approved_at))
                     <a href="{{ route('units.edit', ['unit' => $unit]) }}" class="btn btn-sm btn-info">Edit</a>&nbsp;
+                    @else
+                    <unsubscribe-unit-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></unsubscribe-unit-button>
                     @endif
-                    <delete-unit-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></delete-unit-button>
                     <hr>
 
                     @if( ! is_null($unit->scheduled_at))
@@ -112,6 +114,8 @@
                                         @if(! empty($unit->child->components[$component->id]))
                                             @if($component->type == 'images')
                                                 <p>{{ $unit->child->components[$component->id][0]["_value"] }}</p>
+                                            @elseif($component->type == 'photogallery')
+                                                <p>{{ $unit->child->components[$component->id]["_value"][0]["_value"] }}</p>
                                             @elseif($component->type == 'hours_of_operation')
                                                 @if(is_null($unit->child->components[$component->id]["_value"]["title"]))
                                                     <p>Title: <strong>{{$unit->child->components[$component->id]["_value"]["title"]}}</strong></p>
