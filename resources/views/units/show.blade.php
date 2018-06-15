@@ -21,7 +21,7 @@
                         @endif
                         <span class="badge badge-dark">{{ $unit->state }}</span>
                     </h2>
-                    
+
                     <create-unit-copy-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></create-unit-copy-button>
                     <hr>
                     @if(is_null($unit->approved_at))
@@ -46,13 +46,13 @@
                     @endif
                     <p><strong>Created at:</strong> {{ $unit->created_at->toDayDateTimeString() }}</p>
                     <p><strong>Last updated at:</strong> {{ $unit->updated_at->toDayDateTimeString() }}</p>
-                    
+
                     @if(is_null($unit->template))
                     <p>No template selected yet.</p>
                     @else
                         <p><strong>Template:</strong> {{ $unit->template->name }}</p>
                         <p><strong>Components contained:</strong></p>
-                        
+
                         <!-- Components -->
                         @if($unit->template->components->count() > 0)
                         <ul class="list-group">
@@ -60,6 +60,7 @@
                                 <li class="list-group-item">
                                     <h5><strong>{{ $component->name }}</strong></h5>
                                     @if(! empty($unit->components[$component->id]))
+                                        
                                         <p>{{ $unit->components[$component->id]["_value"] }}</p>
                                     @else
                                         <p><em>Not defined yet.</em></p>
