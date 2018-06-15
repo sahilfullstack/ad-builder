@@ -38,6 +38,23 @@
                     </div>
                 </div>
             </div>
+            <div v-else-if="component.type =='subtext'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-6">
+                        <label :for="component.slug">{{ component.name }} <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
+                    </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_size'">Size <span class="text-danger">*</span></label>
+                        <input type="text" class="form-control" :id="component.slug + '_size'" :placeholder="component.type" v-model="form.components[component.id]['size']">
+                    </div>                  
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_foreground_color'">Text Color <span class="text-danger">*</span></label>
+                        <color-picker v-model="form.components[component.id]['foreground_color']" :color="form.components[component.id]['foreground_color']" />
+                    </div>
+                </div>
+            </div>
             <div v-else-if="component.type =='survey'">
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-6">
@@ -389,6 +406,7 @@ export default {
         defaultValueForDataType(dataType = 'text') {
             let defaults = {
                 text: {_value: '', background_color: '#ffffff', foreground_color: '#000000', size: 12},
+                subtext: {_value: '', foreground_color: '#000000', size: 15},
                 image: {_value: ''},
                 video: {_value: ''},
                 qr: {_value: ''},

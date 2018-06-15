@@ -704,6 +704,10 @@ class UnitController extends Controller
             {
                 $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12];
             }
+            else if($component->type == 'subtext')
+            {
+                $preparedComponents[$component->id] = ['_value' => '', 'foreground_color' => '#000000', 'size' => 15];
+            }
             else if($component->type == 'timeline')
             {
                 $preparedComponents[$component->id] = ['_value' => [

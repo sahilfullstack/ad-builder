@@ -111,7 +111,17 @@ class AddWebsiteQRInLandingPages extends Command
                         'name' => 'Website URL',
                         'type' => 'qr',
                         'rules' => []
-                    ],                
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
+                        'rules' => []
+                    ],               
                 ]
             ],
             [
@@ -183,7 +193,17 @@ class AddWebsiteQRInLandingPages extends Command
                         'name' => 'Website URL',
                         'type' => 'qr',
                         'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
                     ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
+                        'rules' => []
+                    ],
                 ]
             ],
             [
@@ -252,6 +272,16 @@ class AddWebsiteQRInLandingPages extends Command
                     [
                         'name' => 'Website URL',
                         'type' => 'qr',
+                        'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
                         'rules' => []
                     ],      
                 ]
@@ -379,6 +409,16 @@ class AddWebsiteQRInLandingPages extends Command
                     [
                         'name' => 'Website URL',
                         'type' => 'qr',
+                        'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
                         'rules' => []
                     ],  
                 ]
