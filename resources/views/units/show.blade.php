@@ -124,7 +124,7 @@
                                                         @foreach($unit->child->components[$component->id]["_value"]["values"] as $key => $values)
                                                         <tr>
                                                             @foreach($values as $key => $value)
-                                                                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;"><strong>{{$value}}</strong></td>
+                                                                <td style="border: 1px solid #dddddd; text-align: left; padding: 8px;"><strong>{{$value['_value']}}</strong></td>
                                                             @endforeach
                                                         </tr>
                                                         @endforeach

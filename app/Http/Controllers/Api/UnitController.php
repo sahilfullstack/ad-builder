@@ -743,8 +743,18 @@ class UnitController extends Controller
                     'background_color' => '#ffffff', 
                     'foreground_color' => '#000000', 
                     'size' => 30,
-                    'open_box_color'=> '#ffffff',
-                    'close_box_color'=> '#ffffff',
+                    'open_box'=> [
+                        '_value'           => '',
+                        'background_color' => '#ffffff', 
+                        'foreground_color' => '#000000', 
+                        'size'             => 30
+                    ],
+                    'close_box'=> [
+                        '_value'           => '',
+                        'background_color' => '#ffffff',
+                        'foreground_color' => '#000000', 
+                        'size'             => 30
+                    ],
                     'values' => [
                         [
                             'day' => [
@@ -875,9 +885,14 @@ class UnitController extends Controller
             }
             else if($component->type == "hours_of_operation")
             {
-
                 $validator = \Validator::make([$component->name => $value], [
                      $component->name . '._value.title' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.open_box._value' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.close_box._value' => [
                         $skipRequiredCheck ? 'nullable' : 'required',
                     ],
                     $component->name . '._value.values.*.day' => [
@@ -892,10 +907,12 @@ class UnitController extends Controller
                 ]);
 
                 $validator->setCustomMessages([
-                    $component->name . '._value.title.required'          => 'Hours Of Operation title is required.',
-                    $component->name . '._value.values.*.day.required'   => 'All the day in timeline are required.',
-                    $component->name . '._value.values.*.open.required'  => 'All the open in timeline are required.',
-                    $component->name . '._value.values.*.close.required' => 'All the close in timeline are required.',
+                    $component->name . '._value.title.required'            => 'Hours Of Operation title is required.',
+                    $component->name . '._value.open_box._value.required'  => 'Open Box title is required.',
+                    $component->name . '._value.close_box._value.required' => 'Close Box title is required.',
+                    $component->name . '._value.values.*.day.required'     => 'All the day in timeline are required.',
+                    $component->name . '._value.values.*.open.required'    => 'All the open in timeline are required.',
+                    $component->name . '._value.values.*.close.required'   => 'All the close in timeline are required.',
                 ]);   
             }
             else if($component->type == "color")

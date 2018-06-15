@@ -179,12 +179,39 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                 ]];
 
         if($component->type == 'hours_of_operation') return ['_value' => [
-                    'title' => $this->faker->sentence(10),
+                    'title' => $this->faker->sentence(4),
+                    'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                    'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                    'size' => 30,
+                    'open_box'=> [
+                        '_value'           => $this->faker->sentence(1),
+                        'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'size'             => 30
+                    ],
+                    'close_box'=> [
+                        '_value'           => $this->faker->sentence(1),
+                        'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
+                        'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'size'             => 30
+                    ],
                     'values' => [
                         [
-                            'day' => 'Day 1',
-                            'open' => 'Day OT',
-                            'close' => 'Day CT'
+                            'day' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ],
+                            'open' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ],
+                            'close' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ]
                         ]
                     ]
                 ]];
