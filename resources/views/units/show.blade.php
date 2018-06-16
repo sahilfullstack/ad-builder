@@ -39,7 +39,7 @@
                     <p><strong>Thumbnail:</strong> <a href="{{ $unit->thumbnail }}">{{ $unit->thumbnail }}</a></p>
                     @endif
                     @if( ! is_null($unit->hover_image))
-                    <p><strong>Hover Image:</strong> <a href="{{ $unit->hover_image }}">{{ $unit->hover_image }}</a></p>
+                    <p><strong>Scroll Over Image:</strong> <a href="{{ $unit->hover_image }}">{{ $unit->hover_image }}</a></p>
                     @endif
                     @if($unit->is_popup == 0)
                     <p><strong>Popup:</strong>Disabled</p>
