@@ -18,7 +18,7 @@
                     </div>
                 </div>
             </div>
-            <div v-if="component.type == 'photogallery'">   
+            <div v-else-if="component.type == 'photogallery'">   
                 <div class="row" style="margin-bottom: 15px;">
                     <div class="col-md-6">
                         <label :for="component.slug + '_background_color'">Photogallery Background Color<span class="text-danger">*</span></label>                                         
