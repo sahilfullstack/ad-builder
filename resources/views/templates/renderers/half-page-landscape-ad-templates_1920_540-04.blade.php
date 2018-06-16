@@ -140,6 +140,7 @@
             width: 265px;
             margin: 0 auto 30px;
             position: relative;
+            margin-right: 15px;
         }
         
         div.sidebar div.quote {
