@@ -125,7 +125,7 @@
                                         <a href="{{ route('users.profile') }}">
                                             Profile
                                         </a>
-                                    </li>
+                                    </li>                                     
                                     <li>
                                         <a href="{{ route('users.change_password') }}">
                                             Change Password
@@ -138,6 +138,11 @@
                                         </a>
                                     </li>
                                     @endcan
+                                    <li>
+                                        <a href="{{ route('users.help') }}">
+                                            Help
+                                        </a>
+                                    </li>
                                     <li>
                                         <a href="{{ route('logout') }}"
                                             onclick="event.preventDefault();
