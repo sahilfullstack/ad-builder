@@ -2563,7 +2563,7 @@ class TemplateSeeder extends Seeder
                     ],  
                     [
                         'name' => 'Hours Of Operation',
-                        'type' => 'hours-of-operation',
+                        'type' => 'hours_of_operation',
                         'rules' => []
                     ]     
                 ]
