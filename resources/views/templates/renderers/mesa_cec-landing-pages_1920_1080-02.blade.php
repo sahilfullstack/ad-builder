@@ -414,7 +414,13 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
-            <div class="hero-text" style="background-color: {{ empty(array_get($readableComponents, 'text')['background_color']) ? 'transparent' : array_get($readableComponents, 'text')['background_color'] }};">
+            <div class="hero-text" style="
+                background-color: {{ empty(array_get($readableComponents, 'text')['background_color']) ? 'transparent' : array_get($readableComponents, 'text')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])</p>
             </div>
 

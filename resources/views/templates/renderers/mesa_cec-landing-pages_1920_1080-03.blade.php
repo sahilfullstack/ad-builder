@@ -276,13 +276,25 @@
                 <h1>@include('templates.components.text', ['value' => array_get($readableComponents, 'landing-page-title'), 'default' => 'Landing Page Title'])</h1>
             </div>
             
-            <div id="hero-text1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
+            <div id="hero-text1" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-1.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
             <div class="slideshow">
                 @include('templates.components.slideshow', ['value' => array_get($readableComponents, 'slideshow'), 'default' => 'slideshow'])
             </div>
-            <div id="hero-text2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
+            <div id="hero-text2" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-2.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             <div id="address-text" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
