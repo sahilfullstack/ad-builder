@@ -178,9 +178,9 @@
             <div class="text" style="
                 background-color: {{ empty(array_get($readableComponents, 'text')['background_color']) ? 'transparent' : array_get($readableComponents, 'text')['background_color'] }};
                 display: flex;
-                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text')['valign']) }};
-                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text')['halign']) }};
-                text-align: {{ array_get($readableComponents, 'text')['halign'] }};
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text.halign') }};
             ">
                 @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
             </div>
