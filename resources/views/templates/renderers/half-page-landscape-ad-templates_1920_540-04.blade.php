@@ -204,7 +204,13 @@
 
                 <div class="quote-holder">
                     <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text.background_color') }}"></div>
-                    <div class="quote" style="background-color: {{ array_get($readableComponents, 'text.background_color') }}">
+                    <div class="quote" style="
+                        background-color: {{ array_get($readableComponents, 'text.background_color') }};
+                        display: flex;
+                        align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text.valign')) }};
+                        justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text.halign')) }};
+                        text-align: {{ array_get($readableComponents, 'text.halign') }};
+                    ">
                         @include('templates.components.text', ['value' => array_get($readableComponents, 'text'), 'default' => 'Text'])
                     </div>
                 </div>
