@@ -28,3 +28,12 @@ function absolute_to_relative_url($url)
 {
     return str_replace(url()->to('/') . '/', '', $url);
 }
+
+function align_to_flex_rule($align)
+{
+    if($align == 'center' || $align == 'middle') return 'center';
+    
+    if($align == 'right' || $align == 'bottom') return 'flex-end';
+    
+    return 'flex-start';
+}
