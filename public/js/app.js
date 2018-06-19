@@ -80939,6 +80939,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -85924,127 +85933,232 @@ var render = function() {
                                     ],
                                     2
                                   )
-                                : _c("div", [
-                                    _c(
-                                      "div",
-                                      {
-                                        staticClass: "row",
-                                        staticStyle: { "margin-bottom": "15px" }
-                                      },
-                                      [
-                                        _c(
-                                          "div",
-                                          { staticClass: "col-md-12" },
-                                          [
-                                            component.type == "image" ||
-                                            component.type == "video" ||
-                                            component.type == "audio"
-                                              ? _c(
-                                                  "a",
-                                                  {
-                                                    staticClass: "pull-right",
-                                                    attrs: { href: "" },
-                                                    on: {
-                                                      click: function($event) {
-                                                        $event.preventDefault()
-                                                        _vm.upload(
-                                                          component.id,
-                                                          undefined
-                                                        )
-                                                      }
-                                                    }
-                                                  },
-                                                  [_vm._v("Upload")]
-                                                )
-                                              : _vm._e(),
-                                            _vm._v(" "),
-                                            _c(
-                                              "label",
-                                              {
-                                                attrs: { for: component.slug }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(component.name) + " "
-                                                ),
-                                                _c(
-                                                  "span",
-                                                  {
-                                                    staticClass: "text-danger"
-                                                  },
-                                                  [_vm._v("*")]
-                                                )
-                                              ]
-                                            ),
-                                            _vm._v(" "),
-                                            _c("input", {
-                                              directives: [
+                                : component.slug == "twitter-url" ||
+                                  component.slug == "facebook-url" ||
+                                  component.slug == "instagram-url"
+                                  ? _c("div", [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "row",
+                                          staticStyle: {
+                                            "margin-bottom": "15px"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "col-md-12" },
+                                            [
+                                              _c(
+                                                "label",
                                                 {
-                                                  name: "model",
-                                                  rawName: "v-model",
+                                                  attrs: { for: component.slug }
+                                                },
+                                                [_vm._v(_vm._s(component.name))]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.form.components[
+                                                        component.id
+                                                      ]["_value"],
+                                                    expression:
+                                                      "form.components[component.id]['_value']"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: component.slug,
+                                                  placeholder: component.type
+                                                },
+                                                domProps: {
                                                   value:
                                                     _vm.form.components[
                                                       component.id
-                                                    ]["_value"],
-                                                  expression:
-                                                    "form.components[component.id]['_value']"
-                                                }
-                                              ],
-                                              staticClass: "form-control",
-                                              attrs: {
-                                                type: "text",
-                                                id: component.slug,
-                                                placeholder: component.type
-                                              },
-                                              domProps: {
-                                                value:
-                                                  _vm.form.components[
-                                                    component.id
-                                                  ]["_value"]
-                                              },
-                                              on: {
-                                                input: function($event) {
-                                                  if ($event.target.composing) {
-                                                    return
+                                                    ]["_value"]
+                                                },
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.form.components[
+                                                        component.id
+                                                      ],
+                                                      "_value",
+                                                      $event.target.value
+                                                    )
                                                   }
-                                                  _vm.$set(
+                                                }
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "text-danger",
+                                                  class: {
+                                                    hidden:
+                                                      _vm.errors[
+                                                        "component.slug"
+                                                      ] == undefined
+                                                  },
+                                                  staticStyle: {
+                                                    "margin-right": "10px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.errors[
+                                                        "component.slug"
+                                                      ]
+                                                    )
+                                                  )
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
+                                  : _c("div", [
+                                      _c(
+                                        "div",
+                                        {
+                                          staticClass: "row",
+                                          staticStyle: {
+                                            "margin-bottom": "15px"
+                                          }
+                                        },
+                                        [
+                                          _c(
+                                            "div",
+                                            { staticClass: "col-md-12" },
+                                            [
+                                              component.type == "image" ||
+                                              component.type == "video" ||
+                                              component.type == "audio"
+                                                ? _c(
+                                                    "a",
+                                                    {
+                                                      staticClass: "pull-right",
+                                                      attrs: { href: "" },
+                                                      on: {
+                                                        click: function(
+                                                          $event
+                                                        ) {
+                                                          $event.preventDefault()
+                                                          _vm.upload(
+                                                            component.id,
+                                                            undefined
+                                                          )
+                                                        }
+                                                      }
+                                                    },
+                                                    [_vm._v("Upload")]
+                                                  )
+                                                : _vm._e(),
+                                              _vm._v(" "),
+                                              _c(
+                                                "label",
+                                                {
+                                                  attrs: { for: component.slug }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(component.name) + " "
+                                                  ),
+                                                  _c(
+                                                    "span",
+                                                    {
+                                                      staticClass: "text-danger"
+                                                    },
+                                                    [_vm._v("*")]
+                                                  )
+                                                ]
+                                              ),
+                                              _vm._v(" "),
+                                              _c("input", {
+                                                directives: [
+                                                  {
+                                                    name: "model",
+                                                    rawName: "v-model",
+                                                    value:
+                                                      _vm.form.components[
+                                                        component.id
+                                                      ]["_value"],
+                                                    expression:
+                                                      "form.components[component.id]['_value']"
+                                                  }
+                                                ],
+                                                staticClass: "form-control",
+                                                attrs: {
+                                                  type: "text",
+                                                  id: component.slug,
+                                                  placeholder: component.type
+                                                },
+                                                domProps: {
+                                                  value:
                                                     _vm.form.components[
                                                       component.id
-                                                    ],
-                                                    "_value",
-                                                    $event.target.value
-                                                  )
-                                                }
-                                              }
-                                            }),
-                                            _vm._v(" "),
-                                            _c(
-                                              "span",
-                                              {
-                                                staticClass: "text-danger",
-                                                class: {
-                                                  hidden:
-                                                    _vm.errors[
-                                                      "component.slug"
-                                                    ] == undefined
+                                                    ]["_value"]
                                                 },
-                                                staticStyle: {
-                                                  "margin-right": "10px"
+                                                on: {
+                                                  input: function($event) {
+                                                    if (
+                                                      $event.target.composing
+                                                    ) {
+                                                      return
+                                                    }
+                                                    _vm.$set(
+                                                      _vm.form.components[
+                                                        component.id
+                                                      ],
+                                                      "_value",
+                                                      $event.target.value
+                                                    )
+                                                  }
                                                 }
-                                              },
-                                              [
-                                                _vm._v(
-                                                  _vm._s(
-                                                    _vm.errors["component.slug"]
+                                              }),
+                                              _vm._v(" "),
+                                              _c(
+                                                "span",
+                                                {
+                                                  staticClass: "text-danger",
+                                                  class: {
+                                                    hidden:
+                                                      _vm.errors[
+                                                        "component.slug"
+                                                      ] == undefined
+                                                  },
+                                                  staticStyle: {
+                                                    "margin-right": "10px"
+                                                  }
+                                                },
+                                                [
+                                                  _vm._v(
+                                                    _vm._s(
+                                                      _vm.errors[
+                                                        "component.slug"
+                                                      ]
+                                                    )
                                                   )
-                                                )
-                                              ]
-                                            )
-                                          ]
-                                        )
-                                      ]
-                                    )
-                                  ])
+                                                ]
+                                              )
+                                            ]
+                                          )
+                                        ]
+                                      )
+                                    ])
         ])
       }),
       _vm._v(" "),

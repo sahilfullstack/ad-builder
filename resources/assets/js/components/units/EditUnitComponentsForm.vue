@@ -129,11 +129,11 @@
                     </div>
                 </div>
                 <div class="row" style="margin-bottom: 15px;">                   
-                     <div class="col-md-4">
+                    <div class="col-md-4">
                         <label :for="component.slug + '_box_color'">Box Color <span class="text-danger">*</span></label>
                         <color-picker v-model="form.components[component.id]['_value']['box_color']" :color="form.components[component.id]['_value']['box_color']" />
                     </div> 
-                     <div class="col-md-4">
+                    <div class="col-md-4">
                         <label :for="component.slug + '_yes_button_color'">Yes Button Color<span class="text-danger">*</span></label>
                         <color-picker v-model="form.components[component.id]['_value']['yes_button_color']" :color="form.components[component.id]['_value']['yes_button_color']" />
                     </div>                   
@@ -361,6 +361,15 @@
                                 <color-picker v-model="form.components[component.id]['_value']['values'][formComponentIndex]['close']['foreground_color']" :color="form.components[component.id]['_value']['values'][formComponentIndex]['close']['foreground_color']" />                                                 
                             </div>                           
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div v-else-if="component.slug == 'twitter-url' || component.slug == 'facebook-url' || component.slug =='instagram-url'">
+                <div class="row" style="margin-bottom: 15px;">
+                    <div class="col-md-12">
+                        <label :for="component.slug">{{ component.name }}</label>
+                        <input type="text" class="form-control" :id="component.slug" :placeholder="component.type" v-model="form.components[component.id]['_value']">
+                        <span class="text-danger" :class="{'hidden': errors['component.slug'] == undefined}" style="margin-right:10px;">{{errors['component.slug']}}</span>
                     </div>
                 </div>
             </div>

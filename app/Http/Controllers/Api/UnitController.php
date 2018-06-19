@@ -892,7 +892,18 @@ class UnitController extends Controller
                     $component->name . '._value.values.*.image.url'            => 'All the images must be a valid url.',
                     $component->name . '._value.values.*.image.regex'          => 'All the image in timeline must be uploaded here.'
                 ]);   
-            }            
+            }    
+            else if($component->type == "qr") 
+            {                
+                if( ! in_array($component->slug, ['twitter-url',  'facebook-url', 'instagram-url']))
+                {
+                    $validator = \Validator::make([$component->name => $value['_value']], [
+                            $component->name => [
+                                $skipRequiredCheck ? 'nullable' : 'required',
+                            ]
+                        ]);
+                }
+            }        
             else if($component->type == "survey")
             {
                 $validator = \Validator::make([$component->name => $value], [
