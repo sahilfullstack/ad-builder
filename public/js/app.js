@@ -80923,6 +80923,22 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 
@@ -82048,7 +82064,139 @@ var render = function() {
                             })
                           ],
                           1
-                        )
+                        ),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c(
+                            "label",
+                            { attrs: { for: component.slug + "_halign" } },
+                            [
+                              _vm._v("Horizontal Alignment "),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.form.components[component.id]["halign"],
+                                  expression:
+                                    "form.components[component.id]['halign']"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: component.slug + "_halign" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form.components[component.id],
+                                    "halign",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "left", selected: "" } },
+                                [_vm._v("Left")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "center" } }, [
+                                _vm._v("Center")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "right" } }, [
+                                _vm._v("Right")
+                              ])
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c("div", { staticClass: "col-md-3" }, [
+                          _c(
+                            "label",
+                            { attrs: { for: component.slug + "_valign" } },
+                            [
+                              _vm._v("Vertical Alignment "),
+                              _c("span", { staticClass: "text-danger" }, [
+                                _vm._v("*")
+                              ])
+                            ]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "select",
+                            {
+                              directives: [
+                                {
+                                  name: "model",
+                                  rawName: "v-model",
+                                  value:
+                                    _vm.form.components[component.id]["valign"],
+                                  expression:
+                                    "form.components[component.id]['valign']"
+                                }
+                              ],
+                              staticClass: "form-control",
+                              attrs: { id: component.slug + "_valign" },
+                              on: {
+                                change: function($event) {
+                                  var $$selectedVal = Array.prototype.filter
+                                    .call($event.target.options, function(o) {
+                                      return o.selected
+                                    })
+                                    .map(function(o) {
+                                      var val =
+                                        "_value" in o ? o._value : o.value
+                                      return val
+                                    })
+                                  _vm.$set(
+                                    _vm.form.components[component.id],
+                                    "valign",
+                                    $event.target.multiple
+                                      ? $$selectedVal
+                                      : $$selectedVal[0]
+                                  )
+                                }
+                              }
+                            },
+                            [
+                              _c(
+                                "option",
+                                { attrs: { value: "top", selected: "" } },
+                                [_vm._v("Top")]
+                              ),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "middle" } }, [
+                                _vm._v("Middle")
+                              ]),
+                              _vm._v(" "),
+                              _c("option", { attrs: { value: "bottom" } }, [
+                                _vm._v("Bottom")
+                              ])
+                            ]
+                          )
+                        ])
                       ]
                     )
                   ])

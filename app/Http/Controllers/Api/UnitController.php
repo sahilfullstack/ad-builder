@@ -715,7 +715,7 @@ class UnitController extends Controller
             }
             else if($component->type == 'text')
             {
-                $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12];
+                $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12, 'halign' => 'left', 'valign' => 'top'];
             }
             else if($component->type == 'subtext')
             {

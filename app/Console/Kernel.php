@@ -28,6 +28,7 @@ class Kernel extends ConsoleKernel
         Commands\TestMailCommand::class,
         Commands\MailAdminForProcessedUnits::class,
         Commands\AddWebsiteQRInLandingPages::class,
+        Commands\AddTextAlignmentOptionsInUnits::class,
     ];
 
     /**

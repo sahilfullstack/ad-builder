@@ -58,6 +58,22 @@
                         <label :for="component.slug + '_foreground_color'">Text Color <span class="text-danger">*</span></label>
                         <color-picker v-model="form.components[component.id]['foreground_color']" :color="form.components[component.id]['foreground_color']" />
                     </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_halign'">Horizontal Alignment <span class="text-danger">*</span></label>
+                        <select :id="component.slug + '_halign'" class="form-control" v-model="form.components[component.id]['halign']">
+                            <option value="left" selected>Left</option>
+                            <option value="center">Center</option>
+                            <option value="right">Right</option>
+                        </select>
+                    </div>
+                    <div class="col-md-3">
+                        <label :for="component.slug + '_valign'">Vertical Alignment <span class="text-danger">*</span></label>
+                        <select :id="component.slug + '_valign'" class="form-control" v-model="form.components[component.id]['valign']">
+                            <option value="top" selected>Top</option>
+                            <option value="middle">Middle</option>
+                            <option value="bottom">Bottom</option>
+                        </select>
+                    </div>
                 </div>
             </div>
             <div v-else-if="component.type =='subtext'">

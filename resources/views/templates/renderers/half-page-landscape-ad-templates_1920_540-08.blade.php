@@ -211,12 +211,24 @@
 
                 <div class="quote-holder">
                     <div class="flag" style="border-top-color: {{ array_get($readableComponents, 'text-1.background_color') }}"></div>
-                    <div class="quote" style="background-color: {{ array_get($readableComponents, 'text-1.background_color') }}">
+                    <div class="quote" style="
+                        background-color: {{ array_get($readableComponents, 'text-1.background_color') }};
+                        display: flex;
+                        align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.valign')) }};
+                        justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.halign')) }};
+                        text-align: {{ array_get($readableComponents, 'text-1.halign') }};
+                    ">
                         @include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])
                     </div>
                 </div>
 
-                <div class="text" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
+                <div class="text" style="
+                    background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};
+                    display: flex;
+                    align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.valign')) }};
+                    justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.halign')) }};
+                    text-align: {{ array_get($readableComponents, 'text-2.halign') }};
+                ">
                     @include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])
                 </div>
             </div>

@@ -297,11 +297,23 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image'), 'default' => 'image'])
             </div>
 
-            <div id="text-1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
+            <div id="text-1" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-1.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
-            <div id="text-2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
+            <div id="text-2" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-2.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             

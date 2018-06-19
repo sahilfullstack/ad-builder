@@ -388,7 +388,13 @@
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'facebook-url'), 'default' => 'Facebook', 'size' => 2])
             </div>
             
-            <div class="heading-1" style="background-color: {{ empty(array_get($readableComponents, 'heading-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-1')['background_color'] }};">
+            <div class="heading-1" style="
+                background-color: {{ empty(array_get($readableComponents, 'heading-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-1')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'heading-1.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'heading-1.halign')) }};
+                text-align: {{ array_get($readableComponents, 'heading-1.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-1'), 'default' => 'Heading 1'])</p>
             </div>
 
@@ -396,15 +402,33 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-1'), 'default' => 'image 1'])
             </div>
 
-            <div id="text-1" style="background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};">
+            <div id="text-1" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-1')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-1')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-1.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-1.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-1'), 'default' => 'Text 1'])</p>
             </div>
 
-             <div id="amount-1" style="background-color: {{ array_get($readableComponents, 'top-border-bar._value') }}">
+             <div id="amount-1" style="
+                background-color: {{ array_get($readableComponents, 'top-border-bar._value') }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'amount-1.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'amount-1.halign')) }};
+                text-align: {{ array_get($readableComponents, 'amount-1.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-1'), 'default' => 'Amount 1'])</p>
             </div>
 
-            <div class="heading-2" style="background-color: {{ empty(array_get($readableComponents, 'heading-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-2')['background_color'] }};">
+            <div class="heading-2" style="
+                background-color: {{ empty(array_get($readableComponents, 'heading-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'heading-2')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'heading-2.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'heading-2.halign')) }};
+                text-align: {{ array_get($readableComponents, 'heading-2.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'heading-2'), 'default' => 'Heading 2'])</p>
             </div>
 
@@ -412,11 +436,23 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
 
-            <div id="text-2" style="background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};">
+            <div id="text-2" style="
+                background-color: {{ empty(array_get($readableComponents, 'text-2')['background_color']) ? 'transparent' : array_get($readableComponents, 'text-2')['background_color'] }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'text-2.halign')) }};
+                text-align: {{ array_get($readableComponents, 'text-2.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
             
-            <div id="amount-2" style="background-color: {{ array_get($readableComponents, 'top-border-bar._value') }}">
+            <div id="amount-2" style="
+                background-color: {{ array_get($readableComponents, 'top-border-bar._value') }};
+                display: flex;
+                align-items: {{ align_to_flex_rule(array_get($readableComponents, 'amount-2.valign')) }};
+                justify-content: {{ align_to_flex_rule(array_get($readableComponents, 'amount-2.halign')) }};
+                text-align: {{ array_get($readableComponents, 'amount-2.halign') }};
+            ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'amount-2'), 'default' => 'Amount 2'])</p>
             </div>
 
