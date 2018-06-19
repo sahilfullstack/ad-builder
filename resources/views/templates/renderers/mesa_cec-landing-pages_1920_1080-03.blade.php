@@ -174,12 +174,20 @@
             left: 673.254px;
         }
         
-        div#address-text {
+        div#map-title {
             background: #C6E5F3;
             width: 372.395px;
             height: 41.253px;
             position: absolute;
             top: 827px;
+            left: 673.254px;
+        }
+
+        div#map-address {
+            width: 372.395px;
+            height: 15.253px;
+            position: absolute;
+            top: 852px;
             left: 673.254px;
         }
 
@@ -260,6 +268,16 @@
             align-items: center;
         }
 
+         div.website-text {
+            width: 111.414px;
+            height: 40.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 973px;
+            left: 1055px;
+            word-wrap: break-word;
+        }
+
     </style>
     
 </head>
@@ -297,8 +315,11 @@
             ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-2'), 'default' => 'Text 2'])</p>
             </div>
-            <div id="address-text" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
+            <div id="map-title" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
+            </div>
+            <div id="map-address" style="background-color: transparent;">
+                <p>@include('templates.components.subtext', ['value' => array_get($readableComponents, 'map-address'), 'default' => 'Map Address'])</p>
             </div>
             <div class="map">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
@@ -315,6 +336,9 @@
 
              <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
+            </div>
+            <div class="website-text" style="background-color: {{ empty(array_get($readableComponents, 'website-text')['background_color']) ? 'transparent' : array_get($readableComponents, 'website-text')['background_color'] }};">
+                @include('templates.components.text', ['value' => array_get($readableComponents, 'website-text'), 'default' => 'QR CODE WEBSITE', 'size' => 2])
             </div>
     </div>
 </body>

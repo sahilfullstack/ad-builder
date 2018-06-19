@@ -47,12 +47,21 @@ class UnitController extends Controller
         return $unit->fresh();
     } 
 
-    public function delete(Unit $unit, DeleteUnitRequest $request)
+    public function unsubscribe(Unit $unit, DeleteUnitRequest $request)
     {
         try
         {
-            DB::beginTransaction();           
-            $deletedUnit = $this->deletingAUnit($unit);
+            DB::beginTransaction();          
+
+            $unit->scheduled_at             = null; 
+            $unit->published_at             = null; 
+            $unit->approved_at              = null; 
+            $unit->redeemed_subscription_id = null; 
+            $unit->processed_at             = null; 
+
+            $unit->save();
+
+            // $deletedUnit = $this->deletingAUnit($unit);
             
             // if( ! $unit->is_holder)
             // {
@@ -76,7 +85,7 @@ class UnitController extends Controller
 
             DB::commit();   
 
-            return $deletedUnit;
+            return $unit;
         }
         catch(\Exception $e)
         {
@@ -696,6 +705,10 @@ class UnitController extends Controller
                     '_no' => 0 
                 ];
             }
+            else if($component->type == 'photogallery')
+            {
+                $preparedComponents[$component->id] = ['_value' => [['_value' => '']], 'background_color' => '#ffffff'];
+            }
             else if($component->type == 'images')
             {
                 $preparedComponents[$component->id] = [['_value' => '']];
@@ -703,6 +716,10 @@ class UnitController extends Controller
             else if($component->type == 'text')
             {
                 $preparedComponents[$component->id] = ['_value' => '', 'background_color' => '#ffffff', 'foreground_color' => '#000000', 'size' => 12, 'halign' => 'left', 'valign' => 'top'];
+            }
+            else if($component->type == 'subtext')
+            {
+                $preparedComponents[$component->id] = ['_value' => '', 'foreground_color' => '#000000', 'size' => 15];
             }
             else if($component->type == 'timeline')
             {
@@ -740,11 +757,38 @@ class UnitController extends Controller
             {
                 $preparedComponents[$component->id] = ['_value' => [
                     'title' => '',
+                    'background_color' => '#ffffff', 
+                    'foreground_color' => '#000000', 
+                    'size' => 30,
+                    'open_box'=> [
+                        '_value'           => '',
+                        'background_color' => '#ffffff', 
+                        'foreground_color' => '#000000', 
+                        'size'             => 30
+                    ],
+                    'close_box'=> [
+                        '_value'           => '',
+                        'background_color' => '#ffffff',
+                        'foreground_color' => '#000000', 
+                        'size'             => 30
+                    ],
                     'values' => [
                         [
-                            'day' => '',
-                            'open' => '',
-                            'close' => ''
+                            'day' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ],
+                            'open' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ],
+                            'close' => [
+                                '_value'           => '',
+                                'foreground_color' => '#000000', 
+                                'size'             => 30
+                            ]
                         ]
                     ]
                 ]];
@@ -804,6 +848,17 @@ class UnitController extends Controller
                 $validator->setCustomMessages([
                     $component->name . '.*._value.required' => 'All the images in ' . $component->name . ' are required.'
                 ]);
+            } 
+            elseif($component->type == 'photogallery')
+            {
+                $validator = \Validator::make([$component->name => $value], [
+                     $component->name . '._value.*._value' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '*._value.required' => 'All the images in ' . $component->name . ' are required.'
+                ]);
             }
             else if($component->type == "timeline")
             {
@@ -858,9 +913,14 @@ class UnitController extends Controller
             }
             else if($component->type == "hours_of_operation")
             {
-
                 $validator = \Validator::make([$component->name => $value], [
                      $component->name . '._value.title' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.open_box._value' => [
+                        $skipRequiredCheck ? 'nullable' : 'required',
+                    ],
+                    $component->name . '._value.close_box._value' => [
                         $skipRequiredCheck ? 'nullable' : 'required',
                     ],
                     $component->name . '._value.values.*.day' => [
@@ -875,10 +935,12 @@ class UnitController extends Controller
                 ]);
 
                 $validator->setCustomMessages([
-                    $component->name . '._value.title.required'          => 'Hours Of Operation title is required.',
-                    $component->name . '._value.values.*.day.required'   => 'All the day in timeline are required.',
-                    $component->name . '._value.values.*.open.required'  => 'All the open in timeline are required.',
-                    $component->name . '._value.values.*.close.required' => 'All the close in timeline are required.',
+                    $component->name . '._value.title.required'            => 'Hours Of Operation title is required.',
+                    $component->name . '._value.open_box._value.required'  => 'Open Box title is required.',
+                    $component->name . '._value.close_box._value.required' => 'Close Box title is required.',
+                    $component->name . '._value.values.*.day.required'     => 'All the day in timeline are required.',
+                    $component->name . '._value.values.*.open.required'    => 'All the open in timeline are required.',
+                    $component->name . '._value.values.*.close.required'   => 'All the close in timeline are required.',
                 ]);   
             }
             else if($component->type == "color")
@@ -908,7 +970,20 @@ class UnitController extends Controller
                     ]
                 ]);
                 $validator->setCustomMessages([
-                    $component->name . '.*._value.regex' => 'The :attribute must be uploaded here.'
+                    $component->name . '.*._value.regex' => 'All the values in '. $component->name .' must be uploaded here.'
+                ]);
+            } 
+            else if($component->type == 'photogallery')
+            {
+                $validator->addRules([
+                    $component->name . '._value.*._value' => [
+                        'url',
+                        'regex:/^' . preg_quote(url()->to('/'), '/') . '/'
+                    ]
+                ]);
+                $validator->setCustomMessages([
+                    $component->name . '._value.*._value.url' => 'All the values in '. $component->name .' must be valid.',
+                    $component->name . '._value.*._value.regex' => 'All the values in '. $component->name .' must be uploaded here.'
                 ]);
             } else if(in_array($component->type, ['image', 'audio', 'video'])) {
                 $validator->addRules([
@@ -918,7 +993,7 @@ class UnitController extends Controller
                     ]
                 ]);
                 $validator->setCustomMessages([
-                    $component->name . '.regex' => 'The :attribute must be uploaded here.'
+                    $component->name . '.regex' => 'All the values in '. $component->name .' must be uploaded here.'
                 ]);
             }
 
@@ -929,6 +1004,14 @@ class UnitController extends Controller
                 {
                     $validator->addRules([
                         $component->name . '.*._value' => [
+                            new ValidComponents($component->type, $ruleKey, $ruleValue)
+                        ]
+                    ]);
+                } 
+                else if($component->type == 'photogallery')
+                {
+                    $validator->addRules([
+                        $component->name . '._value.*._value' => [
                             new ValidComponents($component->type, $ruleKey, $ruleValue)
                         ]
                     ]);
@@ -945,6 +1028,7 @@ class UnitController extends Controller
 
                 throw new InvalidInputException($validator->errors()->first());
             }
+
         }
     }
 

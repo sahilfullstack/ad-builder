@@ -2301,7 +2301,7 @@ class TemplateSeeder extends Seeder
                     ],     
                     [
                         'name' => 'Photo Gallery',
-                        'type' => 'images',
+                        'type' => 'photogallery',
                         'rules' => [
                             'width' => 142,
                             'height' => 123
@@ -2563,7 +2563,7 @@ class TemplateSeeder extends Seeder
                     ],  
                     [
                         'name' => 'Hours Of Operation',
-                        'type' => 'hours-of-operation',
+                        'type' => 'hours_of_operation',
                         'rules' => []
                     ]     
                 ]

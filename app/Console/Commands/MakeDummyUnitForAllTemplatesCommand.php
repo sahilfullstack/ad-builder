@@ -128,13 +128,15 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
 
     protected function getFakeComponentValue($component)
     {
-        if(in_array($component->type, ["text", "qr"])) return ["_value" => $this->faker->sentence(6), 'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ];
+        if(in_array($component->type, ["text", "qr", "subtext"])) return ["_value" => $this->faker->sentence(6), 'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ];
 
         if(in_array($component->type, ["image"])) return ["_value" => $this->dummyImage()];
         if(in_array($component->type, ["audio"])) return ["_value" => $this->dummyAudio()];
         if(in_array($component->type, ["video"])) return ["_value" => $this->dummyVideo()];
         
         if(in_array($component->type, ["images"])) return [ ["_value" => $this->dummyImage()], ["_value" => $this->dummyImage2()]];
+        if(in_array($component->type, ["photogallery"])) return [ '_value' => [["_value" => $this->dummyImage()], ["_value" => $this->dummyImage()]], 'background_color' => '#ffffff'];
+
         if(in_array($component->type, ["survey"])) return [
                     '_value' => [ 
                         'title'            => [ '_value' => '',  'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 'size' => 12 ], 
@@ -179,12 +181,39 @@ class MakeDummyUnitForAllTemplatesCommand extends Command
                 ]];
 
         if($component->type == 'hours_of_operation') return ['_value' => [
-                    'title' => $this->faker->sentence(10),
+                    'title' => $this->faker->sentence(4),
+                    'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                    'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                    'size' => 30,
+                    'open_box'=> [
+                        '_value'           => $this->faker->sentence(1),
+                        'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'size'             => 30
+                    ],
+                    'close_box'=> [
+                        '_value'           => $this->faker->sentence(1),
+                        'background_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)),
+                        'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                        'size'             => 30
+                    ],
                     'values' => [
                         [
-                            'day' => 'Day 1',
-                            'open' => 'Day OT',
-                            'close' => 'Day CT'
+                            'day' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ],
+                            'open' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ],
+                            'close' => [
+                                '_value'           => $this->faker->sentence(1),
+                                'foreground_color' => sprintf('#%06X', mt_rand(0, 0xFFFFFF)), 
+                                'size'             => 30
+                            ]
                         ]
                     ]
                 ]];

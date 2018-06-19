@@ -16,7 +16,7 @@
                         <th class="text-center">Expiry</th>
                         <th class="text-center">Days</th>
                         <th class="text-center">Allowed Videos</th>
-                        <th class="text-center">Allowed Hover</th>
+                        <th class="text-center">Allowed Scroll Over</th>
                         <th class="text-center">Allowed Popout</th>
                         <!-- <th class="text-center">Update</th> -->
                         <!-- <th class="text-center">Reject</th> -->

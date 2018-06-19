@@ -27,10 +27,11 @@ class UnitController extends Controller
     public function list()
     {
         $type = request()->input('type');
+        $filter = request()->input('filter');
 
         // If no or invalid type was passed, we would move to creating an ad.
-        if (is_null($type) || !in_array($type, ['ad', 'page'])) {
-            return redirect(route('units.list', array_merge(['type' => 'ad'], request()->query())));
+        if (is_null($type) || !in_array($type, ['ad', 'page']) || !in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected', 'all'])) {
+            return redirect(route('units.list', array_merge(['type' => 'ad', 'filter'=>'all'], request()->query())));
         }
 
         $units = Unit::notDeleted()->noHoldees()->with(['template', 'template.components']);
@@ -40,6 +41,37 @@ class UnitController extends Controller
             $units = $units->where('user_id', auth()->user()->id);
         }
 
+        if(in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected']))
+        {
+            switch ($filter) {
+                case 'approved':
+                    $units = $units->whereNotNull('approved_at');
+                    break; 
+                case 'rejected':
+                    $units = $units->whereNotNull('rejected_at');
+                    break;
+
+                case 'processing':
+                    $units = $units->whereNotNull('published_at')
+                        ->whereNull('processed_at')
+                        ->whereNull('approved_at');
+                    break;
+
+                case 'published':
+                    $units = $units->whereNotNull('published_at')
+                    ->whereNotNull('processed_at');
+                    break;  
+
+                case 'draft':
+                    $units = $units->whereNull('published_at');
+                    break;
+                
+                default:
+                    # code...
+                    break;
+            }
+            $units = $units->where('type', $type);
+        }
         $units = $units->where('type', $type)
         ->latest()->paginate();
 

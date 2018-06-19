@@ -359,8 +359,8 @@
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'image-2'), 'default' => 'image 2'])
             </div>
 
-            <div class="photogallery">
-                @include('templates.components.photogallery', ['value' => array_get($readableComponents, 'photo-gallery'), 'default' => 'photogallery'])
+            <div class="photogallery" style="background-color: {{ empty(array_get($readableComponents, 'photo-gallery')['background_color']) ? 'transparent' : array_get($readableComponents, 'photo-gallery')['background_color'] }};">
+                @include('templates.components.photogallery', ['value' => array_get($readableComponents, 'photo-gallery')['_value'], 'default' => 'photogallery'])
             </div>
          </div>
     </div>

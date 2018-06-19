@@ -69,4 +69,9 @@ class UserController extends Controller
     {
         return view('users.change_password');        
     }
+
+    public function help()
+    {
+        return view('users.help');        
+    }
 }

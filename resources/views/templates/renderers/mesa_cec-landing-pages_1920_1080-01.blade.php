@@ -182,6 +182,14 @@
             left: 821.799px;
         }
 
+        div#map-address {
+            width: 373.395px;
+            height: 15.253px;
+            position: absolute;
+            top: 859px;
+            left: 821.799px;
+        }
+
         div.map {
             width: 373.268px;
             height: 154px;
@@ -247,6 +255,17 @@
             align-items: center;
         }
 
+         div.website-text {
+            width: 111.414px;
+            height: 40.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 973px;
+            left: 1203.709px;
+            word-wrap: break-word;
+        }
+
+
         div.survey-question {
             margin: 24px;
             border: 5px solid red;
@@ -301,6 +320,10 @@
             <div id="map-title" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
             </div>
+            
+            <div id="map-address" style="background-color: transparent;">
+                <p>@include('templates.components.subtext', ['value' => array_get($readableComponents, 'map-address'), 'default' => 'Map Address'])</p>
+            </div>
 
             <div class="map">
                 @include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])
@@ -309,7 +332,9 @@
             <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'website-url')['background_color']) ? 'transparent' : array_get($readableComponents, 'website-url')['background_color'] }};">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
-
+            <div class="website-text" style="background-color: {{ empty(array_get($readableComponents, 'website-text')['background_color']) ? 'transparent' : array_get($readableComponents, 'website-text')['background_color'] }};">
+                @include('templates.components.text', ['value' => array_get($readableComponents, 'website-text'), 'default' => 'QR CODE WEBSITE', 'size' => 2])
+            </div>
             <div class="survey" style="background-color: {{ empty(array_get($readableComponents, 'survey')['_value']['title']['background_color']) ? 'transparent' : array_get($readableComponents, 'survey')['_value']['title']['background_color'] }};">
                 @include('templates.components.survey', ['value' => array_get($readableComponents, 'survey'), 'default' => 'Survey', 'unit' => $unit])</p>
             </div>

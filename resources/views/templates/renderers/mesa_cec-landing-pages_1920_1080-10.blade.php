@@ -286,12 +286,20 @@
             left: 1289px;
         }
 
-         div#address-text {
+         div#map-title {
             background: #C6E5F3;
             width: 372.395px;
             height: 41.253px;
             position: absolute;
             top: 650px;
+            left: 1000px;
+        }
+
+        div#map-address {
+            width: 372.395px;
+            height: 15.253px;
+            position: absolute;
+            top: 673px;
             left: 1000px;
         }
 
@@ -322,6 +330,16 @@
             display: flex;
             justify-content: space-evenly;
             align-items: center;
+        }  
+
+        div.website-text {
+            width: 111.414px;
+            height: 40.534px;
+            background: #C6E5F3;
+            position: absolute;
+            top: 966px;
+            left: 1130px;
+            word-wrap: break-word;
         }
 
         div#hours-of-operation {
@@ -451,18 +469,22 @@
             ">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'text-6'), 'default' => 'Text 6'])</p>
             </div>
-            <div id="address-text" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
+            <div id="map-title" style="background-color: {{ empty(array_get($readableComponents, 'map-title')['background_color']) ? 'transparent' : array_get($readableComponents, 'map-title')['background_color'] }};">
                 <p>@include('templates.components.text', ['value' => array_get($readableComponents, 'map-title'), 'default' => 'Map Title'])</p>
+            </div>
+            <div id="map-address" style="background-color: transparent;">
+                <p>@include('templates.components.subtext', ['value' => array_get($readableComponents, 'map-address'), 'default' => 'Map Address'])</p>
             </div>
             <div class="map">
                 <p>@include('templates.components.image', ['value' => array_get($readableComponents, 'map'), 'default' => 'map'])</p>
             </div>
-
-            <div class="website-qr" style="background-color: {{ empty(array_get($readableComponents, 'instagram-url')) ?: 'transparent' }}">
+            <div class="website-qr">
                 @include('templates.components.qr', ['value' => array_get($readableComponents, 'website-url'), 'default' => 'Website', 'size' => 2])
             </div>
-
-            <div id="hours-of-operation" style="background-color: {{ empty(array_get($readableComponents, 'hours-of-operation')['background_color']) ? 'transparent' : array_get($readableComponents, 'hours-of-operation')['background_color'] }};">
+            <div class="website-text" style="background-color: {{ empty(array_get($readableComponents, 'website-text')['background_color']) ? 'transparent' : array_get($readableComponents, 'website-text')['background_color'] }};">
+                @include('templates.components.text', ['value' => array_get($readableComponents, 'website-text'), 'default' => 'QR CODE WEBSITE', 'size' => 2])
+            </div>
+            <div id="hours-of-operation" style="background-color: {{ empty(array_get($readableComponents, 'hours-of-operation')['_value']['background_color']) ? 'transparent' : array_get($readableComponents, 'hours-of-operation')['_value']['background_color'] }};">
                 @include('templates.components.hours_of_operation', ['value' => array_get($readableComponents, 'hours-of-operation'), 'default' => 'Hours Of Operation'])
             </div>
          </div>
