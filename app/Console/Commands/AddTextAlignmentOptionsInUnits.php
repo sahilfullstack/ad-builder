@@ -46,13 +46,13 @@ class AddTextAlignmentOptionsInUnits extends Command
             if (is_null($unit->template)) continue;
 
             foreach ($unit->template->components as $component) {
-                if($component->type != 'text') {
-                    if(isset($unit->components[$component->id]))
-                    {
+                if(isset($unit->components[$component->id]))
+                {
+                    if($component->type != 'text') {
                         $updatedComponents[$component->id] = $unit->components[$component->id];
+                    } else {
+                        $updatedComponents[$component->id] = array_merge($unit->components[$component->id], ['valign' => 'top', 'halign' => 'left']);
                     }
-                } else {
-                    $updatedComponents[$component->id] = array_merge($unit->components[$component->id], ['valign' => 'top', 'halign' => 'left']);
                 }
             }
 
