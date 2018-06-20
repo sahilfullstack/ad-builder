@@ -466,6 +466,12 @@ class UnitController extends Controller
             throw new CustomInvalidInputException($prefix.'name', 'Name is empty.');
         }        
 
+        // Validating that the thumbnail.
+        if(is_null($unit->thumbnail) && $unit->type == "ad")
+        {
+            throw new CustomInvalidInputException($prefix.'name', 'Thumbnail is empty.');
+        }
+
         if(is_null($unit->layout_id))
         {
             throw new CustomInvalidInputException($prefix.'layout', 'Layout is empty.');
@@ -621,6 +627,21 @@ class UnitController extends Controller
                     }
                 }
             }
+
+            if($request->section == "name" && $unit->type == "ad")
+            {
+                $validator = \Validator::make(["Thumbnail" => $request->thumbnail], [
+                    "Thumbnail" => [
+                        'required',
+                    ]
+                ]);
+            
+                if ($validator->fails()) 
+                {
+                    throw new InvalidInputException($validator->errors()->first());
+                }
+            }
+
             
             // if name is sent
             if(! is_null($request->name))
@@ -1046,7 +1067,6 @@ class UnitController extends Controller
 
         }
     }
-
     // not using this for now
     // private function hasSubscription($unit, $layoutId)
     // {

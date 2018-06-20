@@ -1,5 +1,5 @@
 <template>
-      <a href @click.prevent="unsubscribe" class="btn btn-sm btn-danger" :disabled="disable.unsubscribe">Unsubscribe</a>       
+      <a href @click.prevent="unpublish" class="btn btn-sm btn-danger" :disabled="disable.unpublish">Unpublish</a>       
 </template>
 
 <script>
@@ -19,31 +19,31 @@ export default {
         return {
            errors: [],
             disable: {
-                unsubscribe: false
+                unpublish: false
             }
         }
     },
 
     methods: {
-        unsubscribe() {
+        unpublish() {
             let thiz = this;
             this.errors = [];
             Modal.show(ConfirmModal, {
                 propsData: {
-                        message:'Do you really want to unsubscribe this ad?',
+                        message:'Do you really want to unpublish this ad?',
                         unit: this.unit
                     }
                 })
                 .then(function(url) {
-                    thiz.disable.unsubscribe = true;
+                    thiz.disable.unpublish = true;
                     axios.delete('/api/units/' + thiz.unit.id,  {})
                     .then(function (response) {
-                        thiz.disable.unsubscribe = false;
+                        thiz.disable.unpublish = false;
                         // go to edit unit
                         window.location =  thiz.redirectTo;
                     })
                     .catch(function (error) {
-                        thiz.disable.unsubscribe = false;
+                        thiz.disable.unpublish = false;
                         _.forEach(error.response.data.errors, function(error, index) {
                             console.log(thiz.errors);
                             var errorIndex = _.startsWith(index, '_')

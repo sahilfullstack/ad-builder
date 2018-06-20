@@ -52,7 +52,7 @@ Vue.component('create-user-form', require('./components/users/CreateUserForm.vue
 Vue.component('edit-multiple-unit-template-form', require('./components/units/EditMultipleUnitTemplateForm.vue'));
 Vue.component('update-user-password-form', require('./components/users/UpdateUserPasswordForm.vue'));
 Vue.component('delete-user-button', require('./components/users/DeleteUserButton.vue'));
-Vue.component('unsubscribe-unit-button', require('./components/units/UnsubscribeUnitButton.vue'));
+Vue.component('unpublish-unit-button', require('./components/units/UnpublishUnitButton.vue'));
 
 const app = new Vue({
     el: '#app'

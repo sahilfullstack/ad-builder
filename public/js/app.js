@@ -20245,7 +20245,7 @@ Vue.component('create-user-form', __webpack_require__(320));
 Vue.component('edit-multiple-unit-template-form', __webpack_require__(323));
 Vue.component('update-user-password-form', __webpack_require__(326));
 Vue.component('delete-user-button', __webpack_require__(329));
-Vue.component('unsubscribe-unit-button', __webpack_require__(332));
+Vue.component('unpublish-unit-button', __webpack_require__(332));
 
 var app = new Vue({
   el: '#app'
@@ -86628,7 +86628,7 @@ var render = function() {
               [_vm._v("Upload")]
             ),
             _vm._v(" "),
-            _c("label", { attrs: { for: "thumbnail" } }, [_vm._v("Thumbnail")]),
+            _vm._m(1),
             _vm._v(" "),
             _c("input", {
               directives: [
@@ -86699,6 +86699,16 @@ var staticRenderFns = [
     return _c("label", { attrs: { for: "name" } }, [
       _vm._v("NAME "),
       _c("span", { staticClass: "text-danger" }, [_vm._v("*")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("label", { attrs: { for: "thumbnail" } }, [
+      _vm._v("Thumbnail"),
+      _c("span", { staticClass: "text-danger" }, [_vm._v("*")]),
+      _c("em", [_vm._v("(350px x 245px)")])
     ])
   }
 ]
@@ -92335,7 +92345,7 @@ var Component = normalizeComponent(
   __vue_scopeId__,
   __vue_module_identifier__
 )
-Component.options.__file = "resources/assets/js/components/units/UnsubscribeUnitButton.vue"
+Component.options.__file = "resources/assets/js/components/units/UnpublishUnitButton.vue"
 
 /* hot reload */
 if (false) {(function () {
@@ -92344,9 +92354,9 @@ if (false) {(function () {
   if (!hotAPI.compatible) return
   module.hot.accept()
   if (!module.hot.data) {
-    hotAPI.createRecord("data-v-59f0eb00", Component.options)
+    hotAPI.createRecord("data-v-4d0a7805", Component.options)
   } else {
-    hotAPI.reload("data-v-59f0eb00", Component.options)
+    hotAPI.reload("data-v-4d0a7805", Component.options)
   }
   module.hot.dispose(function (data) {
     disposed = true
@@ -92385,29 +92395,29 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
         return {
             errors: [],
             disable: {
-                unsubscribe: false
+                unpublish: false
             }
         };
     },
 
 
     methods: {
-        unsubscribe: function unsubscribe() {
+        unpublish: function unpublish() {
             var thiz = this;
             this.errors = [];
             Modal.show(__WEBPACK_IMPORTED_MODULE_0__ConfirmModal___default.a, {
                 propsData: {
-                    message: 'Do you really want to unsubscribe this ad?',
+                    message: 'Do you really want to unpublish this ad?',
                     unit: this.unit
                 }
             }).then(function (url) {
-                thiz.disable.unsubscribe = true;
+                thiz.disable.unpublish = true;
                 axios.delete('/api/units/' + thiz.unit.id, {}).then(function (response) {
-                    thiz.disable.unsubscribe = false;
+                    thiz.disable.unpublish = false;
                     // go to edit unit
                     window.location = thiz.redirectTo;
                 }).catch(function (error) {
-                    thiz.disable.unsubscribe = false;
+                    thiz.disable.unpublish = false;
                     _.forEach(error.response.data.errors, function (error, index) {
                         console.log(thiz.errors);
                         var errorIndex = _.startsWith(index, '_') ? _.trim(index, '_') : index;
@@ -92432,15 +92442,15 @@ var render = function() {
     "a",
     {
       staticClass: "btn btn-sm btn-danger",
-      attrs: { href: "", disabled: _vm.disable.unsubscribe },
+      attrs: { href: "", disabled: _vm.disable.unpublish },
       on: {
         click: function($event) {
           $event.preventDefault()
-          return _vm.unsubscribe($event)
+          return _vm.unpublish($event)
         }
       }
     },
-    [_vm._v("Unsubscribe")]
+    [_vm._v("Unpublish")]
   )
 }
 var staticRenderFns = []
@@ -92449,7 +92459,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-59f0eb00", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-4d0a7805", module.exports)
   }
 }
 

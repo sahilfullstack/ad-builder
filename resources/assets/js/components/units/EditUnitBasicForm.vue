@@ -19,7 +19,7 @@
         </div>
         <div  v-if="unit.type == 'ad'" class="form-group">
             <a href class="pull-right" @click.prevent="upload('thumbnail')">Upload</a>
-            <label for="thumbnail">Thumbnail</label>
+            <label for="thumbnail">Thumbnail<span class="text-danger">*</span><em>(350px x 245px)</em></label>
             <input type="text" class="form-control" id="thumbnail" placeholder="Example: http://something.png" v-model="form.thumbnail">
             <span class="text-danger" :class="{'hidden': errors['thumbnail'] == undefined}" style="margin-right:10px;">{{errors['thumbnail']}}</span>
         </div>
