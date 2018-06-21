@@ -61,9 +61,24 @@
                             @foreach($unit->template->components as $component)
                                 <li class="list-group-item">
                                     <h5><strong>{{ $component->name }}</strong></h5>
+                                    
                                     @if(! empty($unit->components[$component->id]))
                                         
-                                        <p>{{ $unit->components[$component->id]["_value"] }}</p>
+                                        @if(! isset($unit->components[$component->id]["_value"]) && is_array($unit->components[$component->id]))
+                                            <ul>
+                                                @foreach($unit->components[$component->id] as $item)
+                                                    <li>{{ $item['_value'] }}</li>
+                                                @endforeach
+                                            </ul>
+                                        @else
+                                            <p>{{ $unit->components[$component->id]["_value"] }}</p>
+                                            @if($component->type == 'survey')
+                                                <p>
+                                                    <span class="label label-success">YES: {{ $unit->components[$component->id]['_yes'] }}</span>
+                                                    <span class="label label-danger">NO: {{ $unit->components[$component->id]['_no'] }}</span>
+                                                </p>
+                                            @endif
+                                        @endif
                                     @else
                                         <p><em>Not defined yet.</em></p>
                                     @endif
