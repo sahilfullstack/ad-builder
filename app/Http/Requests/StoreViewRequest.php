@@ -34,8 +34,8 @@ class StoreViewRequest extends FormRequest
             'unit_id' => 'required|exists:units,id',
             'viewed_at' => 'required',
             'duration' => 'required|integer',
-            'category_id' => 'required',
-            'landing_from' => 'required'
+            // 'category_id' => 'required',
+            // 'landing_from' => 'required'
         ];
     }
 }
