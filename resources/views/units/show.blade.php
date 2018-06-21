@@ -28,7 +28,7 @@
                     @if(is_null($unit->approved_at))
                     <a href="{{ route('units.edit', ['unit' => $unit]) }}" class="btn btn-sm btn-info">Edit</a>&nbsp;
                     @else
-                    <unsubscribe-unit-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></unsubscribe-unit-button>
+                    <unpublish-unit-button :unit="{{ $unit->toJson() }}" redirect-to="{{ route('units.list')}}"></unpublish-unit-button>
                     @endif
                     <hr>
 

@@ -110,6 +110,9 @@ return [
         ],
         'name' => [
             'required_if' => 'The name field is required'
+        ],
+        'thumbnail' => [
+            'required_if' => 'The thumbnail field is required'
         ]
     ],
 

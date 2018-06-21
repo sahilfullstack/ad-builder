@@ -466,6 +466,12 @@ class UnitController extends Controller
             throw new CustomInvalidInputException($prefix.'name', 'Name is empty.');
         }        
 
+        // Validating that the thumbnail.
+        if(is_null($unit->thumbnail) && $unit->type == "ad")
+        {
+            throw new CustomInvalidInputException($prefix.'name', 'Thumbnail is empty.');
+        }
+
         if(is_null($unit->layout_id))
         {
             throw new CustomInvalidInputException($prefix.'layout', 'Layout is empty.');
@@ -486,9 +492,13 @@ class UnitController extends Controller
 
         foreach ($unit->components as $key => $component) 
         {            
-            if(empty($component["_value"]))
-            {                     
-                throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
+
+            if(empty($component["_value"]) )
+            {       
+                if( ! in_array(Component::find($key)->slug, ["twitter-url", "facebook-url", "instagram-url"]))
+                {                      
+                    throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
+                }
             }
         }
     }
@@ -617,6 +627,21 @@ class UnitController extends Controller
                     }
                 }
             }
+
+            if($request->section == "name" && $unit->type == "ad")
+            {
+                $validator = \Validator::make(["Thumbnail" => $request->thumbnail], [
+                    "Thumbnail" => [
+                        'required',
+                    ]
+                ]);
+            
+                if ($validator->fails()) 
+                {
+                    throw new InvalidInputException($validator->errors()->first());
+                }
+            }
+
             
             // if name is sent
             if(! is_null($request->name))
@@ -892,7 +917,18 @@ class UnitController extends Controller
                     $component->name . '._value.values.*.image.url'            => 'All the images must be a valid url.',
                     $component->name . '._value.values.*.image.regex'          => 'All the image in timeline must be uploaded here.'
                 ]);   
-            }            
+            }    
+            else if($component->type == "qr") 
+            {                
+                if( ! in_array($component->slug, ['twitter-url',  'facebook-url', 'instagram-url']))
+                {
+                    $validator = \Validator::make([$component->name => $value['_value']], [
+                            $component->name => [
+                                $skipRequiredCheck ? 'nullable' : 'required',
+                            ]
+                        ]);
+                }
+            }        
             else if($component->type == "survey")
             {
                 $validator = \Validator::make([$component->name => $value], [
@@ -1031,7 +1067,6 @@ class UnitController extends Controller
 
         }
     }
-
     // not using this for now
     // private function hasSubscription($unit, $layoutId)
     // {

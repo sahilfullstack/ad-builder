@@ -1813,7 +1813,7 @@ class TemplateSeeder extends Seeder
                 'layout_id' => $layouts[str_slug('Full Page')],
                 'name' => 'Landing Page #1',
                 'renderer' => 'templates.renderers.mesa_cec-landing-pages_1920_1080-01',
-                'components' => [
+                 'components' => [
                     [
                         'name' => 'Top Border Bar',
                         'type' => 'color',
@@ -1864,15 +1864,25 @@ class TemplateSeeder extends Seeder
                         ]
                     ], 
                     [
-                        'name' => 'Website URL',
-                        'type' => 'qr',
-                        'rules' => []
-                    ],                
-                    [
                         'name' => 'Survey',
                         'type' => 'survey',
                         'rules' => []
                     ],
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
+                        'rules' => []
+                    ],               
                 ]
             ],
             [
@@ -1995,11 +2005,6 @@ class TemplateSeeder extends Seeder
                         ]
                     ],
                     [
-                        'name' => 'Website URL',
-                        'type' => 'qr',
-                        'rules' => []
-                    ],  
-                    [
                         'name' => 'Audio',
                         'type' => 'audio',
                         'rules' => []
@@ -2007,6 +2012,21 @@ class TemplateSeeder extends Seeder
                     [
                         'name' => 'Blog Feed URL',
                         'type' => 'qr',
+                        'rules' => []
+                    ],
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
                         'rules' => []
                     ],
                 ]
@@ -2225,12 +2245,7 @@ class TemplateSeeder extends Seeder
                             'width' => 372,
                             'height' => 157
                         ]
-                    ],       
-                    [
-                        'name' => 'Website URL',
-                        'type' => 'qr',
-                        'rules' => []
-                    ],          
+                    ],    
                     [
                         'name' => 'Survey',
                         'type' => 'survey',
@@ -2243,7 +2258,22 @@ class TemplateSeeder extends Seeder
                             'width' => 396,
                             'height' => 412
                         ]
-                    ]
+                    ],
+                    [
+                        'name' => 'Website URL',
+                        'type' => 'qr',
+                        'rules' => []
+                    ], 
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
+                        'rules' => []
+                    ],      
                 ]
             ],
             [
@@ -2565,7 +2595,17 @@ class TemplateSeeder extends Seeder
                         'name' => 'Hours Of Operation',
                         'type' => 'hours_of_operation',
                         'rules' => []
-                    ]     
+                    ],
+                    [
+                        'name' => 'Website Text',
+                        'type' => 'text',
+                        'rules' => []
+                    ],  
+                    [
+                        'name' => 'Map Address',
+                        'type' => 'subtext',
+                        'rules' => []
+                    ],      
                 ]
             ]
         ];
