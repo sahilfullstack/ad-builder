@@ -199,7 +199,7 @@ class UnitController extends Controller
     public function list(ListUnitRequest $request)
     {
         $units = Unit::unexpired()->published()->approved()->noHoldees()->with(['holdee', 'category', 'layout', 'template', 'child', 'holdee.holdee', 'holdee.category', 'holdee.layout', 'holdee.template', 'holdee.child'])->orderBy('is_holder', 'desc')->orderBy('layout_id');
-        
+
         if( ! is_null($request->get('type')))
         {
             $units = $units->where('type', $request->get('type'));
@@ -242,28 +242,72 @@ class UnitController extends Controller
 
         $transformed = $this->fitInSlides($units);
         
-        
         foreach($units as $unit)
         {
+            $surveyComponent = null;
+            $audioComponent = null;
+
+            $containsSurvey = false; 
+            $containsAudio  = false; 
+            $containedAudio = null; 
+
+            if($unit['type'] == 'ad')
+            {
+                if(! is_null($unit['child']))
+                {
+                    $surveyComponent = $this->getComponentWithType($unit['child']['template_id'], "survey");
+                    $audioComponent = $this->getComponentWithType($unit['child']['template_id'], "audio");                  
+                }
+            }
+            else
+            {
+                    $surveyComponent = $this->getComponentWithType($unit['template_id'], "survey");
+                    $audioComponent = $this->getComponentWithType($unit['template_id'], "audio");
+            }
+
+            $containsSurvey = is_null($surveyComponent) ? false : true;                
+            $containsAudio = is_null($audioComponent) ? false : true;                
+
+            if($containsAudio)
+            {
+                if(isset($unit['components'][$audioComponent->id]))
+                {
+                    $containedAudio = $unit['components'][$audioComponent->id]['_value'];
+                }
+                else
+                {
+                    $containedAudio = false;
+                }
+            }
+
             $user = User::find($unit['user_id']);
+
             $transformed[]['product'] = [
-                'hash' => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
-                        . $unit['updated_at']
-                        . $unit['child']['updated_at']),
-                'prid' => $unit['id'],
-                'category_id' => $unit['category']['id'],
-                'category' => $unit['category']['name'],
-                'title' => $unit['name'],
-                'company_name' => $user->company,
-                'render_url' => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
+                'hash'             => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
+                                        . $unit['updated_at']
+                                        . $unit['child']['updated_at']),
+                'prid'             => $unit['id'],
+                'category_id'      => $unit['category']['id'],
+                'category'         => $unit['category']['name'],
+                'title'            => $unit['name'],
+                'company_name'     => $user->company,
+                'render_url'       => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
                 'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
-                'layout_id' => $unit['layout_id'] - 1,
-                'startchar' => Str::upper(substr($user->company, 0, 1)),
-                'thumbnail' => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
-                'hoverimage' => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
+                'layout_id'        => $unit['layout_id'] - 1,
+                'startchar'        => Str::upper(substr($user->company, 0, 1)),
+                'thumbnail'        => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
+                'hoverimage'       => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
+                'contains_survey'  => $containsSurvey,
+                'contains_audio'   => $containsAudio,
+                'contained_audio'  => $containedAudio,
             ];
         }
         return $transformed;
+    }
+
+    private function getComponentWithType($templateId, $type)
+    {
+        return Component::where('template_id', $templateId)->where('type',$type)->first();
     }
 
     protected function findAssetUrls($unit)
