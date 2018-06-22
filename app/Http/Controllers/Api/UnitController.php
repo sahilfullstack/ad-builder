@@ -250,19 +250,22 @@ class UnitController extends Controller
             $containsSurvey = false; 
             $containsAudio  = false; 
             $containedAudio = null; 
+            $landingPageTemplateId = null; 
 
             if($unit['type'] == 'ad')
             {
                 if(! is_null($unit['child']))
                 {
-                    $surveyComponent = $this->getComponentWithType($unit['child']['template_id'], "survey");
-                    $audioComponent = $this->getComponentWithType($unit['child']['template_id'], "audio");                  
+                    $surveyComponent       = $this->getComponentWithType($unit['child']['template_id'], "survey");
+                    $audioComponent        = $this->getComponentWithType($unit['child']['template_id'], "audio");                  
+                    $landingPageTemplateId = $unit['child']['template_id'];                  
                 }
             }
             else
             {
-                    $surveyComponent = $this->getComponentWithType($unit['template_id'], "survey");
-                    $audioComponent = $this->getComponentWithType($unit['template_id'], "audio");
+                    $surveyComponent       = $this->getComponentWithType($unit['template_id'], "survey");
+                    $audioComponent        = $this->getComponentWithType($unit['template_id'], "audio");
+                    $landingPageTemplateId = $unit['template_id'];
             }
 
             $containsSurvey = is_null($surveyComponent) ? false : true;                
@@ -283,23 +286,24 @@ class UnitController extends Controller
             $user = User::find($unit['user_id']);
 
             $transformed[]['product'] = [
-                'hash'             => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
-                                        . $unit['updated_at']
-                                        . $unit['child']['updated_at']),
-                'prid'             => $unit['id'],
-                'category_id'      => $unit['category']['id'],
-                'category'         => $unit['category']['name'],
-                'title'            => $unit['name'],
-                'company_name'     => $user->company,
-                'render_url'       => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
-                'landing_page_url' => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
-                'layout_id'        => $unit['layout_id'] - 1,
-                'startchar'        => Str::upper(substr($user->company, 0, 1)),
-                'thumbnail'        => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
-                'hoverimage'       => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
-                'contains_survey'  => $containsSurvey,
-                'contains_audio'   => $containsAudio,
-                'contained_audio'  => $containedAudio,
+                'hash'                     => md5(file_get_contents(base_path() . '/resources/views/' . str_replace('.', '/', $unit['template']['renderer']) . '.blade.php')
+                                                . $unit['updated_at']
+                                                . $unit['child']['updated_at']),
+                'prid'                     => $unit['id'],
+                'category_id'              => $unit['category']['id'],
+                'category'                 => $unit['category']['name'],
+                'title'                    => $unit['name'],
+                'company_name'             => $user->company,
+                'render_url'               => route('units.render', [$unit['id'], 'z' => '2', 'relative' => 'y']),
+                'landing_page_url'         => route('units.render', [$unit['child']['id'], 'z' => '2', 'relative' => 'y']),
+                'layout_id'                => $unit['layout_id'] - 1,
+                'startchar'                => Str::upper(substr($user->company, 0, 1)),
+                'thumbnail'                => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
+                'hoverimage'               => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
+                'contains_survey'          => $containsSurvey,
+                'contains_audio'           => $containsAudio,
+                'contained_audio'          => $containedAudio,
+                'landing_page_template_id' => $landingPageTemplateId,
             ];
         }
         return $transformed;
