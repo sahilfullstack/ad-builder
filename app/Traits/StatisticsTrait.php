@@ -19,6 +19,7 @@ trait StatisticsTrait
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('count(*) as view_count, date(viewed_at) as viewed_on'))
             ->where('units.user_id', auth()->user()->id)
+            ->whereNotNull('views.landing_from')
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
@@ -59,6 +60,7 @@ trait StatisticsTrait
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
             ->where('units.user_id', auth()->user()->id)
+            ->whereNotNull('views.landing_from')
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
@@ -84,6 +86,80 @@ trait StatisticsTrait
         ];
 
         $report = 'views-duration';
+
+        return [$type, $range, $from, $to, $path, $filters, $report];
+    }
+
+    protected function getAdViewsCount(Request $request, $from, $to)
+    {
+        $unitId = $request->input('unit_id');
+
+        // select count(*), date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('count(*) as view_count, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', auth()->user()->id)
+            ->whereNull('views.landing_from')
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+
+        if (!is_null($unitId)) $query->where('units.id', $unitId);
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->view_count;
+        }
+
+        // pass the data to the view
+        $type = 'daterange';
+        $path = '/' . $request->path();
+        $filters = [
+            $this->getAdsFilter($unitId)
+        ];
+
+        $report = 'ad-views-count';
+
+        return [$type, $range, $from, $to, $path, $filters, $report];
+    }
+
+    protected function getAdViewsDuration(Request $request, $from, $to)
+    {
+        $unitId = $request->input('unit_id');
+
+        // select sum(duration) as time_spent, date(viewed_at) as viewed_on from views join units on views.unit_id = units.id where units.user_id = 1 and landing_from = 'category' group by viewed_on;
+        $query = DB::table('views')
+            ->join('units', 'views.unit_id', '=', 'units.id')
+            ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
+            ->where('units.user_id', auth()->user()->id)
+            ->whereNull('views.landing_from')
+            ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
+            ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
+            ->groupBy('viewed_on');
+
+        if (!is_null($unitId)) $query->where('units.id', $unitId);
+
+        $result = $query->get();
+        
+        // getting empty date range
+        $range = $this->generateDateRange($from, $to);
+        // filling the data for the dates that we have data for
+        foreach ($result as $entry) {
+            $range[$entry->viewed_on] = $entry->time_spent;
+        }
+
+        // pass the data to the view
+        $type = 'daterange';
+        $path = '/' . $request->path();
+        $filters = [
+            $this->getAdsFilter($unitId)
+        ];
+
+        $report = 'ad-views-duration';
 
         return [$type, $range, $from, $to, $path, $filters, $report];
     }

@@ -59,13 +59,23 @@
 
                                 <ul class="dropdown-menu">
                                     <li>
+                                        <a href="/statistics/ad-views-count">
+                                            Total Views (Ads)
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a href="/statistics/ad-views-duration">
+                                            Views Duration (Ads)
+                                        </a>
+                                    </li>
+                                    <li>
                                         <a href="/statistics/views-count">
-                                            Total Views
+                                            Total Views (Landing Pages)
                                         </a>
                                     </li>
                                     <li>
                                         <a href="/statistics/views-duration">
-                                            Views Duration
+                                            Views Duration (Landing Pages)
                                         </a>
                                     </li>
                                     <li>
