@@ -49,7 +49,7 @@
                 if(isset($value['_value']['no_button_color'])) $noButtonStyle .= 'background-color: ' . $value['_value']['no_button_color'] . ';';
             @endphp
             <button style="{{ $yesButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
-            <button style="{{ $noButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
+            <button style="{{ $noButtonStyle }};float:right;" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
         </div>
     </div>
 @endif

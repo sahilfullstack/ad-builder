@@ -223,7 +223,6 @@
             left: 1213.709px;
         }
         div.survey div.survey-buttons {
-            text-align: center;
             margin-top: 30px;
         }
         div.survey div.survey-buttons button {
