@@ -285,7 +285,7 @@ class UnitController extends Controller
             }
 
             if ($containsSurvey) {
-                $surveyResponseUrl = "/units/{$unit['child']['id']}/components/{$surveyComponent->id}/responses?" . time();
+                $surveyResponseUrl = url()->to('') . "/units/{$unit['child']['id']}/components/{$surveyComponent->id}/responses?" . time();
             }
 
             $user = User::find($unit['user_id']);
@@ -306,7 +306,7 @@ class UnitController extends Controller
                 'thumbnail'                => is_null($unit['thumbnail']) ? 'Ad-Pages-5.jpeg' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['thumbnail']),
                 'hoverimage'               => is_null($unit['hover_image']) ? 'Transparent.png' : str_replace(Storage::url(config('uploads.folder'))."/", '', $unit['hover_image']),
                 'contains_survey'          => $containsSurvey,
-                'survey_reponse_url'       => $surveyResponseUrl,
+                'survey_response_url'       => $surveyResponseUrl,
                 'contains_audio'           => $containsAudio,
                 'contained_audio'          => $containedAudio,
                 'landing_page_template_id' => $landingPageTemplateId,
