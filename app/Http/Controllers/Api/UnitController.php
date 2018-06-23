@@ -285,9 +285,7 @@ class UnitController extends Controller
             }
 
             if ($containsSurvey) {
-                if (isset($unit['components'][$audioComponent->id])) {
-                    $surveyResponseUrl = "/units/{$unit['child']['id']}/components/{$surveyComponent->id}/responses?" . time();
-                }
+                $surveyResponseUrl = "/units/{$unit['child']['id']}/components/{$surveyComponent->id}/responses?" . time();
             }
 
             $user = User::find($unit['user_id']);
