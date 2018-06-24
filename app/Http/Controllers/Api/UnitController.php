@@ -974,7 +974,7 @@ class UnitController extends Controller
             }    
             else if($component->type == "qr") 
             {                
-                if( ! in_array($component->slug, ['twitter-url',  'facebook-url', 'instagram-url']))
+                if( ! in_array($component->slug, ['blog-feed-url', 'twitter-url',  'facebook-url', 'instagram-url']))
                 {
                     $validator = \Validator::make([$component->name => $value['_value']], [
                             $component->name => [
