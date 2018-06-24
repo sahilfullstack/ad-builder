@@ -216,7 +216,7 @@
 
         div.survey {
             width: 669.258px;
-            height: 198.319px;
+            height: 255.319px;
             background: #C6E5F3; 
             position: absolute;
             top: 558.784px;
