@@ -40,16 +40,22 @@
 
     <div style="{{ $boxStyle }};"  class="survey-question">
         <p>@include('templates.components.text', ['value' => $value['_value']['question'], 'default' => 'Survey Question'])</p>    
-        <div class="survey-buttons">
-            @php
-                $yesButtonStyle = '';
-                $noButtonStyle = '';
+    </div>
+    <div class="survey-buttons" style="
+        margin-left: 25px;
+        margin-right: 25px;
+        margin-bottom: 25px;
+        position:absolute;
+        bottom: 0;
+    ">
+        @php
+            $yesButtonStyle = '';
+            $noButtonStyle = '';
 
-                if(isset($value['_value']['yes_button_color'])) $yesButtonStyle .= 'background-color: ' . $value['_value']['yes_button_color'] . ';';
-                if(isset($value['_value']['no_button_color'])) $noButtonStyle .= 'background-color: ' . $value['_value']['no_button_color'] . ';';
-            @endphp
-            <button style="{{ $yesButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
-            <button style="{{ $noButtonStyle }};float:right;" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
-        </div>
+            if(isset($value['_value']['yes_button_color'])) $yesButtonStyle .= 'background-color: ' . $value['_value']['yes_button_color'] . ';';
+            if(isset($value['_value']['no_button_color'])) $noButtonStyle .= 'background-color: ' . $value['_value']['no_button_color'] . ';';
+        @endphp
+        <button style="{{ $yesButtonStyle }};" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'yes')">Yes</button>
+        <button style="{{ $noButtonStyle }};float:right;" onclick="recordSurveyResponse(event, {{ $unit->id }}, {{ array_get($value, '_id') }}, 'no')">No</button>
     </div>
 @endif

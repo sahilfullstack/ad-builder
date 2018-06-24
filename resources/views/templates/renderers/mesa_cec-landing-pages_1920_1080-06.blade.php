@@ -231,6 +231,7 @@
         }
         div.survey div.survey-buttons {
             margin-top: 30px;
+            width: 524px;
         }
         div.survey div.survey-buttons button {
             background-color: #0078e7;

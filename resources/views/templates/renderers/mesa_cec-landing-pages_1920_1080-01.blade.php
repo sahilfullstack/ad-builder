@@ -223,6 +223,7 @@
             left: 1213.709px;
         }
         div.survey div.survey-buttons {
+            width: 615px;
             margin-top: 30px;
         }
         div.survey div.survey-buttons button {
