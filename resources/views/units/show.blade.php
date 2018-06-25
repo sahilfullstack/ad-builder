@@ -157,8 +157,8 @@
                                                 @if(! is_null($unit->child->components[$component->id]["_value"]["question"]["_value"]))
                                                     <p>Question: <strong>{{$unit->child->components[$component->id]["_value"]["question"]["_value"]}}</strong></p>
                                                     <p>
-                                                        <span class="label label-success">YES: {{ $unit->components[$component->id]['_yes'] }}</span>
-                                                        <span class="label label-danger">NO: {{ $unit->components[$component->id]['_no'] }}</span>
+                                                        <span class="label label-success">YES: {{ $unit->child->components[$component->id]['_yes'] }}</span>
+                                                        <span class="label label-danger">NO: {{ $unit->child->components[$component->id]['_no'] }}</span>
                                                     </p>
                                                 @endif
                                             @elseif($component->type == 'timeline')
