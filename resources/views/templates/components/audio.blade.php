@@ -9,11 +9,11 @@
     </div>
 @else
     @if(is_null(request()->input('relative')))
-        <audio autoplay loop preload="auto"
+        <audio preload="auto"
             src="{{ $originalValue }}"
         ></audio>
     @else
-        <audio autoplay loop preload="auto"
+        <audio preload="auto"
             src="{{ absolute_to_relative_url($convertedValue) }}"
         ></audio>
     @endif
