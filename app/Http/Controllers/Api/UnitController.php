@@ -274,13 +274,22 @@ class UnitController extends Controller
 
             if($containsAudio)
             {
-                if(isset($unit['components'][$audioComponent->id]))
+                if($unit['type'] == 'ad')
                 {
-                    $containedAudio = $unit['components'][$audioComponent->id]['_value'];
-                }
-                else
-                {
-                    $containedAudio = false;
+                    if (!is_null($unit['child']) && isset($unit['child']['components'][$audioComponent->id]))
+                    {
+                        $containedAudio = $unit['components'][$audioComponent->id]['_value'];
+                    }
+                    else
+                    {
+                        $containedAudio = false;
+                    }
+                } else {
+                    if (isset($unit['components'][$audioComponent->id])) {
+                        $containedAudio = $unit['components'][$audioComponent->id]['_value'];
+                    } else {
+                        $containedAudio = false;
+                    }
                 }
             }
 
