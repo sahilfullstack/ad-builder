@@ -278,7 +278,7 @@ class UnitController extends Controller
                 {
                     if (!is_null($unit['child']) && isset($unit['child']['components'][$audioComponent->id]))
                     {
-                        $containedAudio = $unit['child']['components'][$audioComponent->id]['_value'];
+                        $containedAudio = $unit['child']['components'][$audioComponent->id]['converted_value'];
                     }
                     else
                     {
