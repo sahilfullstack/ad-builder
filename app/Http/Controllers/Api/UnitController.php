@@ -549,7 +549,7 @@ class UnitController extends Controller
 
             if(empty($component["_value"]) )
             {       
-                if( ! in_array(Component::find($key)->slug, ["twitter-url", "facebook-url", "instagram-url"]))
+                if( ! in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url"]))
                 {                      
                     throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
                 }
