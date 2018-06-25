@@ -550,7 +550,7 @@ class UnitController extends Controller
             {
                 foreach($component as $componentItem)
                 {
-                    if (empty($component["_value"])) {
+                    if (empty($componentItem["_value"])) {
                         throw new CustomInvalidInputException($prefix . 'components', 'Components are missing.');
                     }
                 }
