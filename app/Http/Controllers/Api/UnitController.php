@@ -317,7 +317,7 @@ class UnitController extends Controller
                 'contains_survey'          => $containsSurvey,
                 'survey_response_url'       => $surveyResponseUrl,
                 'contains_audio'           => $containsAudio,
-                'contained_audio'          => $containedAudio,
+                'contained_audio'          => str_replace(Storage::url(config('uploads.folder'))."/", '', $containedAudio),
                 'landing_page_template_id' => $landingPageTemplateId,
             ];
         }
