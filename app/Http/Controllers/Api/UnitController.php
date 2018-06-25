@@ -551,7 +551,7 @@ class UnitController extends Controller
                 foreach($component as $componentItem)
                 {
                     if (empty($componentItem["_value"])) {
-                        if (!in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url"])) {
+                        if (!in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url", 'qr-code-value-1', 'qr-code-value-2', 'qr-code-value-3', 'qr-code-title-3', 'qr-code-title-2', 'qr-code-title-1'])) {
                             throw new CustomInvalidInputException($prefix . 'components', 'Components are missing.');
                         }
                     }
@@ -559,7 +559,7 @@ class UnitController extends Controller
             }
             else if(empty($component["_value"]))
             {       
-                if( ! in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url"]))
+                if( ! in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url", 'qr-code-value-1', 'qr-code-value-2', 'qr-code-value-3', 'qr-code-title-3', 'qr-code-title-2', 'qr-code-title-1']))
                 {                      
                     throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
                 }
@@ -984,7 +984,7 @@ class UnitController extends Controller
             }    
             else if($component->type == "qr") 
             {                
-                if( ! in_array($component->slug, ['blog-feed-url', 'twitter-url',  'facebook-url', 'instagram-url']))
+                if( ! in_array($component->slug, ['blog-feed-url', 'twitter-url', 'facebook-url', 'instagram-url', 'qr-code-value-1', 'qr-code-value-2', 'qr-code-value-3', 'qr-code-title-3', 'qr-code-title-2', 'qr-code-title-1']))
                 {
                     $validator = \Validator::make([$component->name => $value['_value']], [
                             $component->name => [
@@ -1054,11 +1054,14 @@ class UnitController extends Controller
             }
             else
             {
-                $validator = \Validator::make([$component->name => $value['_value']], [
-                    $component->name => [
-                        $skipRequiredCheck ? 'nullable' : 'required',
-                    ]
-                ]);
+                if( ! in_array($component->slug, ['blog-feed-url', 'twitter-url', 'facebook-url', 'instagram-url', 'qr-code-value-1', 'qr-code-value-2', 'qr-code-value-3', 'qr-code-title-3', 'qr-code-title-2', 'qr-code-title-1']))
+                {
+                    $validator = \Validator::make([$component->name => $value['_value']], [
+                        $component->name => [
+                            $skipRequiredCheck ? 'nullable' : 'required',
+                        ]
+                    ]);
+                }
             }
 
             if($component->type == 'images')
@@ -1125,7 +1128,6 @@ class UnitController extends Controller
             }
 
             if ($validator->fails()) {
-
                 throw new InvalidInputException($validator->errors()->first());
             }
 
