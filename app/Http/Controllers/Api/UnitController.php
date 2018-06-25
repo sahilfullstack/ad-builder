@@ -546,9 +546,9 @@ class UnitController extends Controller
 
         foreach ($unit->components as $key => $component) 
         {            
-
-            if(empty($component["_value"]) )
+            if(empty($component["_value"]))
             {       
+                \Log::info('MISSING_COMPONENTS', [in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url"])]);
                 if( ! in_array(Component::find($key)->slug, ["blog-feed-url", "twitter-url", "facebook-url", "instagram-url"]))
                 {                      
                     throw new CustomInvalidInputException($prefix.'components', 'Components are missing.');
