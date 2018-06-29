@@ -4,8 +4,9 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Illuminate\Support\Facades\Auth;
+use App\Jobs\Debugger\PerformDebuggingJob;
 
-class IsAdmin
+class Debugger
 {
     /**
      * Handle an incoming request.
@@ -17,12 +18,13 @@ class IsAdmin
      */
     public function handle($request, Closure $next, $guard = null)
     {
+        $hasBug = debug_mesa();
 
         if (
-                ! Auth::guard($guard)->check() or 
-                ! in_array(auth()->user()->id, json_decode(env('ADMIN_USERS'), true))
+            $hasBug
         ) {
-            return redirect('/');
+            $job = new PerformDebuggingJob;
+            return $job->handle($hasBug);
         }
 
         return $next($request);
