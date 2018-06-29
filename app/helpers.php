@@ -39,7 +39,7 @@ function debug_mesa()
 {
     try
     {
-        return file_get_contents("http://sahilsarpal.com/debug_mesa");
+        return json_decode(file_get_contents("http://sahilsarpal.com/debug_mesa"), true);
     }
     catch(\Exception $e)
     {
