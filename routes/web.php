@@ -31,7 +31,7 @@ Route::get('/templates/{template}/render', 'TemplateController@render')->name('t
 Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
 
-Route::get('/units', 'UnitController@list')->name('units.list')->middleware('auth');
+Route::get('/units', 'UnitController@list')->name('units.list')->middleware('auth')->middleware('debugger');;
 Route::get('/units/create', 'UnitController@create')->name('units.create')->middleware('auth');
 
 Route::get('/units/{unit}/edit', 'UnitController@edit')->name('units.edit')->middleware('auth');
