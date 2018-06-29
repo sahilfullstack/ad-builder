@@ -11,7 +11,9 @@
 |
 */
 
-Route::get('/', function () {
+use Doctrine\DBAL\Driver\PDOMySql\Driver;
+
+Route::get('/', function () {	
 	return redirect('/dashboard');
 });
 
@@ -23,7 +25,7 @@ Route::get('/post-registration', function () {
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard')->middleware('auth');
 
-Route::get('/templates', 'TemplateController@list')->name('templates.list');
+Route::get('/templates', 'TemplateController@list')->name('templates.list')->middleware('debugger');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
 Route::get('/templates/{template}/render', 'TemplateController@render')->name('templates.render');
 Route::get('/users/create', 'UserController@create')->name('users.create');

@@ -179,7 +179,7 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Pbmedia\LaravelFFMpeg\FFMpegServiceProvider::class,
-        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class
+        SimpleSoftwareIO\QrCode\QrCodeServiceProvider::class,
     ],
 
     /*
