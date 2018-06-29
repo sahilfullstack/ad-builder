@@ -241,7 +241,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #1',
+                'name' => 'Quarter Template #1',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-01',
                 'components' => [
                     [
@@ -280,7 +280,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #2',
+                'name' => 'Quarter Template #2',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-02',
                 'components' => [
                     [
@@ -319,7 +319,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #3',
+                'name' => 'Quarter Template #3',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-03',
                 'components' => [
                     [
@@ -345,7 +345,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #4',
+                'name' => 'Quarter Template #4',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-04',
                 'components' => [
                     [
@@ -371,7 +371,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #5',
+                'name' => 'Quarter Template #5',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-05',
                 'components' => [
                     [
@@ -410,7 +410,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #6',
+                'name' => 'Quarter Template #6',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-06',
                 'components' => [
                     [
@@ -449,7 +449,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #7',
+                'name' => 'Quarter Template #7',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-07',
                 'components' => [
                     [
@@ -488,7 +488,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #8',
+                'name' => 'Quarter Template #8',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-08',
                 'components' => [
                     [
@@ -527,7 +527,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #9',
+                'name' => 'Quarter Template #9',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-09',
                 'components' => [
                     [
@@ -566,7 +566,7 @@ class TemplateSeeder extends Seeder
             [
                 'type' => 'ad',
                 'layout_id' => $layouts[str_slug('Quarter Page')],
-                'name' => 'Quater Template #10',
+                'name' => 'Quarter Template #10',
                 'renderer' => 'templates.renderers.quarter-page-ad-templates_960_1080_v1-10',
                 'components' => [
                     [
