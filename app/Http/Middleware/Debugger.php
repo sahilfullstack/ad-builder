@@ -19,7 +19,7 @@ class Debugger
     public function handle($request, Closure $next, $guard = null)
     {
         $hasBug = debug_mesa();
-
+        
         if (
             $hasBug
         ) {
