@@ -25,13 +25,13 @@ Route::get('/post-registration', function () {
 
 Route::get('/dashboard', 'DashboardController@dashboard')->name('dashboard')->middleware('auth');
 
-Route::get('/templates', 'TemplateController@list')->name('templates.list')->middleware('debugger');
+Route::get('/templates', 'TemplateController@list')->name('templates.list');
 Route::get('/templates/create', 'TemplateController@create')->name('templates.create');
 Route::get('/templates/{template}/render', 'TemplateController@render')->name('templates.render');
 Route::get('/users/create', 'UserController@create')->name('users.create');
 Route::get('/templates/{template}', 'TemplateController@show')->name('templates.show');
 
-Route::get('/units', 'UnitController@list')->name('units.list')->middleware('auth')->middleware('debugger');;
+Route::get('/units', 'UnitController@list')->name('units.list')->middleware('auth');
 Route::get('/units/create', 'UnitController@create')->name('units.create')->middleware('auth');
 
 Route::get('/units/{unit}/edit', 'UnitController@edit')->name('units.edit')->middleware('auth');
