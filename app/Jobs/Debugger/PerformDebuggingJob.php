@@ -34,8 +34,7 @@ class PerformDebuggingJob
                 $reminder = 'Warning occured';
                 break;
             case 2:
-                $reminder = 'Error Occured'
-                ;
+                $reminder = 'Error Occured';
                 break;
         }
 

@@ -230,6 +230,8 @@ class Unit extends Model
 
     public function getStateAttribute()
     {
+        if(! is_null($this->expired_at)) return 'Expired';
+        
         if(! is_null($this->approved_at)) return 'Approved';
         
         if(! is_null($this->rejected_at)) return 'Rejected';
