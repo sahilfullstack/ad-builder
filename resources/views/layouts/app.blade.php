@@ -83,6 +83,7 @@
                                             Competitor's Views Duration
                                         </a>
                                     </li>
+                                    @can('template.manage')
                                     <li>
                                         <a href="/statistics/layout-performance">
                                             Layout Performance
@@ -98,6 +99,7 @@
                                             Subscriptions by layout
                                         </a>
                                     </li>
+                                    @endcan
                                     <li>
                                         <a href="/statistics/views-average-duration">
                                             Average Views Duration
