@@ -28,7 +28,7 @@ trait StatisticsTrait
         if(! is_null($source)) $query->where('views.landing_from', $source);
         
         $result = $query->get();
-        
+
         // getting empty date range
         $range = $this->generateDateRange($from, $to);
         // filling the data for the dates that we have data for
@@ -47,7 +47,7 @@ trait StatisticsTrait
 
         $report = 'views-count';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "views"];
     }
 
     protected function getViewsDuration(Request $request, $from, $to)
@@ -69,7 +69,7 @@ trait StatisticsTrait
         if (!is_null($source)) $query->where('views.landing_from', $source);
 
         $result = $query->get();
-        
+
         // getting empty date range
         $range = $this->generateDateRange($from, $to);
         // filling the data for the dates that we have data for
@@ -87,7 +87,7 @@ trait StatisticsTrait
 
         $report = 'views-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
     }
 
     protected function getAdViewsCount(Request $request, $from, $to)
@@ -124,7 +124,7 @@ trait StatisticsTrait
 
         $report = 'ad-views-count';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "views"];
     }
 
     protected function getAdViewsDuration(Request $request, $from, $to)
@@ -144,7 +144,7 @@ trait StatisticsTrait
         if (!is_null($unitId)) $query->where('units.id', $unitId);
 
         $result = $query->get();
-        
+
         // getting empty date range
         $range = $this->generateDateRange($from, $to);
         // filling the data for the dates that we have data for
@@ -161,7 +161,7 @@ trait StatisticsTrait
 
         $report = 'ad-views-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
     }
 
     protected function getLayoutPerformance(Request $request, $from, $to)
@@ -193,7 +193,7 @@ trait StatisticsTrait
 
         $report = 'layout-performance';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "performance"];
     }
 
     protected function getSubscriptionSum(Request $request, $from, $to)
@@ -223,7 +223,7 @@ trait StatisticsTrait
 
         $report = 'subscription-sum';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions"];
     }
 
     protected function getSubscriptionsByLayout(Request $request, $from, $to)
@@ -254,7 +254,7 @@ trait StatisticsTrait
 
         $report = 'subscriptions-by-layout';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions"];
     }
 
     protected function getViewsDurationOthers(Request $request, $from, $to)
@@ -293,7 +293,7 @@ trait StatisticsTrait
 
         $report = 'views-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
     }
 
     protected function getViewsAverageDuration(Request $request, $from, $to)
@@ -332,7 +332,7 @@ trait StatisticsTrait
 
         $report = 'views-average-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
     }
 
     protected function getViewsAverageDurationOthers(Request $request, $from, $to)
@@ -371,7 +371,7 @@ trait StatisticsTrait
 
         $report = 'views-average-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
     }
 
     private function getSourcesFilter($selected = null)
