@@ -18,7 +18,7 @@
                     
                     <div class="panel panel-default">
                        <div class="panel-body">
-                            <b>{{$key+1}}. {{ ucwords(str_replace(['-', '_'], ' ', $report[6]))}}</b>  <create-unpinned-report-button :pinned="{{ $report[7]->toJson() }}" report="{{ $report[6] }}" :filters="{{ json_encode($filters) }}"></create-unpinned-report-button>
+                            <b>{{$key+1}}. {{ ucwords(str_replace(['-', '_'], ' ', $report[6]))}}</b>  <create-unpinned-report-button :pinned="{{ $report[8]->toJson() }}" report="{{ $report[6] }}" :filters="{{ json_encode($filters) }}"></create-unpinned-report-button>
                             <br>
                             @if($report[0] == 'daterange')
                                 @foreach($report[5] as $filter)
@@ -43,7 +43,7 @@
                         </div>
                         <div class="panel-body">
                             @if($report[0] == 'daterange')
-                                <area-chart :data="{{ json_encode($report[1]) }}"></area-chart>
+                                <area-chart :data="{{ json_encode($report[1]) }}" label="{{$report[7]}}" xtitle="date" ytitle="{{$report[7]}}" :legend="true"></area-chart>
                             @elseif($report[0] == 'pie')
                                 <pie-chart :data="{{ json_encode($report[1]) }}"></pie-chart>
                             @endif

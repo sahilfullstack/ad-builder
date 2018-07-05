@@ -20,7 +20,7 @@
                 </div>
                 <div class="panel-body">
                     @if($type == 'daterange')
-                        <area-chart :data="{{ json_encode($range) }}" label="seconds" xtitle="date" ytitle="seconds" :legend="true"></area-chart>
+                        <area-chart :data="{{ json_encode($range) }}" label="{{$ylabel}}" xtitle="date" ytitle="{{$ylabel}}" :legend="true"></area-chart>
                     @elseif($type == 'pie')
                         <pie-chart :data="{{ json_encode($range) }}"></pie-chart>
                     @endif

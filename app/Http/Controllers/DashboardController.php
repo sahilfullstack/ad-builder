@@ -70,14 +70,14 @@ class DashboardController extends Controller
 				$request->merge(array($slug => $selected));
 	    	}
 
-	        list($type, $range, $fromDate, $toDate, $path, $filters, $report) = $this->{'get' . Str::studly($pinnedReport->report)}($request, $from->toDateString(), $to->toDateString());
+	        list($type, $range, $fromDate, $toDate, $path, $filters, $report, $ylabel) = $this->{'get' . Str::studly($pinnedReport->report)}($request, $from->toDateString(), $to->toDateString());
 
             foreach ($pinnedReport->filter as $slug => $selected) 
             {
                 $request->merge(array($slug => null));
             }
 	        
-            $preparedReports[] = [$type, $range, $fromDate, $toDate, $path, $filters, $report, $pinnedReport];
+            $preparedReports[] = [$type, $range, $fromDate, $toDate, $path, $filters, $report, $ylabel, $pinnedReport];
 	    }
 
 	    return $preparedReports;
