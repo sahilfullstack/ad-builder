@@ -98,11 +98,12 @@ trait StatisticsTrait
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('count(*) as view_count, date(viewed_at) as viewed_on'))
-            ->where('units.user_id', auth()->user()->id)
             ->whereNull('views.landing_from')
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
+
+        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
 
         if (!is_null($unitId)) $query->where('units.id', $unitId);
 
@@ -135,11 +136,13 @@ trait StatisticsTrait
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('sum(duration) as time_spent, date(viewed_at) as viewed_on'))
-            ->where('units.user_id', auth()->user()->id)
+            // ->where('units.user_id', auth()->user()->id)
             ->whereNull('views.landing_from')
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
+
+        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
 
         if (!is_null($unitId)) $query->where('units.id', $unitId);
 
@@ -305,10 +308,12 @@ trait StatisticsTrait
         $query = DB::table('views')
             ->join('units', 'views.unit_id', '=', 'units.id')
             ->select(DB::raw('avg(duration) as time_spent, date(viewed_at) as viewed_on'))
-            ->where('units.user_id', auth()->user()->id)
+            // ->where('units.user_id', auth()->user()->id)
             ->where(DB::raw('date(views.viewed_at)'), '>=', $from)
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
+
+        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
             
         if(!is_null($unitId)) $query->where('units.id', $unitId);
         if(!is_null($source)) $query->where('views.landing_from', $source);
