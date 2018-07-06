@@ -47,7 +47,7 @@ trait StatisticsTrait
 
         $report = 'views-count';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "views"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "views", "Total Views(Landing Pages)"];
     }
 
     protected function getViewsDuration(Request $request, $from, $to)
@@ -87,7 +87,7 @@ trait StatisticsTrait
 
         $report = 'views-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Views Duration(Landing Pages)"];
     }
 
     protected function getAdViewsCount(Request $request, $from, $to)
@@ -124,7 +124,7 @@ trait StatisticsTrait
 
         $report = 'ad-views-count';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "views"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "views", "Total Views(Ads)"];
     }
 
     protected function getAdViewsDuration(Request $request, $from, $to)
@@ -161,7 +161,7 @@ trait StatisticsTrait
 
         $report = 'ad-views-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Views Duration(Ads)"];
     }
 
     protected function getLayoutPerformance(Request $request, $from, $to)
@@ -193,7 +193,7 @@ trait StatisticsTrait
 
         $report = 'layout-performance';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "performance"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "performance", "Layout Performance"];
     }
 
     protected function getSubscriptionSum(Request $request, $from, $to)
@@ -223,7 +223,7 @@ trait StatisticsTrait
 
         $report = 'subscription-sum';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions", "Total Subscriptions"];
     }
 
     protected function getSubscriptionsByLayout(Request $request, $from, $to)
@@ -254,7 +254,7 @@ trait StatisticsTrait
 
         $report = 'subscriptions-by-layout';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "subscriptions", "Subscriptions by layout"];
     }
 
     protected function getViewsDurationOthers(Request $request, $from, $to)
@@ -293,7 +293,7 @@ trait StatisticsTrait
 
         $report = 'views-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Views Duration"];
     }
 
     protected function getViewsAverageDuration(Request $request, $from, $to)
@@ -332,7 +332,7 @@ trait StatisticsTrait
 
         $report = 'views-average-duration';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Average Views Duration"];
     }
 
     protected function getViewsAverageDurationOthers(Request $request, $from, $to)
@@ -371,7 +371,7 @@ trait StatisticsTrait
 
         $report = 'views-average-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Average Views Duration"];
     }
 
     private function getSourcesFilter($selected = null)

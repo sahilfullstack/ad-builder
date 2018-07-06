@@ -54,8 +54,8 @@ class StatisticsController extends Controller
             )
         );
 
-        list($type, $range, $from, $to, $path, $filters, $report, $ylabel) = $this->{'get' . Str::studly($type)}($request, $from->toDateString(), $to->toDateString());
+        list($type, $range, $from, $to, $path, $filters, $report, $ylabel, $name) = $this->{'get' . Str::studly($type)}($request, $from->toDateString(), $to->toDateString());
 
-        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters', 'report', 'ylabel'));
+        return view('stats.show', compact('type', 'range', 'from', 'to', 'path', 'filters', 'report', 'ylabel', 'name'));
     }
 }
