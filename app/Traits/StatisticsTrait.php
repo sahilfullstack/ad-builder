@@ -203,7 +203,7 @@ trait StatisticsTrait
     {
         // select sum(allowed_quantity), date(subscriptions.created_at) as created_on from subscriptions join layouts on subscriptions.layout_id = layouts.id group by created_on;
         $query = DB::table('subscriptions')
-            ->select(DB::raw('sum(allowed_quantity) as subscription_count, date(created_at) as created_on'))
+            ->select(DB::raw('count(allowed_quantity) as subscription_count, date(created_at) as created_on'))
             ->where(DB::raw('date(created_at)'), '>=', $from)
             ->where(DB::raw('date(created_at)'), '<=', $to)
             ->groupBy('created_on');
@@ -234,7 +234,7 @@ trait StatisticsTrait
         // select layouts.name, sum(allowed_quantity) from subscriptions join layouts on subscriptions.layout_id = layouts.id group by layout_id;
         $query = DB::table('subscriptions')
             ->join('layouts', 'subscriptions.layout_id', '=', 'layouts.id')
-            ->select(DB::raw('layouts.name, sum(allowed_quantity) as subscription_count'))
+            ->select(DB::raw('layouts.name, count(allowed_quantity) as subscription_count'))
             ->where(DB::raw('date(subscriptions.created_at)'), '>=', $from)
             ->where(DB::raw('date(subscriptions.created_at)'), '<=', $to)
             ->groupBy('subscriptions.layout_id');
