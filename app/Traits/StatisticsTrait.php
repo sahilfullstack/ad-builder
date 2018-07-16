@@ -103,7 +103,7 @@ trait StatisticsTrait
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
 
-        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
+        if(auth()->user()->cannot('unit.manage')) $query->where('units.user_id', auth()->user()->id);
 
         if (!is_null($unitId)) $query->where('units.id', $unitId);
 
@@ -142,7 +142,7 @@ trait StatisticsTrait
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
 
-        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
+        if(auth()->user()->cannot('unit.manage')) $query->where('units.user_id', auth()->user()->id);
 
         if (!is_null($unitId)) $query->where('units.id', $unitId);
 
@@ -313,7 +313,7 @@ trait StatisticsTrait
             ->where(DB::raw('date(views.viewed_at)'), '<=', $to)
             ->groupBy('viewed_on');
 
-        if(auth()->user()->cannot('units.manage')) $query->where('units.user_id', auth()->user()->id);
+        if(auth()->user()->cannot('unit.manage')) $query->where('units.user_id', auth()->user()->id);
             
         if(!is_null($unitId)) $query->where('units.id', $unitId);
         if(!is_null($source)) $query->where('views.landing_from', $source);
