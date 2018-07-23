@@ -388,10 +388,10 @@ trait StatisticsTrait
             'name' => 'Source',
             'slug' => 'source',
             'options' => [
-                'category' => 'Category',
-                'navigation' => 'Navigation',
-                'alphabet' => 'Alphabet',
-                'slideshow' => 'Slideshow'
+                '-category' => 'Category',
+                '-navigation' => 'Navigation',
+                '-alphabet' => 'Alphabet',
+                '-slideshow' => 'Slideshow'
             ],
             'selected' => $selected,
         ];

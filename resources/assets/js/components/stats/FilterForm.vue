@@ -76,8 +76,10 @@ export default {
         },
 
         makeFullFilterPath() {
-            let from = this.form.dateRange[0].toISOString().substring(0, 10);
-            let to = this.form.dateRange[1].toISOString().substring(0, 10);
+            let from = new Date(this.form.dateRange[0].getTime() - (this.form.dateRange[0].getTimezoneOffset() * 60000)).toISOString().substring(0, 10);
+            let to = new Date(this.form.dateRange[1].getTime() - (this.form.dateRange[1].getTimezoneOffset() * 60000)).toISOString().substring(0, 10);
+            // let from = this.form.dateRange[0].toISOString().substring(0, 10);
+            // let to = this.form.dateRange[1].toISOString().substring(0, 10);
 
             let filterPath =  this.path + '?from=' + from + '&to=' + to;
 

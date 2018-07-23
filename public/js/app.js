@@ -89799,8 +89799,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             window.location = this.makeFullFilterPath();
         },
         makeFullFilterPath: function makeFullFilterPath() {
-            var from = this.form.dateRange[0].toISOString().substring(0, 10);
-            var to = this.form.dateRange[1].toISOString().substring(0, 10);
+            var from = new Date(this.form.dateRange[0].getTime() - this.form.dateRange[0].getTimezoneOffset() * 60000).toISOString().substring(0, 10);
+            var to = new Date(this.form.dateRange[1].getTime() - this.form.dateRange[1].getTimezoneOffset() * 60000).toISOString().substring(0, 10);
+            // let from = this.form.dateRange[0].toISOString().substring(0, 10);
+            // let to = this.form.dateRange[1].toISOString().substring(0, 10);
 
             var filterPath = this.path + '?from=' + from + '&to=' + to;
 
