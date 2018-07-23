@@ -80,13 +80,13 @@
                                     </li>
                                     <li>
                                         <a href="/statistics/views-duration-others">
-                                            Competitor's Views Duration
+                                            Competitor's Views Duration (Ads and Landing Pages)
                                         </a>
                                     </li>
                                     @can('template.manage')
                                     <li>
                                         <a href="/statistics/layout-performance">
-                                            Layout Performance
+                                            Layout Performance (Ads and Landing Page Views Duration)
                                         </a>
                                     </li>
                                     <li>
@@ -107,7 +107,7 @@
                                     </li>
                                     <li>
                                         <a href="/statistics/views-average-duration-others">
-                                            Competitor's Average Views Duration
+                                            Competitor's Average Views Duration (Ads and Landing Pages)
                                         </a>
                                     </li>
                                 </ul>

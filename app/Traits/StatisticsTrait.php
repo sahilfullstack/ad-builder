@@ -199,7 +199,7 @@ trait StatisticsTrait
 
         $report = 'layout-performance';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "performance", "Layout Performance"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "performance", "Layout Performance (Ads and Landing Page Views Duration)"];
     }
 
     protected function getSubscriptionSum(Request $request, $from, $to)
@@ -299,7 +299,7 @@ trait StatisticsTrait
 
         $report = 'views-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Views Duration"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Views Duration(Ads and Landing Pages)"];
     }
 
     protected function getViewsAverageDuration(Request $request, $from, $to)
@@ -379,7 +379,7 @@ trait StatisticsTrait
 
         $report = 'views-average-duration-others';
 
-        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Average Views Duration"];
+        return [$type, $range, $from, $to, $path, $filters, $report, "seconds", "Competitor's Average Views Duration(Ads and Landing Pages)"];
     }
 
     private function getSourcesFilter($selected = null)
@@ -411,8 +411,8 @@ trait StatisticsTrait
 
     private function generateDateRange($from, $to, $default = 0)
     {
-        $from = Carbon::parse($from);
-        $to = Carbon::parse($to);
+        $from = Carbon::parse($from)->timezone('CST');
+        $to = Carbon::parse($to)->timezone('CST');
 
         $dates = [];
 
