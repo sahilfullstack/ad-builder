@@ -15,7 +15,8 @@ class StatisticsController extends Controller
 
     public function show(Request $request, $type)
     {
-        $today = Carbon::today();
+        $today = Carbon::now()->timezone('CST')->startOfDay();
+
         $needToRedirect = false;
 
         $from = $request->input('from');
