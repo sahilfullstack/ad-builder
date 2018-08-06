@@ -17,6 +17,7 @@
                         <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'approved']) }}" class="btn btn-sm btn-info">#Approved</a>&nbsp;
                         <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'rejected']) }}" class="btn btn-sm btn-info">#Rejected</a>&nbsp;
                         <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'processing']) }}" class="btn btn-sm btn-info">#Processing</a>&nbsp;
+                        <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'expired']) }}" class="btn btn-sm btn-info">#Expired</a>&nbsp;
                         <a href="{{ route('units.list', ['type' => 'ad', 'filter' => 'all']) }}" class="btn btn-sm btn-info">#All</a>&nbsp;
                 </div>
             </div>

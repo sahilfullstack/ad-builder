@@ -30,7 +30,7 @@ class UnitController extends Controller
         $filter = request()->input('filter');
 
         // If no or invalid type was passed, we would move to creating an ad.
-        if (is_null($type) || !in_array($type, ['ad', 'page']) || !in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected', 'all'])) {
+        if (is_null($type) || !in_array($type, ['ad', 'page']) || !in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected', 'all', 'expired'])) {
             return redirect(route('units.list', array_merge(['type' => 'ad', 'filter'=>'all'], request()->query())));
         }
 
@@ -41,7 +41,7 @@ class UnitController extends Controller
             $units = $units->where('user_id', auth()->user()->id);
         }
 
-        if(in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected']))
+        if(in_array($filter, ['draft', 'published', 'processing', 'approved', 'rejected', 'expired']))
         {
             switch ($filter) {
                 case 'approved':
@@ -60,6 +60,10 @@ class UnitController extends Controller
                 case 'published':
                     $units = $units->whereNotNull('published_at')
                     ->whereNotNull('processed_at');
+                    break;  
+
+                case 'expired':
+                    $units = $units->whereNotNull('expired_at');
                     break;  
 
                 case 'draft':
