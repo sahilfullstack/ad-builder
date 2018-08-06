@@ -913,18 +913,18 @@ class UnitController extends Controller
             $unitFound->rejected_at = Carbon::now();
 
         }
-        
-        $unitFound->save();
+
+        // $unitFound->save();
 
         if($request->action == 'approve') 
         {
             // mailing the user for ad approval
-            Mail::to($unitFound->user->first()->email)->send(new \App\Mail\AdApprovalMailToUser($unitFound->user->first(), $unitFound));             
+            Mail::to($unitFound->user->email)->send(new \App\Mail\AdApprovalMailToUser($unitFound->user->first(), $unitFound));             
         }
         else 
         {
             // mailing the user for ad rejection
-            Mail::to($unitFound->user->first()->email)->send(new \App\Mail\AdRejectedMailToUser($unitFound->user->first(), $unitFound));             
+            Mail::to($unitFound->user->email)->send(new \App\Mail\AdRejectedMailToUser($unitFound->user->first(), $unitFound));             
         }
 
         return $unitFound->fresh();
