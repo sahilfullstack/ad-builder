@@ -276,7 +276,7 @@ class UnitController extends Controller
             {
                 if($unit['type'] == 'ad')
                 {
-                    if (!is_null($unit['child']) && isset($unit['child']['components'][$audioComponent->id]))
+                    if (!is_null($unit['child']) && isset($unit['child']['components'][$audioComponent->id]) && isset($unit['child']['components'][$audioComponent->id]['converted_value']))
                     {
                         $containedAudio = $unit['child']['components'][$audioComponent->id]['converted_value'];
                     }
@@ -285,7 +285,7 @@ class UnitController extends Controller
                         $containedAudio = false;
                     }
                 } else {
-                    if (isset($unit['components'][$audioComponent->id])) {
+                    if (isset($unit['components'][$audioComponent->id]) && $unit['components'][$audioComponent->id]['converted_value']) {
                         $containedAudio = $unit['components'][$audioComponent->id]['converted_value'];
                     } else {
                         $containedAudio = false;
